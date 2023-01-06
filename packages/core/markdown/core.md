@@ -12,6 +12,12 @@
 |  [RemTool](./core.remtool.md) | PC端Rem适配方案 设计稿100px = 1rem 会基于devicePixelRatio和设计稿缩放body |
 |  [ToolBase](./core.toolbase.md) | 工具抽象类 |
 
+## Functions
+
+|  Function | Description |
+|  --- | --- |
+|  [guid()](./core.guid.md) | 生成唯一id |
+
 ## Interfaces
 
 |  Interface | Description |

@@ -27,13 +27,12 @@
   ],
   "author": "zhouyinkui",
   "license": "MIT",
-  "dependencies": {
-    "@mo-yu/core": "workspace:^1.0.0"
-  },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "@mo-yu/core": "^0.0.1"
   },
   "devDependencies": {
+    "@mo-yu/core": "workspace:*",
     "vue": "^3.2.45"
   },
   "repository": {

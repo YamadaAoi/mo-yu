@@ -8,5 +8,5 @@
 
 |  Variable | Description |
 |  --- | --- |
-|  [MPopup](./vue.mpopup.md) | 可拖拽弹框组件，相对于整个可视窗口拖动 |
+|  [MPopup](./vue.mpopup.md) | 可拖拽弹框组件，相对于整个可视窗口拖动 在项目入口先调用initPopupContainer()方法渲染popup父节点 |
 

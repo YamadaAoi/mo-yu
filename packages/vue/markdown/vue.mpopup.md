@@ -4,13 +4,81 @@
 
 ## MPopup variable
 
-可拖拽弹框组件，相对于整个可视窗口拖动
+可拖拽弹框组件，相对于整个可视窗口拖动 在项目入口先调用initPopupContainer()方法渲染popup父节点
 
 <b>Signature:</b>
 
 ```typescript
-_default: import("vue").DefineComponent<{}, {
-    a: import("vue").Ref<number>;
-    drag: DragTool;
-}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>
+_default: import("vue").DefineComponent<{
+    visiable: {
+        type: BooleanConstructor;
+        required: true;
+    };
+    title: {
+        type: StringConstructor;
+        required: true;
+    };
+    style: {
+        type: PropType<StyleValue>;
+        required: false;
+    };
+    class: {
+        type: StringConstructor;
+        required: false;
+    };
+    position: {
+        type: PropType<OriginPosition>;
+        required: false;
+    };
+    hideClose: {
+        type: BooleanConstructor;
+        required: false;
+    };
+    zoom: {
+        type: NumberConstructor;
+        required: false;
+        default: number;
+    };
+}, {
+    popupWinId: import("vue").Ref<string>;
+    popupHeadId: import("vue").Ref<string>;
+    close: () => void;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+    close(): boolean;
+}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    visiable: {
+        type: BooleanConstructor;
+        required: true;
+    };
+    title: {
+        type: StringConstructor;
+        required: true;
+    };
+    style: {
+        type: PropType<StyleValue>;
+        required: false;
+    };
+    class: {
+        type: StringConstructor;
+        required: false;
+    };
+    position: {
+        type: PropType<OriginPosition>;
+        required: false;
+    };
+    hideClose: {
+        type: BooleanConstructor;
+        required: false;
+    };
+    zoom: {
+        type: NumberConstructor;
+        required: false;
+        default: number;
+    };
+}>> & {
+    onClose?: (() => any) | undefined;
+}, {
+    hideClose: boolean;
+    zoom: number;
+}>
 ```

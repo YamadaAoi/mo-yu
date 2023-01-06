@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2022-06-17 14:35:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-06 15:19:10
+ * @LastEditTime: 2023-01-06 18:19:58
  * @Description:
  * Copyright (c) 2022 by piesat, All Rights Reserved.
  */
@@ -30,7 +30,6 @@ export default defineConfig([
       {
         dir: path.dirname(pkg.module),
         format: 'es',
-        name: pkg.name,
         exports: 'named',
         preserveModules: true,
         preserveModulesRoot: 'src',
@@ -40,7 +39,6 @@ export default defineConfig([
       {
         dir: path.dirname(pkg.main),
         format: 'cjs',
-        name: pkg.name,
         exports: 'named',
         preserveModules: true,
         preserveModulesRoot: 'src',
@@ -49,7 +47,7 @@ export default defineConfig([
       {
         file: path.resolve(__dirname, '../dist/index.js'),
         format: 'umd',
-        name: pkg.name,
+        name: 'MoYuCore',
         exports: 'named',
         sourcemap: true
       }
@@ -72,7 +70,6 @@ export default defineConfig([
     output: {
       dir: path.dirname(pkg.module),
       format: 'es',
-      name: pkg.name,
       exports: 'named',
       preserveModules: true,
       preserveModulesRoot: 'src'

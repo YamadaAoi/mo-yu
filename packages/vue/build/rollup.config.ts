@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2022-06-17 14:35:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-06 15:18:52
+ * @LastEditTime: 2023-01-06 18:25:09
  * @Description:
  * Copyright (c) 2022 by piesat, All Rights Reserved.
  */
@@ -13,6 +13,9 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import esbuild from 'rollup-plugin-esbuild'
+import postcss from 'rollup-plugin-postcss'
+import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
 import { visualizer } from 'rollup-plugin-visualizer'
 import strip from '@rollup/plugin-strip'
 import { createRequire } from 'node:module'
@@ -30,7 +33,6 @@ export default defineConfig([
       {
         dir: path.dirname(pkg.module),
         format: 'es',
-        name: pkg.name,
         exports: 'named',
         preserveModules: true,
         preserveModulesRoot: 'src',
@@ -40,7 +42,6 @@ export default defineConfig([
       {
         dir: path.dirname(pkg.main),
         format: 'cjs',
-        name: pkg.name,
         exports: 'named',
         preserveModules: true,
         preserveModulesRoot: 'src',
@@ -49,11 +50,12 @@ export default defineConfig([
       {
         file: path.resolve(__dirname, '../dist/index.js'),
         format: 'umd',
-        name: pkg.name,
+        name: 'MoYuVue',
         exports: 'named',
         sourcemap: true,
         globals: {
-          vue: 'Vue'
+          vue: 'Vue',
+          '@mo-yu/core': 'MoYuCore'
         }
       }
     ],
@@ -65,18 +67,18 @@ export default defineConfig([
       esbuild({
         tsconfig: path.resolve(__dirname, '../tsconfig.json'),
         target: 'esnext',
-        sourceMap: true
+        minify: true
       }),
+      postcss({ plugins: [autoprefixer(), cssnano()] }),
       strip()
     ],
-    external: ['vue']
+    external: ['vue', '@mo-yu/core']
   },
   {
     input: path.resolve(__dirname, '../src/index.ts'),
     output: {
       dir: path.dirname(pkg.module),
       format: 'es',
-      name: pkg.name,
       exports: 'named',
       preserveModules: true,
       preserveModulesRoot: 'src'
@@ -86,6 +88,7 @@ export default defineConfig([
       resolve({
         extensions
       }),
+      postcss(),
       typescript({
         compilerOptions: {
           outDir: 'es',
@@ -95,6 +98,6 @@ export default defineConfig([
         }
       })
     ],
-    external: ['vue']
+    external: ['vue', '@mo-yu/core']
   }
 ])
