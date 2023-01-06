@@ -1,0 +1,12 @@
+.vscode
+src
+build
+markdown
+node_modules
+api-extractor.json
+.gitignore
+stats.html
+.eslintignore
+.eslintrc.js
+.prettierrc.js
+pnpm-lock.yaml

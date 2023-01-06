@@ -1,0 +1,43 @@
+{
+  "name": "@mo-yu/vue",
+  "version": "1.0.0",
+  "description": "mo-yu vue",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "unpkg": "dist/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "es",
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
+    "dev": "pnpm build-lib -w",
+    "build": "pnpm build-lib && pnpm build-markdown",
+    "build-lib": "pnpm lint && pnpm clean && rollup --config build/rollup.config.ts --configPlugin typescript",
+    "build-markdown": "api-extractor run && api-documenter markdown -i ./temp -o ./markdown && rimraf temp",
+    "clean": "rimraf es && rimraf lib && rimraf dist && rimraf markdown"
+  },
+  "keywords": [
+    "mo-yu",
+    "component library",
+    "ui framework",
+    "ui",
+    "vue"
+  ],
+  "author": "zhouyinkui",
+  "license": "MIT",
+  "dependencies": {
+    "@mo-yu/core": "workspace:^1.0.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "vue": "^3.2.45"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YamadaAoi/mo-yu/vue"
+  }
+}
