@@ -1,0 +1,53 @@
+@mixin BG($url) {
+  background-image: $url;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+@mixin centerX() {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin centerY() {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin textOver() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin scrollBase() {
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0.04rem;
+    height: 0.04rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #98b0d1;
+    border-radius: 0.02rem;
+  }
+}
+
+@mixin scrollHiddenBase() {
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}

@@ -1,5 +1,9 @@
 $header-height: 48px;
 .m-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
   min-width: 350px;
   min-height: $header-height;
   background: white;

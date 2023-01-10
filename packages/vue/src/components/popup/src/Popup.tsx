@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 18:10:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-10 15:15:07
+ * @LastEditTime: 2023-01-10 18:11:27
  * @Description: 拖拽弹框
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -21,7 +21,6 @@ import {
 } from 'vue'
 import { DragTool, OriginPosition, guid } from '@mo-yu/core'
 import { useRem } from '../../../hooks/useRem'
-import { popupContainerId } from './popup_able'
 
 /**
  * 可拖拽弹框组件，相对于整个可视窗口拖动
@@ -127,7 +126,7 @@ export default defineComponent({
   },
   render() {
     return (
-      <Teleport to={popupContainerId}>
+      <Teleport to="body">
         {this.visiable ? (
           <div
             id={this.popupWinId}

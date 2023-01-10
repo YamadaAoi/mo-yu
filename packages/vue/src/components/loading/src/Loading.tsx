@@ -2,12 +2,12 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 13:35:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-10 15:24:23
+ * @LastEditTime: 2023-01-10 17:38:15
  * @Description: Loading Provider
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import './loading.scss'
-import { defineComponent, ref, h, Teleport, provide } from 'vue'
+import { defineComponent, ref, Teleport, provide, h, Fragment } from 'vue'
 import { guid } from '@mo-yu/core'
 import { LoadingInjectionKey } from './loading_able'
 
@@ -74,22 +74,25 @@ export default defineComponent({
   },
   render() {
     return (
-      <Teleport to="body">
-        {this.loadEvents.length > 0 ? (
-          <div class="m-loading">
-            <div class="m-loading-chase">
-              <div class="m-loading-chase-dot"></div>
-              <div class="m-loading-chase-dot"></div>
-              <div class="m-loading-chase-dot"></div>
-              <div class="m-loading-chase-dot"></div>
-              <div class="m-loading-chase-dot"></div>
-              <div class="m-loading-chase-dot"></div>
+      <>
+        <Teleport to="body">
+          {this.loadEvents.length > 0 ? (
+            <div class="m-loading">
+              <div class="m-loading-chase">
+                <div class="m-loading-chase-dot"></div>
+                <div class="m-loading-chase-dot"></div>
+                <div class="m-loading-chase-dot"></div>
+                <div class="m-loading-chase-dot"></div>
+                <div class="m-loading-chase-dot"></div>
+                <div class="m-loading-chase-dot"></div>
+              </div>
             </div>
-          </div>
-        ) : (
-          ''
-        )}
-      </Teleport>
+          ) : (
+            ''
+          )}
+        </Teleport>
+        {this.$slots.default?.()}
+      </>
     )
   }
 })
