@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 18:10:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-06 18:00:35
+ * @LastEditTime: 2023-01-10 15:15:07
  * @Description: 拖拽弹框
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -20,14 +20,15 @@ import {
   nextTick
 } from 'vue'
 import { DragTool, OriginPosition, guid } from '@mo-yu/core'
-import { popupContainerId } from './util'
+import { useRem } from '../../../hooks/useRem'
+import { popupContainerId } from './popup_able'
 
 /**
  * 可拖拽弹框组件，相对于整个可视窗口拖动
  * 在项目入口先调用initPopupContainer()方法渲染popup父节点
  */
 export default defineComponent({
-  name: 'Popup',
+  name: 'MPopup',
   props: {
     visiable: {
       type: Boolean,
@@ -52,11 +53,6 @@ export default defineComponent({
     hideClose: {
       type: Boolean,
       required: false
-    },
-    zoom: {
-      type: Number,
-      required: false,
-      default: 1
     }
   },
   emits: {
@@ -65,16 +61,17 @@ export default defineComponent({
     }
   },
   setup(props, { emit }) {
+    const { zoom } = useRem()
     const popupWinId = ref(`popupWin${guid()}`)
     const popupHeadId = ref(`popupHead${guid()}`)
     const drag = new DragTool({
       handleId: popupHeadId.value,
       targetId: popupWinId.value,
-      zoom: props.zoom
+      zoom: zoom.value
     })
 
     watch(
-      () => props.zoom,
+      zoom,
       next => {
         drag?.resetZoom(next)
       },

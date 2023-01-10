@@ -9,14 +9,17 @@
 |  Class | Description |
 |  --- | --- |
 |  [DragTool](./core.dragtool.md) | 全屏拖拽 |
-|  [RemTool](./core.remtool.md) | PC端Rem适配方案 设计稿100px = 1rem 会基于devicePixelRatio和设计稿缩放body |
 |  [ToolBase](./core.toolbase.md) | 工具抽象类 |
 
 ## Functions
 
 |  Function | Description |
 |  --- | --- |
+|  [fixed(value, len)](./core.fixed.md) | 保留len位小数 |
+|  [getDefault(defaultValue, initial)](./core.getdefault.md) | 初始化变量 |
 |  [guid()](./core.guid.md) | 生成唯一id |
+|  [isNull(value)](./core.isnull.md) | 是无效数据 |
+|  [isNumber(value)](./core.isnumber.md) | 是否是数字或者数字字符串 |
 
 ## Interfaces
 
@@ -24,6 +27,12 @@
 |  --- | --- |
 |  [DragToolOptions](./core.dragtooloptions.md) | 拖拽工具入参 |
 |  [ToolBaseOptions](./core.toolbaseoptions.md) | 实例化基本参数 |
+
+## Variables
+
+|  Variable | Description |
+|  --- | --- |
+|  [remTool](./core.remtool.md) | PC端Rem适配方案 设计稿默认1920 x 1080 设计稿100px = 1rem 会基于devicePixelRatio和设计稿缩放body |
 
 ## Type Aliases
 

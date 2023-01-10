@@ -4,9 +4,27 @@
 
 ## vue package
 
+## Functions
+
+|  Function | Description |
+|  --- | --- |
+|  [createInjectKey(key)](./vue.createinjectkey.md) | vue3注入key |
+|  [initPopupContainer()](./vue.initpopupcontainer.md) | 初始化弹框渲染父节点 |
+|  [useLoading()](./vue.useloading.md) | 全局共享loading方法 |
+|  [useRem()](./vue.userem.md) | rem hook 将rem zoom转为响应式变量 对外暴露remToPx方法 |
+
+## Interfaces
+
+|  Interface | Description |
+|  --- | --- |
+|  [LoadingInjection](./vue.loadinginjection.md) | loading注入方法 |
+
 ## Variables
 
 |  Variable | Description |
 |  --- | --- |
+|  [LoadingInjectionKey](./vue.loadinginjectionkey.md) | loading provider方法注入id |
+|  [MLoading](./vue.mloading.md) | loading遮罩组件，需要将项目代码包裹在MLoading内 |
 |  [MPopup](./vue.mpopup.md) | 可拖拽弹框组件，相对于整个可视窗口拖动 在项目入口先调用initPopupContainer()方法渲染popup父节点 |
+|  [popupContainerId](./vue.popupcontainerid.md) | 弹框父节点id |
 

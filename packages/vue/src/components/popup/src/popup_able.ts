@@ -1,15 +1,16 @@
 /*
  * @Author: zhouyinkui
- * @Date: 2023-01-06 16:49:14
+ * @Date: 2023-01-10 15:14:58
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-06 17:04:20
- * @Description: popup通用方法
+ * @LastEditTime: 2023-01-10 15:14:59
+ * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 /**
  * 弹框父节点id
  */
 export const popupContainerId = 'MO-YU-POPUP-CONTAINER'
+
 /**
  * 初始化弹框渲染父节点
  */

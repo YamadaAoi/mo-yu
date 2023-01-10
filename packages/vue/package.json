@@ -8,6 +8,7 @@
   "types": "es/index.d.ts",
   "files": [
     "es",
+    "lib",
     "dist"
   ],
   "scripts": {
@@ -38,5 +39,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/YamadaAoi/mo-yu/vue"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie < 8",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ]
 }
