@@ -26,7 +26,7 @@ _default: import("vue").DefineComponent<{}, {
 ## Example
 
 
-```vue
+```html
 <m-loading>
  <router-view />
 </m-loading>

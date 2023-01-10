@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 13:35:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-10 15:19:10
+ * @LastEditTime: 2023-01-10 15:24:23
  * @Description: Loading Provider
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -19,7 +19,7 @@ interface LoadItem {
 /**
  * loading遮罩组件，需要将项目代码包裹在MLoading内
  * @example
- * ```vue
+ * ```html
  * <m-loading>
  *  <router-view />
  * </m-loading>
