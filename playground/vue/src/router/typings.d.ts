@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:43:37
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-10 16:43:38
+ * @LastEditTime: 2023-01-11 10:49:21
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -14,5 +14,9 @@ declare module 'vue-router' {
      * 菜单名
      */
     label?: string
+    /**
+     * 组件名
+     */
+    cname?: string
   }
 }

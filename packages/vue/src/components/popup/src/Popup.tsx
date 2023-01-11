@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 18:10:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-10 18:11:27
+ * @LastEditTime: 2023-01-11 14:31:22
  * @Description: 拖拽弹框
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -125,29 +125,27 @@ export default defineComponent({
     return { popupWinId, popupHeadId, close }
   },
   render() {
-    return (
+    return this.visiable ? (
       <Teleport to="body">
-        {this.visiable ? (
-          <div
-            id={this.popupWinId}
-            class={`m-popup ${this.class ?? ''}`}
-            style={this.style}>
-            <div id={this.popupHeadId} class="m-popup-header">
-              {this.title}
-              {this.hideClose ? (
-                ''
-              ) : (
-                <span class="m-popup-close" onClick={this.close}>
-                  &#10006;
-                </span>
-              )}
-            </div>
-            <div class="m-popup-body">{this.$slots.default}</div>
+        <div
+          id={this.popupWinId}
+          class={`m-popup ${this.class ?? ''}`}
+          style={this.style}>
+          <div id={this.popupHeadId} class="m-popup-header">
+            {this.title}
+            {this.hideClose ? (
+              ''
+            ) : (
+              <span class="m-popup-close" onClick={this.close}>
+                &#10006;
+              </span>
+            )}
           </div>
-        ) : (
-          ''
-        )}
+          <div class="m-popup-body">{this.$slots.default?.()}</div>
+        </div>
       </Teleport>
+    ) : (
+      ''
     )
   }
 })
