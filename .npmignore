@@ -13,3 +13,4 @@ pnpm-lock.yaml
 !es/node_modules
 !lib/node_modules
 !dist/node_modules
+playground/*

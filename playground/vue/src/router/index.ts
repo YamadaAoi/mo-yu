@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-11 16:46:45
+ * @LastEditTime: 2023-01-11 18:03:06
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -26,6 +26,15 @@ export function getDemoMenus() {
       meta: {
         label: '等待遮罩',
         cname: 'MLoading'
+      }
+    },
+    {
+      path: '/portal/highlight',
+      name: 'Highlight',
+      component: () => import('../views/portal/highlight/Highlight.vue'),
+      meta: {
+        label: '高亮关键字',
+        cname: 'MHighlight'
       }
     }
   ]
