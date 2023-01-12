@@ -12,8 +12,8 @@
     "build-vue": "pnpm --filter \"@mo-yu/vue\" build",
     "build": "pnpm -r --filter ./packages build",
     "lint": "eslint --cache packages/**/*.{ts,tsx,vue}",
-    "changeset": "changeset",
-    "version": "changeset version",
+    "changeset": "pnpm changeset add",
+    "version": "pnpm changeset version",
     "release:only": "changeset publish --registry=https://registry.npmjs.com/",
     "release": "pnpm build && pnpm release:only"
   },
@@ -30,6 +30,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.0",
     "@microsoft/api-documenter": "^7.19.27",
     "@microsoft/api-extractor": "^7.33.7",
