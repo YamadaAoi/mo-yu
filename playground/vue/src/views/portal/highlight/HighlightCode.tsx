@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 18:04:57
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-11 18:06:44
+ * @LastEditTime: 2023-01-12 09:05:51
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -23,7 +23,7 @@ export default defineComponent({
         ></n-input>
         <m-highlight
           :word="val"
-          text="虽然我不是人，但你是真的狗。"
+          text="或许我不是人，但你是真的狗。"
         ></m-highlight>
       </template>
       <template #code>
