@@ -12,8 +12,8 @@
     "build-vue": "pnpm --filter \"@mo-yu/vue\" build",
     "build": "pnpm -r --filter ./packages build",
     "lint": "eslint --cache packages/**/*.{ts,tsx,vue}",
-    "changeset": "pnpm changeset add",
-    "changeset-v": "pnpm changeset version",
+    "csadd": "changeset",
+    "csver": "pnpm changeset version",
     "release:only": "changeset publish --registry=https://registry.npmjs.com/",
     "release": "pnpm build && pnpm release:only"
   },
