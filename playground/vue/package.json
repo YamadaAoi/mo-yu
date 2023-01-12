@@ -2,6 +2,7 @@
   "name": "@mo-yu/vue-demo",
   "version": "1.0.0",
   "description": "mo-yu examples",
+  "private": true,
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vue-tsc --noEmit --skipLibCheck && vite build"
