@@ -10,8 +10,15 @@
     "dev-vue-demo": "pnpm --filter \"@mo-yu/vue-demo\" dev",
     "build-core": "pnpm --filter \"@mo-yu/core\" build",
     "build-vue": "pnpm --filter \"@mo-yu/vue\" build",
-    "build": "pnpm --filter \"@mo-yu/*\" build",
-    "lint": "eslint --cache packages/**/*.{ts,tsx,vue}"
+    "build": "pnpm -r --filter ./packages build",
+    "lint": "eslint --cache packages/**/*.{ts,tsx,vue}",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release:only": "changeset publish --registry=https://registry.npmjs.com/",
+    "release": "pnpm build && pnpm release:only"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "mo-yu",
@@ -23,6 +30,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "@microsoft/api-documenter": "^7.19.27",
     "@microsoft/api-extractor": "^7.33.7",
     "@rollup/plugin-commonjs": "^24.0.0",
