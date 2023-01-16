@@ -1,5 +1,15 @@
 # mo-yu-vue-demo
 
+## 1.0.2
+
+### Patch Changes
+
+- a6f0e62: 拖拽事件优化
+- Updated dependencies [a6f0e62]
+- Updated dependencies [6027a93]
+  - @mo-yu/core@1.0.2
+  - @mo-yu/vue@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes
