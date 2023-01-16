@@ -1,4 +1,4 @@
-# @mo-yu/vue-demo
+# mo-yu-vue-demo
 
 ## 1.0.1
 

@@ -4,7 +4,7 @@
 
 ## DragTool.destroy() method
 
-功能启用
+功能销毁
 
 <b>Signature:</b>
 

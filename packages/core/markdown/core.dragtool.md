@@ -37,7 +37,7 @@ locate('center')
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [destroy()](./core.dragtool.destroy.md) |  | 功能启用 |
+|  [destroy()](./core.dragtool.destroy.md) |  | 功能销毁 |
 |  [enable()](./core.dragtool.enable.md) |  | 功能启用 |
 |  [locate(position)](./core.dragtool.locate.md) |  | 定位拖动元素到设定位置 |
 |  [resetZoom(zoom)](./core.dragtool.resetzoom.md) |  | 重置body缩放值 |

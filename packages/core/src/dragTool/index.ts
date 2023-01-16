@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:37:41
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-06 15:42:05
+ * @LastEditTime: 2023-01-16 17:07:03
  * @Description: 拖拽工具实现类
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -76,12 +76,11 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
   enable(): void {
     if (this.handle) {
       this.handle.addEventListener('mousedown', this.mouseDown, false)
-      document.addEventListener('mouseup', this.mouseUp, false)
     }
   }
 
   /**
-   * {@inheritDoc ToolBase.enable}
+   * {@inheritDoc ToolBase.destroy}
    * @override
    */
   destroy(): void {
@@ -151,6 +150,7 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
       this.#isDragging = true
       const options = { passive: false }
       document.addEventListener('mousemove', this.handleMouseMove, options)
+      document.addEventListener('mouseup', this.mouseUp, false)
     }
   }
 
@@ -160,6 +160,7 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
     oEvent?.preventDefault?.()
     this.#isDragging = false
     document.removeEventListener('mousemove', this.handleMouseMove)
+    document.removeEventListener('mouseup', this.mouseUp)
   }
 
   private handleMouseMove = (ev: MouseEvent) => {
