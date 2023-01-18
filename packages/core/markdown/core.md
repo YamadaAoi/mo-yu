@@ -9,6 +9,7 @@
 |  Class | Description |
 |  --- | --- |
 |  [DragTool](./core.dragtool.md) | 全屏拖拽 |
+|  [FullscreenTool](./core.fullscreentool.md) | 全屏 |
 |  [ToolBase](./core.toolbase.md) | 工具抽象类 |
 
 ## Functions
@@ -26,6 +27,7 @@
 |  Interface | Description |
 |  --- | --- |
 |  [DragToolOptions](./core.dragtooloptions.md) | 拖拽工具入参 |
+|  [FullscreenToolOptions](./core.fullscreentooloptions.md) |  |
 |  [ToolBaseOptions](./core.toolbaseoptions.md) | 实例化基本参数 |
 
 ## Variables

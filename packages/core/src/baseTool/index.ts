@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2022-07-27 15:45:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-05 18:07:32
+ * @LastEditTime: 2023-01-18 13:40:34
  * @Description: 工具抽象类
  * Copyright (c) 2022 by piesat, All Rights Reserved.
  */
-import { EventBus } from '../evented'
+import { EventBus } from '../utils/evented'
 
 /**
  * 实例化基本参数

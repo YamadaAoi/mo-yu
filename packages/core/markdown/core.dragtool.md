@@ -18,13 +18,13 @@ export declare class DragTool extends ToolBase<DragToolOptions, any>
 
 ```ts
 const drag = new DragTool({
- handleId: ''
- targetId: ''
+ handleId: '',
+ targetId: '',
  zoom: 1
 })
 
 drag.enable()
-locate('center')
+drag.locate('center')
 ```
 
 ## Constructors

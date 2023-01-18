@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:37:41
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-16 17:07:03
+ * @LastEditTime: 2023-01-18 16:32:57
  * @Description: 拖拽工具实现类
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -41,13 +41,13 @@ export type OriginPosition =
  * @example
  * ```ts
  * const drag = new DragTool({
- *  handleId: ''
- *  targetId: ''
+ *  handleId: '',
+ *  targetId: '',
  *  zoom: 1
  * })
  *
  * drag.enable()
- * locate('center')
+ * drag.locate('center')
  * ```
  */
 export class DragTool extends ToolBase<DragToolOptions, any> {
