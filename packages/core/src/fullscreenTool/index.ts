@@ -2,12 +2,15 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-18 13:43:43
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-18 16:35:00
+ * @LastEditTime: 2023-01-18 16:55:20
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { ToolBase, ToolBaseOptions } from '../baseTool'
 
+/**
+ * 全屏工具入参
+ */
 export interface FullscreenToolOptions extends ToolBaseOptions {
   /**
    * 要全屏的html元素
@@ -15,6 +18,9 @@ export interface FullscreenToolOptions extends ToolBaseOptions {
   target?: HTMLElement
 }
 
+/**
+ * 全屏工具事件
+ */
 interface FullscreenToolEvents {
   /**
    * 全屏状态切换事件

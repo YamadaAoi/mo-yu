@@ -27,7 +27,7 @@
 |  Interface | Description |
 |  --- | --- |
 |  [DragToolOptions](./core.dragtooloptions.md) | 拖拽工具入参 |
-|  [FullscreenToolOptions](./core.fullscreentooloptions.md) |  |
+|  [FullscreenToolOptions](./core.fullscreentooloptions.md) | 全屏工具入参 |
 |  [ToolBaseOptions](./core.toolbaseoptions.md) | 实例化基本参数 |
 
 ## Variables

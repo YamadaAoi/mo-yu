@@ -4,6 +4,8 @@
 
 ## FullscreenToolOptions interface
 
+全屏工具入参
+
 <b>Signature:</b>
 
 ```typescript
