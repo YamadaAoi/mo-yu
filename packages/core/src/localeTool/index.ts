@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-02-06 16:40:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-02-07 14:08:16
+ * @LastEditTime: 2023-02-07 14:37:34
  * @Description: 国际化工具实现类
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -37,7 +37,7 @@ export type LocaleKeys<Config> = GetKeys<Required<Config>>
 /**
  * 国际化事件
  */
-interface RemToolEvents<T> {
+interface LocaleToolEvents<T> {
   /**
    * 语言环境变化事件
    */
@@ -81,7 +81,7 @@ interface LocaleCache<C> {
  */
 export class LocaleTool<T, C> extends ToolBase<
   ToolBaseOptions,
-  RemToolEvents<T>
+  LocaleToolEvents<T>
 > {
   #cache = new Map<T, LocaleCache<C>>()
   #language: T | undefined

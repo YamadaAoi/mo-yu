@@ -9,9 +9,9 @@
 <b>Signature:</b>
 
 ```typescript
-export declare class LocaleTool<T, C> extends ToolBase<ToolBaseOptions, RemToolEvents<T>> 
+export declare class LocaleTool<T, C> extends ToolBase<ToolBaseOptions, LocaleToolEvents<T>> 
 ```
-<b>Extends:</b> [ToolBase](./core.toolbase.md)<!-- -->&lt;[ToolBaseOptions](./core.toolbaseoptions.md)<!-- -->, RemToolEvents&lt;T&gt;&gt;
+<b>Extends:</b> [ToolBase](./core.toolbase.md)<!-- -->&lt;[ToolBaseOptions](./core.toolbaseoptions.md)<!-- -->, LocaleToolEvents&lt;T&gt;&gt;
 
 ## Example
 
