@@ -1,5 +1,15 @@
 # @mo-yu/vue
 
+## 1.0.3
+
+### Patch Changes
+
+- 2d3327c: 添加全屏和国际化功能
+- Updated dependencies [2d3327c]
+- Updated dependencies [7855307]
+- Updated dependencies [7c5c283]
+  - @mo-yu/core@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes
