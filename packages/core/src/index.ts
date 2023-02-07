@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 10:34:18
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-18 16:36:23
+ * @LastEditTime: 2023-02-07 09:53:20
  * @Description: 入口
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -11,3 +11,4 @@ export * from './baseTool'
 export * from './remTool'
 export * from './dragTool'
 export * from './fullscreenTool'
+export * from './localeTool'

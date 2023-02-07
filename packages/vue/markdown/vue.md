@@ -10,6 +10,7 @@
 |  --- | --- |
 |  [createInjectKey(key)](./vue.createinjectkey.md) | vue3注入key |
 |  [useLoading()](./vue.useloading.md) | 全局共享loading方法 |
+|  [useLocale(locale)](./vue.uselocale.md) | locale hook 提供响应式国际化切换能力 可以考虑二次封装，不要每次都传入LocaleTool类实例 |
 |  [useRem()](./vue.userem.md) | rem hook 将rem zoom转为响应式变量 对外暴露remToPx方法 |
 
 ## Interfaces

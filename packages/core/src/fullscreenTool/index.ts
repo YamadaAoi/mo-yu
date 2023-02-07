@@ -3,7 +3,7 @@
  * @Date: 2023-01-18 13:43:43
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-18 16:55:20
- * @Description:
+ * @Description: 全屏工具实现类
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { ToolBase, ToolBaseOptions } from '../baseTool'

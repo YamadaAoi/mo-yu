@@ -10,6 +10,7 @@
 |  --- | --- |
 |  [DragTool](./core.dragtool.md) | 全屏拖拽 |
 |  [FullscreenTool](./core.fullscreentool.md) | 全屏 |
+|  [LocaleTool](./core.localetool.md) | 国际化工具类 T - 语言类型，例如'zh\_cn' \| 'en\_us' C - 语言配置，是一个简单的object类型，字段类型为string或object |
 |  [ToolBase](./core.toolbase.md) | 工具抽象类 |
 
 ## Functions
@@ -40,5 +41,6 @@
 
 |  Type Alias | Description |
 |  --- | --- |
+|  [LocaleKeys](./core.localekeys.md) | 国际化配置所有键值 |
 |  [OriginPosition](./core.originposition.md) | 默认位置 居中，右上，右下，右中 |
 
