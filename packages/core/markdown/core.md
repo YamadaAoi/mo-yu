@@ -10,7 +10,7 @@
 |  --- | --- |
 |  [DragTool](./core.dragtool.md) | 全屏拖拽 |
 |  [FullscreenTool](./core.fullscreentool.md) | 全屏 |
-|  [LocaleTool](./core.localetool.md) | 国际化工具类 T - 语言类型，例如'zh\_cn' \| 'en\_us' C - 语言配置，是一个简单的object类型，字段类型为string或object |
+|  [LocaleTool](./core.localetool.md) | 国际化工具类 T - 语言类型，例如'zh\_cn' \| 'en\_us' C - 语言配置，是一个简单的object类型，字段类型为string或object，递归最深层级为9级 |
 |  [ToolBase](./core.toolbase.md) | 工具抽象类 |
 
 ## Functions
@@ -29,6 +29,9 @@
 |  --- | --- |
 |  [DragToolOptions](./core.dragtooloptions.md) | 拖拽工具入参 |
 |  [FullscreenToolOptions](./core.fullscreentooloptions.md) | 全屏工具入参 |
+|  [LocaleSource](./core.localesource.md) | 国际化各语言配置 |
+|  [LocaleToolEvents](./core.localetoolevents.md) | 国际化事件 |
+|  [LocaleToolOptions](./core.localetooloptions.md) | 国际化工具实现类入参 初始化语言优先级：上次选中语言 优先于 defaultLanguage 优先于 source\[0\] |
 |  [ToolBaseOptions](./core.toolbaseoptions.md) | 实例化基本参数 |
 
 ## Variables

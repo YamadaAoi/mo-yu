@@ -1,5 +1,14 @@
 # @mo-yu/vue
 
+## 1.0.4
+
+### Patch Changes
+
+- 国际化实现类初始化方式调整，语言偏好储存至本地
+- Updated dependencies
+- Updated dependencies [9e9fdfa]
+  - @mo-yu/core@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes

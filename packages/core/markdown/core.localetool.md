@@ -4,14 +4,14 @@
 
 ## LocaleTool class
 
-国际化工具类 T - 语言类型，例如'zh\_cn' \| 'en\_us' C - 语言配置，是一个简单的object类型，字段类型为string或object
+国际化工具类 T - 语言类型，例如'zh\_cn' \| 'en\_us' C - 语言配置，是一个简单的object类型，字段类型为string或object，递归最深层级为9级
 
 <b>Signature:</b>
 
 ```typescript
-export declare class LocaleTool<T, C> extends ToolBase<ToolBaseOptions, LocaleToolEvents<T>> 
+export declare class LocaleTool<T, C> extends ToolBase<LocaleToolOptions<T>, LocaleToolEvents<T>> 
 ```
-<b>Extends:</b> [ToolBase](./core.toolbase.md)<!-- -->&lt;[ToolBaseOptions](./core.toolbaseoptions.md)<!-- -->, LocaleToolEvents&lt;T&gt;&gt;
+<b>Extends:</b> [ToolBase](./core.toolbase.md)<!-- -->&lt;[LocaleToolOptions](./core.localetooloptions.md)<!-- -->&lt;T&gt;, [LocaleToolEvents](./core.localetoolevents.md)<!-- -->&lt;T&gt;&gt;
 
 ## Example
 
@@ -26,13 +26,31 @@ interface LocaleConfig {
   }
 }
 
-const locale = new LocaleTool<LocaleType, LocaleConfig>({})
-locale.setLocale('zh_cn', () => import('../../locale/zh_cn'))
-locale.setLocale('en_us', () => import('../../locale/en_us'))
+const locale = new LocaleTool<LocaleType, LocaleConfig>({
+  source: [
+    {
+      language: 'zh_cn',
+      generate: () => import('../../locale/zh_cn')
+    },
+    {
+      language: 'en_us',
+      generate: () => import('../../locale/en_us')
+    }
+  ]
+})
+locale.eventBus.on('language-change', e => {
+ console.log(e.language)
+})
 locale.changeLanguage('zh_cn')
 console.log(locale.current?.common.confirm)
 console.log(locale.i18n('common.confirm'))
 ```
+
+## Constructors
+
+|  Constructor | Modifiers | Description |
+|  --- | --- | --- |
+|  [(constructor)(options)](./core.localetool._constructor_.md) |  | Constructs a new instance of the <code>LocaleTool</code> class |
 
 ## Properties
 
@@ -49,5 +67,4 @@ console.log(locale.i18n('common.confirm'))
 |  [destroy()](./core.localetool.destroy.md) |  | 功能销毁 |
 |  [enable()](./core.localetool.enable.md) |  | 功能启用 |
 |  [i18n(key)](./core.localetool.i18n.md) |  | 根据国际化键值返回字符串 |
-|  [setLocale(type, generate)](./core.localetool.setlocale.md) |  | 设置国际化配置 |
 

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-02-07 09:59:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-02-07 14:15:36
+ * @LastEditTime: 2023-02-08 09:59:11
  * @Description: locale hook
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -15,7 +15,7 @@ import { LocaleKeys, LocaleTool } from '@mo-yu/core'
  * 可以考虑二次封装，不要每次都传入LocaleTool类实例
  * @example
  * ```ts
- * const { language, current, changeLanguage, setLocale, i18n } = useLocale(locale)
+ * const { language, current, changeLanguage, i18n } = useLocale(locale)
  * changeLanguage('zh_cn')
  * ```
  * @param locale - LocaleTool类实例，项目中一般共用一个实例
@@ -46,15 +46,6 @@ export function useLocale<T, C>(locale: LocaleTool<T, C>) {
   }
 
   /**
-   * 设置国际化配置
-   * @param type - 国际化语言类型
-   * @param generate - 国际化配置Promise
-   */
-  function setLocale(type: T, generate: () => Promise<any>) {
-    locale.setLocale(type, generate)
-  }
-
-  /**
    * 根据国际化键值返回字符串
    * @param key - 国际化键值，例如'common.confirm'
    * @returns
@@ -67,7 +58,6 @@ export function useLocale<T, C>(locale: LocaleTool<T, C>) {
     language,
     current,
     changeLanguage,
-    setLocale,
     i18n
   }
 }

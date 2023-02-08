@@ -13,7 +13,6 @@ export declare function useLocale<T, C>(locale: LocaleTool<T, C>): {
     language: import("vue").Ref<T | undefined>;
     current: import("vue").ComputedRef<C | undefined>;
     changeLanguage: (type: T) => void;
-    setLocale: (type: T, generate: () => Promise<any>) => void;
     i18n: (key: LocaleKeys<C>) => string;
 };
 ```
@@ -26,14 +25,14 @@ export declare function useLocale<T, C>(locale: LocaleTool<T, C>): {
 
 <b>Returns:</b>
 
-{ language: import("vue").Ref&lt;T \| undefined&gt;; current: import("vue").ComputedRef&lt;C \| undefined&gt;; changeLanguage: (type: T) =&gt; void; setLocale: (type: T, generate: () =&gt; Promise&lt;any&gt;) =&gt; void; i18n: (key: LocaleKeys&lt;C&gt;) =&gt; string; }
+{ language: import("vue").Ref&lt;T \| undefined&gt;; current: import("vue").ComputedRef&lt;C \| undefined&gt;; changeLanguage: (type: T) =&gt; void; i18n: (key: LocaleKeys&lt;C&gt;) =&gt; string; }
 
 
 ## Example
 
 
 ```ts
-const { language, current, changeLanguage, setLocale, i18n } = useLocale(locale)
+const { language, current, changeLanguage, i18n } = useLocale(locale)
 changeLanguage('zh_cn')
 ```
 

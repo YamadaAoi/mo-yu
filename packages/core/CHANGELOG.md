@@ -1,5 +1,12 @@
 # @mo-yu/core
 
+## 1.0.4
+
+### Patch Changes
+
+- 国际化实现类初始化方式调整，语言偏好储存至本地
+- 9e9fdfa: 国际化工具事件类型调整
+
 ## 1.0.3
 
 ### Patch Changes
