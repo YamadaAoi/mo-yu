@@ -10,7 +10,7 @@
 |  --- | --- |
 |  [DragTool](./core.dragtool.md) | 全屏拖拽 |
 |  [FullscreenTool](./core.fullscreentool.md) | 全屏 |
-|  [LocaleTool](./core.localetool.md) | 国际化工具类 T - 语言类型，例如'zh\_cn' \| 'en\_us' C - 语言配置，是一个简单的object类型，字段类型为string或object，递归最深层级为9级 |
+|  [LocaleTool](./core.localetool.md) | 国际化工具类 T - 语言类型，例如'zh\_cn' \| 'en\_us' C - 语言配置，是一个简单的object类型，字段类型为string或object，递归最深层级为8级 |
 |  [ToolBase](./core.toolbase.md) | 工具抽象类 |
 
 ## Functions
