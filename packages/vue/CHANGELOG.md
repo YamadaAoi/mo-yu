@@ -1,5 +1,11 @@
 # @mo-yu/vue
 
+## 1.0.5
+
+### Patch Changes
+
+- e82713a: 弹框组件还是加个遮罩功能吧
+
 ## 1.0.4
 
 ### Patch Changes

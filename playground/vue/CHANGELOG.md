@@ -1,5 +1,12 @@
 # mo-yu-vue-demo
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [e82713a]
+  - @mo-yu/vue@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes
