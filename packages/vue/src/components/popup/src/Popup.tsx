@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 18:10:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-11 14:31:22
+ * @LastEditTime: 2023-02-15 10:46:34
  * @Description: 拖拽弹框
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -50,6 +50,10 @@ export default defineComponent({
       required: false
     },
     hideClose: {
+      type: Boolean,
+      required: false
+    },
+    mask: {
       type: Boolean,
       required: false
     }
@@ -127,6 +131,7 @@ export default defineComponent({
   render() {
     return this.visiable ? (
       <Teleport to="body">
+        {this.mask ? <div class="m-popup-mask"></div> : ''}
         <div
           id={this.popupWinId}
           class={`m-popup ${this.class ?? ''}`}

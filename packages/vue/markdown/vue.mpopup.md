@@ -34,6 +34,10 @@ _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         required: false;
     };
+    mask: {
+        type: BooleanConstructor;
+        required: false;
+    };
 }, {
     popupWinId: import("vue").Ref<string>;
     popupHeadId: import("vue").Ref<string>;
@@ -65,9 +69,14 @@ _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         required: false;
     };
+    mask: {
+        type: BooleanConstructor;
+        required: false;
+    };
 }>> & {
     onClose?: (() => any) | undefined;
 }, {
     hideClose: boolean;
+    mask: boolean;
 }>
 ```

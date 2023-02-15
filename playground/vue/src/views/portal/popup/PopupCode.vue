@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 15:48:33
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-12 10:45:36
+ * @LastEditTime: 2023-02-15 10:49:39
  * @Description: 
  * Copyright (c) 2023 by piesat, All Rights Reserved. 
 -->
@@ -12,6 +12,7 @@
   </n-button>
   <m-popup
     :style="{ width: '4.5rem' }"
+    :mask="true"
     :visiable="visiable"
     title="我来组成头部"
     @close="togglePopup"
