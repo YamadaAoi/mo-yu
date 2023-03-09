@@ -1,5 +1,11 @@
 # @mo-yu/core
 
+## 1.0.5
+
+### Patch Changes
+
+- 02b7e80: rem 默认不带高度
+
 ## 1.0.4
 
 ### Patch Changes

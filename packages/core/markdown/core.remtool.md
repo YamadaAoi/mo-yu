@@ -4,7 +4,7 @@
 
 ## remTool variable
 
-PC端Rem适配方案 设计稿默认1920 x 1080 设计稿100px = 1rem 会基于devicePixelRatio和设计稿缩放body
+PC端Rem适配方案 设计稿默认1920 设计稿100px = 1rem 会基于devicePixelRatio和设计稿缩放body
 
 <b>Signature:</b>
 
