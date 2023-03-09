@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:20:47
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-10 14:38:58
+ * @LastEditTime: 2023-03-09 09:09:54
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -165,7 +165,7 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
 
 /**
  * PC端Rem适配方案
- * 设计稿默认1920 x 1080
+ * 设计稿默认1920
  * 设计稿100px = 1rem
  * 会基于devicePixelRatio和设计稿缩放body
  * @example
@@ -179,6 +179,6 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
  * })
  * ```
  */
-const remTool = new RemTool({ designWidth: 1920, designHeight: 1080 })
+const remTool = new RemTool({ designWidth: 1920 })
 
 export { remTool }
