@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:20:47
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-03-09 09:09:54
+ * @LastEditTime: 2023-07-06 09:58:01
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -20,6 +20,10 @@ interface RemToolOptions {
    * 设计稿高度
    */
   designHeight?: number
+  /**
+   * h5不在意devicePixelRatio
+   */
+  ignoreDevicePixelRatio?: boolean
 }
 
 /**
@@ -43,12 +47,14 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
   #timer: NodeJS.Timeout | undefined
   #designWidth: number
   #designHeight: number | undefined
+  #ignoreDevicePixelRatio = false
   #rem!: number
   #zoom = 1
   constructor(options: RemToolOptions) {
     super(options)
     this.#designWidth = options.designWidth
     this.#designHeight = options.designHeight
+    this.#ignoreDevicePixelRatio = !!options.ignoreDevicePixelRatio
   }
 
   /**
@@ -119,22 +125,26 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
   private readonly refreshRem = () => {
     const width = document.documentElement.getBoundingClientRect().width
     const height = document.documentElement.getBoundingClientRect().height
-    const ratio = window.devicePixelRatio ?? 1
-    const style: any = document.body.style
-    if (this.#designHeight) {
-      this.#rem =
-        (width * height * 100) / (this.#designWidth * this.#designHeight)
-    } else {
+    if (this.#ignoreDevicePixelRatio) {
       this.#rem = (width * 100) / this.#designWidth
-    }
-    if (width > this.#designWidth) {
-      this.#rem = this.#rem / ratio
-      this.#zoom = (ratio * this.#designWidth) / width
     } else {
-      this.#rem = this.#rem * ratio
-      this.#zoom = this.#designWidth / (ratio * width)
+      const ratio = window.devicePixelRatio ?? 1
+      const style: any = document.body.style
+      if (this.#designHeight) {
+        this.#rem =
+          (width * height * 100) / (this.#designWidth * this.#designHeight)
+      } else {
+        this.#rem = (width * 100) / this.#designWidth
+      }
+      if (width > this.#designWidth) {
+        this.#rem = this.#rem / ratio
+        this.#zoom = (ratio * this.#designWidth) / width
+      } else {
+        this.#rem = this.#rem * ratio
+        this.#zoom = this.#designWidth / (ratio * width)
+      }
+      style.zoom = this.#zoom
     }
-    style.zoom = this.#zoom
     this.#remStyle.innerHTML = `html{font-size:${this.#rem}px;}`
     this.eventBus.fire('rem-refresh', {
       rem: this.#rem,
