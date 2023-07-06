@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:20:47
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-07-06 10:27:28
+ * @LastEditTime: 2023-07-06 10:41:07
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -134,11 +134,12 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
   private readonly refreshRem = () => {
     const width = document.documentElement.getBoundingClientRect().width
     const height = document.documentElement.getBoundingClientRect().height
+    const style: any = document.body.style
     if (this.#ignoreDevicePixelRatio) {
       this.#rem = (width * 100) / this.#designWidth
+      style.zoom = this.#zoom = 1
     } else {
       const ratio = window.devicePixelRatio ?? 1
-      const style: any = document.body.style
       if (this.#designHeight) {
         this.#rem =
           (width * height * 100) / (this.#designWidth * this.#designHeight)
