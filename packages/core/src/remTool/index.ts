@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:20:47
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-07-06 09:58:01
+ * @LastEditTime: 2023-07-06 10:27:28
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -45,16 +45,14 @@ interface RemToolEvents {
 class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
   #remStyle = document.createElement('style')
   #timer: NodeJS.Timeout | undefined
-  #designWidth: number
+  #designWidth!: number
   #designHeight: number | undefined
   #ignoreDevicePixelRatio = false
   #rem!: number
   #zoom = 1
   constructor(options: RemToolOptions) {
     super(options)
-    this.#designWidth = options.designWidth
-    this.#designHeight = options.designHeight
-    this.#ignoreDevicePixelRatio = !!options.ignoreDevicePixelRatio
+    this.resetOptions(options)
   }
 
   /**
@@ -105,6 +103,17 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
   resetDesignSize(designWidth: number, designHeight?: number) {
     this.#designWidth = designWidth
     this.#designHeight = designHeight
+  }
+
+  /**
+   * 重置参数，并强制刷新rem
+   * @param options - rem入参
+   */
+  resetOptions(options: RemToolOptions) {
+    this.#designWidth = options.designWidth
+    this.#designHeight = options.designHeight
+    this.#ignoreDevicePixelRatio = !!options.ignoreDevicePixelRatio
+    this.refreshRem()
   }
 
   /**

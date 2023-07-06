@@ -1,5 +1,11 @@
 # @mo-yu/core
 
+## 1.0.7
+
+### Patch Changes
+
+- 优化 rem
+
 ## 1.0.6
 
 ### Patch Changes
