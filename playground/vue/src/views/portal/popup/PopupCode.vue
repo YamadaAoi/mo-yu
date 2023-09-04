@@ -2,9 +2,8 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 15:48:33
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-02-15 10:49:39
- * @Description: 
- * Copyright (c) 2023 by piesat, All Rights Reserved. 
+ * @LastEditTime: 2023-09-04 17:22:56
+ * @Description: 拖拽弹框代码示例
 -->
 <template>
   <n-button @click="togglePopup">

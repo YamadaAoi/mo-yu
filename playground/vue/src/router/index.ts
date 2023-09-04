@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-11 18:03:06
+ * @LastEditTime: 2023-09-04 17:06:31
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
@@ -35,6 +35,15 @@ export function getDemoMenus() {
       meta: {
         label: '高亮关键字',
         cname: 'MHighlight'
+      }
+    },
+    {
+      path: '/portal/aniNumber',
+      name: 'AniNumber',
+      component: () => import('../views/portal/aniNumber/AniNumber.vue'),
+      meta: {
+        label: '数字动画',
+        cname: 'MAniNumber'
       }
     }
   ]

@@ -2,9 +2,8 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 16:38:40
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-12 10:41:36
- * @Description: 
- * Copyright (c) 2023 by piesat, All Rights Reserved. 
+ * @LastEditTime: 2023-09-04 17:23:02
+ * @Description: Loading代码示例
 -->
 <template>
   <n-button @click="doFetch">请求数据</n-button>
@@ -14,6 +13,14 @@
 import { NButton, useMessage } from 'naive-ui'
 import { useLoading } from '@mo-yu/vue'
 
+/**
+ * 使用前提：
+ * 在App.vue或其他合适位置，使用MLoading组件包裹
+ * import { MLoading } from '@mo-yu/vue'
+ * <m-loading>
+ *   <div class="app-body"><router-view /></div>
+ * </m-loading>
+ */
 const { addLoading } = useLoading()
 const message = useMessage()
 

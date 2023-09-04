@@ -24,6 +24,7 @@
 |  Variable | Description |
 |  --- | --- |
 |  [LoadingInjectionKey](./vue.loadinginjectionkey.md) | loading provider方法注入id |
+|  [MAniNumber](./vue.maninumber.md) | 从0到任意数值的动画（参考“naive-ui” \# NumberAnimation的简易版本） |
 |  [MHighlight](./vue.mhighlight.md) | 高亮搜索关键字 |
 |  [MLoading](./vue.mloading.md) | loading遮罩组件，需要将项目代码包裹在MLoading内 |
 |  [MPopup](./vue.mpopup.md) | 可拖拽弹框组件，相对于整个可视窗口拖动 在项目入口先调用initPopupContainer()方法渲染popup父节点 |
