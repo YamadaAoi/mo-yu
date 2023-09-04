@@ -1,6 +1,6 @@
 {
   "name": "@mo-yu/vue",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "mo-yu vue",
   "main": "lib/index.js",
   "module": "es/index.js",

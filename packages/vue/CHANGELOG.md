@@ -1,5 +1,11 @@
 # @mo-yu/vue
 
+## 1.0.10
+
+### Patch Changes
+
+- 3c5f9a8: 添加数值动画组件及其示例
+
 ## 1.0.9
 
 ### Patch Changes
