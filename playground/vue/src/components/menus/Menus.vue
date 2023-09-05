@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 10:35:56
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-11 17:02:36
+ * @LastEditTime: 2023-09-05 17:46:07
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
 -->
@@ -49,25 +49,25 @@ function judgeStatus(matched: RouteLocationMatched[], menu: RouteRecordRaw) {
 
 <style scoped lang="scss">
 .menus {
-  width: 3rem;
+  width: 300px;
   height: 100%;
-  padding: 0 0.08rem;
+  padding: 0 8px;
   border-right: 1px solid rgb(239, 239, 245);
   @include scrollBase();
   .menu-item {
     width: 100%;
-    height: 0.42rem;
-    border-radius: 0.04rem;
-    margin-top: 0.06rem;
+    height: 42px;
+    border-radius: 4px;
+    margin-top: 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 0 0.18rem 0 0.48rem;
+    padding: 0 18px 0 48px;
     color: black;
-    font-size: 0.16rem;
+    font-size: 16px;
     span {
-      font-size: 0.14rem;
+      font-size: 14px;
       color: rgb(118, 124, 130);
     }
     &:hover {

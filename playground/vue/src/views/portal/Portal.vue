@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:33:28
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-11 16:29:25
+ * @LastEditTime: 2023-09-05 17:46:15
  * @Description:
  * Copyright (c) 2023 by piesat, All Rights Reserved.
 -->
@@ -25,7 +25,7 @@ import Menus from '../../components/menus/Menus.vue'
   align-items: center;
   justify-self: center;
   .demos {
-    width: calc(100% - 3rem);
+    width: calc(100% - 300px);
     height: 100%;
   }
 }

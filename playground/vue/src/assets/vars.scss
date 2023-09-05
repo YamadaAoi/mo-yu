@@ -34,12 +34,12 @@
   overflow-x: hidden;
   overflow-y: auto;
   &::-webkit-scrollbar {
-    width: 0.04rem;
-    height: 0.04rem;
+    width: 4px;
+    height: 4px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: #98b0d1;
-    border-radius: 0.02rem;
+    border-radius: 2px;
   }
 }
 

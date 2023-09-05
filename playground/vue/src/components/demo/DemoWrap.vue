@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 16:26:27
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-11 16:35:43
+ * @LastEditTime: 2023-09-05 17:44:55
  * @Description: 
  * Copyright (c) 2023 by piesat, All Rights Reserved. 
 -->
@@ -29,7 +29,7 @@
   .demo-col {
     width: 50%;
     height: 100%;
-    padding: 0.24rem;
+    padding: 24px;
     border-right: 1px solid rgb(239, 239, 245);
     @include scrollBase();
     &:last-of-type {
