@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-02-15 10:46:34
  * @Description: 拖拽弹框
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import './popup.scss'
 import {

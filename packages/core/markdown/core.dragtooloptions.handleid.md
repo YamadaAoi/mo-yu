@@ -4,10 +4,10 @@
 
 ## DragToolOptions.handleId property
 
-点击拖拽的元素id
+点击拖拽的元素 id
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-handleId: string;
+handleId: string
 ```

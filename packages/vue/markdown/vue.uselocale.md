@@ -4,35 +4,34 @@
 
 ## useLocale() function
 
-locale hook 提供响应式国际化切换能力 可以考虑二次封装，不要每次都传入LocaleTool类实例
+locale hook 提供响应式国际化切换能力 可以考虑二次封装，不要每次都传入 LocaleTool 类实例
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare function useLocale<T, C>(locale: LocaleTool<T, C>): {
-    language: import("vue").Ref<T | undefined>;
-    current: import("vue").ComputedRef<C | undefined>;
-    changeLanguage: (type: T) => void;
-    i18n: (key: LocaleKeys<C>) => string;
-};
+export declare function useLocale<T, C>(
+  locale: LocaleTool<T, C>
+): {
+  language: import('vue').Ref<T | undefined>
+  current: import('vue').ComputedRef<C | undefined>
+  changeLanguage: (type: T) => void
+  i18n: (key: LocaleKeys<C>) => string
+}
 ```
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  locale | LocaleTool&lt;T, C&gt; | LocaleTool类实例，项目中一般共用一个实例 |
+| Parameter | Type                   | Description                               |
+| --------- | ---------------------- | ----------------------------------------- |
+| locale    | LocaleTool&lt;T, C&gt; | LocaleTool 类实例，项目中一般共用一个实例 |
 
-<b>Returns:</b>
+**Returns:**
 
 { language: import("vue").Ref&lt;T \| undefined&gt;; current: import("vue").ComputedRef&lt;C \| undefined&gt;; changeLanguage: (type: T) =&gt; void; i18n: (key: LocaleKeys&lt;C&gt;) =&gt; string; }
 
-
 ## Example
-
 
 ```ts
 const { language, current, changeLanguage, i18n } = useLocale(locale)
 changeLanguage('zh_cn')
 ```
-

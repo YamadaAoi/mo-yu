@@ -2,9 +2,8 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:37:41
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-18 16:32:57
+ * @LastEditTime: 2023-09-06 16:52:05
  * @Description: 拖拽工具实现类
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { ToolBase, ToolBaseOptions } from '../baseTool'
 
@@ -17,7 +16,13 @@ export interface DragToolOptions extends ToolBaseOptions {
    */
   handleId: string
   /**
-   * 需要拖拽移动的根元素
+   * 可拖拽的范围，在某个父元素节点内
+   * 默认为document.body
+   */
+  wrapId?: string
+  /**
+   * 需要拖拽移动的根元素id，此元素应包含handleId
+   * 例如，handleId是一个弹框的头部，targetId是这个弹框本身（包含头部）
    */
   targetId?: string
   /**
@@ -53,6 +58,7 @@ export type OriginPosition =
 export class DragTool extends ToolBase<DragToolOptions, any> {
   #handleId: string
   #targetId: string | undefined
+  #wrapId: string | undefined
   #zoom: number | undefined
   #size = {
     distX: 0,
@@ -66,6 +72,7 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
     super(options)
     this.#handleId = options.handleId
     this.#targetId = options.targetId
+    this.#wrapId = options.wrapId
     this.#zoom = options.zoom
   }
 
@@ -100,8 +107,8 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
     const el = this.target ?? this.handle
     if (el) {
       // 获取可见窗口大小
-      const bodyW = document.body.clientWidth
-      const bodyH = document.body.clientHeight
+      const bodyW = this.wrap.clientWidth
+      const bodyH = this.wrap.clientHeight
       // 获取对话框宽、高
       const elW = el.offsetWidth
       const elH = el.offsetHeight
@@ -166,8 +173,8 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
   private handleMouseMove = (ev: MouseEvent) => {
     const oEvent = ev || window.event
     const el: any = this.target ?? this.handle
-    const bodyW = document.body.clientWidth
-    const bodyH = document.body.clientHeight
+    const bodyW = this.wrap.clientWidth
+    const bodyH = this.wrap.clientHeight
     if (oEvent && this.#isDragging && el) {
       oEvent.stopPropagation?.()
       oEvent.preventDefault?.()
@@ -205,5 +212,11 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
 
   private get target() {
     return this.#targetId ? document.getElementById(this.#targetId) : null
+  }
+
+  private get wrap() {
+    return this.#wrapId
+      ? document.getElementById(this.#wrapId) ?? document.body
+      : document.body
   }
 }

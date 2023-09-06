@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-02-07 09:53:20
  * @Description: 入口
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 export * from './utils'
 export * from './baseTool'

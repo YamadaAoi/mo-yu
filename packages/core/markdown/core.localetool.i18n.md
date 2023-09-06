@@ -6,7 +6,7 @@
 
 根据国际化键值返回字符串
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 i18n(key: GetKeys<C>): string;
@@ -14,12 +14,10 @@ i18n(key: GetKeys<C>): string;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  key | GetKeys&lt;C&gt; | 国际化键值，例如'common.confirm' |
+| Parameter | Type             | Description                      |
+| --------- | ---------------- | -------------------------------- |
+| key       | GetKeys&lt;C&gt; | 国际化键值，例如'common.confirm' |
 
-<b>Returns:</b>
+**Returns:**
 
 string
-
-

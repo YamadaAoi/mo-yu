@@ -4,7 +4,7 @@
 
 ## LocaleToolOptions.defaultLanguage property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 defaultLanguage?: T;

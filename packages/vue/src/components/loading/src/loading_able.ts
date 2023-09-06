@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-10 15:00:12
  * @Description:
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { inject } from 'vue'
 import { createInjectKey } from '../../../utils/createInjectKey'

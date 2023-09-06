@@ -2,9 +2,8 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 16:38:30
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-12 10:42:51
- * @Description: 
- * Copyright (c) 2023 by piesat, All Rights Reserved. 
+ * @LastEditTime: 2023-09-06 13:36:14
+ * @Description:  
 -->
 <template>
   <demo-wrap>
@@ -18,8 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import DemoWrap from '../../../components/demo/DemoWrap.vue'
-import CodeDisplay from '../../../components/code/CodeDisplay.vue'
+import DemoWrap from 'src/components/demo/DemoWrap.vue'
+import CodeDisplay from 'src/components/code/CodeDisplay.vue'
 import LoadingCode from './LoadingCode.vue'
 import source from './LoadingCode.vue?raw'
 </script>

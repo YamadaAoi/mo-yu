@@ -2,9 +2,8 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 16:11:22
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-05 17:44:49
- * @Description: 代码展示
- * Copyright (c) 2023 by piesat, All Rights Reserved. 
+ * @LastEditTime: 2023-09-06 15:46:18
+ * @Description: 代码展示 
 -->
 <template>
   <div class="code-display">
@@ -28,5 +27,8 @@ const code = hljs.highlightAuto(props.source).value
   height: 100%;
   font-size: 16px;
   @include scrollBase();
+  .hljs {
+    font-family: 'FiraCode';
+  }
 }
 </style>

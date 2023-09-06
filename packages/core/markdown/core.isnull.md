@@ -6,20 +6,18 @@
 
 是无效数据
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare function isNull(value: any): boolean;
+export declare function isNull(value: any): boolean
 ```
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  value | any | 任意数据 |
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| value     | any  | 任意数据    |
 
-<b>Returns:</b>
+**Returns:**
 
 boolean
-
-

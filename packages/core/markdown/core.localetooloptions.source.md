@@ -4,8 +4,8 @@
 
 ## LocaleToolOptions.source property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-source: Array<LocaleSource<T>>;
+source: Array<LocaleSource<T>>
 ```

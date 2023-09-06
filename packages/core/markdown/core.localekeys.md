@@ -6,8 +6,8 @@
 
 国际化配置所有键值
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export type LocaleKeys<Config> = GetKeys<Required<Config>>;
+export type LocaleKeys<Config> = GetKeys<Required<Config>>
 ```

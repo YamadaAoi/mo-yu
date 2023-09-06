@@ -4,31 +4,47 @@
 
 ## MLoading variable
 
-loading遮罩组件，需要将项目代码包裹在MLoading内
+loading 遮罩组件，需要将项目代码包裹在 MLoading 内
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-_default: import("vue").DefineComponent<{}, {
-    loadEvents: import("vue").Ref<{
-        id: string;
+_default: import('vue').DefineComponent<
+  {},
+  {
+    loadEvents: import('vue').Ref<
+      {
+        id: string
         timer: {
-            hasRef: () => boolean;
-            refresh: () => NodeJS.Timeout;
-            [Symbol.toPrimitive]: () => number;
-            ref: () => NodeJS.Timeout;
-            unref: () => NodeJS.Timeout;
-        };
-    }[]>;
-}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>
+          hasRef: () => boolean
+          refresh: () => NodeJS.Timeout
+          [Symbol.toPrimitive]: () => number
+          ref: () => NodeJS.Timeout
+          unref: () => NodeJS.Timeout
+        }
+      }[]
+    >
+  },
+  {},
+  {},
+  {},
+  import('vue').ComponentOptionsMixin,
+  import('vue').ComponentOptionsMixin,
+  {},
+  string,
+  import('vue').VNodeProps &
+    import('vue').AllowedComponentProps &
+    import('vue').ComponentCustomProps,
+  Readonly<import('vue').ExtractPropTypes<{}>>,
+  {},
+  {}
+>
 ```
 
 ## Example
 
-
 ```html
 <m-loading>
- <router-view />
+  <router-view />
 </m-loading>
 ```
-

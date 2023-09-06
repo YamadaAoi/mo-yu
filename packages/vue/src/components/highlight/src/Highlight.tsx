@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-09-04 16:44:36
  * @Description: 高亮关键字
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import './highlight.scss'
 import { defineComponent, h, computed } from 'vue'

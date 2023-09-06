@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-10 14:32:13
  * @Description: 初始化变量
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 /**
  * 初始化变量

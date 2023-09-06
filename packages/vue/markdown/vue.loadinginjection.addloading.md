@@ -4,9 +4,9 @@
 
 ## LoadingInjection.addLoading property
 
-添加loading，返回取消当前loading实例的方法 传递等待时间second，单位秒，默认60s，等待时间达到后自动销毁
+添加 loading，返回取消当前 loading 实例的方法 传递等待时间 second，单位秒，默认 60s，等待时间达到后自动销毁
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 addLoading: (second?: number) => () => void;

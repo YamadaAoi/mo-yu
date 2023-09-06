@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `DragTool` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor(options: DragToolOptions);
@@ -14,7 +14,6 @@ constructor(options: DragToolOptions);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  options | [DragToolOptions](./core.dragtooloptions.md) |  |
-
+| Parameter | Type                                         | Description |
+| --------- | -------------------------------------------- | ----------- |
+| options   | [DragToolOptions](./core.dragtooloptions.md) |             |

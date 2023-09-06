@@ -4,20 +4,19 @@
 
 ## useLoading() function
 
-全局共享loading方法
+全局共享 loading 方法
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare function useLoading(): LoadingInjection;
+export declare function useLoading(): LoadingInjection
 ```
-<b>Returns:</b>
+
+**Returns:**
 
 [LoadingInjection](./vue.loadinginjection.md)
 
-
 ## Example
-
 
 ```ts
 import { useLoading } from '@mo-yu/vue'
@@ -25,10 +24,11 @@ import { useLoading } from '@mo-yu/vue'
 const { addLoading } = useLoading()
 
 const remove = addLoading()
-fetchSomething().then(()=>{
- remove()
-}).catch(()=>{
- remove()
-})
+fetchSomething()
+  .then(() => {
+    remove()
+  })
+  .catch(() => {
+    remove()
+  })
 ```
-

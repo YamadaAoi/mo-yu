@@ -6,7 +6,7 @@
 
 语言环境变化事件
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 'language-change': {

@@ -6,16 +6,15 @@
 
 国际化各语言配置
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export interface LocaleSource<T> 
+export interface LocaleSource<T>
 ```
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [generate](./core.localesource.generate.md) |  | () =&gt; Promise&lt;any&gt; | 国际化配置Promise，配置文件内以export default方式返回配置项 |
-|  [language](./core.localesource.language.md) |  | T |  |
-
+| Property                                    | Modifiers | Type                        | Description                                                    |
+| ------------------------------------------- | --------- | --------------------------- | -------------------------------------------------------------- |
+| [generate](./core.localesource.generate.md) |           | () =&gt; Promise&lt;any&gt; | 国际化配置 Promise，配置文件内以 export default 方式返回配置项 |
+| [language](./core.localesource.language.md) |           | T                           |                                                                |

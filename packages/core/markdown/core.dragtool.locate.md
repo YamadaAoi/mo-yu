@@ -6,7 +6,7 @@
 
 定位拖动元素到设定位置
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 locate(position?: OriginPosition): void;
@@ -14,11 +14,10 @@ locate(position?: OriginPosition): void;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  position | [OriginPosition](./core.originposition.md) | <i>(Optional)</i> 位置 |
+| Parameter | Type                                       | Description       |
+| --------- | ------------------------------------------ | ----------------- |
+| position  | [OriginPosition](./core.originposition.md) | _(Optional)_ 位置 |
 
-<b>Returns:</b>
+**Returns:**
 
 void
-

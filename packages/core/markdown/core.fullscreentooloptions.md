@@ -6,16 +6,16 @@
 
 全屏工具入参
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export interface FullscreenToolOptions extends ToolBaseOptions 
+export interface FullscreenToolOptions extends ToolBaseOptions
 ```
-<b>Extends:</b> [ToolBaseOptions](./core.toolbaseoptions.md)
+
+**Extends:** [ToolBaseOptions](./core.toolbaseoptions.md)
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [target?](./core.fullscreentooloptions.target.md) |  | HTMLElement | <i>(Optional)</i> 要全屏的html元素 |
-
+| Property                                          | Modifiers | Type        | Description                     |
+| ------------------------------------------------- | --------- | ----------- | ------------------------------- |
+| [target?](./core.fullscreentooloptions.target.md) |           | HTMLElement | _(Optional)_ 要全屏的 html 元素 |

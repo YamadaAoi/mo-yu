@@ -2,9 +2,8 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-04 15:16:14
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-04 16:50:51
+ * @LastEditTime: 2023-09-06 14:55:37
  * @Description: 从0到任意数值的动画
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import {
   defineComponent,

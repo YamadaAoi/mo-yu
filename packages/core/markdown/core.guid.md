@@ -4,16 +4,16 @@
 
 ## guid() function
 
-生成唯一id
+生成唯一 id
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare function guid(): string;
+export declare function guid(): string
 ```
-<b>Returns:</b>
+
+**Returns:**
 
 string
 
 id
-

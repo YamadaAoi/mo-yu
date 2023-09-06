@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `ToolBase` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor(options: O);
@@ -14,7 +14,6 @@ constructor(options: O);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  options | O |  |
-
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options   | O    |             |

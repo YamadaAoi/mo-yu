@@ -6,13 +6,13 @@
 
 功能启用
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 /** @virtual */
 abstract enable(): void;
 ```
-<b>Returns:</b>
+
+**Returns:**
 
 void
-

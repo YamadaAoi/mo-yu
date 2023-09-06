@@ -6,7 +6,7 @@
 
 改变语言环境
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 changeLanguage(language: T): void;
@@ -14,11 +14,10 @@ changeLanguage(language: T): void;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  language | T | 国际化语言类型 |
+| Parameter | Type | Description    |
+| --------- | ---- | -------------- |
+| language  | T    | 国际化语言类型 |
 
-<b>Returns:</b>
+**Returns:**
 
 void
-

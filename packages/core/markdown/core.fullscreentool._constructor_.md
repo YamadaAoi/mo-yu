@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `FullscreenTool` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor(options: FullscreenToolOptions);
@@ -14,7 +14,6 @@ constructor(options: FullscreenToolOptions);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  options | [FullscreenToolOptions](./core.fullscreentooloptions.md) |  |
-
+| Parameter | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| options   | [FullscreenToolOptions](./core.fullscreentooloptions.md) |             |

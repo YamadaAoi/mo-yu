@@ -6,21 +6,19 @@
 
 初始化变量
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare function getDefault<D>(defaultValue: D, initial?: D): D;
+export declare function getDefault<D>(defaultValue: D, initial?: D): D
 ```
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  defaultValue | D | 默认值 |
-|  initial | D | <i>(Optional)</i> 初始值 |
+| Parameter    | Type | Description         |
+| ------------ | ---- | ------------------- |
+| defaultValue | D    | 默认值              |
+| initial      | D    | _(Optional)_ 初始值 |
 
-<b>Returns:</b>
+**Returns:**
 
 D
-
-

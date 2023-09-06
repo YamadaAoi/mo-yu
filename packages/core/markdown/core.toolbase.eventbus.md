@@ -6,7 +6,7 @@
 
 事件总线
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 get eventBus(): EventBus<T>;
@@ -14,11 +14,9 @@ get eventBus(): EventBus<T>;
 
 ## Example
 
-
 ```ts
 const tool = new SomeClass()
 tool.eventBus.on('some-event', e => {
   console.log(e)
 )
 ```
-

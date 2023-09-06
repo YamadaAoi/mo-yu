@@ -6,8 +6,12 @@
 
 默认位置 居中，右上，右下，右中
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export type OriginPosition = 'center' | 'right-top' | 'right-bottom' | 'right-center';
+export type OriginPosition =
+  | 'center'
+  | 'right-top'
+  | 'right-bottom'
+  | 'right-center'
 ```

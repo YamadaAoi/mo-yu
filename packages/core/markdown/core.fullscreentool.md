@@ -6,19 +6,19 @@
 
 全屏
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare class FullscreenTool extends ToolBase<FullscreenToolOptions, FullscreenToolEvents> 
+export declare class FullscreenTool extends ToolBase<FullscreenToolOptions, FullscreenToolEvents>
 ```
-<b>Extends:</b> [ToolBase](./core.toolbase.md)<!-- -->&lt;[FullscreenToolOptions](./core.fullscreentooloptions.md)<!-- -->, FullscreenToolEvents&gt;
+
+**Extends:** [ToolBase](./core.toolbase.md)<!-- -->&lt;[FullscreenToolOptions](./core.fullscreentooloptions.md)<!-- -->, FullscreenToolEvents&gt;
 
 ## Example
 
-
 ```ts
 const tool = new FullscreenTool({
- target: HTMLElement
+  target: HTMLElement
 })
 
 tool.enable()
@@ -27,15 +27,14 @@ tool.toggleFullscreen()
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(options)](./core.fullscreentool._constructor_.md) |  | Constructs a new instance of the <code>FullscreenTool</code> class |
+| Constructor                                                      | Modifiers | Description                                                        |
+| ---------------------------------------------------------------- | --------- | ------------------------------------------------------------------ |
+| [(constructor)(options)](./core.fullscreentool._constructor_.md) |           | Constructs a new instance of the <code>FullscreenTool</code> class |
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [destroy()](./core.fullscreentool.destroy.md) |  | 功能销毁 |
-|  [enable()](./core.fullscreentool.enable.md) |  | 功能启用 |
-|  [toggleFullscreen()](./core.fullscreentool.togglefullscreen.md) |  | 切换全屏状态 |
-
+| Method                                                          | Modifiers | Description  |
+| --------------------------------------------------------------- | --------- | ------------ |
+| [destroy()](./core.fullscreentool.destroy.md)                   |           | 功能销毁     |
+| [enable()](./core.fullscreentool.enable.md)                     |           | 功能启用     |
+| [toggleFullscreen()](./core.fullscreentool.togglefullscreen.md) |           | 切换全屏状态 |

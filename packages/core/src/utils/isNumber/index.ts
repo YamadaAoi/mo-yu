@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-10 14:30:35
  * @Description: 是否是数字或者数字字符串
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 /**
  * 是否是数字或者数字字符串

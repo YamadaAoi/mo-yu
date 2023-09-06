@@ -6,12 +6,12 @@
 
 切换全屏状态
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 toggleFullscreen(): void;
 ```
-<b>Returns:</b>
+
+**Returns:**
 
 void
-

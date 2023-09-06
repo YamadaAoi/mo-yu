@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-09-05 18:00:45
  * @Description:
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { createApp } from 'vue'
 import { remTool } from '@mo-yu/core'

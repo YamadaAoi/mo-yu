@@ -4,10 +4,10 @@
 
 ## LoadingInjectionKey variable
 
-loading provider方法注入id
+loading provider 方法注入 id
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-LoadingInjectionKey: import("vue").InjectionKey<LoadingInjection>
+LoadingInjectionKey: import('vue').InjectionKey<LoadingInjection>
 ```

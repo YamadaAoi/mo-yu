@@ -6,7 +6,7 @@
 
 获取多个语言环境缓存
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 get cache(): Map<T, LocaleCache<C>>;

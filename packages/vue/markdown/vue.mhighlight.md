@@ -6,40 +6,56 @@
 
 高亮搜索关键字
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-_default: import("vue").DefineComponent<{
+_default: import('vue').DefineComponent<
+  {
     text: {
-        type: StringConstructor;
-        required: true;
-    };
+      type: StringConstructor
+      required: true
+    }
     word: {
-        type: StringConstructor;
-        required: false;
-        default: string;
-    };
-}, {
-    keyword: import("vue").ComputedRef<string>;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    text: {
-        type: StringConstructor;
-        required: true;
-    };
-    word: {
-        type: StringConstructor;
-        required: false;
-        default: string;
-    };
-}>>, {
-    word: string;
-}>
+      type: StringConstructor
+      required: false
+      default: string
+    }
+  },
+  {
+    keyword: import('vue').ComputedRef<string>
+  },
+  unknown,
+  {},
+  {},
+  import('vue').ComponentOptionsMixin,
+  import('vue').ComponentOptionsMixin,
+  {},
+  string,
+  import('vue').VNodeProps &
+    import('vue').AllowedComponentProps &
+    import('vue').ComponentCustomProps,
+  Readonly<
+    import('vue').ExtractPropTypes<{
+      text: {
+        type: StringConstructor
+        required: true
+      }
+      word: {
+        type: StringConstructor
+        required: false
+        default: string
+      }
+    }>
+  >,
+  {
+    word: string
+  },
+  {}
+>
 ```
 
 ## Example
 
-
 ```html
 <m-highlight text="test" word="t"></m-highlight>
 ```
-

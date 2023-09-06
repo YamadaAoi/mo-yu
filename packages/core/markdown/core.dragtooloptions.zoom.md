@@ -4,9 +4,9 @@
 
 ## DragToolOptions.zoom property
 
-body缩放值，默认1
+body 缩放值，默认 1
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 zoom?: number;

@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-10 14:31:14
  * @Description: 保留len位小数
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { isNumber } from '../isNumber'
 

@@ -4,17 +4,17 @@
 
 ## LocaleTool class
 
-国际化工具类 T - 语言类型，例如'zh\_cn' \| 'en\_us' C - 语言配置，是一个简单的object类型，字段类型为string或object，递归最深层级为8级
+国际化工具类 T - 语言类型，例如'zh_cn' \| 'en_us' C - 语言配置，是一个简单的 object 类型，字段类型为 string 或 object，递归最深层级为 8 级
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare class LocaleTool<T, C> extends ToolBase<LocaleToolOptions<T>, LocaleToolEvents<T>> 
+export declare class LocaleTool<T, C> extends ToolBase<LocaleToolOptions<T>, LocaleToolEvents<T>>
 ```
-<b>Extends:</b> [ToolBase](./core.toolbase.md)<!-- -->&lt;[LocaleToolOptions](./core.localetooloptions.md)<!-- -->&lt;T&gt;, [LocaleToolEvents](./core.localetoolevents.md)<!-- -->&lt;T&gt;&gt;
+
+**Extends:** [ToolBase](./core.toolbase.md)<!-- -->&lt;[LocaleToolOptions](./core.localetooloptions.md)<!-- -->&lt;T&gt;, [LocaleToolEvents](./core.localetoolevents.md)<!-- -->&lt;T&gt;&gt;
 
 ## Example
-
 
 ```ts
 type LocaleType = 'zh_cn' | 'en_us'
@@ -39,7 +39,7 @@ const locale = new LocaleTool<LocaleType, LocaleConfig>({
   ]
 })
 locale.eventBus.on('language-change', e => {
- console.log(e.language)
+  console.log(e.language)
 })
 locale.changeLanguage('zh_cn')
 console.log(locale.current?.common.confirm)
@@ -48,23 +48,22 @@ console.log(locale.i18n('common.confirm'))
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(options)](./core.localetool._constructor_.md) |  | Constructs a new instance of the <code>LocaleTool</code> class |
+| Constructor                                                  | Modifiers | Description                                                    |
+| ------------------------------------------------------------ | --------- | -------------------------------------------------------------- |
+| [(constructor)(options)](./core.localetool._constructor_.md) |           | Constructs a new instance of the <code>LocaleTool</code> class |
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [cache](./core.localetool.cache.md) | <code>readonly</code> | Map&lt;T, LocaleCache&lt;C&gt;&gt; | 获取多个语言环境缓存 |
-|  [current](./core.localetool.current.md) | <code>readonly</code> | C \| undefined | 获取当前语言环境语言配置 |
+| Property                                | Modifiers             | Type                               | Description              |
+| --------------------------------------- | --------------------- | ---------------------------------- | ------------------------ |
+| [cache](./core.localetool.cache.md)     | <code>readonly</code> | Map&lt;T, LocaleCache&lt;C&gt;&gt; | 获取多个语言环境缓存     |
+| [current](./core.localetool.current.md) | <code>readonly</code> | C \| undefined                     | 获取当前语言环境语言配置 |
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [changeLanguage(language)](./core.localetool.changelanguage.md) |  | 改变语言环境 |
-|  [destroy()](./core.localetool.destroy.md) |  | 功能销毁 |
-|  [enable()](./core.localetool.enable.md) |  | 功能启用 |
-|  [i18n(key)](./core.localetool.i18n.md) |  | 根据国际化键值返回字符串 |
-
+| Method                                                          | Modifiers | Description              |
+| --------------------------------------------------------------- | --------- | ------------------------ |
+| [changeLanguage(language)](./core.localetool.changelanguage.md) |           | 改变语言环境             |
+| [destroy()](./core.localetool.destroy.md)                       |           | 功能销毁                 |
+| [enable()](./core.localetool.enable.md)                         |           | 功能启用                 |
+| [i18n(key)](./core.localetool.i18n.md)                          |           | 根据国际化键值返回字符串 |

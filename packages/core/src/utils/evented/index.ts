@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2022-10-26 17:50:56
  * @Description: maplibre gl evented，扩展maplibregl事件
- * Copyright (c) 2022 by piesat, All Rights Reserved.
  */
 /**
  * Given a destination object and optionally many source objects,

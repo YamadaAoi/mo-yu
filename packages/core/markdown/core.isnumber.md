@@ -6,20 +6,18 @@
 
 是否是数字或者数字字符串
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare function isNumber(value: any): boolean;
+export declare function isNumber(value: any): boolean
 ```
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  value | any | 待测值 |
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| value     | any  | 待测值      |
 
-<b>Returns:</b>
+**Returns:**
 
 boolean
-
-

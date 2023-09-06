@@ -4,22 +4,20 @@
 
 ## createInjectKey() function
 
-vue3注入key
+vue3 注入 key
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare function createInjectKey<T>(key: string): InjectionKey<T>;
+export declare function createInjectKey<T>(key: string): InjectionKey<T>
 ```
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  key | string |  |
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| key       | string |             |
 
-<b>Returns:</b>
+**Returns:**
 
 InjectionKey&lt;T&gt;
-
-

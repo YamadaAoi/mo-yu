@@ -4,9 +4,9 @@
 
 ## DragTool.resetZoom() method
 
-重置body缩放值
+重置 body 缩放值
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 resetZoom(zoom: number): void;
@@ -14,11 +14,10 @@ resetZoom(zoom: number): void;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  zoom | number | 缩放 |
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| zoom      | number | 缩放        |
 
-<b>Returns:</b>
+**Returns:**
 
 void
-

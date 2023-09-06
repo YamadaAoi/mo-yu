@@ -6,21 +6,21 @@
 
 全屏拖拽
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare class DragTool extends ToolBase<DragToolOptions, any> 
+export declare class DragTool extends ToolBase<DragToolOptions, any>
 ```
-<b>Extends:</b> [ToolBase](./core.toolbase.md)<!-- -->&lt;[DragToolOptions](./core.dragtooloptions.md)<!-- -->, any&gt;
+
+**Extends:** [ToolBase](./core.toolbase.md)<!-- -->&lt;[DragToolOptions](./core.dragtooloptions.md)<!-- -->, any&gt;
 
 ## Example
 
-
 ```ts
 const drag = new DragTool({
- handleId: '',
- targetId: '',
- zoom: 1
+  handleId: '',
+  targetId: '',
+  zoom: 1
 })
 
 drag.enable()
@@ -29,16 +29,15 @@ drag.locate('center')
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(options)](./core.dragtool._constructor_.md) |  | Constructs a new instance of the <code>DragTool</code> class |
+| Constructor                                                | Modifiers | Description                                                  |
+| ---------------------------------------------------------- | --------- | ------------------------------------------------------------ |
+| [(constructor)(options)](./core.dragtool._constructor_.md) |           | Constructs a new instance of the <code>DragTool</code> class |
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [destroy()](./core.dragtool.destroy.md) |  | 功能销毁 |
-|  [enable()](./core.dragtool.enable.md) |  | 功能启用 |
-|  [locate(position)](./core.dragtool.locate.md) |  | 定位拖动元素到设定位置 |
-|  [resetZoom(zoom)](./core.dragtool.resetzoom.md) |  | 重置body缩放值 |
-
+| Method                                          | Modifiers | Description            |
+| ----------------------------------------------- | --------- | ---------------------- |
+| [destroy()](./core.dragtool.destroy.md)         |           | 功能销毁               |
+| [enable()](./core.dragtool.enable.md)           |           | 功能启用               |
+| [locate(position)](./core.dragtool.locate.md)   |           | 定位拖动元素到设定位置 |
+| [resetZoom(zoom)](./core.dragtool.resetzoom.md) |           | 重置 body 缩放值       |

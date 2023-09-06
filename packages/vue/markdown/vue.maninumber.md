@@ -4,59 +4,75 @@
 
 ## MAniNumber variable
 
-从0到任意数值的动画（参考“naive-ui” \# NumberAnimation的简易版本）
+从 0 到任意数值的动画（参考“naive-ui” \# NumberAnimation 的简易版本）
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-_default: import("vue").DefineComponent<{
+_default: import('vue').DefineComponent<
+  {
     value: {
-        type: NumberConstructor;
-        default: number;
-    };
+      type: NumberConstructor
+      default: number
+    }
     precision: {
-        type: NumberConstructor;
-    };
+      type: NumberConstructor
+    }
     active: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
+      type: BooleanConstructor
+      default: boolean
+    }
     duration: {
-        type: NumberConstructor;
-        default: number;
-    };
-    onFinish: PropType<() => void>;
-}, {
-    displayedValue: import("vue").Ref<number>;
-    precision: import("vue").Ref<number>;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    value: {
-        type: NumberConstructor;
-        default: number;
-    };
-    precision: {
-        type: NumberConstructor;
-    };
-    active: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    duration: {
-        type: NumberConstructor;
-        default: number;
-    };
-    onFinish: PropType<() => void>;
-}>>, {
-    value: number;
-    active: boolean;
-    duration: number;
-}>
+      type: NumberConstructor
+      default: number
+    }
+    onFinish: PropType<() => void>
+  },
+  {
+    displayedValue: import('vue').Ref<number>
+    precision: import('vue').Ref<number>
+  },
+  unknown,
+  {},
+  {},
+  import('vue').ComponentOptionsMixin,
+  import('vue').ComponentOptionsMixin,
+  {},
+  string,
+  import('vue').VNodeProps &
+    import('vue').AllowedComponentProps &
+    import('vue').ComponentCustomProps,
+  Readonly<
+    import('vue').ExtractPropTypes<{
+      value: {
+        type: NumberConstructor
+        default: number
+      }
+      precision: {
+        type: NumberConstructor
+      }
+      active: {
+        type: BooleanConstructor
+        default: boolean
+      }
+      duration: {
+        type: NumberConstructor
+        default: number
+      }
+      onFinish: PropType<() => void>
+    }>
+  >,
+  {
+    value: number
+    active: boolean
+    duration: number
+  },
+  {}
+>
 ```
 
 ## Example
 
-
 ```html
 <m-ani-number :value="233.333"></m-ani-number>
 ```
-

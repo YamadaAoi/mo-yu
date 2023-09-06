@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-10 14:02:45
  * @Description:
- * Copyright (c) 2022 by piesat, All Rights Reserved.
  */
 import path from 'path'
 import { fileURLToPath } from 'url'

@@ -4,8 +4,8 @@
 
 ## LocaleSource.language property
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-language: T;
+language: T
 ```

@@ -4,9 +4,9 @@
 
 ## LoadingInjection.removeAllLoading property
 
-强制销毁当前所有的loading实例，谨慎使用
+强制销毁当前所有的 loading 实例，谨慎使用
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 removeAllLoading: () => void;

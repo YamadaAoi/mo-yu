@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-11 10:49:21
  * @Description:
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import 'vue-router'
 

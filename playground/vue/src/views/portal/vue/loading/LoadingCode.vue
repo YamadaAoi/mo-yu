@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 16:38:40
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-04 17:23:02
+ * @LastEditTime: 2023-09-06 17:03:26
  * @Description: Loading代码示例
 -->
 <template>
-  <n-button @click="doFetch">请求数据</n-button>
+  <NButton size="small" @click="doFetch">请求数据</NButton>
 </template>
 
 <script setup lang="ts">

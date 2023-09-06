@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-02-08 10:15:14
  * @Description: 国际化工具实现类
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { ToolBase, ToolBaseOptions } from '../baseTool'
 

@@ -4,10 +4,10 @@
 
 ## LocaleSource.generate property
 
-国际化配置Promise，配置文件内以export default方式返回配置项
+国际化配置 Promise，配置文件内以 export default 方式返回配置项
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-generate: () => Promise<any>;
+generate: () => Promise<any>
 ```

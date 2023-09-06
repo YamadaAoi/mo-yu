@@ -4,18 +4,17 @@
 
 ## LoadingInjection interface
 
-loading注入方法
+loading 注入方法
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export interface LoadingInjection 
+export interface LoadingInjection
 ```
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [addLoading](./vue.loadinginjection.addloading.md) |  | (second?: number) =&gt; () =&gt; void | 添加loading，返回取消当前loading实例的方法 传递等待时间second，单位秒，默认60s，等待时间达到后自动销毁 |
-|  [removeAllLoading](./vue.loadinginjection.removeallloading.md) |  | () =&gt; void | 强制销毁当前所有的loading实例，谨慎使用 |
-
+| Property                                                       | Modifiers | Type                                  | Description                                                                                                 |
+| -------------------------------------------------------------- | --------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [addLoading](./vue.loadinginjection.addloading.md)             |           | (second?: number) =&gt; () =&gt; void | 添加 loading，返回取消当前 loading 实例的方法 传递等待时间 second，单位秒，默认 60s，等待时间达到后自动销毁 |
+| [removeAllLoading](./vue.loadinginjection.removeallloading.md) |           | () =&gt; void                         | 强制销毁当前所有的 loading 实例，谨慎使用                                                                   |

@@ -6,7 +6,7 @@
 
 Constructs a new instance of the `LocaleTool` class
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 constructor(options: LocaleToolOptions<T>);
@@ -14,7 +14,6 @@ constructor(options: LocaleToolOptions<T>);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  options | [LocaleToolOptions](./core.localetooloptions.md)<!-- -->&lt;T&gt; |  |
-
+| Parameter | Type                                                              | Description |
+| --------- | ----------------------------------------------------------------- | ----------- |
+| options   | [LocaleToolOptions](./core.localetooloptions.md)<!-- -->&lt;T&gt; |             |

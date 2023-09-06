@@ -6,7 +6,7 @@
 
 获取当前语言环境语言配置
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 get current(): C | undefined;

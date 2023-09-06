@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-07-06 10:41:07
  * @Description:
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { ToolBase } from '../baseTool'
 

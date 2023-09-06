@@ -6,13 +6,13 @@
 
 功能销毁
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 /** @override */
 destroy(): void;
 ```
-<b>Returns:</b>
+
+**Returns:**
 
 void
-

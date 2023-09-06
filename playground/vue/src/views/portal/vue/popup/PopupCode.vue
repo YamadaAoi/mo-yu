@@ -2,21 +2,21 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 15:48:33
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-05 17:47:48
+ * @LastEditTime: 2023-09-06 17:03:33
  * @Description: 拖拽弹框代码示例
 -->
 <template>
-  <n-button @click="togglePopup">
+  <NButton size="small" @click="togglePopup">
     {{ visiable ? '关闭' : '打开' }}弹框
-  </n-button>
-  <m-popup
+  </NButton>
+  <MPopup
     :mask="true"
     :visiable="visiable"
     title="我来组成头部"
     @close="togglePopup"
   >
     <div class="popup-content">我来组成身体</div>
-  </m-popup>
+  </MPopup>
 </template>
 
 <script setup lang="ts">

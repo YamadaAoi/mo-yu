@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-09-05 17:52:58
  * @Description:
- * Copyright (c) 2022 by piesat, All Rights Reserved.
 -->
 <template>
   <n-config-provider :locale="zhCN" :date-locale="dateZhCN">

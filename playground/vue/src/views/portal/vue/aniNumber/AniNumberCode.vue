@@ -2,16 +2,16 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-04 17:02:01
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-04 17:29:15
+ * @LastEditTime: 2023-09-06 16:24:21
  * @Description: 数字动画代码示例
 -->
 <template>
   <div>
-    <m-ani-number :value="val1"></m-ani-number>
+    <MAniNumber :value="val1"></MAniNumber>
     <br />
-    <m-ani-number :value="val2"></m-ani-number>
+    <MAniNumber :value="val2"></MAniNumber>
     <br />
-    <m-ani-number :value="val3"></m-ani-number>
+    <MAniNumber :value="val3"></MAniNumber>
   </div>
 </template>
 

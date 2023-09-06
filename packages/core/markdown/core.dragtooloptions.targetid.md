@@ -4,9 +4,9 @@
 
 ## DragToolOptions.targetId property
 
-需要拖拽移动的根元素
+需要拖拽移动的根元素 id，此元素应包含 handleId 例如，handleId 是一个弹框的头部，targetId 是这个弹框本身（包含头部）
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 targetId?: string;

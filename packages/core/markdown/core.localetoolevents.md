@@ -6,15 +6,14 @@
 
 国际化事件
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export interface LocaleToolEvents<T> 
+export interface LocaleToolEvents<T>
 ```
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  ["language-change"](./core.localetoolevents._language-change_.md) |  | { language: T; } | 语言环境变化事件 |
-
+| Property                                                          | Modifiers | Type             | Description      |
+| ----------------------------------------------------------------- | --------- | ---------------- | ---------------- |
+| ["language-change"](./core.localetoolevents._language-change_.md) |           | { language: T; } | 语言环境变化事件 |

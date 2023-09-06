@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-02-08 09:59:11
  * @Description: locale hook
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { computed, ref } from 'vue'
 import { LocaleKeys, LocaleTool } from '@mo-yu/core'

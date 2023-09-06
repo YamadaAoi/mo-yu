@@ -6,17 +6,17 @@
 
 国际化工具实现类入参 初始化语言优先级：上次选中语言 优先于 defaultLanguage 优先于 source\[0\]
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export interface LocaleToolOptions<T> extends ToolBaseOptions 
+export interface LocaleToolOptions<T> extends ToolBaseOptions
 ```
-<b>Extends:</b> [ToolBaseOptions](./core.toolbaseoptions.md)
+
+**Extends:** [ToolBaseOptions](./core.toolbaseoptions.md)
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [defaultLanguage?](./core.localetooloptions.defaultlanguage.md) |  | T | <i>(Optional)</i> |
-|  [source](./core.localetooloptions.source.md) |  | Array&lt;[LocaleSource](./core.localesource.md)<!-- -->&lt;T&gt;&gt; |  |
-
+| Property                                                        | Modifiers | Type                                                                 | Description  |
+| --------------------------------------------------------------- | --------- | -------------------------------------------------------------------- | ------------ |
+| [defaultLanguage?](./core.localetooloptions.defaultlanguage.md) |           | T                                                                    | _(Optional)_ |
+| [source](./core.localetooloptions.source.md)                    |           | Array&lt;[LocaleSource](./core.localesource.md)<!-- -->&lt;T&gt;&gt; |              |

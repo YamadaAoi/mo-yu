@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-10 17:38:15
  * @Description: Loading Provider
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import './loading.scss'
 import { defineComponent, ref, Teleport, provide, h, Fragment } from 'vue'

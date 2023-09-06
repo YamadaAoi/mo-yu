@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-10 11:28:46
  * @Description: rem hook
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import { ref } from 'vue'
 import { remTool } from '@mo-yu/core'

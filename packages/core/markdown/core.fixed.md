@@ -4,23 +4,21 @@
 
 ## fixed() function
 
-保留len位小数
+保留 len 位小数
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export declare function fixed(value: any, len?: number): any;
+export declare function fixed(value: any, len?: number): any
 ```
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  value | any | 数值 |
-|  len | number | <i>(Optional)</i> 默认保留两位小数 |
+| Parameter | Type   | Description                   |
+| --------- | ------ | ----------------------------- |
+| value     | any    | 数值                          |
+| len       | number | _(Optional)_ 默认保留两位小数 |
 
-<b>Returns:</b>
+**Returns:**
 
 any
-
-

@@ -4,9 +4,9 @@
 
 ## FullscreenToolOptions.target property
 
-要全屏的html元素
+要全屏的 html 元素
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 target?: HTMLElement;

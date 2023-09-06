@@ -3,8 +3,7 @@
  * @Date: 2023-01-11 16:26:27
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-09-05 17:44:55
- * @Description: 
- * Copyright (c) 2023 by piesat, All Rights Reserved. 
+ * @Description:  
 -->
 <template>
   <div class="demo-wrap">

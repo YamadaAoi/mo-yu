@@ -6,8 +6,8 @@
 
 实例化基本参数
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-export interface ToolBaseOptions 
+export interface ToolBaseOptions
 ```

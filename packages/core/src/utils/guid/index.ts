@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-01-10 14:26:02
  * @Description: 生成唯一id
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 /**
  * 生成唯一id

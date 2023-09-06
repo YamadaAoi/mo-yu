@@ -4,7 +4,6 @@
  * @LastEditors: zhouyinkui
  * @LastEditTime: 2023-09-05 17:35:11
  * @Description:
- * Copyright (c) 2023 by piesat, All Rights Reserved.
  */
 import path from 'path'
 import { defineConfig, loadEnv, UserConfig } from 'vite'

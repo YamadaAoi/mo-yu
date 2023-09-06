@@ -4,79 +4,97 @@
 
 ## MPopup variable
 
-可拖拽弹框组件，相对于整个可视窗口拖动 在项目入口先调用initPopupContainer()方法渲染popup父节点
+可拖拽弹框组件，相对于整个可视窗口拖动 在项目入口先调用 initPopupContainer()方法渲染 popup 父节点
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
-_default: import("vue").DefineComponent<{
+_default: import('vue').DefineComponent<
+  {
     visiable: {
-        type: BooleanConstructor;
-        required: true;
-    };
+      type: BooleanConstructor
+      required: true
+    }
     title: {
-        type: StringConstructor;
-        required: true;
-    };
+      type: StringConstructor
+      required: true
+    }
     style: {
-        type: PropType<StyleValue>;
-        required: false;
-    };
+      type: PropType<StyleValue>
+      required: false
+    }
     class: {
-        type: StringConstructor;
-        required: false;
-    };
+      type: StringConstructor
+      required: false
+    }
     position: {
-        type: PropType<OriginPosition>;
-        required: false;
-    };
+      type: PropType<OriginPosition>
+      required: false
+    }
     hideClose: {
-        type: BooleanConstructor;
-        required: false;
-    };
+      type: BooleanConstructor
+      required: false
+    }
     mask: {
-        type: BooleanConstructor;
-        required: false;
-    };
-}, {
-    popupWinId: import("vue").Ref<string>;
-    popupHeadId: import("vue").Ref<string>;
-    close: () => void;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
-    close(): boolean;
-}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    visiable: {
-        type: BooleanConstructor;
-        required: true;
-    };
-    title: {
-        type: StringConstructor;
-        required: true;
-    };
-    style: {
-        type: PropType<StyleValue>;
-        required: false;
-    };
-    class: {
-        type: StringConstructor;
-        required: false;
-    };
-    position: {
-        type: PropType<OriginPosition>;
-        required: false;
-    };
-    hideClose: {
-        type: BooleanConstructor;
-        required: false;
-    };
-    mask: {
-        type: BooleanConstructor;
-        required: false;
-    };
-}>> & {
-    onClose?: (() => any) | undefined;
-}, {
-    hideClose: boolean;
-    mask: boolean;
-}>
+      type: BooleanConstructor
+      required: false
+    }
+  },
+  {
+    popupWinId: import('vue').Ref<string>
+    popupHeadId: import('vue').Ref<string>
+    close: () => void
+  },
+  unknown,
+  {},
+  {},
+  import('vue').ComponentOptionsMixin,
+  import('vue').ComponentOptionsMixin,
+  {
+    close(): boolean
+  },
+  string,
+  import('vue').VNodeProps &
+    import('vue').AllowedComponentProps &
+    import('vue').ComponentCustomProps,
+  Readonly<
+    import('vue').ExtractPropTypes<{
+      visiable: {
+        type: BooleanConstructor
+        required: true
+      }
+      title: {
+        type: StringConstructor
+        required: true
+      }
+      style: {
+        type: PropType<StyleValue>
+        required: false
+      }
+      class: {
+        type: StringConstructor
+        required: false
+      }
+      position: {
+        type: PropType<OriginPosition>
+        required: false
+      }
+      hideClose: {
+        type: BooleanConstructor
+        required: false
+      }
+      mask: {
+        type: BooleanConstructor
+        required: false
+      }
+    }>
+  > & {
+    onClose?: (() => any) | undefined
+  },
+  {
+    hideClose: boolean
+    mask: boolean
+  },
+  {}
+>
 ```
