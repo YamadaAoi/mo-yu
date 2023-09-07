@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2022-06-17 14:35:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-10 14:02:09
+ * @LastEditTime: 2023-09-07 09:55:36
  * @Description:
  */
 import path from 'path'
@@ -13,8 +13,9 @@ import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import esbuild from 'rollup-plugin-esbuild'
 import postcss from 'rollup-plugin-postcss'
-import autoprefixer from 'autoprefixer'
+import postcssPresetEnv from 'postcss-preset-env'
 import cssnano from 'cssnano'
+import cssnanoPresetAdvanced from 'cssnano-preset-advanced'
 import { visualizer } from 'rollup-plugin-visualizer'
 import strip from '@rollup/plugin-strip'
 import { createRequire } from 'node:module'
@@ -41,7 +42,20 @@ export default defineConfig([
       resolve({
         extensions
       }),
-      postcss({ plugins: [autoprefixer(), cssnano()] }),
+      postcss({
+        plugins: [
+          postcssPresetEnv(),
+          cssnano({
+            preset: [
+              cssnanoPresetAdvanced,
+              {
+                autoprefixer: false, // cssnano-preset-advanced和cssnano都具有autoprefixer
+                zindex: false // z-index会被cssnano重新计算为1
+              }
+            ]
+          })
+        ]
+      }),
       typescript({
         compilerOptions: {
           outDir: 'es',
@@ -94,7 +108,19 @@ export default defineConfig([
         target: 'esnext',
         minify: true
       }),
-      postcss({ plugins: [autoprefixer(), cssnano()] }),
+      postcss({
+        plugins: [
+          cssnano({
+            preset: [
+              cssnanoPresetAdvanced,
+              {
+                autoprefixer: false,
+                zindex: false
+              }
+            ]
+          })
+        ]
+      }),
       strip()
     ],
     external: ['vue', '@mo-yu/core']

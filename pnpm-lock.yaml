@@ -43,12 +43,12 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^5.48.0
         version: 5.62.0(eslint@8.48.0)(typescript@4.9.5)
-      autoprefixer:
-        specifier: ^10.4.13
-        version: 10.4.15(postcss@8.4.29)
       cssnano:
         specifier: ^5.1.14
         version: 5.1.15(postcss@8.4.29)
+      cssnano-preset-advanced:
+        specifier: ^5.3.8
+        version: 5.3.10(postcss@8.4.29)
       esbuild:
         specifier: ^0.16.14
         version: 0.16.17
@@ -3848,6 +3848,24 @@ packages:
       }
     engines: { node: '>=4' }
     hasBin: true
+    dev: true
+
+  /cssnano-preset-advanced@5.3.10(postcss@8.4.29):
+    resolution:
+      {
+        integrity: sha512-fnYJyCS9jgMU+cmHO1rPSPf9axbQyD7iUhLO5Df6O4G+fKIOMps+ZbU0PdGFejFBBZ3Pftf18fn1eG7MAPUSWQ==
+      }
+    engines: { node: ^10 || ^12 || >=14.0 }
+    peerDependencies:
+      postcss: ^8.2.15
+    dependencies:
+      autoprefixer: 10.4.15(postcss@8.4.29)
+      cssnano-preset-default: 5.2.14(postcss@8.4.29)
+      postcss: 8.4.29
+      postcss-discard-unused: 5.1.0(postcss@8.4.29)
+      postcss-merge-idents: 5.1.1(postcss@8.4.29)
+      postcss-reduce-idents: 5.2.0(postcss@8.4.29)
+      postcss-zindex: 5.1.0(postcss@8.4.29)
     dev: true
 
   /cssnano-preset-default@5.2.14(postcss@8.4.29):
@@ -7740,6 +7758,19 @@ packages:
       postcss: 8.4.29
     dev: true
 
+  /postcss-discard-unused@5.1.0(postcss@8.4.29):
+    resolution:
+      {
+        integrity: sha512-KwLWymI9hbwXmJa0dkrzpRbSJEh0vVUd7r8t0yOGPcfKzyJJxFM8kLyC5Ev9avji6nY95pOp1W6HqIrfT+0VGw==
+      }
+    engines: { node: ^10 || ^12 || >=14.0 }
+    peerDependencies:
+      postcss: ^8.2.15
+    dependencies:
+      postcss: 8.4.29
+      postcss-selector-parser: 6.0.13
+    dev: true
+
   /postcss-double-position-gradients@4.0.4(postcss@8.4.29):
     resolution:
       {
@@ -7872,6 +7903,20 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
+      postcss: 8.4.29
+      postcss-value-parser: 4.2.0
+    dev: true
+
+  /postcss-merge-idents@5.1.1(postcss@8.4.29):
+    resolution:
+      {
+        integrity: sha512-pCijL1TREiCoog5nQp7wUe+TUonA2tC2sQ54UGeMmryK3UFGIYKqDyjnqd6RcuI4znFn9hWSLNN8xKE/vWcUQw==
+      }
+    engines: { node: ^10 || ^12 || >=14.0 }
+    peerDependencies:
+      postcss: ^8.2.15
+    dependencies:
+      cssnano-utils: 3.1.0(postcss@8.4.29)
       postcss: 8.4.29
       postcss-value-parser: 4.2.0
     dev: true
@@ -8321,6 +8366,19 @@ packages:
       postcss: 8.4.29
     dev: true
 
+  /postcss-reduce-idents@5.2.0(postcss@8.4.29):
+    resolution:
+      {
+        integrity: sha512-BTrLjICoSB6gxbc58D5mdBK8OhXRDqud/zodYfdSi52qvDHdMwk+9kB9xsM8yJThH/sZU5A6QVSmMmaN001gIg==
+      }
+    engines: { node: ^10 || ^12 || >=14.0 }
+    peerDependencies:
+      postcss: ^8.2.15
+    dependencies:
+      postcss: 8.4.29
+      postcss-value-parser: 4.2.0
+    dev: true
+
   /postcss-reduce-initial@5.1.2(postcss@8.4.29):
     resolution:
       {
@@ -8415,6 +8473,18 @@ packages:
       {
         integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
       }
+    dev: true
+
+  /postcss-zindex@5.1.0(postcss@8.4.29):
+    resolution:
+      {
+        integrity: sha512-fgFMf0OtVSBR1va1JNHYgMxYk73yhn/qb4uQDq1DLGYolz8gHCyr/sesEuGUaYs58E3ZJRcpoGuPVoB7Meiq9A==
+      }
+    engines: { node: ^10 || ^12 || >=14.0 }
+    peerDependencies:
+      postcss: ^8.2.15
+    dependencies:
+      postcss: 8.4.29
     dev: true
 
   /postcss@8.4.29:
