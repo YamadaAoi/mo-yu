@@ -1,17 +1,14 @@
 <!--
  * @Author: zhouyinkui
- * @Date: 2023-09-06 16:11:14
+ * @Date: 2023-09-11 11:13:21
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:07:35
+ * @LastEditTime: 2023-09-20 16:42:34
  * @Description: 
 -->
 <template>
   <demo-wrap>
-    <template #title>拖拽工具 DragTool</template>
-    <template #subTitle>我是一块砖，哪里需要往哪儿搬。</template>
-    <template #demo>
-      <DragCode></DragCode>
-    </template>
+    <template #title>适配工具 remTool</template>
+    <template #subTitle>搭配 postcss-pxtorem，让适配工作少一点。</template>
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
@@ -21,14 +18,13 @@
 <script setup lang="ts">
 import DemoWrap from 'src/components/demo/DemoWrap.vue'
 import CodeDisplay from 'src/components/code/CodeDisplay.vue'
-import DragCode from './DragCode.vue'
-import Drag from './DragCode.vue?raw'
+import remCode from './remCode?raw'
 
 const source = [
   {
-    label: 'DragCode',
-    path: './DragCode.vue',
-    raw: Drag
+    label: 'remCode',
+    path: './remCode',
+    raw: remCode
   }
 ]
 </script>

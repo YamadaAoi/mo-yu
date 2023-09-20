@@ -1,16 +1,18 @@
 <!--
  * @Author: zhouyinkui
- * @Date: 2023-09-06 16:11:14
+ * @Date: 2023-09-20 17:05:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:07:35
+ * @LastEditTime: 2023-09-20 17:13:39
  * @Description: 
 -->
 <template>
   <demo-wrap>
-    <template #title>拖拽工具 DragTool</template>
-    <template #subTitle>我是一块砖，哪里需要往哪儿搬。</template>
+    <template #title>RemHook useRem</template>
+    <template #subTitle
+      >显而易见，这就是为了在vue里方便使用remTool捣鼓出来的。</template
+    >
     <template #demo>
-      <DragCode></DragCode>
+      <RemHookCode></RemHookCode>
     </template>
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
@@ -21,16 +23,14 @@
 <script setup lang="ts">
 import DemoWrap from 'src/components/demo/DemoWrap.vue'
 import CodeDisplay from 'src/components/code/CodeDisplay.vue'
-import DragCode from './DragCode.vue'
-import Drag from './DragCode.vue?raw'
+import RemHookCode from './RemHookCode.vue'
+import RemHook from './RemHookCode.vue?raw'
 
 const source = [
   {
-    label: 'DragCode',
-    path: './DragCode.vue',
-    raw: Drag
+    label: 'RemHookCode',
+    path: './RemHookCode.vue',
+    raw: RemHook
   }
 ]
 </script>
-
-<style scoped></style>

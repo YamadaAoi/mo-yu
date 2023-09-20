@@ -2,16 +2,18 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 16:38:30
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-06 13:36:14
+ * @LastEditTime: 2023-09-20 17:08:52
  * @Description:  
 -->
 <template>
   <demo-wrap>
+    <template #title>等待遮罩 MLoading</template>
+    <template #subTitle>双手抱头，不准动。</template>
     <template #demo>
-      <loading-code></loading-code>
+      <LoadingCode></LoadingCode>
     </template>
     <template #code>
-      <code-display :source="source"></code-display>
+      <CodeDisplay :source="source"></CodeDisplay>
     </template>
   </demo-wrap>
 </template>
@@ -20,5 +22,13 @@
 import DemoWrap from 'src/components/demo/DemoWrap.vue'
 import CodeDisplay from 'src/components/code/CodeDisplay.vue'
 import LoadingCode from './LoadingCode.vue'
-import source from './LoadingCode.vue?raw'
+import Loading from './LoadingCode.vue?raw'
+
+const source = [
+  {
+    label: 'LoadingCode',
+    path: './LoadingCode.vue',
+    raw: Loading
+  }
+]
 </script>

@@ -2,12 +2,18 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 16:26:27
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-05 17:44:55
+ * @LastEditTime: 2023-09-20 10:28:43
  * @Description:  
 -->
 <template>
   <div class="demo-wrap">
     <div class="demo-col">
+      <div class="demo-title">
+        <slot name="title"></slot>
+      </div>
+      <div class="demo-sub-title">
+        <slot name="subTitle"></slot>
+      </div>
       <slot name="demo"></slot>
     </div>
     <div class="demo-col">
@@ -33,6 +39,16 @@
     @include scrollBase();
     &:last-of-type {
       border-right: 0;
+    }
+    .demo-title {
+      color: rgb(31, 34, 37);
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .demo-sub-title {
+      color: rgb(31, 34, 37);
+      font-size: 14px;
+      margin: 20px 0;
     }
   }
 }

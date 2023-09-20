@@ -2,16 +2,18 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:42:07
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-06 13:36:28
+ * @LastEditTime: 2023-09-20 17:09:05
  * @Description:
 -->
 <template>
   <demo-wrap>
+    <template #title>拖拽弹框 MPopup</template>
+    <template #subTitle>你不要这样，我是个有原则的弹框。</template>
     <template #demo>
-      <popup-code></popup-code>
+      <PopupCode></PopupCode>
     </template>
     <template #code>
-      <code-display :source="source"></code-display>
+      <CodeDisplay :source="source"></CodeDisplay>
     </template>
   </demo-wrap>
 </template>
@@ -20,5 +22,13 @@
 import DemoWrap from 'src/components/demo/DemoWrap.vue'
 import CodeDisplay from 'src/components/code/CodeDisplay.vue'
 import PopupCode from './PopupCode.vue'
-import source from './PopupCode.vue?raw'
+import Popup from './PopupCode.vue?raw'
+
+const source = [
+  {
+    label: 'PopupCode',
+    path: './PopupCode.vue',
+    raw: Popup
+  }
+]
 </script>

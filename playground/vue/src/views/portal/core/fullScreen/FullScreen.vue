@@ -2,16 +2,18 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-06 15:16:08
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-06 15:31:30
+ * @LastEditTime: 2023-09-20 17:07:54
  * @Description: 
 -->
 <template>
   <demo-wrap>
+    <template #title>全屏工具 FullscreenTool</template>
+    <template #subTitle>快，让我康康。</template>
     <template #demo>
       <FullScreenCode></FullScreenCode>
     </template>
     <template #code>
-      <code-display :source="source"></code-display>
+      <CodeDisplay :source="source"></CodeDisplay>
     </template>
   </demo-wrap>
 </template>
@@ -20,7 +22,15 @@
 import DemoWrap from 'src/components/demo/DemoWrap.vue'
 import CodeDisplay from 'src/components/code/CodeDisplay.vue'
 import FullScreenCode from './FullScreenCode.vue'
-import source from './FullScreenCode.vue?raw'
+import FullScreen from './FullScreenCode.vue?raw'
+
+const source = [
+  {
+    label: 'FullScreenCode',
+    path: './FullScreenCode.vue',
+    raw: FullScreen
+  }
+]
 </script>
 
 <style scoped></style>

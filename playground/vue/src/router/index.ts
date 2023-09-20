@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-06 16:26:56
+ * @LastEditTime: 2023-09-20 17:12:10
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -25,6 +25,24 @@ export function getCoreMenus() {
       meta: {
         label: '拖拽工具',
         cname: 'DragTool'
+      }
+    },
+    {
+      path: '/portal/rem',
+      name: 'Rem',
+      component: () => import('../views/portal/core/rem/RemDemo.vue'),
+      meta: {
+        label: '适配工具',
+        cname: 'remTool'
+      }
+    },
+    {
+      path: '/portal/locale',
+      name: 'Locale',
+      component: () => import('../views/portal/core/locale/LocaleDemo.vue'),
+      meta: {
+        label: '国际化工具',
+        cname: 'LocaleTool'
       }
     }
   ]
@@ -67,6 +85,15 @@ export function getVueMenus() {
       meta: {
         label: '数字动画',
         cname: 'MAniNumber'
+      }
+    },
+    {
+      path: '/portal/remHook',
+      name: 'RemHook',
+      component: () => import('../views/portal/vue/useRem/RemHook.vue'),
+      meta: {
+        label: 'RemHook',
+        cname: 'useRem'
       }
     }
   ]
