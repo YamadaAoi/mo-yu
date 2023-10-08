@@ -2,13 +2,13 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 10:18:37
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-06 09:43:54
+ * @LastEditTime: 2023-10-08 13:32:27
  * @Description:
 -->
 <template>
   <div class="header">
     <div class="header-wrap">
-      <img class="mo-yu-icon" :src="moyu" alt="" srcset="" />
+      <NImage class="mo-yu-icon" :src="moyu" />
       <div class="title">Mo Yu</div>
     </div>
     <div class="header-wrap">
@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import { NImage } from 'naive-ui'
 import moyu from 'src/assets/images/mo-yu.jpg'
 </script>
 

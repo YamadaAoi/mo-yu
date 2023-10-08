@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 15:33:24
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-05 17:35:11
+ * @LastEditTime: 2023-10-08 17:05:06
  * @Description:
  */
 import path from 'path'
@@ -32,6 +32,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       open: true
     },
+    base: './',
     plugins: [vue(), vueJsx()],
     resolve: {
       alias: {
