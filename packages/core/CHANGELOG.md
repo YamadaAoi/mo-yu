@@ -1,5 +1,11 @@
 # @mo-yu/core
 
+## 1.0.9
+
+### Patch Changes
+
+- update readme
+
 ## 1.0.8
 
 ### Patch Changes
