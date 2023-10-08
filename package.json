@@ -75,7 +75,7 @@
       "prettier --write --cache --ignore-unknown"
     ],
     "*.{ts,tsx,vue}": [
-      "eslint --cache --fix"
+      "eslint --cache --fix --allow-empty"
     ]
   },
   "pnpm": {
