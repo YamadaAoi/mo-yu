@@ -10,7 +10,7 @@ $ npm i @mo-yu/core @mo-yu/vue
 
 ## 示例
 
-<a href="http://121.40.254.67:8000" target="_blank">demo</a>
+[demo](http://121.40.254.67:8000)
 
 ## Packages
 
