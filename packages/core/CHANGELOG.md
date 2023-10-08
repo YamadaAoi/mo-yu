@@ -1,5 +1,11 @@
 # @mo-yu/core
 
+## 1.0.10
+
+### Patch Changes
+
+- 6a530d6: markdown 更新
+
 ## 1.0.9
 
 ### Patch Changes

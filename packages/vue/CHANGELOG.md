@@ -1,5 +1,13 @@
 # @mo-yu/vue
 
+## 1.0.12
+
+### Patch Changes
+
+- 6a530d6: markdown 更新
+- Updated dependencies [6a530d6]
+  - @mo-yu/core@1.0.10
+
 ## 1.0.11
 
 ### Patch Changes
