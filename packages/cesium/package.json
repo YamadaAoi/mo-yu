@@ -1,0 +1,44 @@
+{
+  "name": "@mo-yu/cesium",
+  "version": "1.0.0",
+  "description": "mo-yu cesium helper",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "unpkg": "dist/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "es",
+    "lib",
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint \"src/**/*.{ts,tsx,js,jsx}\"",
+    "dev": "pnpm build-lib -w",
+    "build": "pnpm build-lib && pnpm build-markdown",
+    "build-lib": "pnpm lint && pnpm clean && rollup --config build/rollup.config.ts --configPlugin typescript",
+    "build-markdown": "api-extractor run && api-documenter markdown -i ./temp -o ./markdown && rimraf temp",
+    "clean": "rimraf es && rimraf lib && rimraf dist && rimraf markdown"
+  },
+  "keywords": [
+    "mo-yu",
+    "cesium",
+    "helper"
+  ],
+  "author": "zhouyinkui",
+  "license": "MIT",
+  "peerDependencies": {
+    "cesium": "~1.95.0",
+    "@mo-yu/core": "^1.0.10"
+  },
+  "devDependencies": {
+    "@mo-yu/core": "workspace:*",
+    "cesium": "~1.95.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YamadaAoi/mo-yu"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

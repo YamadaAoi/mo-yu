@@ -20,10 +20,10 @@ export declare abstract class ToolBase<O extends ToolBaseOptions, T>
 
 ## Properties
 
-| Property                                | Modifiers              | Type              | Description |
-| --------------------------------------- | ---------------------- | ----------------- | ----------- |
-| [eventBus](./core.toolbase.eventbus.md) | <code>readonly</code>  | EventBus&lt;T&gt; | 事件总线    |
-| [options](./core.toolbase.options.md)   | <code>protected</code> | O                 |             |
+| Property                                | Modifiers              | Type                                            | Description |
+| --------------------------------------- | ---------------------- | ----------------------------------------------- | ----------- |
+| [eventBus](./core.toolbase.eventbus.md) | <code>readonly</code>  | [EventBus](./core.eventbus.md)<!-- -->&lt;T&gt; | 事件总线    |
+| [options](./core.toolbase.options.md)   | <code>protected</code> | O                                               |             |
 
 ## Methods
 

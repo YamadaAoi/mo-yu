@@ -113,6 +113,15 @@ importers:
         specifier: ^4.9.4
         version: 4.9.5
 
+  packages/cesium:
+    devDependencies:
+      '@mo-yu/core':
+        specifier: workspace:*
+        version: link:../core
+      cesium:
+        specifier: ~1.95.0
+        version: 1.95.0
+
   packages/core: {}
 
   packages/vue:
@@ -3434,6 +3443,13 @@ packages:
     resolution:
       {
         integrity: sha512-YkJi7RwPgWtXVSgK4lG9AHH57nSzvvOp9MesgXmw4Q7n0C3H04L0foHqfxcmSAm5AcWb8dW9AYj2tR7/5GnddQ==
+      }
+    dev: true
+
+  /cesium@1.95.0:
+    resolution:
+      {
+        integrity: sha512-59U0lZD/wmSJa4t9FcK1/sp6PyCpx7h8c4giLd8VM7LJDL6w0G0o4QGlZ4TSJTBe4VIClf+qPDUf47wyBu4YoA==
       }
     dev: true
 
