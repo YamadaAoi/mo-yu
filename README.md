@@ -14,8 +14,8 @@ $ npm i @mo-yu/core @mo-yu/vue
 
 ## Packages
 
-| Package                                           | Description   |
-| ------------------------------------------------- | ------------- |
-| [@mo-yu/core](./packages/core/markdown/index.md)  | 核心库        |
-| [@mo-yu/vue](./packages/vue/markdown/index.md)    | vue 组件库    |
-| [@mo-yu/vue](./packages/cesium/markdown/index.md) | cesium helper |
+| Package                                              | Description   |
+| ---------------------------------------------------- | ------------- |
+| [@mo-yu/core](./packages/core/markdown/index.md)     | 核心库        |
+| [@mo-yu/vue](./packages/vue/markdown/index.md)       | vue 组件库    |
+| [@mo-yu/cesium](./packages/cesium/markdown/index.md) | cesium helper |
