@@ -1,6 +1,6 @@
 {
   "name": "@mo-yu/vue",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "mo-yu vue",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -30,7 +30,7 @@
   "license": "MIT",
   "peerDependencies": {
     "vue": "^3.0.0",
-    "@mo-yu/core": "^1.0.10"
+    "@mo-yu/core": "^1.0.11"
   },
   "devDependencies": {
     "@mo-yu/core": "workspace:*",
