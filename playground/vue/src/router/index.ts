@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:12:10
+ * @LastEditTime: 2023-12-18 14:40:17
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -100,6 +100,21 @@ export function getVueMenus() {
   return menus
 }
 
+export function getCesiumMenus() {
+  const menus: RouteRecordRaw[] = [
+    {
+      path: '/portal/tiles',
+      name: 'Tiles',
+      component: () => import('../views/portal/cesium/tile/TileConfig.vue'),
+      meta: {
+        label: '3DTiles',
+        cname: 'MapTile[Config]Tool'
+      }
+    }
+  ]
+  return menus
+}
+
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -110,7 +125,7 @@ const routes: RouteRecordRaw[] = [
     name: 'Portal',
     component: () => import('../views/portal/Portal.vue'),
     redirect: '/portal/fullScreen',
-    children: [...getCoreMenus(), ...getVueMenus()]
+    children: [...getCoreMenus(), ...getVueMenus(), ...getCesiumMenus()]
   }
 ]
 

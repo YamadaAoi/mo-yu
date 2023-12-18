@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 15:33:24
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-10-08 17:47:59
+ * @LastEditTime: 2023-12-18 13:25:16
  * @Description:
  */
 import path from 'path'
@@ -11,6 +11,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import pxtorem from 'postcss-pxtorem'
 import postcssPresetEnv from 'postcss-preset-env'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 import checker from 'vite-plugin-checker'
 import strip from '@rollup/plugin-strip'
 import viteCompression from 'vite-plugin-compression'
@@ -29,6 +30,7 @@ function getBrowsers(command: 'build' | 'serve') {
 export default defineConfig(({ command, mode }) => {
   loadEnv(mode, process.cwd())
   const config: UserConfig = {
+    envPrefix: ['VITE_', 'CESIUM_'],
     server: {
       open: true
     },
@@ -36,7 +38,11 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         src: path.resolve(__dirname, './src'),
-        assets: path.resolve(__dirname, './src/assets')
+        assets: path.resolve(__dirname, './src/assets'),
+        cesiumcss: path.resolve(
+          __dirname,
+          'node_modules/cesium/Build/Cesium/Widgets/widgets.css'
+        )
       }
     },
     css: {
@@ -80,6 +86,7 @@ export default defineConfig(({ command, mode }) => {
                 case 'naive-ui':
                 case 'lodash-es':
                 case '@mo-yu':
+                case 'cesium':
                   return 'vendor_' + arr2[0]
                 default:
                   return 'vendor'
@@ -103,10 +110,36 @@ export default defineConfig(({ command, mode }) => {
     config.plugins?.push(
       checker({
         vueTsc: true
+      }),
+      viteStaticCopy({
+        targets: [
+          {
+            src: [
+              'node_modules/cesium/Build/Cesium/Workers',
+              'node_modules/cesium/Build/Cesium/ThirdParty',
+              'node_modules/cesium/Source/Assets',
+              'node_modules/cesium/Source/Widgets'
+            ],
+            dest: 'cesium'
+          }
+        ]
       })
     )
   } else {
     config.plugins?.push(
+      viteStaticCopy({
+        targets: [
+          {
+            src: [
+              'node_modules/cesium/Build/Cesium/Workers',
+              'node_modules/cesium/Build/Cesium/ThirdParty',
+              'node_modules/cesium/Build/Cesium/Assets',
+              'node_modules/cesium/Build/Cesium/Widgets'
+            ],
+            dest: 'cesium'
+          }
+        ]
+      }),
       strip(),
       viteCompression({
         filter: /\.(js|mjs|json|css|html|ttf)$/i

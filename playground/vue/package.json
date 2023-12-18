@@ -16,6 +16,8 @@
   "dependencies": {
     "@mo-yu/core": "workspace:*",
     "@mo-yu/vue": "workspace:*",
+    "@mo-yu/cesium": "workspace:*",
+    "cesium": "1.95.0",
     "highlight.js": "^11.7.0",
     "naive-ui": "^2.34.3",
     "vue": "^3.2.45",
@@ -31,6 +33,7 @@
     "vite": "^4.0.4",
     "vite-plugin-checker": "^0.5.3",
     "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-static-copy": "^0.6.1",
     "vue-eslint-parser": "^9.1.0",
     "vue-tsc": "^1.0.24"
   }

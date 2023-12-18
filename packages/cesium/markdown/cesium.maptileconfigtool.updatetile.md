@@ -9,16 +9,16 @@
 **Signature:**
 
 ```typescript
-updateTile(id: string, key: keyof TilesTransform, params: TilesTransform): void;
+updateTile(id: string, key: string, params: TilesTransform): void;
 ```
 
 ## Parameters
 
-| Parameter | Type                                               | Description |
-| --------- | -------------------------------------------------- | ----------- |
-| id        | string                                             | 3DTiles Id  |
-| key       | keyof [TilesTransform](./cesium.tilestransform.md) | 参数        |
-| params    | [TilesTransform](./cesium.tilestransform.md)       | 所有参数值  |
+| Parameter | Type                                         | Description |
+| --------- | -------------------------------------------- | ----------- |
+| id        | string                                       | 3DTiles Id  |
+| key       | string                                       | 参数        |
+| params    | [TilesTransform](./cesium.tilestransform.md) | 所有参数值  |
 
 **Returns:**
 

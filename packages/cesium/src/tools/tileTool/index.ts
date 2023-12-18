@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-15 17:52:03
+ * @LastEditTime: 2023-12-18 15:03:17
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -90,7 +90,7 @@ export class MapTileTool<E extends MapTileToolEvents> extends ToolBase<
     let tile: Cesium3DTileset | undefined
     for (let i = 0; i < len; i++) {
       const p = this.tiles.get(i)
-      if (p.busiId === id) {
+      if (p.MoYuTileId === id) {
         tile = p
       }
     }

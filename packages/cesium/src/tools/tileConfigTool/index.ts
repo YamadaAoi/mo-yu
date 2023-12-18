@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 16:50:59
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-15 17:51:58
+ * @LastEditTime: 2023-12-18 14:28:14
  * @Description: 3DTiles场景配置
  */
 import {
@@ -251,7 +251,7 @@ export class MapTileConfigTool extends MapTileTool<MapTileConfigToolEvents> {
    * @param key - 参数
    * @param params - 所有参数值
    */
-  updateTile(id: string, key: keyof TilesTransform, params: TilesTransform) {
+  updateTile(id: string, key: string, params: TilesTransform) {
     const tile = this.getTileById(id)
     if (tile) {
       const data = this.getPosiHPRScale(tile.root.transform)

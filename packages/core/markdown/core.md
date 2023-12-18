@@ -21,13 +21,16 @@
 
 ## Functions
 
-| Function                                                  | Description              |
-| --------------------------------------------------------- | ------------------------ |
-| [fixed(value, len)](./core.fixed.md)                      | 保留 len 位小数          |
-| [getDefault(defaultValue, initial)](./core.getdefault.md) | 初始化变量               |
-| [guid()](./core.guid.md)                                  | 生成唯一 id              |
-| [isNull(value)](./core.isnull.md)                         | 是无效数据               |
-| [isNumber(value)](./core.isnumber.md)                     | 是否是数字或者数字字符串 |
+| Function                                                  | Description                |
+| --------------------------------------------------------- | -------------------------- |
+| [download(url, fileName)](./core.download.md)             | 下载                       |
+| [fixed(value, len)](./core.fixed.md)                      | 保留 len 位小数            |
+| [getDefault(defaultValue, initial)](./core.getdefault.md) | 初始化变量                 |
+| [guid()](./core.guid.md)                                  | 生成唯一 id                |
+| [isNull(value)](./core.isnull.md)                         | 是无效数据                 |
+| [isNumber(value)](./core.isnumber.md)                     | 是否是数字或者数字字符串   |
+| [readText(blob)](./core.readtext.md)                      | 读取 blob 为纯文本         |
+| [saveAsJson(data, fileName)](./core.saveasjson.md)        | 下载 json 对象为 json 文件 |
 
 ## Interfaces
 

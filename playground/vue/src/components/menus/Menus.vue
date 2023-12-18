@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 10:35:56
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-06 17:01:50
+ * @LastEditTime: 2023-12-18 14:41:11
  * @Description:
 -->
 <template>
@@ -32,7 +32,7 @@ import {
   useRouter,
   RouteRecordRaw
 } from 'vue-router'
-import { getCoreMenus, getVueMenus } from '../../router'
+import { getCoreMenus, getVueMenus, getCesiumMenus } from '../../router'
 
 const menus = [
   {
@@ -42,6 +42,10 @@ const menus = [
   {
     cate: '@mo-yu/vue',
     routes: getVueMenus()
+  },
+  {
+    cate: '@mo-yu/cesium',
+    routes: getCesiumMenus()
   }
 ]
 const router = useRouter()
