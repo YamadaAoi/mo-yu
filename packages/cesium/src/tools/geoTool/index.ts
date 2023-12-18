@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-15 17:51:47
+ * @LastEditTime: 2023-12-18 18:07:21
  * @Description: geojson工具
  */
 import { GeoJsonDataSource, Resource, Color } from 'cesium'
@@ -22,9 +22,9 @@ type GeoLoadOptions = Omit<
   fill?: string
 }
 
-interface MapGeoImplEvents {}
+interface MapGeoToolEvents {}
 
-export class MapGeoImpl extends ToolBase<ToolBaseOptions, MapGeoImplEvents> {
+export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
   #geoNames: string[] = []
   constructor(options: ToolBaseOptions) {
     super(options)

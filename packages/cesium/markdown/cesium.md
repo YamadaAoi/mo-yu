@@ -8,7 +8,7 @@
 
 | Class                                              | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- |
-| [MapGeoImpl](./cesium.mapgeoimpl.md)               |                                                    |
+| [MapGeoTool](./cesium.mapgeotool.md)               |                                                    |
 | [MapTileConfigTool](./cesium.maptileconfigtool.md) | 3DTiles 展示配置                                   |
 | [MapTileTool](./cesium.maptiletool.md)             | 3DTiles 展示，配合 TileConfigTool 配置结果使用更佳 |
 | [MapView](./cesium.mapview.md)                     | 初始化地图                                         |

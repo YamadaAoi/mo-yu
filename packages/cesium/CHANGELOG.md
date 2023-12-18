@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.2
+
+### Patch Changes
+
+- geo 工具类名修改
+
 ## 1.0.1
 
 ### Patch Changes
