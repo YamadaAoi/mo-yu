@@ -10,6 +10,7 @@
 | -------------------------------------------------- | -------------------------------------------------- |
 | [MapCameraTool](./cesium.mapcameratool.md)         | 相机操作                                           |
 | [MapGeoTool](./cesium.mapgeotool.md)               | 添加 geojson                                       |
+| [MapSceneTool](./cesium.mapscenetool.md)           | 初始化场景                                         |
 | [MapTileConfigTool](./cesium.maptileconfigtool.md) | 3DTiles 展示配置                                   |
 | [MapTileTool](./cesium.maptiletool.md)             | 3DTiles 展示，配合 TileConfigTool 配置结果使用更佳 |
 | [MapView](./cesium.mapview.md)                     | 初始化地图                                         |
@@ -31,6 +32,7 @@
 | [MapTileToolEvents](./cesium.maptiletoolevents.md)             | 事件                                                |
 | [Position](./cesium.position.md)                               | 位置信息                                            |
 | [Rotation](./cesium.rotation.md)                               | 旋转参数 heading：偏航角 pitch：俯仰角 roll：翻滚角 |
+| [SceneConfig](./cesium.sceneconfig.md)                         | 场景配置                                            |
 | [TilesTransform](./cesium.tilestransform.md)                   | 3DTiles 偏移、旋转，缩放参数                        |
 
 ## Variables

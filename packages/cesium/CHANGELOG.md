@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.4
+
+### Patch Changes
+
+- 添加导出
+
 ## 1.0.3
 
 ### Patch Changes
