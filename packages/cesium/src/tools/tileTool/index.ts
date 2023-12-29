@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-18 15:03:17
+ * @LastEditTime: 2023-12-29 16:30:34
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -16,16 +16,17 @@ import {
   Quaternion,
   Transforms,
   PrimitiveCollection,
-  Cesium3DTileset
+  Cesium3DTileset,
+  ShadowMode
 } from 'cesium'
-import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
+import { ToolBase, ToolBaseOptions, getDefault, guid } from '@mo-yu/core'
 import { mapStoreTool } from '../storeTool'
-import { CameraParam } from '../../mapViewAble'
+import { CameraParam } from '../cameraTool'
 
 /**
  * cesium原生3DTiles构造参数
  */
-export type TilesetOption = ConstructorParameters<typeof Cesium3DTileset>[0]
+type TilesetOption = ConstructorParameters<typeof Cesium3DTileset>[0]
 
 /**
  * 3DTiles偏移、旋转，缩放参数
@@ -33,6 +34,24 @@ export type TilesetOption = ConstructorParameters<typeof Cesium3DTileset>[0]
 export interface TilesTransform extends CameraParam {
   scale?: number
 }
+
+/**
+ * 添加3DTiles图层所需参数，除了Cesium3DTileset需要的原生参数，还添加了
+ * id: 唯一标识
+ * locate: 是否定位
+ * lng: 精度
+ * lat: 纬度
+ * height: 高度
+ * heading: 偏航角
+ * pitch: 俯仰角
+ * roll: 翻滚角
+ * scale: 缩放（默认1）
+ */
+export type TileOption = TilesetOption &
+  TilesTransform & {
+    id?: string
+    locate?: string
+  }
 
 /**
  * 事件
@@ -62,7 +81,7 @@ export class MapTileTool<E extends MapTileToolEvents> extends ToolBase<
    * 启用
    */
   enable(): void {
-    this.mapView?.scene.primitives.add(this.tiles)
+    this.viewer?.scene.primitives.add(this.tiles)
   }
 
   /**
@@ -70,7 +89,7 @@ export class MapTileTool<E extends MapTileToolEvents> extends ToolBase<
    */
   destroy(): void {
     this.clear()
-    this.mapView?.scene.primitives.remove(this.tiles)
+    this.viewer?.scene.primitives.remove(this.tiles)
   }
 
   /**
@@ -104,7 +123,7 @@ export class MapTileTool<E extends MapTileToolEvents> extends ToolBase<
   locateTile(id: string) {
     const tile = this.getTileById(id)
     if (tile) {
-      this.mapView
+      this.viewer
         ?.flyTo(tile, {
           duration: 1
         })
@@ -128,31 +147,61 @@ export class MapTileTool<E extends MapTileToolEvents> extends ToolBase<
 
   /**
    * 添加3DTiles模型
-   * @param option - Cesium3DTileset构造函数入参
-   * @param params - 偏移旋转缩放
-   * @param locate - 是否定位
-   * @param id - 3DTiles Id
+   * @param option - TileOption
    */
-  async add3DTileset(
-    option: TilesetOption,
-    params?: TilesTransform,
-    locate?: boolean,
-    id?: string
-  ) {
+  async add3DTileset(option: TileOption) {
     let primitive: any
     if (option) {
-      const tileset = new Cesium3DTileset(option)
+      const {
+        id,
+        locate,
+        lng,
+        lat,
+        height,
+        heading,
+        pitch,
+        roll,
+        scale,
+        ...rest
+      } = option
+      const tileset = new Cesium3DTileset(
+        getDefault(
+          {
+            url: '',
+            backFaceCulling: true,
+            maximumScreenSpaceError: 16,
+            maximumMemoryUsage: 512,
+            cullWithChildrenBounds: true,
+            dynamicScreenSpaceError: false,
+            dynamicScreenSpaceErrorDensity: 0.00278,
+            dynamicScreenSpaceErrorFactor: 4,
+            dynamicScreenSpaceErrorHeightFalloff: 0.25,
+            skipLevelOfDetail: true,
+            baseScreenSpaceError: 1024,
+            skipScreenSpaceErrorFactor: 16,
+            skipLevels: 1,
+            immediatelyLoadDesiredLevelOfDetail: false,
+            loadSiblings: false,
+            shadows: ShadowMode.ENABLED
+          },
+          rest
+        )
+      )
       const tile = await tileset.readyPromise
-      if (params) {
-        const modelMatrix = this.getTransform(tile.root.transform, params)
-        tile.root.transform = modelMatrix
-      }
-      if (id) {
-        ;(tile as any).MoYuTileId = id
-      }
+      const modelMatrix = this.getTransform(tile.root.transform, {
+        lng,
+        lat,
+        height,
+        heading,
+        pitch,
+        roll,
+        scale
+      })
+      tile.root.transform = modelMatrix
+      ;(tile as any).MoYuTileId = id ?? guid()
       primitive = this.tiles.add(tile)
       if (locate) {
-        await this.mapView?.zoomTo(tile)
+        await this.viewer?.zoomTo(tile)
       }
     }
     return primitive
@@ -238,7 +287,7 @@ export class MapTileTool<E extends MapTileToolEvents> extends ToolBase<
     return next !== undefined ? next : Math.toDegrees(prev)
   }
 
-  protected get mapView() {
+  protected get viewer() {
     return mapStoreTool.getMap()?.viewer
   }
 

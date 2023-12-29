@@ -9,16 +9,14 @@
 **Signature:**
 
 ```typescript
-addGeo(option: GeoLoadOptions, locate?: boolean, id?: string): void;
+addGeo(option: GeoOptions): void;
 ```
 
 ## Parameters
 
-| Parameter | Type           | Description             |
-| --------- | -------------- | ----------------------- |
-| option    | GeoLoadOptions | geojson 参数            |
-| locate    | boolean        | _(Optional)_ 是否定位   |
-| id        | string         | _(Optional)_ GeoJson Id |
+| Parameter | Type                                 | Description  |
+| --------- | ------------------------------------ | ------------ |
+| option    | [GeoOptions](./cesium.geooptions.md) | geojson 参数 |
 
 **Returns:**
 

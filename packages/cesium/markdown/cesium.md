@@ -8,7 +8,8 @@
 
 | Class                                              | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- |
-| [MapGeoTool](./cesium.mapgeotool.md)               |                                                    |
+| [MapCameraTool](./cesium.mapcameratool.md)         | 相机操作                                           |
+| [MapGeoTool](./cesium.mapgeotool.md)               | 添加 geojson                                       |
 | [MapTileConfigTool](./cesium.maptileconfigtool.md) | 3DTiles 展示配置                                   |
 | [MapTileTool](./cesium.maptiletool.md)             | 3DTiles 展示，配合 TileConfigTool 配置结果使用更佳 |
 | [MapView](./cesium.mapview.md)                     | 初始化地图                                         |
@@ -40,7 +41,8 @@
 
 ## Type Aliases
 
-| Type Alias                                 | Description                  |
-| ------------------------------------------ | ---------------------------- |
-| [CameraParam](./cesium.cameraparam.md)     | 相机位置角度                 |
-| [TilesetOption](./cesium.tilesetoption.md) | cesium 原生 3DTiles 构造参数 |
+| Type Alias                             | Description                                                                                                                                                                                              |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [CameraParam](./cesium.cameraparam.md) | 相机位置角度                                                                                                                                                                                             |
+| [GeoOptions](./cesium.geooptions.md)   | geojson 参数，在原始参数基础上合并了参数: url: 数据路径 更改了(使用 css 颜色)颜色类参数: markerColor stroke fill 添加了参数 id: 唯一标识 locate: 是否定位                                                |
+| [TileOption](./cesium.tileoption.md)   | 添加 3DTiles 图层所需参数，除了 Cesium3DTileset 需要的原生参数，还添加了 id: 唯一标识 locate: 是否定位 lng: 精度 lat: 纬度 height: 高度 heading: 偏航角 pitch: 俯仰角 roll: 翻滚角 scale: 缩放（默认 1） |

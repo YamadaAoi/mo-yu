@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-18 13:34:26
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-18 14:28:47
+ * @LastEditTime: 2023-12-29 16:28:38
  * @Description: 3DTiles配置
 -->
 <template>
@@ -233,14 +233,13 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { ShadowMode } from 'cesium'
 import { NInput, NInputNumber, NSlider, useMessage } from 'naive-ui'
 import { isNumber, guid, readText, saveAsJson } from '@mo-yu/core'
 import { useRem, MPopup } from '@mo-yu/vue'
-import { Position, TilesTransform, MapTileConfigTool } from '@mo-yu/cesium'
+import { Position, TileOption, MapTileConfigTool } from '@mo-yu/cesium'
 import CommonMap from 'src/components/commonMap/CommonMap.vue'
 
-interface TileInfo extends TilesTransform {
+interface TileInfo extends TileOption {
   id: string
   url: string
   name: string
@@ -385,37 +384,7 @@ function modelPositionChange(id: string, position: Required<Position>) {
 function loadTiles(arr: TileInfo[]) {
   if (arr?.length) {
     arr.forEach(tile => {
-      tool?.add3DTileset(
-        {
-          url: tile.url,
-          backFaceCulling: true,
-          maximumScreenSpaceError: 16,
-          maximumMemoryUsage: 512,
-          cullWithChildrenBounds: true,
-          dynamicScreenSpaceError: false,
-          dynamicScreenSpaceErrorDensity: 0.00278,
-          dynamicScreenSpaceErrorFactor: 4,
-          dynamicScreenSpaceErrorHeightFalloff: 0.25,
-          skipLevelOfDetail: true,
-          baseScreenSpaceError: 1024,
-          skipScreenSpaceErrorFactor: 16,
-          skipLevels: 1,
-          immediatelyLoadDesiredLevelOfDetail: false,
-          loadSiblings: false,
-          shadows: ShadowMode.ENABLED
-        },
-        {
-          lng: tile.lng,
-          lat: tile.lat,
-          height: tile.height,
-          heading: tile.heading,
-          pitch: tile.pitch,
-          roll: tile.roll,
-          scale: tile.scale
-        },
-        false,
-        tile.id
-      )
+      tool?.add3DTileset(tile)
     })
   }
 }

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:07:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-15 17:51:35
+ * @LastEditTime: 2023-12-29 16:38:14
  * @Description:
  */
 import {
@@ -18,6 +18,7 @@ import {
 import { guid, getDefault, ToolBase } from '@mo-yu/core'
 import { getDefaultOptions, MapOption } from './mapViewAble'
 import { mapStoreTool } from './tools/storeTool'
+import { MapSceneTool } from './tools/sceneTool'
 
 /**
  * 地图视图事件类型
@@ -56,6 +57,10 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
    * 地图实例
    */
   #map!: Viewer
+  /**
+   * 初始场景工具
+   */
+  sceneTool = new MapSceneTool({})
 
   constructor(container: HTMLElement | string, options: MapOption) {
     super(options)
@@ -80,6 +85,7 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
    */
   destroy(): void {
     try {
+      this.sceneTool.destroy()
       mapStoreTool.deleteMap(this.id)
       this.#map.destroy()
     } catch (error) {
@@ -104,6 +110,7 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
     helper.add(this.#map?.scene.globe.tileLoadProgressEvent, number => {
       if (number < 1) {
         this.eventBus.fire('ready', { view: this })
+        this.sceneTool.enable()
       }
     })
   }
@@ -197,6 +204,7 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
    */
   _green(instance: Viewer) {
     this.#map = instance
+    this.#insertPopupDom()
     mapStoreTool.setMap(this.id, this)
     const handler = new ScreenSpaceEventHandler(this.#map.canvas)
     handler.setInputAction(() => {

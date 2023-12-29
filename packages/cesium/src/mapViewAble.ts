@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 14:58:29
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-15 15:06:17
+ * @LastEditTime: 2023-12-29 14:10:35
  * @Description:
  */
 import { Cartesian3, Ellipsoid, Ion, Math, SceneMode, Viewer } from 'cesium'
@@ -24,33 +24,6 @@ export interface Position {
   lat: number
   height?: number
 }
-
-/**
- * 旋转参数
- * heading：偏航角
- * pitch：俯仰角
- * roll：翻滚角
- */
-export interface Rotation {
-  /**
-   * 偏航角
-   */
-  heading?: number
-  /**
-   * 俯仰角
-   */
-  pitch?: number
-
-  /**
-   * 翻滚角
-   */
-  roll?: number
-}
-
-/**
- * 相机位置角度
- */
-export type CameraParam = Partial<Position> & Partial<Rotation>
 
 /**
  * 初始化cesium CESIUM_BASE_URL defaultAccessToken

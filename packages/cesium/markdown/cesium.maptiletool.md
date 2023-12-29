@@ -31,26 +31,26 @@ tool.add3DTileset({...})
 
 ## Properties
 
-| Property                                   | Modifiers                                                 | Type                    | Description |
-| ------------------------------------------ | --------------------------------------------------------- | ----------------------- | ----------- |
-| [mapView](./cesium.maptiletool.mapview.md) | <p><code>protected</code></p><p><code>readonly</code></p> | import("cesium").Viewer |             |
-| [tiles](./cesium.maptiletool.tiles.md)     | <code>protected</code>                                    | PrimitiveCollection     |             |
+| Property                                 | Modifiers                                                 | Type                    | Description |
+| ---------------------------------------- | --------------------------------------------------------- | ----------------------- | ----------- |
+| [tiles](./cesium.maptiletool.tiles.md)   | <code>protected</code>                                    | PrimitiveCollection     |             |
+| [viewer](./cesium.maptiletool.viewer.md) | <p><code>protected</code></p><p><code>readonly</code></p> | import("cesium").Viewer |             |
 
 ## Methods
 
-| Method                                                                           | Modifiers              | Description       |
-| -------------------------------------------------------------------------------- | ---------------------- | ----------------- |
-| [add3DTileset(option, params, locate, id)](./cesium.maptiletool.add3dtileset.md) |                        | 添加 3DTiles 模型 |
-| [clear()](./cesium.maptiletool.clear.md)                                         |                        | 清除所有 3dTiles  |
-| [createMatrix(translation, hpr, scale)](./cesium.maptiletool.creatematrix.md)    | <code>protected</code> |                   |
-| [createScale(scaleXYZ)](./cesium.maptiletool.createscale.md)                     | <code>protected</code> |                   |
-| [destroy()](./cesium.maptiletool.destroy.md)                                     |                        | 销毁              |
-| [enable()](./cesium.maptiletool.enable.md)                                       |                        | 启用              |
-| [getDegree(prev, next)](./cesium.maptiletool.getdegree.md)                       | <code>protected</code> |                   |
-| [getPosiHPRScale(mat)](./cesium.maptiletool.getposihprscale.md)                  | <code>protected</code> |                   |
-| [getTileById(id)](./cesium.maptiletool.gettilebyid.md)                           |                        | 根据 id 获取 tile |
-| [getTransform(mat, params)](./cesium.maptiletool.gettransform.md)                | <code>protected</code> |                   |
-| [locateTile(id)](./cesium.maptiletool.locatetile.md)                             |                        | 定位 3DTiles      |
-| [toggleTile(id, show)](./cesium.maptiletool.toggletile.md)                       |                        | 显隐 3DTiles      |
-| [updateHPR(prev, params)](./cesium.maptiletool.updatehpr.md)                     | <code>protected</code> |                   |
-| [updateTranslation(prev, params)](./cesium.maptiletool.updatetranslation.md)     | <code>protected</code> |                   |
+| Method                                                                        | Modifiers              | Description       |
+| ----------------------------------------------------------------------------- | ---------------------- | ----------------- |
+| [add3DTileset(option)](./cesium.maptiletool.add3dtileset.md)                  |                        | 添加 3DTiles 模型 |
+| [clear()](./cesium.maptiletool.clear.md)                                      |                        | 清除所有 3dTiles  |
+| [createMatrix(translation, hpr, scale)](./cesium.maptiletool.creatematrix.md) | <code>protected</code> |                   |
+| [createScale(scaleXYZ)](./cesium.maptiletool.createscale.md)                  | <code>protected</code> |                   |
+| [destroy()](./cesium.maptiletool.destroy.md)                                  |                        | 销毁              |
+| [enable()](./cesium.maptiletool.enable.md)                                    |                        | 启用              |
+| [getDegree(prev, next)](./cesium.maptiletool.getdegree.md)                    | <code>protected</code> |                   |
+| [getPosiHPRScale(mat)](./cesium.maptiletool.getposihprscale.md)               | <code>protected</code> |                   |
+| [getTileById(id)](./cesium.maptiletool.gettilebyid.md)                        |                        | 根据 id 获取 tile |
+| [getTransform(mat, params)](./cesium.maptiletool.gettransform.md)             | <code>protected</code> |                   |
+| [locateTile(id)](./cesium.maptiletool.locatetile.md)                          |                        | 定位 3DTiles      |
+| [toggleTile(id, show)](./cesium.maptiletool.toggletile.md)                    |                        | 显隐 3DTiles      |
+| [updateHPR(prev, params)](./cesium.maptiletool.updatehpr.md)                  | <code>protected</code> |                   |
+| [updateTranslation(prev, params)](./cesium.maptiletool.updatetranslation.md)  | <code>protected</code> |                   |

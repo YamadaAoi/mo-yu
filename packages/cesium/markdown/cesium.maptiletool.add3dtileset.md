@@ -9,17 +9,14 @@
 **Signature:**
 
 ```typescript
-add3DTileset(option: TilesetOption, params?: TilesTransform, locate?: boolean, id?: string): Promise<any>;
+add3DTileset(option: TileOption): Promise<any>;
 ```
 
 ## Parameters
 
-| Parameter | Type                                         | Description                  |
-| --------- | -------------------------------------------- | ---------------------------- |
-| option    | [TilesetOption](./cesium.tilesetoption.md)   | Cesium3DTileset 构造函数入参 |
-| params    | [TilesTransform](./cesium.tilestransform.md) | _(Optional)_ 偏移旋转缩放    |
-| locate    | boolean                                      | _(Optional)_ 是否定位        |
-| id        | string                                       | _(Optional)_ 3DTiles Id      |
+| Parameter | Type                                 | Description |
+| --------- | ------------------------------------ | ----------- |
+| option    | [TileOption](./cesium.tileoption.md) | TileOption  |
 
 **Returns:**
 

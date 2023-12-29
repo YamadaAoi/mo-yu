@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 16:50:59
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-18 14:28:14
+ * @LastEditTime: 2023-12-29 14:47:21
  * @Description: 3DTiles场景配置
  */
 import {
@@ -72,8 +72,8 @@ export class MapTileConfigTool extends MapTileTool<MapTileConfigToolEvents> {
    */
   enable(): void {
     super.enable()
-    if (this.mapView) {
-      const viewer = this.mapView
+    if (this.viewer) {
+      const viewer = this.viewer
       this.handler = new ScreenSpaceEventHandler(viewer.canvas)
       // 左键点击
       this.handler.setInputAction(
@@ -259,7 +259,7 @@ export class MapTileConfigTool extends MapTileTool<MapTileConfigToolEvents> {
         const translation = this.updateTranslation(data[0], params)
         const modelMatrix = this.createMatrix(translation, data[1], data[2])
         tile.root.transform = modelMatrix
-        this.mapView?.zoomTo(tile)
+        this.viewer?.zoomTo(tile)
       } else if (['heading', 'pitch', 'roll'].includes(key)) {
         const hpr = this.updateHPR(data[1], params)
         const modelMatrix = this.createMatrix(data[0], hpr, data[2])
@@ -273,7 +273,7 @@ export class MapTileConfigTool extends MapTileTool<MapTileConfigToolEvents> {
   }
 
   #getPosition(endPosition: Cartesian2) {
-    const viewer = this.mapView
+    const viewer = this.viewer
     let position: Cartesian3 | undefined
     if (viewer) {
       // entity，primitive，3dtile上的点
