@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2022-06-17 14:35:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-15 14:47:20
+ * @LastEditTime: 2024-01-03 10:24:38
  * @Description:
  */
 import path from 'path'
@@ -31,7 +31,7 @@ export default defineConfig([
       exports: 'named',
       preserveModules: true,
       preserveModulesRoot: 'src',
-      sourcemap: true
+      sourcemap: false
     },
     plugins: [
       commonjs(),
@@ -44,7 +44,7 @@ export default defineConfig([
           declaration: true,
           emitDeclarationOnly: true,
           declarationDir: 'es',
-          sourceMap: true
+          sourceMap: false
         }
       }),
       esbuild({
@@ -66,14 +66,14 @@ export default defineConfig([
         exports: 'named',
         preserveModules: true,
         preserveModulesRoot: 'src',
-        sourcemap: true
+        sourcemap: false
       },
       {
         file: path.resolve(__dirname, '../dist/index.js'),
         format: 'umd',
         name: 'MoYuCesium',
         exports: 'named',
-        sourcemap: true,
+        sourcemap: false,
         globals: {
           cesium: 'Cesium',
           '@mo-yu/core': 'MoYuCore'

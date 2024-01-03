@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-18 14:40:17
+ * @LastEditTime: 2024-01-03 09:56:28
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -109,6 +109,15 @@ export function getCesiumMenus() {
       meta: {
         label: '3DTiles',
         cname: 'MapTile[Config]Tool'
+      }
+    },
+    {
+      path: '/portal/draw',
+      name: 'Draw',
+      component: () => import('../views/portal/cesium/draw/DrawTool.vue'),
+      meta: {
+        label: 'DrawTool',
+        cname: 'Draw[Point|polyline|polygon]Tool'
       }
     }
   ]

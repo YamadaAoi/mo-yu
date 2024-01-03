@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2022-06-17 14:35:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-07 09:55:36
+ * @LastEditTime: 2024-01-03 10:25:04
  * @Description:
  */
 import path from 'path'
@@ -35,7 +35,7 @@ export default defineConfig([
       exports: 'named',
       preserveModules: true,
       preserveModulesRoot: 'src',
-      sourcemap: true
+      sourcemap: false
     },
     plugins: [
       commonjs(),
@@ -62,7 +62,7 @@ export default defineConfig([
           declaration: true,
           emitDeclarationOnly: true,
           declarationDir: 'es',
-          sourceMap: true
+          sourceMap: false
         }
       }),
       esbuild({
@@ -84,14 +84,14 @@ export default defineConfig([
         exports: 'named',
         preserveModules: true,
         preserveModulesRoot: 'src',
-        sourcemap: true
+        sourcemap: false
       },
       {
         file: path.resolve(__dirname, '../dist/index.js'),
         format: 'umd',
         name: 'MoYuVue',
         exports: 'named',
-        sourcemap: true,
+        sourcemap: false,
         globals: {
           vue: 'Vue',
           '@mo-yu/core': 'MoYuCore'

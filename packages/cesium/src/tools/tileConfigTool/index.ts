@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 16:50:59
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-29 14:47:21
+ * @LastEditTime: 2024-01-02 16:41:55
  * @Description: 3DTiles场景配置
  */
 import {
@@ -13,12 +13,12 @@ import {
   Plane,
   ScreenSpaceEventHandler,
   ScreenSpaceEventType,
-  Cesium3DTileStyle,
-  Cartesian2
+  Cesium3DTileStyle
 } from 'cesium'
 import { ToolBaseOptions } from '@mo-yu/core'
 import { MapTileTool, TilesTransform, MapTileToolEvents } from '../tileTool'
 import { Position } from '../../mapViewAble'
+import { getActionPosition } from '../../utils/getActionPosition'
 
 /**
  * 3DTiles配置事件
@@ -86,7 +86,7 @@ export class MapTileConfigTool extends MapTileTool<MapTileConfigToolEvents> {
               id: picked.tileset.MoYuTileId
             })
           }
-          const position = this.#getPosition(event.position)
+          const position = getActionPosition(event.position, viewer)
           if (position) {
             const cartographic = Cartographic.fromCartesian(position)
             this.eventBus.fire('position-pick', {
@@ -110,7 +110,7 @@ export class MapTileConfigTool extends MapTileTool<MapTileConfigToolEvents> {
             this.handler?.setInputAction(
               (action: ScreenSpaceEventHandler.MotionEvent) => {
                 // entity，primitive，3dtile上的点
-                const position = this.#getPosition(action.endPosition)
+                const position = getActionPosition(action.endPosition, viewer)
                 if (position) {
                   const data = this.getPosiHPRScale(
                     picked.tileset.root.transform
@@ -270,26 +270,5 @@ export class MapTileConfigTool extends MapTileTool<MapTileConfigToolEvents> {
         tile.root.transform = modelMatrix
       }
     }
-  }
-
-  #getPosition(endPosition: Cartesian2) {
-    const viewer = this.viewer
-    let position: Cartesian3 | undefined
-    if (viewer) {
-      // entity，primitive，3dtile上的点
-      try {
-        position = viewer.scene.pickPosition(endPosition)
-      } catch (error) {
-        console.error('不是entity，primitive，3dtile上的点', error)
-      }
-      if (!position) {
-        const ray = viewer.camera.getPickRay(endPosition)
-        if (ray) {
-          // 地形上的点
-          position = viewer.scene.globe.pick(ray, viewer.scene)
-        }
-      }
-    }
-    return position
   }
 }

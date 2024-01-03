@@ -2,20 +2,25 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-18 13:32:53
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-18 14:42:33
+ * @LastEditTime: 2024-01-03 11:03:08
  * @Description: 
 -->
 <template>
   <div class="common-map">
-    <div :id="props.mapId" class="cesium-container"></div>
+    <div
+      :id="props.mapId"
+      :style="{ zoom: 1 / zoom }"
+      class="cesium-container"
+    ></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onBeforeUnmount, ref } from 'vue'
 import 'cesiumcss'
 import { createWorldTerrain } from 'cesium'
 import { MapView } from '@mo-yu/cesium'
+import { useRem } from '@mo-yu/vue'
 
 const props = withDefaults(
   defineProps<{
@@ -30,6 +35,7 @@ const emits = defineEmits<{
   (e: 'loaded', id: string): void
   (e: 'removed'): void
 }>()
+const { zoom } = useRem()
 
 let map: MapView
 
@@ -45,7 +51,7 @@ onMounted(() => {
   })
 })
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   map?.destroy()
   emits('removed')
 })

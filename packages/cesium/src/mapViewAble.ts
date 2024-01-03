@@ -2,10 +2,10 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 14:58:29
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-29 14:10:35
+ * @LastEditTime: 2024-01-02 11:17:23
  * @Description:
  */
-import { Cartesian3, Ellipsoid, Ion, Math, SceneMode, Viewer } from 'cesium'
+import { Ion, SceneMode, Viewer } from 'cesium'
 import { ToolBaseOptions } from '@mo-yu/core'
 
 export interface MapOption extends ToolBaseOptions {
@@ -33,20 +33,6 @@ export interface Position {
 export function initCesium(baseURL: string, token: string) {
   window.CESIUM_BASE_URL = baseURL
   Ion.defaultAccessToken = token
-}
-
-/**
- * 世界坐标(笛卡尔空间直角坐标)转经纬度坐标(WGS84坐标系)
- * @param cartesian3 - 笛卡尔空间直角坐标
- * @returns
- */
-export function cartesian3ToLngLat(cartesian3: Cartesian3) {
-  // const cartographic = Cartographic.fromCartesian(cartesian3)
-  const cartographic = Ellipsoid.WGS84.cartesianToCartographic(cartesian3)
-  const lat = Math.toDegrees(cartographic.latitude)
-  const lng = Math.toDegrees(cartographic.longitude)
-  const height = cartographic.height
-  return [lng, lat, height]
 }
 
 /**

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:07:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-29 16:38:14
+ * @LastEditTime: 2024-01-03 10:42:23
  * @Description:
  */
 import {
@@ -85,8 +85,8 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
    */
   destroy(): void {
     try {
-      this.sceneTool.destroy()
       mapStoreTool.deleteMap(this.id)
+      this.sceneTool.destroy()
       this.#map.destroy()
     } catch (error) {
       console.warn(`清除异常！${error}`)
@@ -99,6 +99,7 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
       ...this.#options.baseOption
     })
     mapStoreTool.setMap(this.id, this)
+    this.#map.scene.globe.depthTestAgainstTerrain = true
     this.#insertPopupDom()
     this.#setMouseRight()
     this.#hidecredit()

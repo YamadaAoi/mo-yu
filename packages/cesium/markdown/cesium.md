@@ -8,6 +8,9 @@
 
 | Class                                              | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- |
+| [DrawPointTool](./cesium.drawpointtool.md)         | 绘制点                                             |
+| [DrawPolygonTool](./cesium.drawpolygontool.md)     | 绘制多边形                                         |
+| [DrawPolylineTool](./cesium.drawpolylinetool.md)   | 绘制线                                             |
 | [MapCameraTool](./cesium.mapcameratool.md)         | 相机操作                                           |
 | [MapGeoTool](./cesium.mapgeotool.md)               | 添加 geojson                                       |
 | [MapSceneTool](./cesium.mapscenetool.md)           | 初始化场景                                         |
@@ -15,21 +18,44 @@
 | [MapTileTool](./cesium.maptiletool.md)             | 3DTiles 展示，配合 TileConfigTool 配置结果使用更佳 |
 | [MapView](./cesium.mapview.md)                     | 初始化地图                                         |
 
+## Abstract Classes
+
+| Abstract Class                   | Description    |
+| -------------------------------- | -------------- |
+| [DrawBase](./cesium.drawbase.md) | 绘制工具抽象类 |
+
 ## Functions
 
-| Function                                                         | Description                                            |
-| ---------------------------------------------------------------- | ------------------------------------------------------ |
-| [cartesian3ToLngLat(cartesian3)](./cesium.cartesian3tolnglat.md) | 世界坐标(笛卡尔空间直角坐标)转经纬度坐标(WGS84 坐标系) |
-| [getDefaultOptions()](./cesium.getdefaultoptions.md)             | cesium 默认初始化参数                                  |
-| [initCesium(baseURL, token)](./cesium.initcesium.md)             | 初始化 cesium CESIUM_BASE_URL defaultAccessToken       |
+| Function                                                                | Description                                                                                    |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [cartesian3ToLngLat(cartesian3)](./cesium.cartesian3tolnglat.md)        | 世界坐标(笛卡尔空间直角坐标)转经纬度坐标(WGS84 坐标系)                                         |
+| [createPoint(options)](./cesium.createpoint.md)                         | 创建 PointPrimitive 参数对象，此方法会在 heightReference 为 CLAMP_TO_GROUND 时尝试获取点的高度 |
+| [createPolygon(options)](./cesium.createpolygon.md)                     | 创建面 Primitive 对象，此方法会根据 heightReference 创建不同的对象                             |
+| [createPolyline(options)](./cesium.createpolyline.md)                   | 创建线 Primitive 对象，此方法会根据 clampToGround 创建不同的对象                               |
+| [getActionPosition(endPosition, viewer)](./cesium.getactionposition.md) | 获取鼠标事件点的位置                                                                           |
+| [getDefaultOptions()](./cesium.getdefaultoptions.md)                    | cesium 默认初始化参数                                                                          |
+| [getMeterial(mat)](./cesium.getmeterial.md)                             | 获取材质                                                                                       |
+| [getPosiOn3DTiles(posi)](./cesium.getposion3dtiles.md)                  | 获取点在 3DTiles 上的位置                                                                      |
+| [getPosiOnTerrain(posi)](./cesium.getposionterrain.md)                  | 获取点在地形上的位置                                                                           |
+| [initCesium(baseURL, token)](./cesium.initcesium.md)                    | 初始化 cesium CESIUM_BASE_URL defaultAccessToken                                               |
 
 ## Interfaces
 
 | Interface                                                      | Description                                         |
 | -------------------------------------------------------------- | --------------------------------------------------- |
+| [DrawBaseEvents](./cesium.drawbaseevents.md)                   | 绘制基础事件                                        |
+| [DrawPointToolEvents](./cesium.drawpointtoolevents.md)         | 画点事件                                            |
+| [DrawPointToolOptions](./cesium.drawpointtooloptions.md)       | 画点功能入参                                        |
+| [DrawPolygonToolEvents](./cesium.drawpolygontoolevents.md)     | 画线事件                                            |
+| [DrawPolygonToolOptions](./cesium.drawpolygontooloptions.md)   | 画线功能入参                                        |
+| [DrawPolylineToolEvents](./cesium.drawpolylinetoolevents.md)   | 画线事件                                            |
+| [DrawPolylineToolOptions](./cesium.drawpolylinetooloptions.md) | 画线功能入参                                        |
 | [MapOption](./cesium.mapoption.md)                             |                                                     |
 | [MapTileConfigToolEvents](./cesium.maptileconfigtoolevents.md) | 3DTiles 配置事件                                    |
 | [MapTileToolEvents](./cesium.maptiletoolevents.md)             | 事件                                                |
+| [PointOption](./cesium.pointoption.md)                         | PointPrimitive 属性                                 |
+| [PolygonOption](./cesium.polygonoption.md)                     | 面 Primitive 参数                                   |
+| [PolylineOption](./cesium.polylineoption.md)                   | 线 Primitive 参数                                   |
 | [Position](./cesium.position.md)                               | 位置信息                                            |
 | [Rotation](./cesium.rotation.md)                               | 旋转参数 heading：偏航角 pitch：俯仰角 roll：翻滚角 |
 | [SceneConfig](./cesium.sceneconfig.md)                         | 场景配置                                            |
@@ -43,8 +69,9 @@
 
 ## Type Aliases
 
-| Type Alias                             | Description                                                                                                                                                                                              |
-| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [CameraParam](./cesium.cameraparam.md) | 相机位置角度                                                                                                                                                                                             |
-| [GeoOptions](./cesium.geooptions.md)   | geojson 参数，在原始参数基础上合并了参数: url: 数据路径 更改了(使用 css 颜色)颜色类参数: markerColor stroke fill 添加了参数 id: 唯一标识 locate: 是否定位                                                |
-| [TileOption](./cesium.tileoption.md)   | 添加 3DTiles 图层所需参数，除了 Cesium3DTileset 需要的原生参数，还添加了 id: 唯一标识 locate: 是否定位 lng: 精度 lat: 纬度 height: 高度 heading: 偏航角 pitch: 俯仰角 roll: 翻滚角 scale: 缩放（默认 1） |
+| Type Alias                                   | Description                                                                                                                                                                                              |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [CameraParam](./cesium.cameraparam.md)       | 相机位置角度                                                                                                                                                                                             |
+| [CursorProperty](./cesium.cursorproperty.md) | 鼠标样式                                                                                                                                                                                                 |
+| [GeoOptions](./cesium.geooptions.md)         | geojson 参数，在原始参数基础上合并了参数: url: 数据路径 更改了(使用 css 颜色)颜色类参数: markerColor stroke fill 添加了参数 id: 唯一标识 locate: 是否定位                                                |
+| [TileOption](./cesium.tileoption.md)         | 添加 3DTiles 图层所需参数，除了 Cesium3DTileset 需要的原生参数，还添加了 id: 唯一标识 locate: 是否定位 lng: 精度 lat: 纬度 height: 高度 heading: 偏航角 pitch: 俯仰角 roll: 翻滚角 scale: 缩放（默认 1） |
