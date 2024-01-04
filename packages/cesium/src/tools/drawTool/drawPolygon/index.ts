@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 17:17:55
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 10:33:49
+ * @LastEditTime: 2024-01-04 16:52:06
  * @Description: 画多边形
  */
 import {
@@ -15,8 +15,7 @@ import {
 } from 'cesium'
 import { getDefault } from '@mo-yu/core'
 import { createPolygon, PolygonOption } from '../../../core/geo/polygon'
-import { DrawPolylineTool } from '../drawPolyline'
-import { DrawPolylineToolOptions } from '../drawPolyline'
+import { DrawPolylineTool, DrawPolylineToolOptions } from '../drawPolyline'
 import { DrawBaseEvents } from '../drawBase'
 
 /**
@@ -67,23 +66,23 @@ export interface DrawPolygonToolEvents extends DrawBaseEvents {
  * tool.eventBus.on('left-dbclick', onLeftDBClick)
  * ```
  */
-export class DrawPolygonTool extends DrawPolylineTool<
-  DrawPolygonToolOptions,
-  DrawPolygonToolEvents
-> {
+export class DrawPolygonTool<
+  O extends DrawPolygonToolOptions = DrawPolygonToolOptions,
+  E extends DrawBaseEvents = DrawPolygonToolEvents
+> extends DrawPolylineTool<O, E> {
   /**
    * 绘制完成的面的点
    */
-  #areas: Cartesian3[][] = []
-  /**
-   * 移动的面的点
-   */
-  #floatAreaPoints: Cartesian3[] = []
+  protected areas: Cartesian3[][] = []
   /**
    * 移动的面实体
    */
-  #floatArea: Entity | undefined
-  constructor(options: DrawPolygonToolOptions) {
+  protected floatArea: Entity | undefined
+  /**
+   * 移动的面的点
+   */
+  protected floatAreaPoints: Cartesian3[] = []
+  constructor(options: O) {
     super(options)
   }
 
@@ -116,13 +115,13 @@ export class DrawPolygonTool extends DrawPolylineTool<
   clear(): void {
     super.clear()
     this.clearFloat()
-    this.#areas = []
+    this.areas = []
   }
 
   protected onLeftClick = (point: Cartesian3) => {
     this.handleLineLeftClick(point)
     this.eventBus.fire('left-click', {
-      polygons: this.#areas.concat(),
+      polygons: this.areas.concat(),
       point
     })
   }
@@ -138,29 +137,29 @@ export class DrawPolygonTool extends DrawPolylineTool<
           ? [points[0], point, points[points.length - 1]]
           : [points[0], point]
       if (points.length > 1) {
-        if (!this.#floatArea) {
-          this.#floatArea = this.#createLFloatArea()
+        this.floatAreaPoints = [...points, point]
+        if (!this.floatArea) {
+          this.floatArea = this.createLFloatArea()
         }
-        this.#floatAreaPoints = [...points, point]
       }
     }
     this.eventBus.fire('mouse-move', {
-      polygons: this.#areas.concat(),
+      polygons: this.areas.concat(),
       point
     })
   }
 
   protected onRightClick = () => {
-    this.#validateArea()
+    this.validateArea()
     this.floatLinePoints = []
-    this.#floatAreaPoints = []
-    this.eventBus.fire('right-click', { polygons: this.#areas.concat() })
+    this.floatAreaPoints = []
+    this.eventBus.fire('right-click', { polygons: this.areas.concat() })
   }
 
   protected onLeftDBClick = () => {
-    this.#validateArea()
+    this.validateArea()
     this.clearFloat()
-    this.eventBus.fire('left-dbclick', { polygons: this.#areas.concat() })
+    this.eventBus.fire('left-dbclick', { polygons: this.areas.concat() })
   }
 
   /**
@@ -168,11 +167,11 @@ export class DrawPolygonTool extends DrawPolylineTool<
    */
   protected clearFloat() {
     super.clearFloat()
-    this.#floatAreaPoints = []
-    if (this.#floatArea) {
-      this.viewer?.entities.remove(this.#floatArea)
+    this.floatAreaPoints = []
+    if (this.floatArea) {
+      this.viewer?.entities.remove(this.floatArea)
     }
-    this.#floatArea = undefined
+    this.floatArea = undefined
   }
 
   /**
@@ -180,7 +179,7 @@ export class DrawPolygonTool extends DrawPolylineTool<
    * @param positions - 点
    * @returns
    */
-  #createArea(positions: Cartesian3[]) {
+  protected createArea(positions: Cartesian3[]) {
     const area = this.polyCollection?.add(
       createPolygon(
         getDefault(
@@ -198,12 +197,12 @@ export class DrawPolygonTool extends DrawPolylineTool<
    * 创建拖拽面
    * @returns
    */
-  #createLFloatArea() {
+  protected createLFloatArea() {
     const area = this.viewer?.entities.add({
       polygon: getDefault(
         {
           hierarchy: new CallbackProperty(() => {
-            return new PolygonHierarchy(this.#floatAreaPoints)
+            return new PolygonHierarchy(this.floatAreaPoints)
           }, false),
           material:
             this.options.polygon?.material instanceof Color
@@ -217,11 +216,14 @@ export class DrawPolygonTool extends DrawPolylineTool<
     return area
   }
 
-  #validateArea() {
+  /**
+   * 校验多边形
+   */
+  protected validateArea() {
     const points = this.points.concat()
     if (points.length > 2) {
-      this.#areas.push(points)
-      this.#createArea(points)
+      this.areas.push(points)
+      this.createArea(points)
       const lastLine = [points[0], points[points.length - 1]]
       this.createLine(lastLine)
     } else {

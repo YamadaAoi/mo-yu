@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 09:46:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 10:15:31
+ * @LastEditTime: 2024-01-04 17:01:48
  * @Description: 绘制工具
 -->
 <template>
@@ -25,7 +25,11 @@
             @click="startPolyline"
           ></div>
           <div class="map-tool iconfont icon-quandian1" title="画圈"></div>
-          <div class="map-tool iconfont icon-kuang" title="画框"></div>
+          <div
+            class="map-tool iconfont icon-kuang"
+            title="画框"
+            @click="startRect"
+          ></div>
           <div
             class="map-tool iconfont icon-duobianxingxuanze"
             title="画多边形"
@@ -62,7 +66,8 @@ import {
   DrawBase,
   DrawPointTool,
   DrawPolylineTool,
-  DrawPolygonTool
+  DrawPolygonTool,
+  DrawRectTool
 } from '@mo-yu/cesium'
 import CommonMap from 'src/components/commonMap/CommonMap.vue'
 
@@ -101,7 +106,7 @@ function startPolyline() {
 
 function startPolygon() {
   clearTool()
-  const line = new DrawPolygonTool({
+  const area = new DrawPolygonTool({
     point: {
       color: Color.RED.withAlpha(1)
     },
@@ -109,12 +114,30 @@ function startPolygon() {
       material: Color.GREEN.withAlpha(1)
     }
   })
-  line.enable()
-  line.eventBus.on('left-click', e => {
+  area.enable()
+  area.eventBus.on('left-click', e => {
     const lnglat = cartesian3ToLngLat(e.point)
     console.log(lnglat)
   })
-  tool = line
+  tool = area
+}
+
+function startRect() {
+  clearTool()
+  const rect = new DrawRectTool({
+    point: {
+      color: Color.RED.withAlpha(1)
+    },
+    polyline: {
+      material: Color.GREEN.withAlpha(1)
+    }
+  })
+  rect.enable()
+  rect.eventBus.on('left-click', e => {
+    const lnglat = cartesian3ToLngLat(e.point)
+    console.log(lnglat)
+  })
+  tool = rect
 }
 
 function clearTool() {

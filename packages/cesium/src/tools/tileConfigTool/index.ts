@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 16:50:59
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-02 16:41:55
+ * @LastEditTime: 2024-01-04 16:32:16
  * @Description: 3DTiles场景配置
  */
 import {
@@ -18,7 +18,7 @@ import {
 import { ToolBaseOptions } from '@mo-yu/core'
 import { MapTileTool, TilesTransform, MapTileToolEvents } from '../tileTool'
 import { Position } from '../../mapViewAble'
-import { getActionPosition } from '../../utils/getActionPosition'
+import { getPosiOnAction } from '../../utils/getPosi'
 
 /**
  * 3DTiles配置事件
@@ -86,7 +86,7 @@ export class MapTileConfigTool extends MapTileTool<MapTileConfigToolEvents> {
               id: picked.tileset.MoYuTileId
             })
           }
-          const position = getActionPosition(event.position, viewer)
+          const position = getPosiOnAction(event.position)
           if (position) {
             const cartographic = Cartographic.fromCartesian(position)
             this.eventBus.fire('position-pick', {
@@ -110,7 +110,7 @@ export class MapTileConfigTool extends MapTileTool<MapTileConfigToolEvents> {
             this.handler?.setInputAction(
               (action: ScreenSpaceEventHandler.MotionEvent) => {
                 // entity，primitive，3dtile上的点
-                const position = getActionPosition(action.endPosition, viewer)
+                const position = getPosiOnAction(action.endPosition)
                 if (position) {
                   const data = this.getPosiHPRScale(
                     picked.tileset.root.transform

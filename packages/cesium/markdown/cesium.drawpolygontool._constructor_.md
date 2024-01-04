@@ -9,11 +9,11 @@ Constructs a new instance of the `DrawPolygonTool` class
 **Signature:**
 
 ```typescript
-constructor(options: DrawPolygonToolOptions);
+constructor(options: O);
 ```
 
 ## Parameters
 
-| Parameter | Type                                                         | Description |
-| --------- | ------------------------------------------------------------ | ----------- |
-| options   | [DrawPolygonToolOptions](./cesium.drawpolygontooloptions.md) |             |
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options   | O    |             |

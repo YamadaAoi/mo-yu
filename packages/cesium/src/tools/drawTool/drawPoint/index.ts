@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:54:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 09:40:18
+ * @LastEditTime: 2024-01-04 16:31:34
  * @Description: 画点
  */
 import {
@@ -14,7 +14,7 @@ import {
 import { getDefault, ToolBaseOptions } from '@mo-yu/core'
 import { DrawBase, DrawBaseEvents } from '../drawBase'
 import { createPoint, PointOption } from '../../../core/geo/point'
-import { getActionPosition } from '../../../utils/getActionPosition'
+import { getPosiOnAction } from '../../../utils/getPosi'
 
 /**
  * 画点功能入参
@@ -89,7 +89,7 @@ export class DrawPointTool<
         (event: ScreenSpaceEventHandler.PositionedEvent) => {
           clearTimeout(this.#timer)
           this.#timer = setTimeout(() => {
-            const position = getActionPosition(event.position, viewer)
+            const position = getPosiOnAction(event.position)
             if (position) {
               createPoint(
                 getDefault(
@@ -117,7 +117,7 @@ export class DrawPointTool<
       this.#handler.setInputAction(
         (event: ScreenSpaceEventHandler.MotionEvent) => {
           this.setCursor('crosshair')
-          const position = getActionPosition(event.endPosition, viewer)
+          const position = getPosiOnAction(event.endPosition)
           if (position) {
             this.onMouseMove(position)
           }

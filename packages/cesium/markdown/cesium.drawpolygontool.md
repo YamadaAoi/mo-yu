@@ -9,10 +9,10 @@
 **Signature:**
 
 ```typescript
-export declare class DrawPolygonTool extends DrawPolylineTool<DrawPolygonToolOptions, DrawPolygonToolEvents>
+export declare class DrawPolygonTool<O extends DrawPolygonToolOptions = DrawPolygonToolOptions, E extends DrawBaseEvents = DrawPolygonToolEvents> extends DrawPolylineTool<O, E>
 ```
 
-**Extends:** [DrawPolylineTool](./cesium.drawpolylinetool.md)<!-- -->&lt;[DrawPolygonToolOptions](./cesium.drawpolygontooloptions.md)<!-- -->, [DrawPolygonToolEvents](./cesium.drawpolygontoolevents.md)<!-- -->&gt;
+**Extends:** [DrawPolylineTool](./cesium.drawpolylinetool.md)<!-- -->&lt;O, E&gt;
 
 ## Example
 
@@ -35,19 +35,25 @@ tool.eventBus.on('left-dbclick', onLeftDBClick)
 
 ## Properties
 
-| Property                                                   | Modifiers              | Type                           | Description |
-| ---------------------------------------------------------- | ---------------------- | ------------------------------ | ----------- |
-| [onLeftClick](./cesium.drawpolygontool.onleftclick.md)     | <code>protected</code> | (point: Cartesian3) =&gt; void |             |
-| [onLeftDBClick](./cesium.drawpolygontool.onleftdbclick.md) | <code>protected</code> | () =&gt; void                  |             |
-| [onMouseMove](./cesium.drawpolygontool.onmousemove.md)     | <code>protected</code> | (point: Cartesian3) =&gt; void |             |
-| [onRightClick](./cesium.drawpolygontool.onrightclick.md)   | <code>protected</code> | () =&gt; void                  |             |
+| Property                                                       | Modifiers              | Type                           | Description      |
+| -------------------------------------------------------------- | ---------------------- | ------------------------------ | ---------------- |
+| [areas](./cesium.drawpolygontool.areas.md)                     | <code>protected</code> | Cartesian3\[\]\[\]             | 绘制完成的面的点 |
+| [floatArea](./cesium.drawpolygontool.floatarea.md)             | <code>protected</code> | Entity \| undefined            | 移动的面实体     |
+| [floatAreaPoints](./cesium.drawpolygontool.floatareapoints.md) | <code>protected</code> | Cartesian3\[\]                 | 移动的面的点     |
+| [onLeftClick](./cesium.drawpolygontool.onleftclick.md)         | <code>protected</code> | (point: Cartesian3) =&gt; void |                  |
+| [onLeftDBClick](./cesium.drawpolygontool.onleftdbclick.md)     | <code>protected</code> | () =&gt; void                  |                  |
+| [onMouseMove](./cesium.drawpolygontool.onmousemove.md)         | <code>protected</code> | (point: Cartesian3) =&gt; void |                  |
+| [onRightClick](./cesium.drawpolygontool.onrightclick.md)       | <code>protected</code> | () =&gt; void                  |                  |
 
 ## Methods
 
-| Method                                                 | Modifiers              | Description                                |
-| ------------------------------------------------------ | ---------------------- | ------------------------------------------ |
-| [clear()](./cesium.drawpolygontool.clear.md)           |                        | 清空绘制结果，等待下轮绘制                 |
-| [clearFloat()](./cesium.drawpolygontool.clearfloat.md) | <code>protected</code> | 清除浮动实体                               |
-| [destroy()](./cesium.drawpolygontool.destroy.md)       |                        | 销毁                                       |
-| [enable()](./cesium.drawpolygontool.enable.md)         |                        | 启用                                       |
-| [stop()](./cesium.drawpolygontool.stop.md)             |                        | 传递本轮绘制结果，不再绘制，不清空绘制结果 |
+| Method                                                             | Modifiers              | Description                                |
+| ------------------------------------------------------------------ | ---------------------- | ------------------------------------------ |
+| [clear()](./cesium.drawpolygontool.clear.md)                       |                        | 清空绘制结果，等待下轮绘制                 |
+| [clearFloat()](./cesium.drawpolygontool.clearfloat.md)             | <code>protected</code> | 清除浮动实体                               |
+| [createArea(positions)](./cesium.drawpolygontool.createarea.md)    | <code>protected</code> | 创建面                                     |
+| [createLFloatArea()](./cesium.drawpolygontool.createlfloatarea.md) | <code>protected</code> | 创建拖拽面                                 |
+| [destroy()](./cesium.drawpolygontool.destroy.md)                   |                        | 销毁                                       |
+| [enable()](./cesium.drawpolygontool.enable.md)                     |                        | 启用                                       |
+| [stop()](./cesium.drawpolygontool.stop.md)                         |                        | 传递本轮绘制结果，不再绘制，不清空绘制结果 |
+| [validateArea()](./cesium.drawpolygontool.validatearea.md)         | <code>protected</code> | 校验多边形                                 |
