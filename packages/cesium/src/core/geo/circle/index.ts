@@ -1,12 +1,11 @@
 /*
  * @Author: zhouyinkui
- * @Date: 2024-01-02 15:31:44
+ * @Date: 2024-01-04 17:19:02
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 17:27:03
- * @Description: 面Primitive
+ * @LastEditTime: 2024-01-04 18:56:46
+ * @Description: 圆Primitive
  */
 import {
-  ArcType,
   Cartesian3,
   ClassificationType,
   Color,
@@ -15,28 +14,29 @@ import {
   HeightReference,
   Material,
   MaterialAppearance,
-  PolygonGeometry,
-  PolygonHierarchy,
+  CircleGeometry,
   Primitive,
-  ShadowMode
+  ShadowMode,
+  Ellipsoid,
+  VertexFormat
 } from 'cesium'
 import { getMeterial } from '../../material'
 
 /**
- * 面Primitive参数
+ * 圆Primitive参数
  */
-export interface PolygonOption {
-  positions?: Cartesian3[]
+export interface CircleOption {
   id?: string
   heightReference?: HeightReference
+
+  center?: Cartesian3
+  radius?: number
+  ellipsoid?: Ellipsoid
   height?: number
-  stRotation?: number
   granularity?: number
-  perPositionHeight?: boolean
-  closeTop?: boolean | boolean
-  closeBottom?: boolean | boolean
-  arcType?: ArcType
-  textureCoordinates?: PolygonHierarchy
+  vertexFormat?: VertexFormat
+  extrudedHeight?: number
+  stRotation?: number
 
   show?: boolean
   classificationType?: ClassificationType
@@ -46,27 +46,23 @@ export interface PolygonOption {
 }
 
 /**
- * 创建面Primitive对象，此方法会根据heightReference创建不同的对象
- * @param options - 面参数
+ * 创建圆Primitive对象，此方法会根据heightReference创建不同的对象
+ * @param options - 圆参数
  * @returns
  */
-export function createPolygon(options: PolygonOption) {
+export function createCircle(options: CircleOption) {
   const defaultColor = Color.BLUE
   const geometryInstances = new GeometryInstance({
     id: options.id,
-    geometry: new PolygonGeometry({
-      polygonHierarchy: new PolygonHierarchy(options.positions),
+    geometry: new CircleGeometry({
+      center: options.center ?? Cartesian3.ONE,
+      radius: options.radius ?? 0,
+      ellipsoid: options.ellipsoid,
       height: options.height,
-      stRotation: options.stRotation,
       granularity: options.granularity,
-      perPositionHeight:
-        options.perPositionHeight === undefined
-          ? true
-          : options.perPositionHeight,
-      closeTop: options.closeTop,
-      closeBottom: options.closeBottom,
-      arcType: options.arcType,
-      textureCoordinates: options.textureCoordinates
+      vertexFormat: options.vertexFormat,
+      extrudedHeight: options.extrudedHeight,
+      stRotation: options.stRotation
     })
   })
   const appearance = new MaterialAppearance({

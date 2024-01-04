@@ -9,11 +9,11 @@ Constructs a new instance of the `DrawRectTool` class
 **Signature:**
 
 ```typescript
-constructor(options: DrawRectToolOptions);
+constructor(options: O);
 ```
 
 ## Parameters
 
-| Parameter | Type                                                   | Description |
-| --------- | ------------------------------------------------------ | ----------- |
-| options   | [DrawRectToolOptions](./cesium.drawrecttooloptions.md) |             |
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options   | O    |             |

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 17:17:55
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 16:52:06
+ * @LastEditTime: 2024-01-04 17:51:24
  * @Description: 画多边形
  */
 import {
@@ -206,8 +206,8 @@ export class DrawPolygonTool<
           }, false),
           material:
             this.options.polygon?.material instanceof Color
-              ? this.options.polygon.material.withAlpha(0.7)
-              : Color.BLUE.withAlpha(0.7),
+              ? this.options.polygon.material.withAlpha(0.5)
+              : Color.BLUE.withAlpha(0.5),
           perPositionHeight: true
         },
         this.options.floatPolygon

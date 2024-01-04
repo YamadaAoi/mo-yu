@@ -8,6 +8,7 @@
 
 | Class                                              | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- |
+| [DrawCircleTool](./cesium.drawcircletool.md)       | 绘制矩形                                           |
 | [DrawPointTool](./cesium.drawpointtool.md)         | 绘制点                                             |
 | [DrawPolygonTool](./cesium.drawpolygontool.md)     | 绘制多边形                                         |
 | [DrawPolylineTool](./cesium.drawpolylinetool.md)   | 绘制线                                             |
@@ -27,25 +28,31 @@
 
 ## Functions
 
-| Function                                                         | Description                                                                                                |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [cartesian3ToLngLat(cartesian3)](./cesium.cartesian3tolnglat.md) | 世界坐标(笛卡尔空间直角坐标)转经纬度坐标(WGS84 坐标系)                                                     |
-| [createPoint(options)](./cesium.createpoint.md)                  | 创建 PointPrimitive 参数对象，此方法会在 heightReference 为 CLAMP_TO_GROUND 时尝试获取点的高度             |
-| [createPolygon(options)](./cesium.createpolygon.md)              | 创建面 Primitive 对象，此方法会根据 heightReference 创建不同的对象                                         |
-| [createPolyline(options)](./cesium.createpolyline.md)            | 创建线 Primitive 对象，此方法会根据 clampToGround 创建不同的对象                                           |
-| [getDefaultOptions()](./cesium.getdefaultoptions.md)             | cesium 默认初始化参数                                                                                      |
-| [getMeterial(mat)](./cesium.getmeterial.md)                      | 获取材质                                                                                                   |
-| [getPosiOn3DTiles(posi)](./cesium.getposion3dtiles.md)           | 获取点在 3DTiles 上的位置                                                                                  |
-| [getPosiOnAction(endPosition)](./cesium.getposionaction.md)      | 获取鼠标事件点的位置                                                                                       |
-| [getPosiOnMap(position)](./cesium.getposionmap.md)               | 获取点在当前地图上上的位置 先尝试获取在几何体上的位置，获取失败再尝试获取在地形上的位置 都失败则返回原位置 |
-| [getPosiOnTerrain(posi)](./cesium.getposionterrain.md)           | 获取点在地形上的位置                                                                                       |
-| [initCesium(baseURL, token)](./cesium.initcesium.md)             | 初始化 cesium CESIUM_BASE_URL defaultAccessToken                                                           |
+| Function                                                           | Description                                                                                                |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| [cartesian3ToLngLat(cartesian3)](./cesium.cartesian3tolnglat.md)   | 世界坐标(笛卡尔空间直角坐标)转经纬度坐标(WGS84 坐标系)                                                     |
+| [createCircle(options)](./cesium.createcircle.md)                  | 创建圆 Primitive 对象，此方法会根据 heightReference 创建不同的对象                                         |
+| [createPoint(options)](./cesium.createpoint.md)                    | 创建 PointPrimitive 参数对象，此方法会在 heightReference 为 CLAMP_TO_GROUND 时尝试获取点的高度             |
+| [createPolygon(options)](./cesium.createpolygon.md)                | 创建面 Primitive 对象，此方法会根据 heightReference 创建不同的对象                                         |
+| [createPolyline(options)](./cesium.createpolyline.md)              | 创建线 Primitive 对象，此方法会根据 clampToGround 创建不同的对象                                           |
+| [getDefaultOptions()](./cesium.getdefaultoptions.md)               | cesium 默认初始化参数                                                                                      |
+| [getHorizontalDistance(p1, p2)](./cesium.gethorizontaldistance.md) | 计算两点间水平距离                                                                                         |
+| [getMeterial(mat)](./cesium.getmeterial.md)                        | 获取材质                                                                                                   |
+| [getPosiOn3DTiles(posi)](./cesium.getposion3dtiles.md)             | 获取点在 3DTiles 上的位置                                                                                  |
+| [getPosiOnAction(endPosition)](./cesium.getposionaction.md)        | 获取鼠标事件点的位置                                                                                       |
+| [getPosiOnMap(position)](./cesium.getposionmap.md)                 | 获取点在当前地图上上的位置 先尝试获取在几何体上的位置，获取失败再尝试获取在地形上的位置 都失败则返回原位置 |
+| [getPosiOnTerrain(posi)](./cesium.getposionterrain.md)             | 获取点在地形上的位置                                                                                       |
+| [initCesium(baseURL, token)](./cesium.initcesium.md)               | 初始化 cesium CESIUM_BASE_URL defaultAccessToken                                                           |
 
 ## Interfaces
 
 | Interface                                                      | Description                                         |
 | -------------------------------------------------------------- | --------------------------------------------------- |
+| [CircleOption](./cesium.circleoption.md)                       | 圆 Primitive 参数                                   |
+| [CircleParam](./cesium.circleparam.md)                         | 圆心、半径确定圆                                    |
 | [DrawBaseEvents](./cesium.drawbaseevents.md)                   | 绘制基础事件                                        |
+| [DrawCircleToolEvents](./cesium.drawcircletoolevents.md)       | 画矩形事件                                          |
+| [DrawCircleToolOptions](./cesium.drawcircletooloptions.md)     | 画矩形功能入参                                      |
 | [DrawPointToolEvents](./cesium.drawpointtoolevents.md)         | 画点事件                                            |
 | [DrawPointToolOptions](./cesium.drawpointtooloptions.md)       | 画点功能入参                                        |
 | [DrawPolygonToolEvents](./cesium.drawpolygontoolevents.md)     | 画线事件                                            |

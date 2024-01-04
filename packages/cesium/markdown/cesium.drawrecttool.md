@@ -9,10 +9,10 @@
 **Signature:**
 
 ```typescript
-export declare class DrawRectTool extends DrawPolygonTool<DrawRectToolOptions, DrawRectToolEvents>
+export declare class DrawRectTool<O extends DrawRectToolOptions = DrawRectToolOptions, E extends DrawBaseEvents = DrawRectToolEvents> extends DrawPolygonTool<O, E>
 ```
 
-**Extends:** [DrawPolygonTool](./cesium.drawpolygontool.md)<!-- -->&lt;[DrawRectToolOptions](./cesium.drawrecttooloptions.md)<!-- -->, [DrawRectToolEvents](./cesium.drawrecttoolevents.md)<!-- -->&gt;
+**Extends:** [DrawPolygonTool](./cesium.drawpolygontool.md)<!-- -->&lt;O, E&gt;
 
 ## Example
 

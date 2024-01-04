@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 14:37:54
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 16:58:28
+ * @LastEditTime: 2024-01-04 17:44:59
  * @Description: 画矩形
  */
 import { Cartesian3, Cartographic } from 'cesium'
@@ -49,11 +49,11 @@ export interface DrawRectToolEvents extends DrawBaseEvents {
  * tool.eventBus.on('left-dbclick', onLeftDBClick)
  * ```
  */
-export class DrawRectTool extends DrawPolygonTool<
-  DrawRectToolOptions,
-  DrawRectToolEvents
-> {
-  constructor(options: DrawRectToolOptions) {
+export class DrawRectTool<
+  O extends DrawRectToolOptions = DrawRectToolOptions,
+  E extends DrawBaseEvents = DrawRectToolEvents
+> extends DrawPolygonTool<O, E> {
+  constructor(options: O) {
     super(options)
   }
 
@@ -166,10 +166,6 @@ export class DrawRectTool extends DrawPolygonTool<
   protected handleLineLeftClick(point: Cartesian3) {
     const points = this.points.concat()
     if (points.length === 1) {
-      if (this.curLine) {
-        this.polyCollection?.remove(this.curLine)
-        this.curLine = undefined
-      }
       this.floatLinePoints = [point, point, point, point, point]
     } else if (points.length === 2) {
       this.validateArea()

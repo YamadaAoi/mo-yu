@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 09:46:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 17:01:48
+ * @LastEditTime: 2024-01-04 18:59:32
  * @Description: 绘制工具
 -->
 <template>
@@ -24,7 +24,11 @@
             title="画线"
             @click="startPolyline"
           ></div>
-          <div class="map-tool iconfont icon-quandian1" title="画圈"></div>
+          <div
+            class="map-tool iconfont icon-quandian1"
+            title="画圈"
+            @click="startCircle"
+          ></div>
           <div
             class="map-tool iconfont icon-kuang"
             title="画框"
@@ -67,7 +71,8 @@ import {
   DrawPointTool,
   DrawPolylineTool,
   DrawPolygonTool,
-  DrawRectTool
+  DrawRectTool,
+  DrawCircleTool
 } from '@mo-yu/cesium'
 import CommonMap from 'src/components/commonMap/CommonMap.vue'
 
@@ -138,6 +143,27 @@ function startRect() {
     console.log(lnglat)
   })
   tool = rect
+}
+
+function startCircle() {
+  clearTool()
+  const circle = new DrawCircleTool({
+    point: {
+      color: Color.RED.withAlpha(1)
+    },
+    polyline: {
+      material: Color.GREEN.withAlpha(1)
+    },
+    circle: {
+      material: Color.PINK.withAlpha(1)
+    }
+  })
+  circle.enable()
+  circle.eventBus.on('left-click', e => {
+    const lnglat = cartesian3ToLngLat(e.point)
+    console.log(lnglat)
+  })
+  tool = circle
 }
 
 function clearTool() {
