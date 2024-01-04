@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-29 16:30:34
+ * @LastEditTime: 2024-01-04 10:31:57
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -68,10 +68,9 @@ export interface MapTileToolEvents {}
  * tool.add3DTileset({...})
  * ```
  */
-export class MapTileTool<E extends MapTileToolEvents> extends ToolBase<
-  ToolBaseOptions,
-  E
-> {
+export class MapTileTool<
+  E extends MapTileToolEvents = MapTileToolEvents
+> extends ToolBase<ToolBaseOptions, E> {
   protected tiles = new PrimitiveCollection()
   constructor(options: ToolBaseOptions) {
     super(options)

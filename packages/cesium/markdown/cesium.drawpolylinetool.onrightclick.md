@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-onRightClick: () => void;
+protected onRightClick: () => void;
 ```

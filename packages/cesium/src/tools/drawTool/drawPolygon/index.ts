@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 17:17:55
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 10:22:06
+ * @LastEditTime: 2024-01-04 10:33:49
  * @Description: 画多边形
  */
 import {
@@ -10,13 +10,10 @@ import {
   Cartesian3,
   Color,
   Entity,
-  PolylineDashMaterialProperty,
-  PrimitiveCollection,
   PolygonGraphics,
   PolygonHierarchy
 } from 'cesium'
 import { getDefault } from '@mo-yu/core'
-import { createPolyline } from '../../../core/geo/polyline'
 import { createPolygon, PolygonOption } from '../../../core/geo/polygon'
 import { DrawPolylineTool } from '../drawPolyline'
 import { DrawPolylineToolOptions } from '../drawPolyline'
@@ -122,7 +119,7 @@ export class DrawPolygonTool extends DrawPolylineTool<
     this.#areas = []
   }
 
-  onLeftClick = (point: Cartesian3) => {
+  protected onLeftClick = (point: Cartesian3) => {
     this.handleLineLeftClick(point)
     this.eventBus.fire('left-click', {
       polygons: this.#areas.concat(),
@@ -130,7 +127,7 @@ export class DrawPolygonTool extends DrawPolylineTool<
     })
   }
 
-  onMouseMove = (point: Cartesian3) => {
+  protected onMouseMove = (point: Cartesian3) => {
     const points = this.points.concat()
     if (point && points.length > 0) {
       if (!this.floatLine) {
@@ -153,14 +150,14 @@ export class DrawPolygonTool extends DrawPolylineTool<
     })
   }
 
-  onRightClick = () => {
+  protected onRightClick = () => {
     this.#validateArea()
     this.floatLinePoints = []
     this.#floatAreaPoints = []
     this.eventBus.fire('right-click', { polygons: this.#areas.concat() })
   }
 
-  onLeftDBClick = () => {
+  protected onLeftDBClick = () => {
     this.#validateArea()
     this.clearFloat()
     this.eventBus.fire('left-dbclick', { polygons: this.#areas.concat() })

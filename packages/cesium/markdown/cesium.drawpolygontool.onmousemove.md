@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-onMouseMove: (point: Cartesian3) => void;
+protected onMouseMove: (point: Cartesian3) => void;
 ```

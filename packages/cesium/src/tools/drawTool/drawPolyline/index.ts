@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 17:54:31
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 10:04:27
+ * @LastEditTime: 2024-01-04 10:28:37
  * @Description: 画线
  */
 import {
@@ -132,7 +132,7 @@ export class DrawPolylineTool<
     this.#lines = []
   }
 
-  onLeftClick = (point: Cartesian3) => {
+  protected onLeftClick = (point: Cartesian3) => {
     this.handleLineLeftClick(point)
     this.eventBus.fire('left-click', {
       polylines: this.#lines.concat(),
@@ -140,7 +140,7 @@ export class DrawPolylineTool<
     })
   }
 
-  onMouseMove = (point: Cartesian3) => {
+  protected onMouseMove = (point: Cartesian3) => {
     const points = this.points.concat()
     if (point && points.length > 0) {
       if (!this.floatLine) {
@@ -154,13 +154,13 @@ export class DrawPolylineTool<
     })
   }
 
-  onRightClick = () => {
+  protected onRightClick = () => {
     this.#validateLine()
     this.floatLinePoints = []
     this.eventBus.fire('right-click', { polylines: this.#lines.concat() })
   }
 
-  onLeftDBClick = () => {
+  protected onLeftDBClick = () => {
     this.#validateLine()
     this.clearFloat()
     this.eventBus.fire('left-dbclick', { polylines: this.#lines.concat() })

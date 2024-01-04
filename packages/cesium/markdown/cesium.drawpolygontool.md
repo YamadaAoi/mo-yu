@@ -35,12 +35,12 @@ tool.eventBus.on('left-dbclick', onLeftDBClick)
 
 ## Properties
 
-| Property                                                   | Modifiers | Type                           | Description |
-| ---------------------------------------------------------- | --------- | ------------------------------ | ----------- |
-| [onLeftClick](./cesium.drawpolygontool.onleftclick.md)     |           | (point: Cartesian3) =&gt; void |             |
-| [onLeftDBClick](./cesium.drawpolygontool.onleftdbclick.md) |           | () =&gt; void                  |             |
-| [onMouseMove](./cesium.drawpolygontool.onmousemove.md)     |           | (point: Cartesian3) =&gt; void |             |
-| [onRightClick](./cesium.drawpolygontool.onrightclick.md)   |           | () =&gt; void                  |             |
+| Property                                                   | Modifiers              | Type                           | Description |
+| ---------------------------------------------------------- | ---------------------- | ------------------------------ | ----------- |
+| [onLeftClick](./cesium.drawpolygontool.onleftclick.md)     | <code>protected</code> | (point: Cartesian3) =&gt; void |             |
+| [onLeftDBClick](./cesium.drawpolygontool.onleftdbclick.md) | <code>protected</code> | () =&gt; void                  |             |
+| [onMouseMove](./cesium.drawpolygontool.onmousemove.md)     | <code>protected</code> | (point: Cartesian3) =&gt; void |             |
+| [onRightClick](./cesium.drawpolygontool.onrightclick.md)   | <code>protected</code> | () =&gt; void                  |             |
 
 ## Methods
 

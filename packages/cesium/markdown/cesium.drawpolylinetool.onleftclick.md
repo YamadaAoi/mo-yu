@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-onLeftClick: (point: Cartesian3) => void;
+protected onLeftClick: (point: Cartesian3) => void;
 ```

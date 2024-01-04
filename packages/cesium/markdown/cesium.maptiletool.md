@@ -9,7 +9,7 @@
 **Signature:**
 
 ```typescript
-export declare class MapTileTool<E extends MapTileToolEvents> extends ToolBase<ToolBaseOptions, E>
+export declare class MapTileTool<E extends MapTileToolEvents = MapTileToolEvents> extends ToolBase<ToolBaseOptions, E>
 ```
 
 **Extends:** ToolBase&lt;ToolBaseOptions, E&gt;

@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-onLeftDBClick: () => void;
+protected onLeftDBClick: () => void;
 ```

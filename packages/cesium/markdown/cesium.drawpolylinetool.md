@@ -40,10 +40,10 @@ tool.eventBus.on('left-dbclick', onLeftDBClick)
 | [curLine](./cesium.drawpolylinetool.curline.md)                 | <code>protected</code> | any \| undefined               | 绘制中的线实体     |
 | [floatLine](./cesium.drawpolylinetool.floatline.md)             | <code>protected</code> | Entity \| undefined            | 移动的线实体       |
 | [floatLinePoints](./cesium.drawpolylinetool.floatlinepoints.md) | <code>protected</code> | Cartesian3\[\]                 | 移动的线的点       |
-| [onLeftClick](./cesium.drawpolylinetool.onleftclick.md)         |                        | (point: Cartesian3) =&gt; void |                    |
-| [onLeftDBClick](./cesium.drawpolylinetool.onleftdbclick.md)     |                        | () =&gt; void                  |                    |
-| [onMouseMove](./cesium.drawpolylinetool.onmousemove.md)         |                        | (point: Cartesian3) =&gt; void |                    |
-| [onRightClick](./cesium.drawpolylinetool.onrightclick.md)       |                        | () =&gt; void                  |                    |
+| [onLeftClick](./cesium.drawpolylinetool.onleftclick.md)         | <code>protected</code> | (point: Cartesian3) =&gt; void |                    |
+| [onLeftDBClick](./cesium.drawpolylinetool.onleftdbclick.md)     | <code>protected</code> | () =&gt; void                  |                    |
+| [onMouseMove](./cesium.drawpolylinetool.onmousemove.md)         | <code>protected</code> | (point: Cartesian3) =&gt; void |                    |
+| [onRightClick](./cesium.drawpolylinetool.onrightclick.md)       | <code>protected</code> | () =&gt; void                  |                    |
 | [polyCollection](./cesium.drawpolylinetool.polycollection.md)   | <code>protected</code> | PrimitiveCollection            | 绘制完成的实体集合 |
 
 ## Methods
