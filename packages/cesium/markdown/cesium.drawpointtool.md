@@ -9,7 +9,7 @@
 **Signature:**
 
 ```typescript
-export declare class DrawPointTool<O extends DrawPointToolOptions, E extends DrawBaseEvents> extends DrawBase<O, E>
+export declare class DrawPointTool<O extends DrawPointToolOptions = DrawPointToolOptions, E extends DrawBaseEvents = DrawPointToolEvents> extends DrawBase<O, E>
 ```
 
 **Extends:** [DrawBase](./cesium.drawbase.md)<!-- -->&lt;O, E&gt;

@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-'left-click': object;
+'left-click': Record<string, any>;
 ```

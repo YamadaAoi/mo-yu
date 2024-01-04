@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:39:19
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-03 17:48:09
+ * @LastEditTime: 2024-01-04 10:10:19
  * @Description: 绘制抽象类
  */
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
@@ -55,18 +55,18 @@ export type CursorProperty =
  * 绘制基础事件
  */
 export interface DrawBaseEvents {
-  'left-click': object
-  'mouse-move': object
-  'right-click': object
-  'left-dbclick': object
+  'left-click': Record<string, any>
+  'mouse-move': Record<string, any>
+  'right-click': Record<string, any>
+  'left-dbclick': Record<string, any>
 }
 
 /**
  * 绘制工具抽象类
  */
 export abstract class DrawBase<
-  O extends ToolBaseOptions,
-  E extends DrawBaseEvents
+  O extends ToolBaseOptions = ToolBaseOptions,
+  E extends DrawBaseEvents = DrawBaseEvents
 > extends ToolBase<O, E> {
   constructor(options: O) {
     super(options)

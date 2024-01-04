@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 17:54:31
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-03 18:38:09
+ * @LastEditTime: 2024-01-04 10:04:27
  * @Description: 画线
  */
 import {
@@ -67,10 +67,10 @@ export interface DrawPolylineToolEvents extends DrawBaseEvents {
  * tool.eventBus.on('left-dbclick', onLeftDBClick)
  * ```
  */
-export class DrawPolylineTool extends DrawPointTool<
-  DrawPolylineToolOptions,
-  DrawPolylineToolEvents
-> {
+export class DrawPolylineTool<
+  O extends DrawPolylineToolOptions = DrawPolylineToolOptions,
+  E extends DrawBaseEvents = DrawPolylineToolEvents
+> extends DrawPointTool<O, E> {
   /**
    * 绘制完成的线的点
    */
@@ -78,22 +78,22 @@ export class DrawPolylineTool extends DrawPointTool<
   /**
    * 绘制中的线实体
    */
-  #curLine: any | undefined
+  protected curLine: any | undefined
   /**
    * 移动的线的点
    */
-  #floatLinePoints: Cartesian3[] = []
+  protected floatLinePoints: Cartesian3[] = []
   /**
    * 移动的线实体
    */
-  #floatLine: Entity | undefined
+  protected floatLine: Entity | undefined
   /**
-   * 绘制完成的线实体集合
+   * 绘制完成的实体集合
    */
-  #polylineCollection: PrimitiveCollection
-  constructor(options: DrawPolylineToolOptions) {
+  protected polyCollection: PrimitiveCollection
+  constructor(options: O) {
     super(options)
-    this.#polylineCollection = this.viewer?.scene.primitives.add(
+    this.polyCollection = this.viewer?.scene.primitives.add(
       new PrimitiveCollection()
     )
   }
@@ -110,7 +110,7 @@ export class DrawPolylineTool extends DrawPointTool<
    */
   destroy(): void {
     super.destroy()
-    this.viewer?.scene.primitives.remove(this.#polylineCollection)
+    this.viewer?.scene.primitives.remove(this.polyCollection)
   }
 
   /**
@@ -127,21 +127,13 @@ export class DrawPolylineTool extends DrawPointTool<
    */
   clear(): void {
     super.clear()
-    this.#clearFloat()
-    this.#polylineCollection?.removeAll()
+    this.clearFloat()
+    this.polyCollection?.removeAll()
     this.#lines = []
   }
 
   onLeftClick = (point: Cartesian3) => {
-    this.#floatLinePoints = [point, point]
-    const points = this.points.concat()
-    if (points.length > 1) {
-      const prevLine = this.#curLine
-      this.#curLine = this.#createLine(points)
-      if (prevLine) {
-        this.#polylineCollection?.remove(prevLine)
-      }
-    }
+    this.handleLineLeftClick(point)
     this.eventBus.fire('left-click', {
       polylines: this.#lines.concat(),
       point
@@ -151,10 +143,10 @@ export class DrawPolylineTool extends DrawPointTool<
   onMouseMove = (point: Cartesian3) => {
     const points = this.points.concat()
     if (point && points.length > 0) {
-      if (!this.#floatLine) {
-        this.#floatLine = this.#createLFloatLine()
+      if (!this.floatLine) {
+        this.floatLine = this.createLFloatLine()
       }
-      this.#floatLinePoints = [points[points.length - 1], point]
+      this.floatLinePoints = [points[points.length - 1], point]
     }
     this.eventBus.fire('mouse-move', {
       polylines: this.#lines.concat(),
@@ -164,14 +156,41 @@ export class DrawPolylineTool extends DrawPointTool<
 
   onRightClick = () => {
     this.#validateLine()
-    this.#floatLinePoints = []
+    this.floatLinePoints = []
     this.eventBus.fire('right-click', { polylines: this.#lines.concat() })
   }
 
   onLeftDBClick = () => {
     this.#validateLine()
-    this.#clearFloat()
+    this.clearFloat()
     this.eventBus.fire('left-dbclick', { polylines: this.#lines.concat() })
+  }
+
+  /**
+   * 处理线鼠标左击事件
+   * @param point - 点
+   */
+  protected handleLineLeftClick(point: Cartesian3) {
+    this.floatLinePoints = [point, point]
+    const points = this.points.concat()
+    if (points.length > 1) {
+      const prevLine = this.curLine
+      this.curLine = this.createLine(points)
+      if (prevLine) {
+        this.polyCollection?.remove(prevLine)
+      }
+    }
+  }
+
+  /**
+   * 清除浮动实体
+   */
+  protected clearFloat() {
+    this.floatLinePoints = []
+    if (this.floatLine) {
+      this.viewer?.entities.remove(this.floatLine)
+    }
+    this.floatLine = undefined
   }
 
   /**
@@ -179,8 +198,8 @@ export class DrawPolylineTool extends DrawPointTool<
    * @param positions - 点
    * @returns
    */
-  #createLine(positions: Cartesian3[]) {
-    const line = this.#polylineCollection?.add(
+  protected createLine(positions: Cartesian3[]) {
+    const line = this.polyCollection?.add(
       createPolyline(
         getDefault(
           {
@@ -197,19 +216,25 @@ export class DrawPolylineTool extends DrawPointTool<
    * 创建拖拽线
    * @returns
    */
-  #createLFloatLine() {
+  protected createLFloatLine() {
     const line = this.viewer?.entities.add({
       polyline: getDefault(
         {
           // 与depthFailMaterial不兼容
           positions: new CallbackProperty(() => {
-            return this.#floatLinePoints
+            return this.floatLinePoints
           }, false),
           width: 2,
           material: new PolylineDashMaterialProperty({
             color:
               this.options.polyline?.material instanceof Color
                 ? this.options.polyline?.material
+                : Color.BLUE
+          }),
+          depthFailMaterial: new PolylineDashMaterialProperty({
+            color:
+              this.options.polyline?.depthFailMaterial instanceof Color
+                ? this.options.polyline?.depthFailMaterial
                 : Color.BLUE
           })
         },
@@ -221,9 +246,9 @@ export class DrawPolylineTool extends DrawPointTool<
 
   #validateLine() {
     const points = this.points.concat()
-    if (this.#curLine) {
+    if (this.curLine) {
       this.#lines.push(points)
-      this.#curLine = undefined
+      this.curLine = undefined
     } else {
       if (points.length === 1) {
         const len = this.pointCollection.length
@@ -232,13 +257,5 @@ export class DrawPolylineTool extends DrawPointTool<
       }
     }
     this.points = []
-  }
-
-  #clearFloat() {
-    this.#floatLinePoints = []
-    if (this.#floatLine) {
-      this.viewer?.entities.remove(this.#floatLine)
-    }
-    this.#floatLine = undefined
   }
 }

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 09:46:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-03 18:52:39
+ * @LastEditTime: 2024-01-04 10:15:31
  * @Description: 绘制工具
 -->
 <template>
@@ -56,22 +56,18 @@
 import { ref, onBeforeUnmount } from 'vue'
 import { NPopover } from 'naive-ui'
 import { Color } from 'cesium'
-import { ToolBaseOptions } from '@mo-yu/core'
 import {
   cartesian3ToLngLat,
   mapStoreTool,
   DrawBase,
-  DrawBaseEvents,
   DrawPointTool,
-  DrawPointToolOptions,
-  DrawPointToolEvents,
   DrawPolylineTool,
   DrawPolygonTool
 } from '@mo-yu/cesium'
 import CommonMap from 'src/components/commonMap/CommonMap.vue'
 
 const mapReady = ref(false)
-let tool: DrawBase<ToolBaseOptions, DrawBaseEvents>
+let tool: DrawBase
 
 onBeforeUnmount(() => {
   tool?.destroy()
@@ -79,7 +75,7 @@ onBeforeUnmount(() => {
 
 function startPoint() {
   clearTool()
-  const point = new DrawPointTool<DrawPointToolOptions, DrawPointToolEvents>({})
+  const point = new DrawPointTool({})
   point.enable()
   point.eventBus.on('left-click', e => {
     const lnglat = cartesian3ToLngLat(e.point)
@@ -108,6 +104,9 @@ function startPolygon() {
   const line = new DrawPolygonTool({
     point: {
       color: Color.RED.withAlpha(1)
+    },
+    polyline: {
+      material: Color.GREEN.withAlpha(1)
     }
   })
   line.enable()

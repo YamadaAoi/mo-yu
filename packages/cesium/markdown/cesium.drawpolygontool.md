@@ -9,10 +9,10 @@
 **Signature:**
 
 ```typescript
-export declare class DrawPolygonTool extends DrawPointTool<DrawPolygonToolOptions, DrawPolygonToolEvents>
+export declare class DrawPolygonTool extends DrawPolylineTool<DrawPolygonToolOptions, DrawPolygonToolEvents>
 ```
 
-**Extends:** [DrawPointTool](./cesium.drawpointtool.md)<!-- -->&lt;[DrawPolygonToolOptions](./cesium.drawpolygontooloptions.md)<!-- -->, [DrawPolygonToolEvents](./cesium.drawpolygontoolevents.md)<!-- -->&gt;
+**Extends:** [DrawPolylineTool](./cesium.drawpolylinetool.md)<!-- -->&lt;[DrawPolygonToolOptions](./cesium.drawpolygontooloptions.md)<!-- -->, [DrawPolygonToolEvents](./cesium.drawpolygontoolevents.md)<!-- -->&gt;
 
 ## Example
 
@@ -44,9 +44,10 @@ tool.eventBus.on('left-dbclick', onLeftDBClick)
 
 ## Methods
 
-| Method                                           | Modifiers | Description                                |
-| ------------------------------------------------ | --------- | ------------------------------------------ |
-| [clear()](./cesium.drawpolygontool.clear.md)     |           | 清空绘制结果，等待下轮绘制                 |
-| [destroy()](./cesium.drawpolygontool.destroy.md) |           | 销毁                                       |
-| [enable()](./cesium.drawpolygontool.enable.md)   |           | 启用                                       |
-| [stop()](./cesium.drawpolygontool.stop.md)       |           | 传递本轮绘制结果，不再绘制，不清空绘制结果 |
+| Method                                                 | Modifiers              | Description                                |
+| ------------------------------------------------------ | ---------------------- | ------------------------------------------ |
+| [clear()](./cesium.drawpolygontool.clear.md)           |                        | 清空绘制结果，等待下轮绘制                 |
+| [clearFloat()](./cesium.drawpolygontool.clearfloat.md) | <code>protected</code> | 清除浮动实体                               |
+| [destroy()](./cesium.drawpolygontool.destroy.md)       |                        | 销毁                                       |
+| [enable()](./cesium.drawpolygontool.enable.md)         |                        | 启用                                       |
+| [stop()](./cesium.drawpolygontool.stop.md)             |                        | 传递本轮绘制结果，不再绘制，不清空绘制结果 |

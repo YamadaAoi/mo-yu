@@ -9,11 +9,11 @@ Constructs a new instance of the `DrawPolylineTool` class
 **Signature:**
 
 ```typescript
-constructor(options: DrawPolylineToolOptions);
+constructor(options: O);
 ```
 
 ## Parameters
 
-| Parameter | Type                                                           | Description |
-| --------- | -------------------------------------------------------------- | ----------- |
-| options   | [DrawPolylineToolOptions](./cesium.drawpolylinetooloptions.md) |             |
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| options   | O    |             |

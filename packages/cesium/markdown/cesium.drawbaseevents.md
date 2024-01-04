@@ -14,9 +14,9 @@ export interface DrawBaseEvents
 
 ## Properties
 
-| Property                                                    | Modifiers | Type   | Description |
-| ----------------------------------------------------------- | --------- | ------ | ----------- |
-| ["left-click"](./cesium.drawbaseevents._left-click_.md)     |           | object |             |
-| ["left-dbclick"](./cesium.drawbaseevents._left-dbclick_.md) |           | object |             |
-| ["mouse-move"](./cesium.drawbaseevents._mouse-move_.md)     |           | object |             |
-| ["right-click"](./cesium.drawbaseevents._right-click_.md)   |           | object |             |
+| Property                                                    | Modifiers | Type                      | Description |
+| ----------------------------------------------------------- | --------- | ------------------------- | ----------- |
+| ["left-click"](./cesium.drawbaseevents._left-click_.md)     |           | Record&lt;string, any&gt; |             |
+| ["left-dbclick"](./cesium.drawbaseevents._left-dbclick_.md) |           | Record&lt;string, any&gt; |             |
+| ["mouse-move"](./cesium.drawbaseevents._mouse-move_.md)     |           | Record&lt;string, any&gt; |             |
+| ["right-click"](./cesium.drawbaseevents._right-click_.md)   |           | Record&lt;string, any&gt; |             |

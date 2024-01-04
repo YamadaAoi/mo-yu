@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:54:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-03 17:48:31
+ * @LastEditTime: 2024-01-04 09:40:18
  * @Description: 画点
  */
 import {
@@ -61,8 +61,8 @@ export interface DrawPointToolEvents extends DrawBaseEvents {
  * ```
  */
 export class DrawPointTool<
-  O extends DrawPointToolOptions,
-  E extends DrawBaseEvents
+  O extends DrawPointToolOptions = DrawPointToolOptions,
+  E extends DrawBaseEvents = DrawPointToolEvents
 > extends DrawBase<O, E> {
   #handler: ScreenSpaceEventHandler | undefined
   #widgetInputAction: any

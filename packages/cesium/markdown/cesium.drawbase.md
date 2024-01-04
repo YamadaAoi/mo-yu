@@ -9,7 +9,7 @@
 **Signature:**
 
 ```typescript
-export declare abstract class DrawBase<O extends ToolBaseOptions, E extends DrawBaseEvents> extends ToolBase<O, E>
+export declare abstract class DrawBase<O extends ToolBaseOptions = ToolBaseOptions, E extends DrawBaseEvents = DrawBaseEvents> extends ToolBase<O, E>
 ```
 
 **Extends:** ToolBase&lt;O, E&gt;

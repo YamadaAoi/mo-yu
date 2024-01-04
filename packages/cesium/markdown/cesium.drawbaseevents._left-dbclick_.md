@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-'left-dbclick': object;
+'left-dbclick': Record<string, any>;
 ```

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 17:17:55
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-03 18:39:00
+ * @LastEditTime: 2024-01-04 10:22:06
  * @Description: 画多边形
  */
 import {
@@ -11,7 +11,6 @@ import {
   Color,
   Entity,
   PolylineDashMaterialProperty,
-  PolylineGraphics,
   PrimitiveCollection,
   PolygonGraphics,
   PolygonHierarchy
@@ -19,7 +18,7 @@ import {
 import { getDefault } from '@mo-yu/core'
 import { createPolyline } from '../../../core/geo/polyline'
 import { createPolygon, PolygonOption } from '../../../core/geo/polygon'
-import { DrawPointTool } from '../drawPoint'
+import { DrawPolylineTool } from '../drawPolyline'
 import { DrawPolylineToolOptions } from '../drawPolyline'
 import { DrawBaseEvents } from '../drawBase'
 
@@ -71,26 +70,10 @@ export interface DrawPolygonToolEvents extends DrawBaseEvents {
  * tool.eventBus.on('left-dbclick', onLeftDBClick)
  * ```
  */
-export class DrawPolygonTool extends DrawPointTool<
+export class DrawPolygonTool extends DrawPolylineTool<
   DrawPolygonToolOptions,
   DrawPolygonToolEvents
 > {
-  /**
-   * 绘制中的线实体
-   */
-  #curLine: any | undefined
-  /**
-   * 移动的线的点
-   */
-  #floatLinePoints: Cartesian3[] = []
-  /**
-   * 移动的线实体
-   */
-  #floatLine: Entity | undefined
-  /**
-   * 绘制完成的线、面实体集合
-   */
-  #polyCollection: PrimitiveCollection
   /**
    * 绘制完成的面的点
    */
@@ -103,11 +86,8 @@ export class DrawPolygonTool extends DrawPointTool<
    * 移动的面实体
    */
   #floatArea: Entity | undefined
-  constructor(options: DrawPolylineToolOptions) {
+  constructor(options: DrawPolygonToolOptions) {
     super(options)
-    this.#polyCollection = this.viewer?.scene.primitives.add(
-      new PrimitiveCollection()
-    )
   }
 
   /**
@@ -122,7 +102,6 @@ export class DrawPolygonTool extends DrawPointTool<
    */
   destroy(): void {
     super.destroy()
-    this.viewer?.scene.primitives.remove(this.#polyCollection)
   }
 
   /**
@@ -139,20 +118,12 @@ export class DrawPolygonTool extends DrawPointTool<
    */
   clear(): void {
     super.clear()
-    this.#clearFloat()
-    this.#polyCollection?.removeAll()
+    this.clearFloat()
+    this.#areas = []
   }
 
   onLeftClick = (point: Cartesian3) => {
-    this.#floatLinePoints = [point, point]
-    const points = this.points.concat()
-    if (points.length > 1) {
-      const prevLine = this.#curLine
-      this.#curLine = this.#createLine(points)
-      if (prevLine) {
-        this.#polyCollection?.remove(prevLine)
-      }
-    }
+    this.handleLineLeftClick(point)
     this.eventBus.fire('left-click', {
       polygons: this.#areas.concat(),
       point
@@ -162,10 +133,13 @@ export class DrawPolygonTool extends DrawPointTool<
   onMouseMove = (point: Cartesian3) => {
     const points = this.points.concat()
     if (point && points.length > 0) {
-      if (!this.#floatLine) {
-        this.#floatLine = this.#createLFloatLine()
+      if (!this.floatLine) {
+        this.floatLine = this.createLFloatLine()
       }
-      this.#floatLinePoints = [points[0], point, points[points.length - 1]]
+      this.floatLinePoints =
+        points.length > 1
+          ? [points[0], point, points[points.length - 1]]
+          : [points[0], point]
       if (points.length > 1) {
         if (!this.#floatArea) {
           this.#floatArea = this.#createLFloatArea()
@@ -181,34 +155,27 @@ export class DrawPolygonTool extends DrawPointTool<
 
   onRightClick = () => {
     this.#validateArea()
-    this.#floatLinePoints = []
+    this.floatLinePoints = []
     this.#floatAreaPoints = []
     this.eventBus.fire('right-click', { polygons: this.#areas.concat() })
   }
 
   onLeftDBClick = () => {
     this.#validateArea()
-    this.#clearFloat()
+    this.clearFloat()
     this.eventBus.fire('left-dbclick', { polygons: this.#areas.concat() })
   }
 
   /**
-   * 创建线
-   * @param positions - 点
-   * @returns
+   * 清除浮动实体
    */
-  #createLine(positions: Cartesian3[]) {
-    const line = this.#polyCollection?.add(
-      createPolyline(
-        getDefault(
-          {
-            positions
-          },
-          this.options.polyline
-        )
-      )
-    )
-    return line
+  protected clearFloat() {
+    super.clearFloat()
+    this.#floatAreaPoints = []
+    if (this.#floatArea) {
+      this.viewer?.entities.remove(this.#floatArea)
+    }
+    this.#floatArea = undefined
   }
 
   /**
@@ -217,7 +184,7 @@ export class DrawPolygonTool extends DrawPointTool<
    * @returns
    */
   #createArea(positions: Cartesian3[]) {
-    const area = this.#polyCollection?.add(
+    const area = this.polyCollection?.add(
       createPolygon(
         getDefault(
           {
@@ -228,32 +195,6 @@ export class DrawPolygonTool extends DrawPointTool<
       )
     )
     return area
-  }
-
-  /**
-   * 创建拖拽线
-   * @returns
-   */
-  #createLFloatLine() {
-    const line = this.viewer?.entities.add({
-      polyline: getDefault(
-        {
-          // 与depthFailMaterial不兼容
-          positions: new CallbackProperty(() => {
-            return this.#floatLinePoints
-          }, false),
-          width: 2,
-          material: new PolylineDashMaterialProperty({
-            color:
-              this.options.polyline?.material instanceof Color
-                ? this.options.polyline?.material
-                : Color.BLUE
-          })
-        },
-        this.options.floatPolyline
-      )
-    })
-    return line
   }
 
   /**
@@ -285,11 +226,11 @@ export class DrawPolygonTool extends DrawPointTool<
       this.#areas.push(points)
       this.#createArea(points)
       const lastLine = [points[0], points[points.length - 1]]
-      this.#createLine(lastLine)
+      this.createLine(lastLine)
     } else {
-      if (this.#curLine) {
-        this.#polyCollection.remove(this.#curLine)
-        this.#curLine = undefined
+      if (this.curLine) {
+        this.polyCollection.remove(this.curLine)
+        this.curLine = undefined
       }
       if (points.length > 0) {
         const len = this.pointCollection.length
@@ -303,18 +244,5 @@ export class DrawPolygonTool extends DrawPointTool<
       }
     }
     this.points = []
-  }
-
-  #clearFloat() {
-    this.#floatLinePoints = []
-    if (this.#floatLine) {
-      this.viewer?.entities.remove(this.#floatLine)
-    }
-    this.#floatLine = undefined
-    this.#floatAreaPoints = []
-    if (this.#floatArea) {
-      this.viewer?.entities.remove(this.#floatArea)
-    }
-    this.#floatArea = undefined
   }
 }

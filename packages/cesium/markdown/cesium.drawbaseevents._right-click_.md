@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-'right-click': object;
+'right-click': Record<string, any>;
 ```

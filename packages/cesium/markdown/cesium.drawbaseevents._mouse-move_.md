@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-'mouse-move': object;
+'mouse-move': Record<string, any>;
 ```
