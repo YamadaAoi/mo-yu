@@ -4,7 +4,7 @@
 
 ## DrawCircleToolOptions interface
 
-画矩形功能入参
+画圆功能入参
 
 **Signature:**
 
@@ -18,5 +18,5 @@ export interface DrawCircleToolOptions extends DrawRectToolOptions
 
 | Property                                                      | Modifiers | Type                                     | Description             |
 | ------------------------------------------------------------- | --------- | ---------------------------------------- | ----------------------- |
-| [circle?](./cesium.drawcircletooloptions.circle.md)           |           | [CircleOption](./cesium.circleoption.md) | _(Optional)_ 面样式     |
-| [floatCircle?](./cesium.drawcircletooloptions.floatcircle.md) |           | EllipseGraphics.ConstructorOptions       | _(Optional)_ 拖拽面样式 |
+| [circle?](./cesium.drawcircletooloptions.circle.md)           |           | [CircleOption](./cesium.circleoption.md) | _(Optional)_ 圆样式     |
+| [floatCircle?](./cesium.drawcircletooloptions.floatcircle.md) |           | EllipseGraphics.ConstructorOptions       | _(Optional)_ 拖拽圆样式 |

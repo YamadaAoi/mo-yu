@@ -4,7 +4,7 @@
 
 ## DrawCircleTool class
 
-绘制矩形
+绘制圆
 
 **Signature:**
 

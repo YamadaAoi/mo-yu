@@ -4,7 +4,7 @@
 
 ## DrawCircleToolOptions.floatCircle property
 
-拖拽面样式
+拖拽圆样式
 
 **Signature:**
 

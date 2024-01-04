@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 17:37:40
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 19:07:58
+ * @LastEditTime: 2024-01-04 19:11:31
  * @Description: 画圆
  */
 import { CallbackProperty, Cartesian3, Color, EllipseGraphics } from 'cesium'
@@ -13,15 +13,15 @@ import { getHorizontalDistance } from '../../../utils/calc'
 import { CircleOption, createCircle } from '../../../core/geo/circle'
 
 /**
- * 画矩形功能入参
+ * 画圆功能入参
  */
 export interface DrawCircleToolOptions extends DrawRectToolOptions {
   /**
-   * 面样式
+   * 圆样式
    */
   circle?: CircleOption
   /**
-   * 拖拽面样式
+   * 拖拽圆样式
    */
   floatCircle?: EllipseGraphics.ConstructorOptions
 }
@@ -35,7 +35,7 @@ export interface CircleParam {
 }
 
 /**
- * 画矩形事件
+ * 画圆事件
  */
 export interface DrawCircleToolEvents extends DrawBaseEvents {
   'left-click': {
@@ -55,7 +55,7 @@ export interface DrawCircleToolEvents extends DrawBaseEvents {
 }
 
 /**
- * 绘制矩形
+ * 绘制圆
  * @example
  * ```ts
  * const tool = new DrawCircleTool(options)

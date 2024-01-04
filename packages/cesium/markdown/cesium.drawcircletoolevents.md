@@ -4,7 +4,7 @@
 
 ## DrawCircleToolEvents interface
 
-画矩形事件
+画圆事件
 
 **Signature:**
 

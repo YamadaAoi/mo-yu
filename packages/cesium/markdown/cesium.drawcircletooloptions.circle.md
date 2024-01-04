@@ -4,7 +4,7 @@
 
 ## DrawCircleToolOptions.circle property
 
-面样式
+圆样式
 
 **Signature:**
 

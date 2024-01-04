@@ -8,7 +8,7 @@
 
 | Class                                              | Description                                        |
 | -------------------------------------------------- | -------------------------------------------------- |
-| [DrawCircleTool](./cesium.drawcircletool.md)       | 绘制矩形                                           |
+| [DrawCircleTool](./cesium.drawcircletool.md)       | 绘制圆                                             |
 | [DrawPointTool](./cesium.drawpointtool.md)         | 绘制点                                             |
 | [DrawPolygonTool](./cesium.drawpolygontool.md)     | 绘制多边形                                         |
 | [DrawPolylineTool](./cesium.drawpolylinetool.md)   | 绘制线                                             |
@@ -51,8 +51,8 @@
 | [CircleOption](./cesium.circleoption.md)                       | 圆 Primitive 参数                                   |
 | [CircleParam](./cesium.circleparam.md)                         | 圆心、半径确定圆                                    |
 | [DrawBaseEvents](./cesium.drawbaseevents.md)                   | 绘制基础事件                                        |
-| [DrawCircleToolEvents](./cesium.drawcircletoolevents.md)       | 画矩形事件                                          |
-| [DrawCircleToolOptions](./cesium.drawcircletooloptions.md)     | 画矩形功能入参                                      |
+| [DrawCircleToolEvents](./cesium.drawcircletoolevents.md)       | 画圆事件                                            |
+| [DrawCircleToolOptions](./cesium.drawcircletooloptions.md)     | 画圆功能入参                                        |
 | [DrawPointToolEvents](./cesium.drawpointtoolevents.md)         | 画点事件                                            |
 | [DrawPointToolOptions](./cesium.drawpointtooloptions.md)       | 画点功能入参                                        |
 | [DrawPolygonToolEvents](./cesium.drawpolygontoolevents.md)     | 画线事件                                            |
