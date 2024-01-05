@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.5
+
+### Patch Changes
+
+- 绘制功能添加
+
 ## 1.0.4
 
 ### Patch Changes
