@@ -11,8 +11,8 @@ import {
   DistanceDisplayCondition,
   NearFarScalar
 } from 'cesium'
-import { getPosiOnMap } from '../../../utils/getPosi'
-import { getColor } from '../../material'
+import { getPosiOnMap } from '../../../../utils/getPosi'
+import { getColor } from '../../../material'
 
 /**
  * PointPrimitive属性

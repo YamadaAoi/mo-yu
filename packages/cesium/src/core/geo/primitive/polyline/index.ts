@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 14:20:53
+ * @LastEditTime: 2024-01-05 19:05:42
  * @Description: 线Primitive
  */
 import {
@@ -16,14 +16,14 @@ import {
   PolylineMaterialAppearance,
   Primitive
 } from 'cesium'
-import { getMeterial } from '../../material'
+import { getMeterial } from '../../../material'
 import { GeometryInstanceOption, PrimitiveOption } from '..'
 
 /**
  * GroundPolylinePrimitive通用构造参数
  * 剔除appearance，geometryInstances属性
  */
-export type GroundPolylinePrimitiveOption = Omit<
+type GroundPolylinePrimitiveOption = Omit<
   NonNullable<ConstructorParameters<typeof GroundPolylinePrimitive>[0]>,
   'appearance' | 'geometryInstances'
 >
@@ -31,14 +31,14 @@ export type GroundPolylinePrimitiveOption = Omit<
 /**
  * GroundPolylineGeometry构造参数
  */
-export type GroundPolylineGeometryOption = Partial<
+type GroundPolylineGeometryOption = Partial<
   ConstructorParameters<typeof GroundPolylineGeometry>[0]
 >
 
 /**
  * PolylineGeometry构造参数
  */
-export type PolylineGeometryOption = Partial<
+type PolylineGeometryOption = Partial<
   ConstructorParameters<typeof PolylineGeometry>[0]
 >
 
@@ -46,7 +46,7 @@ export type PolylineGeometryOption = Partial<
  * 线Primitive构造参数
  * 混合 Primitive 和 GroundPolylinePrimitive 和 GeometryInstance 和 GroundPolylineGeometry 和 PolylineGeometry 的构造参数
  */
-export type PolylinePrimitiveOption = PrimitiveOption &
+type PolylinePrimitiveOption = PrimitiveOption &
   GroundPolylinePrimitiveOption &
   GeometryInstanceOption &
   GroundPolylineGeometryOption &

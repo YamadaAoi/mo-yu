@@ -10,7 +10,7 @@ import { getDefault } from '@mo-yu/core'
 import { DrawRectTool, DrawRectToolOptions } from '../drawRect'
 import { DrawBaseEvents } from '../drawBase'
 import { getHorizontalDistance } from '../../../utils/calc'
-import { CircleOption, createCircle } from '../../../core/geo/circle'
+import { CircleOption, createCircle } from '../../../core/geo/primitive/circle'
 
 /**
  * 画圆功能入参

@@ -13,7 +13,7 @@ import {
 } from 'cesium'
 import { getDefault, ToolBaseOptions } from '@mo-yu/core'
 import { DrawBase, DrawBaseEvents } from '../drawBase'
-import { createPoint, PointOption } from '../../../core/geo/point'
+import { createPoint, PointOption } from '../../../core/geo/primitive/point'
 import { getPosiOnAction } from '../../../utils/getPosi'
 
 /**

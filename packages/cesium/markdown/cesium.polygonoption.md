@@ -12,7 +12,7 @@
 export interface PolygonOption extends PolygonPrimitiveOption
 ```
 
-**Extends:** [PolygonPrimitiveOption](./cesium.polygonprimitiveoption.md)
+**Extends:** PolygonPrimitiveOption
 
 ## Properties
 

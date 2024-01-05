@@ -4,12 +4,12 @@
 
 ## getColor() function
 
-获取 cesium 颜色对象，不传获取随机颜色
+获取 cesium 颜色对象
 
 **Signature:**
 
 ```typescript
-export declare function getColor(color?: Color | string): Color
+export declare function getColor(color?: Color | string): Color | undefined
 ```
 
 ## Parameters
@@ -20,4 +20,4 @@ export declare function getColor(color?: Color | string): Color
 
 **Returns:**
 
-Color
+Color \| undefined

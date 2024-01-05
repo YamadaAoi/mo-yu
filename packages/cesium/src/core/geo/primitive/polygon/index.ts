@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:31:44
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 14:28:20
+ * @LastEditTime: 2024-01-05 19:06:01
  * @Description: 面Primitive
  */
 import {
@@ -17,7 +17,7 @@ import {
   PolygonHierarchy,
   Primitive
 } from 'cesium'
-import { getMeterial } from '../../material'
+import { getMeterial } from '../../../material'
 import {
   GeometryInstanceOption,
   GroundPrimitiveOption,
@@ -27,7 +27,7 @@ import {
 /**
  * PolygonGeometry构造参数
  */
-export type PolygonGeometryOption = Partial<
+type PolygonGeometryOption = Partial<
   ConstructorParameters<typeof PolygonGeometry>[0]
 >
 
@@ -35,7 +35,7 @@ export type PolygonGeometryOption = Partial<
  * 面Primitive构造参数
  * 混合 Primitive 和 GroundPrimitive 和 GeometryInstance 和 PolylineGeometry 的构造参数
  */
-export type PolygonPrimitiveOption = PrimitiveOption &
+type PolygonPrimitiveOption = PrimitiveOption &
   GroundPrimitiveOption &
   GeometryInstanceOption &
   PolygonGeometryOption

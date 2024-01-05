@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 17:54:31
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 10:28:37
+ * @LastEditTime: 2024-01-05 19:08:27
  * @Description: 画线
  */
 import {
@@ -15,7 +15,10 @@ import {
   PrimitiveCollection
 } from 'cesium'
 import { getDefault } from '@mo-yu/core'
-import { createPolyline, PolylineOption } from '../../../core/geo/polyline'
+import {
+  createPolyline,
+  PolylineOption
+} from '../../../core/geo/primitive/polyline'
 import { DrawPointTool, DrawPointToolOptions } from '../drawPoint'
 import { DrawBaseEvents } from '../drawBase'
 

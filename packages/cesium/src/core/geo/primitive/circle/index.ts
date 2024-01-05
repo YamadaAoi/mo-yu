@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 17:19:02
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 14:34:06
+ * @LastEditTime: 2024-01-05 19:06:14
  * @Description: 圆Primitive
  */
 import {
@@ -16,7 +16,7 @@ import {
   CircleGeometry,
   Primitive
 } from 'cesium'
-import { getMeterial } from '../../material'
+import { getMeterial } from '../../../material'
 import {
   GeometryInstanceOption,
   GroundPrimitiveOption,
@@ -26,7 +26,7 @@ import {
 /**
  * CircleGeometry构造参数
  */
-export type CircleGeometryOption = Partial<
+type CircleGeometryOption = Partial<
   ConstructorParameters<typeof CircleGeometry>[0]
 >
 
@@ -34,7 +34,7 @@ export type CircleGeometryOption = Partial<
  * 圆Primitive构造参数
  * 混合 Primitive 和 GroundPrimitive 和 GeometryInstance 和 CircleGeometry 的构造参数
  */
-export type CirclePrimitiveOption = PrimitiveOption &
+type CirclePrimitiveOption = PrimitiveOption &
   GroundPrimitiveOption &
   GeometryInstanceOption &
   CircleGeometryOption

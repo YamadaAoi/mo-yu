@@ -12,7 +12,7 @@
 export interface CircleOption extends CirclePrimitiveOption
 ```
 
-**Extends:** [CirclePrimitiveOption](./cesium.circleprimitiveoption.md)
+**Extends:** CirclePrimitiveOption
 
 ## Properties
 

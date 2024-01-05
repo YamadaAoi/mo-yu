@@ -12,7 +12,7 @@
 export interface PolylineOption extends PolylinePrimitiveOption
 ```
 
-**Extends:** [PolylinePrimitiveOption](./cesium.polylineprimitiveoption.md)
+**Extends:** PolylinePrimitiveOption
 
 ## Properties
 

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 17:17:55
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 17:51:24
+ * @LastEditTime: 2024-01-05 19:08:20
  * @Description: 画多边形
  */
 import {
@@ -14,7 +14,10 @@ import {
   PolygonHierarchy
 } from 'cesium'
 import { getDefault } from '@mo-yu/core'
-import { createPolygon, PolygonOption } from '../../../core/geo/polygon'
+import {
+  createPolygon,
+  PolygonOption
+} from '../../../core/geo/primitive/polygon'
 import { DrawPolylineTool, DrawPolylineToolOptions } from '../drawPolyline'
 import { DrawBaseEvents } from '../drawBase'
 
