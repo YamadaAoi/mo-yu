@@ -9,22 +9,15 @@
 **Signature:**
 
 ```typescript
-export interface PolylineOption
+export interface PolylineOption extends PolylinePrimitiveOption
 ```
+
+**Extends:** [PolylinePrimitiveOption](./cesium.polylineprimitiveoption.md)
 
 ## Properties
 
-| Property                                                             | Modifiers | Type               | Description  |
-| -------------------------------------------------------------------- | --------- | ------------------ | ------------ |
-| [arcType?](./cesium.polylineoption.arctype.md)                       |           | ArcType            | _(Optional)_ |
-| [clampToGround?](./cesium.polylineoption.clamptoground.md)           |           | boolean            | _(Optional)_ |
-| [classificationType?](./cesium.polylineoption.classificationtype.md) |           | ClassificationType | _(Optional)_ |
-| [depthFailMaterial?](./cesium.polylineoption.depthfailmaterial.md)   |           | Material \| Color  | _(Optional)_ |
-| [granularity?](./cesium.polylineoption.granularity.md)               |           | number             | _(Optional)_ |
-| [id?](./cesium.polylineoption.id.md)                                 |           | string             | _(Optional)_ |
-| [material?](./cesium.polylineoption.material.md)                     |           | Material \| Color  | _(Optional)_ |
-| [positions?](./cesium.polylineoption.positions.md)                   |           | Cartesian3\[\]     | _(Optional)_ |
-| [shadows?](./cesium.polylineoption.shadows.md)                       |           | ShadowMode         | _(Optional)_ |
-| [show?](./cesium.polylineoption.show.md)                             |           | boolean            | _(Optional)_ |
-| [vertexFormat?](./cesium.polylineoption.vertexformat.md)             |           | VertexFormat       | _(Optional)_ |
-| [width?](./cesium.polylineoption.width.md)                           |           | number             | _(Optional)_ |
+| Property                                                           | Modifiers | Type                        | Description  |
+| ------------------------------------------------------------------ | --------- | --------------------------- | ------------ |
+| [clampToGround?](./cesium.polylineoption.clamptoground.md)         |           | boolean                     | _(Optional)_ |
+| [depthFailMaterial?](./cesium.polylineoption.depthfailmaterial.md) |           | Material \| Color \| string | _(Optional)_ |
+| [material?](./cesium.polylineoption.material.md)                   |           | Material \| Color \| string | _(Optional)_ |

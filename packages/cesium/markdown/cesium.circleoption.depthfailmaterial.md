@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-depthFailMaterial?: Material | Color;
+depthFailMaterial?: Material | Color | string;
 ```

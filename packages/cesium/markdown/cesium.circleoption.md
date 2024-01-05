@@ -9,25 +9,15 @@
 **Signature:**
 
 ```typescript
-export interface CircleOption
+export interface CircleOption extends CirclePrimitiveOption
 ```
+
+**Extends:** [CirclePrimitiveOption](./cesium.circleprimitiveoption.md)
 
 ## Properties
 
-| Property                                                           | Modifiers | Type               | Description  |
-| ------------------------------------------------------------------ | --------- | ------------------ | ------------ |
-| [center?](./cesium.circleoption.center.md)                         |           | Cartesian3         | _(Optional)_ |
-| [classificationType?](./cesium.circleoption.classificationtype.md) |           | ClassificationType | _(Optional)_ |
-| [depthFailMaterial?](./cesium.circleoption.depthfailmaterial.md)   |           | Material \| Color  | _(Optional)_ |
-| [ellipsoid?](./cesium.circleoption.ellipsoid.md)                   |           | Ellipsoid          | _(Optional)_ |
-| [extrudedHeight?](./cesium.circleoption.extrudedheight.md)         |           | number             | _(Optional)_ |
-| [granularity?](./cesium.circleoption.granularity.md)               |           | number             | _(Optional)_ |
-| [height?](./cesium.circleoption.height.md)                         |           | number             | _(Optional)_ |
-| [heightReference?](./cesium.circleoption.heightreference.md)       |           | HeightReference    | _(Optional)_ |
-| [id?](./cesium.circleoption.id.md)                                 |           | string             | _(Optional)_ |
-| [material?](./cesium.circleoption.material.md)                     |           | Material \| Color  | _(Optional)_ |
-| [radius?](./cesium.circleoption.radius.md)                         |           | number             | _(Optional)_ |
-| [shadows?](./cesium.circleoption.shadows.md)                       |           | ShadowMode         | _(Optional)_ |
-| [show?](./cesium.circleoption.show.md)                             |           | boolean            | _(Optional)_ |
-| [stRotation?](./cesium.circleoption.strotation.md)                 |           | number             | _(Optional)_ |
-| [vertexFormat?](./cesium.circleoption.vertexformat.md)             |           | VertexFormat       | _(Optional)_ |
+| Property                                                         | Modifiers | Type                        | Description  |
+| ---------------------------------------------------------------- | --------- | --------------------------- | ------------ |
+| [clampToGround?](./cesium.circleoption.clamptoground.md)         |           | boolean                     | _(Optional)_ |
+| [depthFailMaterial?](./cesium.circleoption.depthfailmaterial.md) |           | Material \| Color \| string | _(Optional)_ |
+| [material?](./cesium.circleoption.material.md)                   |           | Material \| Color \| string | _(Optional)_ |

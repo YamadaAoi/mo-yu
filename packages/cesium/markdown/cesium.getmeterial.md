@@ -10,15 +10,15 @@
 
 ```typescript
 export declare function getMeterial(
-  mat?: Material | Color
+  mat?: Material | Color | string
 ): Material | undefined
 ```
 
 ## Parameters
 
-| Parameter | Type              | Description             |
-| --------- | ----------------- | ----------------------- |
-| mat       | Material \| Color | _(Optional)_ 颜色或材质 |
+| Parameter | Type                        | Description                                            |
+| --------- | --------------------------- | ------------------------------------------------------ |
+| mat       | Material \| Color \| string | _(Optional)_ css 颜色字符串 或 cesium 颜色对象 或 材质 |
 
 **Returns:**
 

@@ -2,14 +2,13 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 10:48:22
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 16:30:49
+ * @LastEditTime: 2024-01-05 14:36:33
  * @Description: PointPrimitive
  */
 import {
   Cartesian3,
   Color,
   DistanceDisplayCondition,
-  HeightReference,
   NearFarScalar
 } from 'cesium'
 import { getPosiOnMap } from '../../../utils/getPosi'
@@ -18,18 +17,19 @@ import { getPosiOnMap } from '../../../utils/getPosi'
  * PointPrimitive属性
  */
 export interface PointOption {
-  position?: Cartesian3
   show?: boolean
-  pixelSize?: number
-  heightReference?: HeightReference
-  color?: Color
-  outlineColor?: Color
-  outlineWidth?: number
+  position?: Cartesian3
   scaleByDistance?: NearFarScalar
   translucencyByDistance?: NearFarScalar
+  pixelSize?: number
+  color?: Color | string
+  outlineColor?: Color | string
+  outlineWidth?: number
   distanceDisplayCondition?: DistanceDisplayCondition
   disableDepthTestDistance?: number
   id?: any
+
+  clampToGround?: boolean
 }
 
 /**
@@ -38,12 +38,9 @@ export interface PointOption {
  * @returns
  */
 export async function createPoint(options: PointOption): Promise<PointOption> {
-  const defaultColor = Color.BLUE
+  const defaultColor = Color.LIGHTBLUE
   let position = options.position
-  if (
-    options.position &&
-    options?.heightReference === HeightReference.CLAMP_TO_GROUND
-  ) {
+  if (options.position && options?.clampToGround) {
     const newPosi = await getPosiOnMap(options.position)
     if (newPosi) {
       position = newPosi
@@ -54,6 +51,17 @@ export async function createPoint(options: PointOption): Promise<PointOption> {
     position,
     show: options.show === undefined ? true : options.show,
     pixelSize: options.pixelSize ?? 10,
-    color: options.color ?? defaultColor
+    color:
+      options.color === undefined
+        ? defaultColor
+        : typeof options.color === 'string'
+        ? Color.fromCssColorString(options.color)
+        : options.color,
+    outlineColor:
+      options.outlineColor === undefined
+        ? defaultColor
+        : typeof options.outlineColor === 'string'
+        ? Color.fromCssColorString(options.outlineColor)
+        : options.outlineColor
   }
 }

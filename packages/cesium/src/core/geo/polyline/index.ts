@@ -2,12 +2,10 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-03 13:49:38
+ * @LastEditTime: 2024-01-05 14:20:53
  * @Description: 线Primitive
  */
 import {
-  ArcType,
-  Cartesian3,
   ClassificationType,
   Color,
   GeometryInstance,
@@ -16,28 +14,51 @@ import {
   Material,
   PolylineGeometry,
   PolylineMaterialAppearance,
-  Primitive,
-  ShadowMode,
-  VertexFormat
+  Primitive
 } from 'cesium'
 import { getMeterial } from '../../material'
+import { GeometryInstanceOption, PrimitiveOption } from '..'
+
+/**
+ * GroundPolylinePrimitive通用构造参数
+ * 剔除appearance，geometryInstances属性
+ */
+export type GroundPolylinePrimitiveOption = Omit<
+  NonNullable<ConstructorParameters<typeof GroundPolylinePrimitive>[0]>,
+  'appearance' | 'geometryInstances'
+>
+
+/**
+ * GroundPolylineGeometry构造参数
+ */
+export type GroundPolylineGeometryOption = Partial<
+  ConstructorParameters<typeof GroundPolylineGeometry>[0]
+>
+
+/**
+ * PolylineGeometry构造参数
+ */
+export type PolylineGeometryOption = Partial<
+  ConstructorParameters<typeof PolylineGeometry>[0]
+>
+
+/**
+ * 线Primitive构造参数
+ * 混合 Primitive 和 GroundPolylinePrimitive 和 GeometryInstance 和 GroundPolylineGeometry 和 PolylineGeometry 的构造参数
+ */
+export type PolylinePrimitiveOption = PrimitiveOption &
+  GroundPolylinePrimitiveOption &
+  GeometryInstanceOption &
+  GroundPolylineGeometryOption &
+  PolylineGeometryOption
 
 /**
  * 线Primitive参数
  */
-export interface PolylineOption {
-  positions?: Cartesian3[]
-  id?: string
-  show?: boolean
-  width?: number
-  granularity?: number
-  vertexFormat?: VertexFormat
-  material?: Material | Color
-  depthFailMaterial?: Material | Color
-  arcType?: ArcType
+export interface PolylineOption extends PolylinePrimitiveOption {
   clampToGround?: boolean
-  shadows?: ShadowMode
-  classificationType?: ClassificationType
+  material?: Material | Color | string
+  depthFailMaterial?: Material | Color | string
 }
 
 /**
@@ -46,35 +67,48 @@ export interface PolylineOption {
  * @returns
  */
 export function createPolyline(options: PolylineOption) {
-  const defaultColor = Color.BLUE
+  const defaultColor = Color.LIGHTBLUE
   if (options.clampToGround) {
     return new GroundPolylinePrimitive({
-      show: options.show === undefined ? true : options.show,
       geometryInstances: new GeometryInstance({
         id: options.id,
+        modelMatrix: options.modelMatrix,
+        attributes: options.attributes,
         geometry: new GroundPolylineGeometry({
           positions: options.positions ?? [],
           width: options.width === undefined ? 2 : options.width,
           granularity: options.granularity,
+          loop: options.loop,
           arcType: options.arcType
         })
       }),
-      classificationType: options.classificationType ?? ClassificationType.BOTH,
       appearance: new PolylineMaterialAppearance({
         material: getMeterial(options.material ?? defaultColor)
-      })
+      }),
+      show: options.show === undefined ? true : options.show,
+      interleave: options.interleave,
+      releaseGeometryInstances: options.releaseGeometryInstances,
+      allowPicking: options.allowPicking,
+      asynchronous: options.asynchronous,
+      classificationType: options.classificationType ?? ClassificationType.BOTH,
+      debugShowBoundingVolume: options.debugShowBoundingVolume,
+      debugShowShadowVolume: options.debugShowShadowVolume
     })
   } else {
     return new Primitive({
-      show: options.show === undefined ? true : options.show,
       geometryInstances: new GeometryInstance({
         id: options.id,
+        modelMatrix: options.modelMatrix,
+        attributes: options.attributes,
         geometry: new PolylineGeometry({
           positions: options.positions ?? [],
           width: options.width === undefined ? 2 : options.width,
-          granularity: options.granularity,
+          colors: options.colors,
+          colorsPerVertex: options.colorsPerVertex,
           arcType: options.arcType,
-          vertexFormat: options.vertexFormat
+          granularity: options.granularity,
+          vertexFormat: options.vertexFormat,
+          ellipsoid: options.ellipsoid
         })
       }),
       appearance: new PolylineMaterialAppearance({
@@ -83,6 +117,16 @@ export function createPolyline(options: PolylineOption) {
       depthFailAppearance: new PolylineMaterialAppearance({
         material: getMeterial(options.depthFailMaterial ?? defaultColor)
       }),
+      show: options.show === undefined ? true : options.show,
+      modelMatrix: options.modelMatrix,
+      vertexCacheOptimize: options.vertexCacheOptimize,
+      interleave: options.interleave,
+      compressVertices: options.compressVertices,
+      releaseGeometryInstances: options.releaseGeometryInstances,
+      allowPicking: options.allowPicking,
+      cull: options.cull,
+      asynchronous: options.asynchronous,
+      debugShowBoundingVolume: options.debugShowBoundingVolume,
       shadows: options.shadows
     })
   }

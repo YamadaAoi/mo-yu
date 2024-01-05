@@ -2,47 +2,53 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:31:44
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 17:27:03
+ * @LastEditTime: 2024-01-05 14:28:20
  * @Description: 面Primitive
  */
 import {
-  ArcType,
   Cartesian3,
   ClassificationType,
   Color,
   GeometryInstance,
   GroundPrimitive,
-  HeightReference,
   Material,
   MaterialAppearance,
   PolygonGeometry,
   PolygonHierarchy,
-  Primitive,
-  ShadowMode
+  Primitive
 } from 'cesium'
 import { getMeterial } from '../../material'
+import {
+  GeometryInstanceOption,
+  GroundPrimitiveOption,
+  PrimitiveOption
+} from '..'
+
+/**
+ * PolygonGeometry构造参数
+ */
+export type PolygonGeometryOption = Partial<
+  ConstructorParameters<typeof PolygonGeometry>[0]
+>
+
+/**
+ * 面Primitive构造参数
+ * 混合 Primitive 和 GroundPrimitive 和 GeometryInstance 和 PolylineGeometry 的构造参数
+ */
+export type PolygonPrimitiveOption = PrimitiveOption &
+  GroundPrimitiveOption &
+  GeometryInstanceOption &
+  PolygonGeometryOption
 
 /**
  * 面Primitive参数
  */
-export interface PolygonOption {
+export interface PolygonOption extends PolygonPrimitiveOption {
+  clampToGround?: boolean
   positions?: Cartesian3[]
-  id?: string
-  heightReference?: HeightReference
-  height?: number
-  stRotation?: number
-  granularity?: number
-  perPositionHeight?: boolean
-  closeTop?: boolean | boolean
-  closeBottom?: boolean | boolean
-  arcType?: ArcType
-  textureCoordinates?: PolygonHierarchy
 
-  show?: boolean
-  classificationType?: ClassificationType
-  material?: Material | Color
-  depthFailMaterial?: Material | Color
-  shadows?: ShadowMode
+  material?: Material | Color | string
+  depthFailMaterial?: Material | Color | string
 }
 
 /**
@@ -51,13 +57,18 @@ export interface PolygonOption {
  * @returns
  */
 export function createPolygon(options: PolygonOption) {
-  const defaultColor = Color.BLUE
+  const defaultColor = Color.LIGHTBLUE
   const geometryInstances = new GeometryInstance({
     id: options.id,
+    modelMatrix: options.modelMatrix,
+    attributes: options.attributes,
     geometry: new PolygonGeometry({
       polygonHierarchy: new PolygonHierarchy(options.positions),
       height: options.height,
+      extrudedHeight: options.extrudedHeight,
+      vertexFormat: options.vertexFormat,
       stRotation: options.stRotation,
+      ellipsoid: options.ellipsoid,
       granularity: options.granularity,
       perPositionHeight:
         options.perPositionHeight === undefined
@@ -72,21 +83,38 @@ export function createPolygon(options: PolygonOption) {
   const appearance = new MaterialAppearance({
     material: getMeterial(options.material ?? defaultColor)
   })
-  if (options.heightReference === HeightReference.CLAMP_TO_GROUND) {
+  if (options.clampToGround) {
     return new GroundPrimitive({
-      show: options.show === undefined ? true : options.show,
       geometryInstances,
+      appearance,
+      show: options.show === undefined ? true : options.show,
+      vertexCacheOptimize: options.vertexCacheOptimize,
+      interleave: options.interleave,
+      compressVertices: options.compressVertices,
+      releaseGeometryInstances: options.releaseGeometryInstances,
+      allowPicking: options.allowPicking,
+      asynchronous: options.asynchronous,
       classificationType: options.classificationType ?? ClassificationType.BOTH,
-      appearance
+      debugShowBoundingVolume: options.debugShowBoundingVolume,
+      debugShowShadowVolume: options.debugShowShadowVolume
     })
   } else {
     return new Primitive({
-      show: options.show === undefined ? true : options.show,
       geometryInstances,
       appearance,
       depthFailAppearance: new MaterialAppearance({
         material: getMeterial(options.depthFailMaterial ?? defaultColor)
       }),
+      show: options.show === undefined ? true : options.show,
+      modelMatrix: options.modelMatrix,
+      vertexCacheOptimize: options.vertexCacheOptimize,
+      interleave: options.interleave,
+      compressVertices: options.compressVertices,
+      releaseGeometryInstances: options.releaseGeometryInstances,
+      allowPicking: options.allowPicking,
+      cull: options.cull,
+      asynchronous: options.asynchronous,
+      debugShowBoundingVolume: options.debugShowBoundingVolume,
       shadows: options.shadows
     })
   }

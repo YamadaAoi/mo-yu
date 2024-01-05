@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 17:19:02
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 18:56:46
+ * @LastEditTime: 2024-01-05 14:34:06
  * @Description: 圆Primitive
  */
 import {
@@ -11,38 +11,42 @@ import {
   Color,
   GeometryInstance,
   GroundPrimitive,
-  HeightReference,
   Material,
   MaterialAppearance,
   CircleGeometry,
-  Primitive,
-  ShadowMode,
-  Ellipsoid,
-  VertexFormat
+  Primitive
 } from 'cesium'
 import { getMeterial } from '../../material'
+import {
+  GeometryInstanceOption,
+  GroundPrimitiveOption,
+  PrimitiveOption
+} from '..'
+
+/**
+ * CircleGeometry构造参数
+ */
+export type CircleGeometryOption = Partial<
+  ConstructorParameters<typeof CircleGeometry>[0]
+>
+
+/**
+ * 圆Primitive构造参数
+ * 混合 Primitive 和 GroundPrimitive 和 GeometryInstance 和 CircleGeometry 的构造参数
+ */
+export type CirclePrimitiveOption = PrimitiveOption &
+  GroundPrimitiveOption &
+  GeometryInstanceOption &
+  CircleGeometryOption
 
 /**
  * 圆Primitive参数
  */
-export interface CircleOption {
-  id?: string
-  heightReference?: HeightReference
+export interface CircleOption extends CirclePrimitiveOption {
+  clampToGround?: boolean
 
-  center?: Cartesian3
-  radius?: number
-  ellipsoid?: Ellipsoid
-  height?: number
-  granularity?: number
-  vertexFormat?: VertexFormat
-  extrudedHeight?: number
-  stRotation?: number
-
-  show?: boolean
-  classificationType?: ClassificationType
-  material?: Material | Color
-  depthFailMaterial?: Material | Color
-  shadows?: ShadowMode
+  material?: Material | Color | string
+  depthFailMaterial?: Material | Color | string
 }
 
 /**
@@ -51,12 +55,15 @@ export interface CircleOption {
  * @returns
  */
 export function createCircle(options: CircleOption) {
-  const defaultColor = Color.BLUE
+  const defaultColor = Color.LIGHTBLUE
   const geometryInstances = new GeometryInstance({
     id: options.id,
+    modelMatrix: options.modelMatrix,
+    attributes: options.attributes,
     geometry: new CircleGeometry({
-      center: options.center ?? Cartesian3.ONE,
-      radius: options.radius ?? 0,
+      center:
+        options.center ?? Cartesian3.fromDegrees(116.397497, 39.906888, 0),
+      radius: options.radius ?? 1000,
       ellipsoid: options.ellipsoid,
       height: options.height,
       granularity: options.granularity,
@@ -68,21 +75,38 @@ export function createCircle(options: CircleOption) {
   const appearance = new MaterialAppearance({
     material: getMeterial(options.material ?? defaultColor)
   })
-  if (options.heightReference === HeightReference.CLAMP_TO_GROUND) {
+  if (options.clampToGround) {
     return new GroundPrimitive({
-      show: options.show === undefined ? true : options.show,
       geometryInstances,
+      appearance,
+      show: options.show === undefined ? true : options.show,
+      vertexCacheOptimize: options.vertexCacheOptimize,
+      interleave: options.interleave,
+      compressVertices: options.compressVertices,
+      releaseGeometryInstances: options.releaseGeometryInstances,
+      allowPicking: options.allowPicking,
+      asynchronous: options.asynchronous,
       classificationType: options.classificationType ?? ClassificationType.BOTH,
-      appearance
+      debugShowBoundingVolume: options.debugShowBoundingVolume,
+      debugShowShadowVolume: options.debugShowShadowVolume
     })
   } else {
     return new Primitive({
-      show: options.show === undefined ? true : options.show,
       geometryInstances,
       appearance,
       depthFailAppearance: new MaterialAppearance({
         material: getMeterial(options.depthFailMaterial ?? defaultColor)
       }),
+      show: options.show === undefined ? true : options.show,
+      modelMatrix: options.modelMatrix,
+      vertexCacheOptimize: options.vertexCacheOptimize,
+      interleave: options.interleave,
+      compressVertices: options.compressVertices,
+      releaseGeometryInstances: options.releaseGeometryInstances,
+      allowPicking: options.allowPicking,
+      cull: options.cull,
+      asynchronous: options.asynchronous,
+      debugShowBoundingVolume: options.debugShowBoundingVolume,
       shadows: options.shadows
     })
   }

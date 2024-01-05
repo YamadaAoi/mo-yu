@@ -9,26 +9,16 @@
 **Signature:**
 
 ```typescript
-export interface PolygonOption
+export interface PolygonOption extends PolygonPrimitiveOption
 ```
+
+**Extends:** [PolygonPrimitiveOption](./cesium.polygonprimitiveoption.md)
 
 ## Properties
 
-| Property                                                            | Modifiers | Type               | Description  |
-| ------------------------------------------------------------------- | --------- | ------------------ | ------------ |
-| [arcType?](./cesium.polygonoption.arctype.md)                       |           | ArcType            | _(Optional)_ |
-| [classificationType?](./cesium.polygonoption.classificationtype.md) |           | ClassificationType | _(Optional)_ |
-| [closeBottom?](./cesium.polygonoption.closebottom.md)               |           | boolean \| boolean | _(Optional)_ |
-| [closeTop?](./cesium.polygonoption.closetop.md)                     |           | boolean \| boolean | _(Optional)_ |
-| [depthFailMaterial?](./cesium.polygonoption.depthfailmaterial.md)   |           | Material \| Color  | _(Optional)_ |
-| [granularity?](./cesium.polygonoption.granularity.md)               |           | number             | _(Optional)_ |
-| [height?](./cesium.polygonoption.height.md)                         |           | number             | _(Optional)_ |
-| [heightReference?](./cesium.polygonoption.heightreference.md)       |           | HeightReference    | _(Optional)_ |
-| [id?](./cesium.polygonoption.id.md)                                 |           | string             | _(Optional)_ |
-| [material?](./cesium.polygonoption.material.md)                     |           | Material \| Color  | _(Optional)_ |
-| [perPositionHeight?](./cesium.polygonoption.perpositionheight.md)   |           | boolean            | _(Optional)_ |
-| [positions?](./cesium.polygonoption.positions.md)                   |           | Cartesian3\[\]     | _(Optional)_ |
-| [shadows?](./cesium.polygonoption.shadows.md)                       |           | ShadowMode         | _(Optional)_ |
-| [show?](./cesium.polygonoption.show.md)                             |           | boolean            | _(Optional)_ |
-| [stRotation?](./cesium.polygonoption.strotation.md)                 |           | number             | _(Optional)_ |
-| [textureCoordinates?](./cesium.polygonoption.texturecoordinates.md) |           | PolygonHierarchy   | _(Optional)_ |
+| Property                                                          | Modifiers | Type                        | Description  |
+| ----------------------------------------------------------------- | --------- | --------------------------- | ------------ |
+| [clampToGround?](./cesium.polygonoption.clamptoground.md)         |           | boolean                     | _(Optional)_ |
+| [depthFailMaterial?](./cesium.polygonoption.depthfailmaterial.md) |           | Material \| Color \| string | _(Optional)_ |
+| [material?](./cesium.polygonoption.material.md)                   |           | Material \| Color \| string | _(Optional)_ |
+| [positions?](./cesium.polygonoption.positions.md)                 |           | Cartesian3\[\]              | _(Optional)_ |

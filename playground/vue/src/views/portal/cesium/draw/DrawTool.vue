@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 09:46:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 18:59:32
+ * @LastEditTime: 2024-01-05 14:43:38
  * @Description: 绘制工具
 -->
 <template>
@@ -155,7 +155,9 @@ function startCircle() {
       material: Color.GREEN.withAlpha(1)
     },
     circle: {
-      material: Color.PINK.withAlpha(1)
+      clampToGround: true,
+      material: Color.PINK.withAlpha(1),
+      depthFailMaterial: Color.PINK.withAlpha(1)
     }
   })
   circle.enable()

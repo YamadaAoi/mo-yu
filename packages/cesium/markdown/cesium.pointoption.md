@@ -16,12 +16,12 @@ export interface PointOption
 
 | Property                                                                      | Modifiers | Type                     | Description  |
 | ----------------------------------------------------------------------------- | --------- | ------------------------ | ------------ |
-| [color?](./cesium.pointoption.color.md)                                       |           | Color                    | _(Optional)_ |
+| [clampToGround?](./cesium.pointoption.clamptoground.md)                       |           | boolean                  | _(Optional)_ |
+| [color?](./cesium.pointoption.color.md)                                       |           | Color \| string          | _(Optional)_ |
 | [disableDepthTestDistance?](./cesium.pointoption.disabledepthtestdistance.md) |           | number                   | _(Optional)_ |
 | [distanceDisplayCondition?](./cesium.pointoption.distancedisplaycondition.md) |           | DistanceDisplayCondition | _(Optional)_ |
-| [heightReference?](./cesium.pointoption.heightreference.md)                   |           | HeightReference          | _(Optional)_ |
 | [id?](./cesium.pointoption.id.md)                                             |           | any                      | _(Optional)_ |
-| [outlineColor?](./cesium.pointoption.outlinecolor.md)                         |           | Color                    | _(Optional)_ |
+| [outlineColor?](./cesium.pointoption.outlinecolor.md)                         |           | Color \| string          | _(Optional)_ |
 | [outlineWidth?](./cesium.pointoption.outlinewidth.md)                         |           | number                   | _(Optional)_ |
 | [pixelSize?](./cesium.pointoption.pixelsize.md)                               |           | number                   | _(Optional)_ |
 | [position?](./cesium.pointoption.position.md)                                 |           | Cartesian3               | _(Optional)_ |
