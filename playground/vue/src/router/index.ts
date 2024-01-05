@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-03 09:56:28
+ * @LastEditTime: 2024-01-05 14:45:35
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -116,8 +116,8 @@ export function getCesiumMenus() {
       name: 'Draw',
       component: () => import('../views/portal/cesium/draw/DrawTool.vue'),
       meta: {
-        label: 'DrawTool',
-        cname: 'Draw[Point|polyline|polygon]Tool'
+        label: '绘制工具',
+        cname: 'Draw[Point|polyline|polygon|Rect|Circle]Tool'
       }
     }
   ]
