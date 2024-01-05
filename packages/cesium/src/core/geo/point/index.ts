@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 10:48:22
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 14:36:33
+ * @LastEditTime: 2024-01-05 15:00:22
  * @Description: PointPrimitive
  */
 import {
@@ -12,6 +12,7 @@ import {
   NearFarScalar
 } from 'cesium'
 import { getPosiOnMap } from '../../../utils/getPosi'
+import { getColor } from '../../material'
 
 /**
  * PointPrimitive属性
@@ -51,17 +52,7 @@ export async function createPoint(options: PointOption): Promise<PointOption> {
     position,
     show: options.show === undefined ? true : options.show,
     pixelSize: options.pixelSize ?? 10,
-    color:
-      options.color === undefined
-        ? defaultColor
-        : typeof options.color === 'string'
-        ? Color.fromCssColorString(options.color)
-        : options.color,
-    outlineColor:
-      options.outlineColor === undefined
-        ? defaultColor
-        : typeof options.outlineColor === 'string'
-        ? Color.fromCssColorString(options.outlineColor)
-        : options.outlineColor
+    color: getColor(options.color ?? defaultColor),
+    outlineColor: getColor(options.outlineColor ?? defaultColor)
   }
 }

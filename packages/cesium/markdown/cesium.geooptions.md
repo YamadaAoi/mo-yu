@@ -14,9 +14,9 @@ export type GeoOptions = Omit<
   'markerColor' | 'stroke' | 'fill'
 > & {
   url: Resource | string | object
-  markerColor?: string
-  stroke?: string
-  fill?: string
+  markerColor?: Color | string
+  stroke?: Color | string
+  fill?: Color | string
   id?: string
   locate?: boolean
 }

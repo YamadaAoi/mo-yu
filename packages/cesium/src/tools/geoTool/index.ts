@@ -2,12 +2,13 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-29 16:09:05
+ * @LastEditTime: 2024-01-05 15:02:23
  * @Description: geojson工具
  */
 import { GeoJsonDataSource, Resource, Color } from 'cesium'
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
 import { mapStoreTool } from '../storeTool'
+import { getColor } from '../../core/material'
 
 /**
  * geojson参数，在原始参数基础上合并了参数:
@@ -25,9 +26,9 @@ export type GeoOptions = Omit<
   'markerColor' | 'stroke' | 'fill'
 > & {
   url: Resource | string | object
-  markerColor?: string
-  stroke?: string
-  fill?: string
+  markerColor?: Color | string
+  stroke?: Color | string
+  fill?: Color | string
   id?: string
   locate?: boolean
 }
@@ -120,13 +121,13 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
       const source = new GeoJsonDataSource(id)
       const o: GeoJsonDataSource.LoadOptions = { ...rest }
       if (markerColor) {
-        o.markerColor = Color.fromCssColorString(markerColor)
+        o.markerColor = getColor(markerColor)
       }
       if (stroke) {
-        o.stroke = Color.fromCssColorString(stroke)
+        o.stroke = getColor(stroke)
       }
       if (fill) {
-        o.fill = Color.fromCssColorString(fill)
+        o.fill = getColor(fill)
       }
       source.load(url, o)
       this.#geoNames.push(source.name)
