@@ -16,7 +16,7 @@ export interface DrawPolylineToolOptions extends DrawPointToolOptions
 
 ## Properties
 
-| Property                                                            | Modifiers | Type                                         | Description             |
-| ------------------------------------------------------------------- | --------- | -------------------------------------------- | ----------------------- |
-| [floatPolyline?](./cesium.drawpolylinetooloptions.floatpolyline.md) |           | PolylineGraphics.ConstructorOptions          | _(Optional)_ 拖拽线样式 |
-| [polyline?](./cesium.drawpolylinetooloptions.polyline.md)           |           | [PolylineOption](./cesium.polylineoption.md) | _(Optional)_ 线样式     |
+| Property                                                            | Modifiers | Type                                                     | Description             |
+| ------------------------------------------------------------------- | --------- | -------------------------------------------------------- | ----------------------- |
+| [floatPolyline?](./cesium.drawpolylinetooloptions.floatpolyline.md) |           | [PolylineEntityOption](./cesium.polylineentityoption.md) | _(Optional)_ 拖拽线样式 |
+| [polyline?](./cesium.drawpolylinetooloptions.polyline.md)           |           | [PolylineOption](./cesium.polylineoption.md)             | _(Optional)_ 线样式     |

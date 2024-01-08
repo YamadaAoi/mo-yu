@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 17:19:02
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:06:14
+ * @LastEditTime: 2024-01-08 10:55:57
  * @Description: 圆Primitive
  */
 import {
@@ -22,6 +22,7 @@ import {
   GroundPrimitiveOption,
   PrimitiveOption
 } from '..'
+import { defaultColor } from '../../../defaultVal'
 
 /**
  * CircleGeometry构造参数
@@ -55,7 +56,6 @@ export interface CircleOption extends CirclePrimitiveOption {
  * @returns
  */
 export function createCircle(options: CircleOption) {
-  const defaultColor = Color.LIGHTBLUE
   const geometryInstances = new GeometryInstance({
     id: options.id,
     modelMatrix: options.modelMatrix,

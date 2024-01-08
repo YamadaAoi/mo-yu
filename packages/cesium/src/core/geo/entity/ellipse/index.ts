@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 17:19:02
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:07:01
+ * @LastEditTime: 2024-01-08 10:55:41
  * @Description: Ellipse
  */
 import {
@@ -14,6 +14,7 @@ import {
 } from 'cesium'
 import { getColorProperty, getMeterialProperty } from '../../../material'
 import { EntityOption } from '..'
+import { defaultColor } from '../../../defaultVal'
 
 /**
  * EllipseEntity参数，改造了Ellipse属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
@@ -45,10 +46,10 @@ export function createEntityEllipse(options: EllipseEntityOption) {
     properties,
     ...rest
   } = options
-  const polygon: EllipseGraphics.ConstructorOptions = {
+  const ellipse: EllipseGraphics.ConstructorOptions = {
     ...rest,
-    material: getMeterialProperty(rest.material),
-    outlineColor: getColorProperty(rest.outlineColor)
+    material: getMeterialProperty(rest.material ?? defaultColor),
+    outlineColor: getColorProperty(rest.outlineColor ?? defaultColor)
   }
   return new Entity({
     id,
@@ -61,6 +62,6 @@ export function createEntityEllipse(options: EllipseEntityOption) {
     viewFrom,
     parent,
     properties,
-    polygon
+    ellipse
   })
 }

@@ -2,12 +2,13 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:07:45
+ * @LastEditTime: 2024-01-08 10:54:29
  * @Description: Polyline
  */
 import { Color, Entity, MaterialProperty, PolylineGraphics } from 'cesium'
 import { getMeterialProperty } from '../../../material'
 import { EntityOption } from '..'
+import { defaultColor } from '../../../defaultVal'
 
 /**
  * PolylineEntity参数，改造了Polyline属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
@@ -44,8 +45,10 @@ export function createEntityPolyline(options: PolylineEntityOption) {
   } = options
   const polyline: PolylineGraphics.ConstructorOptions = {
     ...rest,
-    material: getMeterialProperty(rest.material),
-    depthFailMaterial: getMeterialProperty(rest.depthFailMaterial)
+    material: getMeterialProperty(rest.material ?? defaultColor),
+    depthFailMaterial: getMeterialProperty(
+      rest.depthFailMaterial ?? defaultColor
+    )
   }
   return new Entity({
     id,

@@ -9,5 +9,5 @@
 **Signature:**
 
 ```typescript
-floatCircle?: EllipseGraphics.ConstructorOptions;
+floatCircle?: EllipseEntityOption;
 ```

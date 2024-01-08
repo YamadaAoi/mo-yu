@@ -2,17 +2,17 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-11 11:13:21
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 16:42:34
+ * @LastEditTime: 2024-01-08 13:52:16
  * @Description: 
 -->
 <template>
-  <demo-wrap>
+  <DemoWrap>
     <template #title>适配工具 remTool</template>
     <template #subTitle>搭配 postcss-pxtorem，让适配工作少一点。</template>
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
-  </demo-wrap>
+  </DemoWrap>
 </template>
 
 <script setup lang="ts">

@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 16:38:30
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:08:52
+ * @LastEditTime: 2024-01-08 13:51:59
  * @Description:  
 -->
 <template>
-  <demo-wrap>
+  <DemoWrap>
     <template #title>等待遮罩 MLoading</template>
     <template #subTitle>双手抱头，不准动。</template>
     <template #demo>
@@ -15,7 +15,7 @@
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
-  </demo-wrap>
+  </DemoWrap>
 </template>
 
 <script setup lang="ts">

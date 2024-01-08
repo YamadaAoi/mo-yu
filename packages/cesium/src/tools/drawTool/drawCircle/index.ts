@@ -2,15 +2,19 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 17:37:40
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 19:11:31
+ * @LastEditTime: 2024-01-08 11:03:08
  * @Description: 画圆
  */
-import { CallbackProperty, Cartesian3, Color, EllipseGraphics } from 'cesium'
+import { CallbackProperty, Cartesian3, Color } from 'cesium'
 import { getDefault } from '@mo-yu/core'
 import { DrawRectTool, DrawRectToolOptions } from '../drawRect'
 import { DrawBaseEvents } from '../drawBase'
 import { getHorizontalDistance } from '../../../utils/calc'
 import { CircleOption, createCircle } from '../../../core/geo/primitive/circle'
+import {
+  EllipseEntityOption,
+  createEntityEllipse
+} from '../../../core/geo/entity/ellipse'
 
 /**
  * 画圆功能入参
@@ -23,7 +27,7 @@ export interface DrawCircleToolOptions extends DrawRectToolOptions {
   /**
    * 拖拽圆样式
    */
-  floatCircle?: EllipseGraphics.ConstructorOptions
+  floatCircle?: EllipseEntityOption
 }
 
 /**
@@ -154,24 +158,21 @@ export class DrawCircleTool extends DrawRectTool<
    * @returns
    */
   protected createLFloatArea() {
-    const area = this.viewer?.entities.add({
-      position: this.#floatCircleCenter,
-      ellipse: getDefault(
-        {
-          semiMajorAxis: new CallbackProperty(() => {
-            return this.#radius
-          }, false),
-          semiMinorAxis: new CallbackProperty(() => {
-            return this.#radius
-          }, false),
-          material:
-            this.options.polygon?.material instanceof Color
-              ? this.options.polygon.material.withAlpha(0.5)
-              : Color.BLUE.withAlpha(0.5)
-        },
-        this.options.floatCircle
+    const r = new CallbackProperty(() => {
+      return this.#radius
+    }, false)
+    const area = this.viewer?.entities.add(
+      createEntityEllipse(
+        getDefault(
+          {
+            position: this.#floatCircleCenter,
+            semiMajorAxis: r,
+            semiMinorAxis: r
+          },
+          this.options.floatCircle
+        )
       )
-    })
+    )
     return area
   }
 

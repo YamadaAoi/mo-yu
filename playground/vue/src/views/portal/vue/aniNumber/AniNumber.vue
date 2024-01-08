@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-04 17:01:42
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:08:22
+ * @LastEditTime: 2024-01-08 13:52:09
  * @Description:  
 -->
 <template>
-  <demo-wrap>
+  <DemoWrap>
     <template #title>数字动画 MAniNumber</template>
     <template #subTitle>你看这跳动的数字，像不像上次我借你的200块钱。</template>
     <template #demo>
@@ -15,7 +15,7 @@
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
-  </demo-wrap>
+  </DemoWrap>
 </template>
 
 <script setup lang="ts">

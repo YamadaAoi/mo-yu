@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:42:07
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:09:05
+ * @LastEditTime: 2024-01-08 13:51:52
  * @Description:
 -->
 <template>
-  <demo-wrap>
+  <DemoWrap>
     <template #title>拖拽弹框 MPopup</template>
     <template #subTitle>你不要这样，我是个有原则的弹框。</template>
     <template #demo>
@@ -15,7 +15,7 @@
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
-  </demo-wrap>
+  </DemoWrap>
 </template>
 
 <script setup lang="ts">

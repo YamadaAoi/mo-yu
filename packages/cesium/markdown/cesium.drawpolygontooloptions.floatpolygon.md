@@ -9,5 +9,5 @@
 **Signature:**
 
 ```typescript
-floatPolygon?: PolygonGraphics.ConstructorOptions;
+floatPolygon?: PolygonEntityOption;
 ```

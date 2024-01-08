@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 10:48:22
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 15:00:22
+ * @LastEditTime: 2024-01-08 10:54:11
  * @Description: PointPrimitive
  */
 import {
@@ -13,6 +13,7 @@ import {
 } from 'cesium'
 import { getPosiOnMap } from '../../../../utils/getPosi'
 import { getColor } from '../../../material'
+import { defaultColor } from '../../../defaultVal'
 
 /**
  * PointPrimitive属性
@@ -39,7 +40,6 @@ export interface PointOption {
  * @returns
  */
 export async function createPoint(options: PointOption): Promise<PointOption> {
-  const defaultColor = Color.LIGHTBLUE
   let position = options.position
   if (options.position && options?.clampToGround) {
     const newPosi = await getPosiOnMap(options.position)

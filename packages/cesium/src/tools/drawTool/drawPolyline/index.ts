@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 17:54:31
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:08:27
+ * @LastEditTime: 2024-01-08 13:12:36
  * @Description: 画线
  */
 import {
@@ -11,7 +11,6 @@ import {
   Color,
   Entity,
   PolylineDashMaterialProperty,
-  PolylineGraphics,
   PrimitiveCollection
 } from 'cesium'
 import { getDefault } from '@mo-yu/core'
@@ -21,6 +20,12 @@ import {
 } from '../../../core/geo/primitive/polyline'
 import { DrawPointTool, DrawPointToolOptions } from '../drawPoint'
 import { DrawBaseEvents } from '../drawBase'
+import {
+  PolylineEntityOption,
+  createEntityPolyline
+} from '../../../core/geo/entity/polyline'
+import { defaultColor } from '../../../core/defaultVal'
+import { getMeterialProperty } from '../../../core/material'
 
 /**
  * 画线功能入参
@@ -33,7 +38,7 @@ export interface DrawPolylineToolOptions extends DrawPointToolOptions {
   /**
    * 拖拽线样式
    */
-  floatPolyline?: PolylineGraphics.ConstructorOptions
+  floatPolyline?: PolylineEntityOption
 }
 
 /**
@@ -220,30 +225,27 @@ export class DrawPolylineTool<
    * @returns
    */
   protected createLFloatLine() {
-    const line = this.viewer?.entities.add({
-      polyline: getDefault(
-        {
-          // 与depthFailMaterial不兼容
-          positions: new CallbackProperty(() => {
-            return this.floatLinePoints
-          }, false),
-          width: 2,
-          material: new PolylineDashMaterialProperty({
-            color:
-              this.options.polyline?.material instanceof Color
-                ? this.options.polyline?.material
-                : Color.BLUE
-          }),
-          depthFailMaterial: new PolylineDashMaterialProperty({
-            color:
-              this.options.polyline?.depthFailMaterial instanceof Color
-                ? this.options.polyline?.depthFailMaterial
-                : Color.BLUE
-          })
-        },
-        this.options.floatPolyline
-      )
-    })
+    const m =
+      getMeterialProperty(this.options.floatPolyline?.material) ?? defaultColor
+    const dM =
+      getMeterialProperty(this.options.floatPolyline?.depthFailMaterial) ??
+      defaultColor
+    const option = getDefault(
+      {
+        positions: new CallbackProperty(() => {
+          return this.floatLinePoints
+        }, false),
+        width: 2
+      },
+      this.options.floatPolyline
+    )
+    if (m instanceof Color) {
+      option.material = new PolylineDashMaterialProperty({ color: m })
+    }
+    if (dM instanceof Color) {
+      option.depthFailMaterial = new PolylineDashMaterialProperty({ color: dM })
+    }
+    const line = this.viewer?.entities.add(createEntityPolyline(option))
     return line
   }
 

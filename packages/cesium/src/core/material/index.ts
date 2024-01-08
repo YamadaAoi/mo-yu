@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:14:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:01:55
+ * @LastEditTime: 2024-01-08 11:33:42
  * @Description: 材质
  */
 import { Color, Material, MaterialProperty, Property } from 'cesium'
@@ -22,7 +22,11 @@ export function getColor(color?: Color | string) {
  * @returns
  */
 export function getColorProperty(color?: Property | Color | string) {
-  return color instanceof Property ? color : getColor(color)
+  if (typeof color === 'string') {
+    return Color.fromCssColorString(color)
+  } else {
+    return color
+  }
 }
 
 /**
@@ -31,7 +35,11 @@ export function getColorProperty(color?: Property | Color | string) {
  * @returns
  */
 export function getMeterialProperty(mat?: MaterialProperty | Color | string) {
-  return mat instanceof MaterialProperty ? mat : getColor(mat)
+  if (typeof mat === 'string') {
+    return Color.fromCssColorString(mat)
+  } else {
+    return mat
+  }
 }
 
 /**
@@ -40,7 +48,13 @@ export function getMeterialProperty(mat?: MaterialProperty | Color | string) {
  * @returns
  */
 export function getMeterial(mat?: Material | Color | string) {
-  return mat instanceof Material
-    ? mat
-    : Material.fromType('Color', { color: getColor(mat) })
+  if (typeof mat === 'string') {
+    return Material.fromType('Color', {
+      color: Color.fromCssColorString(mat)
+    })
+  } else if (mat instanceof Color) {
+    return Material.fromType('Color', { color: mat })
+  } else {
+    return mat
+  }
 }

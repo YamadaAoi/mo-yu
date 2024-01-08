@@ -2,17 +2,10 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 17:17:55
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:08:20
+ * @LastEditTime: 2024-01-08 11:02:46
  * @Description: 画多边形
  */
-import {
-  CallbackProperty,
-  Cartesian3,
-  Color,
-  Entity,
-  PolygonGraphics,
-  PolygonHierarchy
-} from 'cesium'
+import { CallbackProperty, Cartesian3, Entity, PolygonHierarchy } from 'cesium'
 import { getDefault } from '@mo-yu/core'
 import {
   createPolygon,
@@ -20,6 +13,10 @@ import {
 } from '../../../core/geo/primitive/polygon'
 import { DrawPolylineTool, DrawPolylineToolOptions } from '../drawPolyline'
 import { DrawBaseEvents } from '../drawBase'
+import {
+  PolygonEntityOption,
+  createEntityPolygon
+} from '../../../core/geo/entity/polygon'
 
 /**
  * 画线功能入参
@@ -32,7 +29,7 @@ export interface DrawPolygonToolOptions extends DrawPolylineToolOptions {
   /**
    * 拖拽面样式
    */
-  floatPolygon?: PolygonGraphics.ConstructorOptions
+  floatPolygon?: PolygonEntityOption
 }
 
 /**
@@ -201,21 +198,19 @@ export class DrawPolygonTool<
    * @returns
    */
   protected createLFloatArea() {
-    const area = this.viewer?.entities.add({
-      polygon: getDefault(
-        {
-          hierarchy: new CallbackProperty(() => {
-            return new PolygonHierarchy(this.floatAreaPoints)
-          }, false),
-          material:
-            this.options.polygon?.material instanceof Color
-              ? this.options.polygon.material.withAlpha(0.5)
-              : Color.BLUE.withAlpha(0.5),
-          perPositionHeight: true
-        },
-        this.options.floatPolygon
+    const area = this.viewer?.entities.add(
+      createEntityPolygon(
+        getDefault(
+          {
+            hierarchy: new CallbackProperty(() => {
+              return new PolygonHierarchy(this.floatAreaPoints)
+            }, false),
+            perPositionHeight: true
+          },
+          this.options.floatPolygon
+        )
       )
-    })
+    )
     return area
   }
 

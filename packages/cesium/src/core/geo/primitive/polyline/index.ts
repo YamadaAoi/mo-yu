@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:05:42
+ * @LastEditTime: 2024-01-08 10:54:42
  * @Description: 线Primitive
  */
 import {
@@ -18,6 +18,7 @@ import {
 } from 'cesium'
 import { getMeterial } from '../../../material'
 import { GeometryInstanceOption, PrimitiveOption } from '..'
+import { defaultColor } from '../../../defaultVal'
 
 /**
  * GroundPolylinePrimitive通用构造参数
@@ -67,7 +68,6 @@ export interface PolylineOption extends PolylinePrimitiveOption {
  * @returns
  */
 export function createPolyline(options: PolylineOption) {
-  const defaultColor = Color.LIGHTBLUE
   if (options.clampToGround) {
     return new GroundPolylinePrimitive({
       geometryInstances: new GeometryInstance({

@@ -2,12 +2,13 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 10:48:22
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:07:21
+ * @LastEditTime: 2024-01-08 10:53:56
  * @Description: Point
  */
 import { Color, Entity, PointGraphics, Property } from 'cesium'
 import { getColorProperty } from '../../../material'
 import { EntityOption } from '..'
+import { defaultColor } from '../../../defaultVal'
 
 /**
  * PointEntity参数，改造了Point属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
@@ -41,8 +42,8 @@ export function createEntityPoint(options: PointEntityOption) {
   } = options
   const point: PointGraphics.ConstructorOptions = {
     ...rest,
-    color: getColorProperty(rest.color),
-    outlineColor: getColorProperty(rest.outlineColor)
+    color: getColorProperty(rest.color ?? defaultColor),
+    outlineColor: getColorProperty(rest.outlineColor ?? defaultColor)
   }
   return new Entity({
     id,

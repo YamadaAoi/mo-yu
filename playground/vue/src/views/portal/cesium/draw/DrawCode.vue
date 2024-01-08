@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 09:46:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:11:34
+ * @LastEditTime: 2024-01-08 14:25:24
  * @Description: 绘制工具
 -->
 <template>
@@ -57,7 +57,7 @@ import {
   DrawRectTool,
   DrawCircleTool
 } from '@mo-yu/cesium'
-import CommonMap from 'src/components/commonMap/CommonMap.vue'
+import CommonMap from '../map/CommonMap.vue'
 
 const mapReady = ref(false)
 let tool: DrawBase
@@ -81,7 +81,10 @@ function startPolyline() {
     },
     polyline: {
       clampToGround: true,
-      material: '#87CEEB'
+      material: 'rgba(135,206,235,0.7)'
+    },
+    floatPolyline: {
+      material: 'rgba(135,206,235,0.5)'
     }
   })
   line.enable()
@@ -96,11 +99,17 @@ function startPolygon() {
     },
     polyline: {
       clampToGround: true,
-      material: '#00FA9A'
+      material: 'rgba(127,255,170,0.7)'
     },
     polygon: {
       clampToGround: true,
-      material: '#7FFFAA'
+      material: 'rgba(127,255,170,0.7)'
+    },
+    floatPolyline: {
+      material: 'rgba(127,255,170,0.5)'
+    },
+    floatPolygon: {
+      material: 'rgba(127,255,170,0.5)'
     }
   })
   area.enable()
@@ -115,11 +124,17 @@ function startRect() {
     },
     polyline: {
       clampToGround: true,
-      material: '#FFD700'
+      material: 'rgba(255,215,0,0.7)'
     },
     polygon: {
       clampToGround: true,
-      material: '#FFE4B5'
+      material: 'rgba(255,215,0,0.7)'
+    },
+    floatPolyline: {
+      material: 'rgba(255,215,0,0.5)'
+    },
+    floatPolygon: {
+      material: 'rgba(255,215,0,0.5)'
     }
   })
   rect.enable()
@@ -134,11 +149,17 @@ function startCircle() {
     },
     polyline: {
       clampToGround: true,
-      material: '	#FF7F50'
+      material: 'rgba(255,127,80,0.7)'
     },
     circle: {
       clampToGround: true,
-      material: '	#FFA07A'
+      material: 'rgba(255,127,80,0.7)'
+    },
+    floatPolyline: {
+      material: 'rgba(255,127,80,0.5)'
+    },
+    floatCircle: {
+      material: 'rgba(255,127,80,0.5)'
     }
   })
   circle.enable()

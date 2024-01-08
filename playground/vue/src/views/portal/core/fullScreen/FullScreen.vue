@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-06 15:16:08
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:07:54
+ * @LastEditTime: 2024-01-08 13:52:34
  * @Description: 
 -->
 <template>
-  <demo-wrap>
+  <DemoWrap>
     <template #title>全屏工具 FullscreenTool</template>
     <template #subTitle>快，让我康康。</template>
     <template #demo>
@@ -15,7 +15,7 @@
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
-  </demo-wrap>
+  </DemoWrap>
 </template>
 
 <script setup lang="ts">

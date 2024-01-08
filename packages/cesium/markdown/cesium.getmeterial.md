@@ -9,7 +9,9 @@
 **Signature:**
 
 ```typescript
-export declare function getMeterial(mat?: Material | Color | string): Material
+export declare function getMeterial(
+  mat?: Material | Color | string
+): Material | undefined
 ```
 
 ## Parameters
@@ -20,4 +22,4 @@ export declare function getMeterial(mat?: Material | Color | string): Material
 
 **Returns:**
 
-Material
+Material \| undefined

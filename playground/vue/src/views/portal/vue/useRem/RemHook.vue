@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-20 17:05:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:13:39
+ * @LastEditTime: 2024-01-08 13:51:40
  * @Description: 
 -->
 <template>
-  <demo-wrap>
+  <DemoWrap>
     <template #title>RemHook useRem</template>
     <template #subTitle
       >显而易见，这就是为了在vue里方便使用remTool捣鼓出来的。</template
@@ -17,7 +17,7 @@
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
-  </demo-wrap>
+  </DemoWrap>
 </template>
 
 <script setup lang="ts">

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:31:44
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 19:06:01
+ * @LastEditTime: 2024-01-08 10:55:23
  * @Description: 面Primitive
  */
 import {
@@ -23,6 +23,7 @@ import {
   GroundPrimitiveOption,
   PrimitiveOption
 } from '..'
+import { defaultColor } from '../../../defaultVal'
 
 /**
  * PolygonGeometry构造参数
@@ -57,7 +58,6 @@ export interface PolygonOption extends PolygonPrimitiveOption {
  * @returns
  */
 export function createPolygon(options: PolygonOption) {
-  const defaultColor = Color.LIGHTBLUE
   const geometryInstances = new GeometryInstance({
     id: options.id,
     modelMatrix: options.modelMatrix,

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-18 13:34:26
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-29 16:28:38
+ * @LastEditTime: 2024-01-08 14:24:57
  * @Description: 3DTiles配置
 -->
 <template>
@@ -237,7 +237,7 @@ import { NInput, NInputNumber, NSlider, useMessage } from 'naive-ui'
 import { isNumber, guid, readText, saveAsJson } from '@mo-yu/core'
 import { useRem, MPopup } from '@mo-yu/vue'
 import { Position, TileOption, MapTileConfigTool } from '@mo-yu/cesium'
-import CommonMap from 'src/components/commonMap/CommonMap.vue'
+import CommonMap from '../map/CommonMap.vue'
 
 interface TileInfo extends TileOption {
   id: string

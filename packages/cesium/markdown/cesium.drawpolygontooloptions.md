@@ -16,7 +16,7 @@ export interface DrawPolygonToolOptions extends DrawPolylineToolOptions
 
 ## Properties
 
-| Property                                                         | Modifiers | Type                                       | Description             |
-| ---------------------------------------------------------------- | --------- | ------------------------------------------ | ----------------------- |
-| [floatPolygon?](./cesium.drawpolygontooloptions.floatpolygon.md) |           | PolygonGraphics.ConstructorOptions         | _(Optional)_ 拖拽面样式 |
-| [polygon?](./cesium.drawpolygontooloptions.polygon.md)           |           | [PolygonOption](./cesium.polygonoption.md) | _(Optional)_ 面样式     |
+| Property                                                         | Modifiers | Type                                                   | Description             |
+| ---------------------------------------------------------------- | --------- | ------------------------------------------------------ | ----------------------- |
+| [floatPolygon?](./cesium.drawpolygontooloptions.floatpolygon.md) |           | [PolygonEntityOption](./cesium.polygonentityoption.md) | _(Optional)_ 拖拽面样式 |
+| [polygon?](./cesium.drawpolygontooloptions.polygon.md)           |           | [PolygonOption](./cesium.polygonoption.md)             | _(Optional)_ 面样式     |

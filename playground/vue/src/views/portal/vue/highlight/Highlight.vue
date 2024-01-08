@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 17:58:50
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:08:39
+ * @LastEditTime: 2024-01-08 13:52:04
  * @Description:  
 -->
 <template>
-  <demo-wrap>
+  <DemoWrap>
     <template #title>高亮关键字 MHighlight</template>
     <template #subTitle>别躲了，我看见你了，出来吧。</template>
     <template #demo>
@@ -15,7 +15,7 @@
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
-  </demo-wrap>
+  </DemoWrap>
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.6
+
+### Patch Changes
+
+- 绘制工具拖拽实体优化
+
 ## 1.0.5
 
 ### Patch Changes

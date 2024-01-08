@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 14:45:35
+ * @LastEditTime: 2024-01-08 14:23:44
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -103,9 +103,18 @@ export function getVueMenus() {
 export function getCesiumMenus() {
   const menus: RouteRecordRaw[] = [
     {
+      path: '/portal/map',
+      name: 'Map',
+      component: () => import('../views/portal/cesium/map/MapDemo.vue'),
+      meta: {
+        label: '初始化地图',
+        cname: 'MapView'
+      }
+    },
+    {
       path: '/portal/tiles',
       name: 'Tiles',
-      component: () => import('../views/portal/cesium/tile/TileConfig.vue'),
+      component: () => import('../views/portal/cesium/tile/TileDemo.vue'),
       meta: {
         label: '3DTiles',
         cname: 'MapTile[Config]Tool'
@@ -114,7 +123,7 @@ export function getCesiumMenus() {
     {
       path: '/portal/draw',
       name: 'Draw',
-      component: () => import('../views/portal/cesium/draw/DrawTool.vue'),
+      component: () => import('../views/portal/cesium/draw/DrawDemo.vue'),
       meta: {
         label: '绘制工具',
         cname: 'Draw[Point|polyline|polygon|Rect|Circle]Tool'

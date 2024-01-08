@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-11 16:11:22
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 16:48:11
+ * @LastEditTime: 2024-01-08 14:04:20
  * @Description: 代码展示 
 -->
 <template>
@@ -16,6 +16,7 @@
           placeholder="请输入"
           :options="props.source ?? []"
           :consistent-menu-width="false"
+          :to="false"
         />
       </div>
       <div class="code-path">{{ path }}</div>
@@ -53,6 +54,7 @@ const path = computed(() => {
 .code-display {
   width: 100%;
   height: 100%;
+  background-color: #0d1117;
   .code-pick {
     width: 100%;
     height: 70px;

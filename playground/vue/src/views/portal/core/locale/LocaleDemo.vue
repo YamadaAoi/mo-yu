@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-20 11:22:43
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:08:02
+ * @LastEditTime: 2024-01-08 13:52:24
  * @Description: 
 -->
 <template>
-  <demo-wrap>
+  <DemoWrap>
     <template #title>国际化工具 LocaleTool</template>
     <template #subTitle>这活儿要不还是让后端干吧。</template>
     <template #demo>
@@ -15,7 +15,7 @@
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
-  </demo-wrap>
+  </DemoWrap>
 </template>
 
 <script setup lang="ts">

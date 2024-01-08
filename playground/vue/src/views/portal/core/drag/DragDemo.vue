@@ -2,11 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-06 16:11:14
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 17:07:35
+ * @LastEditTime: 2024-01-08 13:52:40
  * @Description: 
 -->
 <template>
-  <demo-wrap>
+  <DemoWrap>
     <template #title>拖拽工具 DragTool</template>
     <template #subTitle>我是一块砖，哪里需要往哪儿搬。</template>
     <template #demo>
@@ -15,7 +15,7 @@
     <template #code>
       <CodeDisplay :source="source"></CodeDisplay>
     </template>
-  </demo-wrap>
+  </DemoWrap>
 </template>
 
 <script setup lang="ts">
