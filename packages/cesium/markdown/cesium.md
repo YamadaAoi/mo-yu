@@ -41,7 +41,7 @@
 | [createPolyline(options)](./cesium.createpolyline.md)              | 创建线 Primitive 对象，此方法会根据 clampToGround 创建不同的对象                                           |
 | [getColor(color)](./cesium.getcolor.md)                            | 获取 cesium 颜色对象                                                                                       |
 | [getColorProperty(color)](./cesium.getcolorproperty.md)            | 获取 cesium 颜色对象或颜色 Property                                                                        |
-| [getDefaultOptions()](./cesium.getdefaultoptions.md)               | cesium 默认初始化参数                                                                                      |
+| [getDefaultOptions(color)](./cesium.getdefaultoptions.md)          | cesium 默认初始化参数                                                                                      |
 | [getHorizontalDistance(p1, p2)](./cesium.gethorizontaldistance.md) | 计算两点间水平距离                                                                                         |
 | [getMeterial(mat)](./cesium.getmeterial.md)                        | 获取材质                                                                                                   |
 | [getMeterialProperty(mat)](./cesium.getmeterialproperty.md)        | 获取 cesium 颜色对象或 MaterialProperty                                                                    |
@@ -49,7 +49,7 @@
 | [getPosiOnAction(endPosition)](./cesium.getposionaction.md)        | 获取鼠标事件点的位置                                                                                       |
 | [getPosiOnMap(position)](./cesium.getposionmap.md)                 | 获取点在当前地图上上的位置 先尝试获取在几何体上的位置，获取失败再尝试获取在地形上的位置 都失败则返回原位置 |
 | [getPosiOnTerrain(posi)](./cesium.getposionterrain.md)             | 获取点在地形上的位置                                                                                       |
-| [initCesium(baseURL, token)](./cesium.initcesium.md)               | 初始化 cesium CESIUM_BASE_URL defaultAccessToken                                                           |
+| [initCesiumBaseUrl(url)](./cesium.initcesiumbaseurl.md)            | 初始化 cesium CESIUM_BASE_URL                                                                              |
 
 ## Interfaces
 
@@ -62,13 +62,13 @@
 | [DrawCircleToolOptions](./cesium.drawcircletooloptions.md)     | 画圆功能入参                                        |
 | [DrawPointToolEvents](./cesium.drawpointtoolevents.md)         | 画点事件                                            |
 | [DrawPointToolOptions](./cesium.drawpointtooloptions.md)       | 画点功能入参                                        |
-| [DrawPolygonToolEvents](./cesium.drawpolygontoolevents.md)     | 画线事件                                            |
-| [DrawPolygonToolOptions](./cesium.drawpolygontooloptions.md)   | 画线功能入参                                        |
+| [DrawPolygonToolEvents](./cesium.drawpolygontoolevents.md)     | 画面事件                                            |
+| [DrawPolygonToolOptions](./cesium.drawpolygontooloptions.md)   | 画面功能入参                                        |
 | [DrawPolylineToolEvents](./cesium.drawpolylinetoolevents.md)   | 画线事件                                            |
 | [DrawPolylineToolOptions](./cesium.drawpolylinetooloptions.md) | 画线功能入参                                        |
 | [DrawRectToolEvents](./cesium.drawrecttoolevents.md)           | 画矩形事件                                          |
 | [DrawRectToolOptions](./cesium.drawrecttooloptions.md)         | 画矩形功能入参                                      |
-| [MapOption](./cesium.mapoption.md)                             |                                                     |
+| [MapOption](./cesium.mapoption.md)                             | 扩展 cesium 默认初始化参数                          |
 | [MapTileConfigToolEvents](./cesium.maptileconfigtoolevents.md) | 3DTiles 配置事件                                    |
 | [MapTileToolEvents](./cesium.maptiletoolevents.md)             | 事件                                                |
 | [PointOption](./cesium.pointoption.md)                         | PointPrimitive 属性                                 |

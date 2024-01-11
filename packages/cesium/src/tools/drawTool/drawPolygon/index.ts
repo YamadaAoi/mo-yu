@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 17:17:55
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 11:02:46
+ * @LastEditTime: 2024-01-08 14:40:02
  * @Description: 画多边形
  */
 import { CallbackProperty, Cartesian3, Entity, PolygonHierarchy } from 'cesium'
@@ -19,7 +19,7 @@ import {
 } from '../../../core/geo/entity/polygon'
 
 /**
- * 画线功能入参
+ * 画面功能入参
  */
 export interface DrawPolygonToolOptions extends DrawPolylineToolOptions {
   /**
@@ -33,7 +33,7 @@ export interface DrawPolygonToolOptions extends DrawPolylineToolOptions {
 }
 
 /**
- * 画线事件
+ * 画面事件
  */
 export interface DrawPolygonToolEvents extends DrawBaseEvents {
   'left-click': {

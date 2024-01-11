@@ -2,17 +2,24 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 14:58:29
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-02 11:17:23
+ * @LastEditTime: 2024-01-11 17:53:14
  * @Description:
  */
-import { Ion, SceneMode, Viewer } from 'cesium'
+import { Rectangle, SceneMode, SingleTileImageryProvider, Viewer } from 'cesium'
 import { ToolBaseOptions } from '@mo-yu/core'
 
+/**
+ * 扩展cesium默认初始化参数
+ */
 export interface MapOption extends ToolBaseOptions {
   /**
    * 当前地图实例唯一id
    */
   id: string
+  /**
+   * 默认球体颜色
+   */
+  baseColor?: string
   baseOption?: Viewer.ConstructorOptions
 }
 
@@ -26,20 +33,30 @@ export interface Position {
 }
 
 /**
- * 初始化cesium CESIUM_BASE_URL defaultAccessToken
- * @param baseURL - CESIUM_BASE_URL
- * @param token - defaultAccessToken
+ * 初始化cesium CESIUM_BASE_URL
+ * @param url - CESIUM_BASE_URL
  */
-export function initCesium(baseURL: string, token: string) {
-  window.CESIUM_BASE_URL = baseURL
-  Ion.defaultAccessToken = token
+export function initCesiumBaseUrl(url: string) {
+  window.CESIUM_BASE_URL = url
+}
+
+function createColorCanvas(color: string) {
+  const canvas = document.createElement('canvas')
+  canvas.width = 1
+  canvas.height = 1
+  const ctx = canvas.getContext('2d')
+  if (ctx) {
+    ctx.fillStyle = color
+    ctx.fillRect(0, 0, 1, 1)
+  }
+  return canvas.toDataURL()
 }
 
 /**
  * cesium 默认初始化参数
  * @returns
  */
-export function getDefaultOptions(): Viewer.ConstructorOptions {
+export function getDefaultOptions(color?: string): Viewer.ConstructorOptions {
   return {
     sceneMode: SceneMode.SCENE3D,
     // 查找位置工具
@@ -48,6 +65,11 @@ export function getDefaultOptions(): Viewer.ConstructorOptions {
     homeButton: false,
     // 3d/2d 模式切换按钮
     sceneModePicker: false,
+    // 默认无底图
+    imageryProvider: new SingleTileImageryProvider({
+      url: createColorCanvas(color ?? 'transparent'),
+      rectangle: Rectangle.fromDegrees(-180.0, -90.0, 180.0, 90.0)
+    }),
     // 图层选择按钮
     baseLayerPicker: false,
     // 右上角的帮助按钮

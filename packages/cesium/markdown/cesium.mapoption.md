@@ -4,6 +4,8 @@
 
 ## MapOption interface
 
+扩展 cesium 默认初始化参数
+
 **Signature:**
 
 ```typescript
@@ -14,7 +16,8 @@ export interface MapOption extends ToolBaseOptions
 
 ## Properties
 
-| Property                                        | Modifiers | Type                      | Description         |
-| ----------------------------------------------- | --------- | ------------------------- | ------------------- |
-| [baseOption?](./cesium.mapoption.baseoption.md) |           | Viewer.ConstructorOptions | _(Optional)_        |
-| [id](./cesium.mapoption.id.md)                  |           | string                    | 当前地图实例唯一 id |
+| Property                                        | Modifiers | Type                      | Description               |
+| ----------------------------------------------- | --------- | ------------------------- | ------------------------- |
+| [baseColor?](./cesium.mapoption.basecolor.md)   |           | string                    | _(Optional)_ 默认球体颜色 |
+| [baseOption?](./cesium.mapoption.baseoption.md) |           | Viewer.ConstructorOptions | _(Optional)_              |
+| [id](./cesium.mapoption.id.md)                  |           | string                    | 当前地图实例唯一 id       |

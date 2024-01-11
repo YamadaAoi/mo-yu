@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-08 14:20:32
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 14:20:35
+ * @LastEditTime: 2024-01-11 18:15:19
  * @Description: 
 -->
 <template>
@@ -16,11 +16,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref } from 'vue'
+import { onMounted, onBeforeUnmount } from 'vue'
 import 'cesiumcss'
-import { createWorldTerrain } from 'cesium'
-import { MapView } from '@mo-yu/cesium'
+import { initCesiumBaseUrl, MapView, SceneConfig } from '@mo-yu/cesium'
 import { useRem } from '@mo-yu/vue'
+
+initCesiumBaseUrl(import.meta.env.CESIUM_BASE_URL)
 
 const props = withDefaults(
   defineProps<{
@@ -30,7 +31,6 @@ const props = withDefaults(
     mapId: 'mainMapView'
   }
 )
-const mapReady = ref(false)
 const emits = defineEmits<{
   (e: 'loaded', id: string): void
   (e: 'removed'): void
@@ -40,21 +40,32 @@ const { zoom } = useRem()
 let map: MapView
 
 onMounted(() => {
-  map = new MapView(props.mapId, {
-    id: props.mapId
-  })
-  map.enable()
-  map.eventBus.once('ready', e => {
-    mapReady.value = true
-    emits('loaded', e.view?.id)
-    map.viewer.terrainProvider = createWorldTerrain()
-  })
+  loadConfig()
+    .then(config => {
+      map = new MapView(props.mapId, {
+        id: props.mapId
+      })
+      map.enable()
+      map.eventBus.once('ready', e => {
+        map.sceneTool.prepareScene(config)
+        emits('loaded', e.view?.id)
+      })
+    })
+    .catch(err => {
+      console.error(err)
+    })
 })
 
 onBeforeUnmount(() => {
   map?.destroy()
   emits('removed')
 })
+
+async function loadConfig() {
+  const res = await fetch(`/map/${props.mapId}.json`)
+  const json: SceneConfig = await res.json()
+  return json
+}
 </script>
 
 <style scoped lang="scss">

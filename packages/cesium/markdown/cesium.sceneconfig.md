@@ -14,8 +14,10 @@ export interface SceneConfig
 
 ## Properties
 
-| Property                                 | Modifiers | Type                                             | Description        |
-| ---------------------------------------- | --------- | ------------------------------------------------ | ------------------ |
-| [camera](./cesium.sceneconfig.camera.md) |           | [CameraParam](./cesium.cameraparam.md)           | 初始相机位置，角度 |
-| [geos](./cesium.sceneconfig.geos.md)     |           | [GeoOptions](./cesium.geooptions.md)<!-- -->\[\] | 场景中默认矢量     |
-| [tiles](./cesium.sceneconfig.tiles.md)   |           | [TileOption](./cesium.tileoption.md)<!-- -->\[\] | 场景中默认 3dTiles |
+| Property                                    | Modifiers | Type                                             | Description                     |
+| ------------------------------------------- | --------- | ------------------------------------------------ | ------------------------------- |
+| [camera?](./cesium.sceneconfig.camera.md)   |           | [CameraParam](./cesium.cameraparam.md)           | _(Optional)_ 初始相机位置，角度 |
+| [geos?](./cesium.sceneconfig.geos.md)       |           | [GeoOptions](./cesium.geooptions.md)<!-- -->\[\] | _(Optional)_ 场景中默认矢量     |
+| [map?](./cesium.sceneconfig.map.md)         |           | BaseMapConfig                                    | _(Optional)_ 默认底图           |
+| [terrain?](./cesium.sceneconfig.terrain.md) |           | TerrainConfig                                    | _(Optional)_ 默认地形           |
+| [tiles?](./cesium.sceneconfig.tiles.md)     |           | [TileOption](./cesium.tileoption.md)<!-- -->\[\] | _(Optional)_ 场景中默认 3dTiles |

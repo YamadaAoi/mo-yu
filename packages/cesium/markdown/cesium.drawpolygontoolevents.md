@@ -4,7 +4,7 @@
 
 ## DrawPolygonToolEvents interface
 
-画线事件
+画面事件
 
 **Signature:**
 

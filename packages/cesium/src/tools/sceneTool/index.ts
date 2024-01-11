@@ -2,13 +2,14 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:38:10
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-29 16:35:31
+ * @LastEditTime: 2024-01-11 17:08:36
  * @Description: 地图场景初始化工具
  */
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
 import { CameraParam, MapCameraTool } from '../cameraTool'
 import { TileOption, MapTileTool } from '../tileTool'
 import { GeoOptions, MapGeoTool } from '../geoTool'
+import { BaseMapConfig, BaseMapTool, TerrainConfig } from '../baseMapTool'
 
 /**
  * 场景配置
@@ -17,15 +18,23 @@ export interface SceneConfig {
   /**
    * 初始相机位置，角度
    */
-  camera: CameraParam
+  camera?: CameraParam
   /**
    * 场景中默认3dTiles
    */
-  tiles: TileOption[]
+  tiles?: TileOption[]
   /**
    * 场景中默认矢量
    */
-  geos: GeoOptions[]
+  geos?: GeoOptions[]
+  /**
+   * 默认底图
+   */
+  map?: BaseMapConfig
+  /**
+   * 默认地形
+   */
+  terrain?: TerrainConfig
 }
 
 /**
@@ -58,6 +67,7 @@ export class MapSceneTool extends ToolBase<
   camera = new MapCameraTool({})
   tile = new MapTileTool({})
   geo = new MapGeoTool({})
+  baseMap = new BaseMapTool({})
   constructor(options: MapSceneToolOptions) {
     super(options)
     this.prepareScene(options.config)
@@ -70,6 +80,7 @@ export class MapSceneTool extends ToolBase<
     this.camera.enable()
     this.tile.enable()
     this.geo.enable()
+    this.baseMap.enable()
   }
 
   /**
@@ -79,6 +90,7 @@ export class MapSceneTool extends ToolBase<
     this.camera.destroy()
     this.tile.destroy()
     this.geo.destroy()
+    this.baseMap.destroy()
   }
 
   prepareScene(config?: SceneConfig, duration = 0) {
@@ -99,6 +111,12 @@ export class MapSceneTool extends ToolBase<
         config.geos.forEach(g => {
           this.geo.addGeo(g)
         })
+      }
+      if (config.map) {
+        this.baseMap.addImagery(config.map)
+      }
+      if (config.terrain) {
+        this.baseMap.addTerrain(config.terrain)
       }
     }
   }

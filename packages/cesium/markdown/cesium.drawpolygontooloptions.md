@@ -4,7 +4,7 @@
 
 ## DrawPolygonToolOptions interface
 
-画线功能入参
+画面功能入参
 
 **Signature:**
 

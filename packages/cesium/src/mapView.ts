@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:07:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-03 10:42:23
+ * @LastEditTime: 2024-01-11 17:52:47
  * @Description:
  */
 import {
@@ -13,7 +13,8 @@ import {
   BoundingSphere,
   Cartesian3,
   CameraEventType,
-  KeyboardEventModifier
+  KeyboardEventModifier,
+  Color
 } from 'cesium'
 import { guid, getDefault, ToolBase } from '@mo-yu/core'
 import { getDefaultOptions, MapOption } from './mapViewAble'
@@ -66,7 +67,10 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
     super(options)
     this.#options = {
       id: options?.id ?? guid(),
-      baseOption: getDefault(getDefaultOptions(), options?.baseOption)
+      baseOption: getDefault(
+        getDefaultOptions(options.baseColor),
+        options?.baseOption
+      )
     }
     this.#container = container
   }
@@ -98,6 +102,7 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
     this.#map = new Viewer(this.#container, {
       ...this.#options.baseOption
     })
+    this.#map.scene.globe.baseColor = Color.TRANSPARENT
     mapStoreTool.setMap(this.id, this)
     this.#map.scene.globe.depthTestAgainstTerrain = true
     this.#insertPopupDom()

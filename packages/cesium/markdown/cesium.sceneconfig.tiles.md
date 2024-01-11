@@ -9,5 +9,5 @@
 **Signature:**
 
 ```typescript
-tiles: TileOption[];
+tiles?: TileOption[];
 ```

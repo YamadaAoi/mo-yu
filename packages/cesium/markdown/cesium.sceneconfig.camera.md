@@ -9,5 +9,5 @@
 **Signature:**
 
 ```typescript
-camera: CameraParam
+camera?: CameraParam;
 ```

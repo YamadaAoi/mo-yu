@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.7
+
+### Patch Changes
+
+- OGC 格式底图和 arcgis 底图添加，自定义地形添加，去 Ion 化
+
 ## 1.0.6
 
 ### Patch Changes

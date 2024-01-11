@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-08 14:21:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 14:22:38
+ * @LastEditTime: 2024-01-11 18:17:01
  * @Description: 
 -->
 <template>
@@ -21,12 +21,18 @@ import MapDemo from 'src/components/demo/MapDemo.vue'
 import CodeDisplay from 'src/components/code/CodeDisplay.vue'
 import CommonMap from './CommonMap.vue'
 import map from './CommonMap.vue?raw'
+import json from '../../../../../public/map/mainMapView.json?raw'
 
 const source = [
   {
     label: 'CommonMap',
     path: './CommonMap.vue',
     raw: map
+  },
+  {
+    label: 'mainMapView',
+    path: '/map/mainMapView.json',
+    raw: json
   }
 ]
 </script>

@@ -9,8 +9,16 @@ cesium 默认初始化参数
 **Signature:**
 
 ```typescript
-export declare function getDefaultOptions(): Viewer.ConstructorOptions
+export declare function getDefaultOptions(
+  color?: string
+): Viewer.ConstructorOptions
 ```
+
+## Parameters
+
+| Parameter | Type   | Description  |
+| --------- | ------ | ------------ |
+| color     | string | _(Optional)_ |
 
 **Returns:**
 
