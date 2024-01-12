@@ -2,13 +2,18 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 15:02:23
+ * @LastEditTime: 2024-01-12 17:25:22
  * @Description: geojson工具
  */
-import { GeoJsonDataSource, Resource, Color } from 'cesium'
+import { GeoJsonDataSource, Resource, Color, JulianDate } from 'cesium'
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
 import { mapStoreTool } from '../storeTool'
 import { getColor } from '../../core/material'
+import {
+  PolylineEntityOption,
+  createEntityPolyline,
+  createEntityPolylineGraphics
+} from '../../core/geo/entity/polyline'
 
 /**
  * geojson参数，在原始参数基础上合并了参数:
@@ -20,6 +25,7 @@ import { getColor } from '../../core/material'
  * 添加了参数
  * id: 唯一标识
  * locate: 是否定位
+ * border: 多边形边界线样式
  */
 export type GeoOptions = Omit<
   GeoJsonDataSource.LoadOptions,
@@ -31,6 +37,7 @@ export type GeoOptions = Omit<
   fill?: Color | string
   id?: string
   locate?: boolean
+  border?: PolylineEntityOption
 }
 
 interface MapGeoToolEvents {}
@@ -112,12 +119,24 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
   }
 
   /**
+   * 移除GeoJson
+   * @param id - GeoJson Id
+   */
+  removeGeo(id: string) {
+    const geo = this.getGeoById(id)
+    if (geo) {
+      this.#viewer?.dataSources.remove(geo)
+    }
+  }
+
+  /**
    * 添加GeoJson
    * @param option - geojson参数
    */
   addGeo(option: GeoOptions) {
     if (option) {
-      const { id, locate, url, markerColor, stroke, fill, ...rest } = option
+      const { id, locate, url, markerColor, stroke, fill, border, ...rest } =
+        option
       const source = new GeoJsonDataSource(id)
       const o: GeoJsonDataSource.LoadOptions = { ...rest }
       if (markerColor) {
@@ -129,12 +148,36 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
       if (fill) {
         o.fill = getColor(fill)
       }
-      source.load(url, o)
-      this.#geoNames.push(source.name)
-      this.#viewer?.dataSources.add(source)
-      if (locate) {
-        this.#viewer.zoomTo(source)
-      }
+      source
+        .load(url, o)
+        .then(s => {
+          this.#geoNames.push(s.name)
+          this.#viewer?.dataSources.add(s)
+          if (option.border) {
+            const entities = s.entities.values
+            if (entities?.length) {
+              entities.forEach(e => {
+                if (e.polygon) {
+                  const positions = e.polygon.hierarchy?.getValue(
+                    JulianDate.now()
+                  )?.positions
+                  if (positions?.length) {
+                    e.polyline = createEntityPolylineGraphics({
+                      ...border,
+                      positions
+                    })
+                  }
+                }
+              })
+            }
+          }
+          if (locate) {
+            this.#viewer.zoomTo(s)
+          }
+        })
+        .catch(err => {
+          console.error(`load geojson [${url}] failed!`)
+        })
     }
   }
 

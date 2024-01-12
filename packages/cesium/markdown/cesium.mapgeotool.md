@@ -39,4 +39,5 @@ tool.addGeo(config, false, config.id)
 | [enable()](./cesium.mapgeotool.enable.md)               |           | 启用                                                |
 | [getGeoById(id)](./cesium.mapgeotool.getgeobyid.md)     |           | 根据 id 获取 GeoJsonDataSource，请自行维护唯一 name |
 | [locateGeo(id)](./cesium.mapgeotool.locategeo.md)       |           | 定位至 GeoJson                                      |
+| [removeGeo(id)](./cesium.mapgeotool.removegeo.md)       |           | 移除 GeoJson                                        |
 | [toggleGeo(id, show)](./cesium.mapgeotool.togglegeo.md) |           | GeoJson 显隐                                        |

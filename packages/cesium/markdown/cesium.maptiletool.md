@@ -51,6 +51,7 @@ tool.add3DTileset({...})
 | [getTileById(id)](./cesium.maptiletool.gettilebyid.md)                        |                        | 根据 id 获取 tile |
 | [getTransform(mat, params)](./cesium.maptiletool.gettransform.md)             | <code>protected</code> |                   |
 | [locateTile(id)](./cesium.maptiletool.locatetile.md)                          |                        | 定位 3DTiles      |
+| [removeTile(id)](./cesium.maptiletool.removetile.md)                          |                        | 移除 3DTiles      |
 | [toggleTile(id, show)](./cesium.maptiletool.toggletile.md)                    |                        | 显隐 3DTiles      |
 | [updateHPR(prev, params)](./cesium.maptiletool.updatehpr.md)                  | <code>protected</code> |                   |
 | [updateTranslation(prev, params)](./cesium.maptiletool.updatetranslation.md)  | <code>protected</code> |                   |

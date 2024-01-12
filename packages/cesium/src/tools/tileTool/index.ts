@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 10:31:57
+ * @LastEditTime: 2024-01-12 14:16:50
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -141,6 +141,17 @@ export class MapTileTool<
     const tile = this.getTileById(id)
     if (tile) {
       tile.show = show
+    }
+  }
+
+  /**
+   * 移除3DTiles
+   * @param id - 3DTiles Id
+   */
+  removeTile(id: string) {
+    const tile = this.getTileById(id)
+    if (tile) {
+      this.tiles.remove(tile)
     }
   }
 

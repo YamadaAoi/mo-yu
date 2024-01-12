@@ -33,7 +33,7 @@ tool.prepareScene(config, 1)
 
 | Property                                    | Modifiers             | Type                                                                                                                                   | Description |
 | ------------------------------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [baseMap](./cesium.mapscenetool.basemap.md) |                       | BaseMapTool                                                                                                                            |             |
+| [baseMap](./cesium.mapscenetool.basemap.md) |                       | [BaseMapTool](./cesium.basemaptool.md)                                                                                                 |             |
 | [camera](./cesium.mapscenetool.camera.md)   |                       | [MapCameraTool](./cesium.mapcameratool.md)                                                                                             |             |
 | [config](./cesium.mapscenetool.config.md)   | <code>readonly</code> | [SceneConfig](./cesium.sceneconfig.md) \| undefined                                                                                    |             |
 | [geo](./cesium.mapscenetool.geo.md)         |                       | [MapGeoTool](./cesium.mapgeotool.md)                                                                                                   |             |

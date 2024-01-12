@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-11 14:21:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-12 11:16:06
+ * @LastEditTime: 2024-01-12 14:34:32
  * @Description:
  */
 import {
@@ -182,10 +182,11 @@ interface BaseMapToolEvents {
 }
 
 export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
-  #curLayers: ImageryLayer[] = []
-  #prevTerrain: TerrainProvider | undefined
   baseMap = ''
   terrain = ''
+  #curLayers: ImageryLayer[] = []
+  #prevTerrain: TerrainProvider | undefined
+  #layerMap: Map<string, ImageryLayer[]> = new Map()
   constructor(options: ToolBaseOptions) {
     super(options)
   }
@@ -219,7 +220,8 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
   }
 
   /**
-   * 底图添加
+   * 底图添加(默认只有一个底图)
+   * 添加时清除前一个底图
    * @param config - 底图配置BaseMapConfig
    */
   addImagery(config: BaseMapConfig) {
@@ -238,6 +240,75 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
       this.eventBus.fire('base-map-change', {
         id: this.baseMap
       })
+    }
+  }
+
+  /**
+   * 影像切片类图层添加
+   * @param config - 影像切片配置BaseMapConfig
+   */
+  addImageryLayer(config: BaseMapConfig) {
+    if (this.#viewer) {
+      const providers = createImageryProvider(config)
+      const layers = providers.map(p =>
+        this.#viewer.imageryLayers.addImageryProvider(p)
+      )
+      if (config.id) {
+        this.#layerMap.set(config.id, layers)
+      }
+    }
+  }
+
+  /**
+   * 根据id获取影像切片图层列表
+   * @param id - 影像切片id
+   * @returns
+   */
+  getImageryLayerById(id: string) {
+    return this.#layerMap.get(id)
+  }
+
+  /**
+   * 影像切片显隐
+   * @param id - 影像切片 Id
+   * @param show - 显隐
+   */
+  toggleImageryLayer(id: string, show: boolean) {
+    const layers = this.getImageryLayerById(id)
+    if (layers?.length) {
+      layers.forEach(l => {
+        l.show = show
+      })
+    }
+  }
+
+  /**
+   * 移除影像切片
+   * @param id - 影像切片 Id
+   */
+  removeImageryLayer(id: string) {
+    const layers = this.getImageryLayerById(id)
+    if (layers?.length) {
+      layers.forEach(l => {
+        this.#viewer.imageryLayers.remove(l)
+      })
+    }
+  }
+
+  /**
+   * 定位至影像
+   * @param id - 影像id
+   */
+  locateImageryLayer(id: string) {
+    const layers = this.getImageryLayerById(id)
+    if (layers?.length) {
+      this.#viewer
+        ?.flyTo(layers[0], {
+          duration: 1
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 

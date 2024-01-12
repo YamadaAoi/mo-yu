@@ -18,6 +18,6 @@ export interface SceneConfig
 | ------------------------------------------- | --------- | ------------------------------------------------ | ------------------------------- |
 | [camera?](./cesium.sceneconfig.camera.md)   |           | [CameraParam](./cesium.cameraparam.md)           | _(Optional)_ 初始相机位置，角度 |
 | [geos?](./cesium.sceneconfig.geos.md)       |           | [GeoOptions](./cesium.geooptions.md)<!-- -->\[\] | _(Optional)_ 场景中默认矢量     |
-| [map?](./cesium.sceneconfig.map.md)         |           | BaseMapConfig                                    | _(Optional)_ 默认底图           |
-| [terrain?](./cesium.sceneconfig.terrain.md) |           | TerrainConfig                                    | _(Optional)_ 默认地形           |
+| [map?](./cesium.sceneconfig.map.md)         |           | [BaseMapConfig](./cesium.basemapconfig.md)       | _(Optional)_ 默认底图           |
+| [terrain?](./cesium.sceneconfig.terrain.md) |           | [TerrainConfig](./cesium.terrainconfig.md)       | _(Optional)_ 默认地形           |
 | [tiles?](./cesium.sceneconfig.tiles.md)     |           | [TileOption](./cesium.tileoption.md)<!-- -->\[\] | _(Optional)_ 场景中默认 3dTiles |

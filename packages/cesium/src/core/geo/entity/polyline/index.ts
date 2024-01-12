@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 10:54:29
+ * @LastEditTime: 2024-01-12 17:53:41
  * @Description: Polyline
  */
 import { Color, Entity, MaterialProperty, PolylineGraphics } from 'cesium'
@@ -25,6 +25,35 @@ export type PolylineEntityOption = EntityOption &
   }
 
 /**
+ * 创建线Graphics
+ * @param options - 线参数
+ * @returns
+ */
+export function createEntityPolylineGraphics(options: PolylineEntityOption) {
+  const {
+    id,
+    name,
+    availability,
+    show,
+    description,
+    position,
+    orientation,
+    viewFrom,
+    parent,
+    properties,
+    ...rest
+  } = options
+  const polyline = new PolylineGraphics({
+    ...rest,
+    material: getMeterialProperty(rest.material ?? defaultColor),
+    depthFailMaterial: getMeterialProperty(
+      rest.depthFailMaterial ?? defaultColor
+    )
+  })
+  return polyline
+}
+
+/**
  * 创建线entity
  * @param options - 线参数
  * @returns
@@ -40,16 +69,9 @@ export function createEntityPolyline(options: PolylineEntityOption) {
     orientation,
     viewFrom,
     parent,
-    properties,
-    ...rest
+    properties
   } = options
-  const polyline: PolylineGraphics.ConstructorOptions = {
-    ...rest,
-    material: getMeterialProperty(rest.material ?? defaultColor),
-    depthFailMaterial: getMeterialProperty(
-      rest.depthFailMaterial ?? defaultColor
-    )
-  }
+  const polyline = createEntityPolylineGraphics(options)
   return new Entity({
     id,
     name,
