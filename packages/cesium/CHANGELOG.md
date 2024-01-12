@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.8
+
+### Patch Changes
+
+- 添加 mapbox 底图，修改球默认颜色
+
 ## 1.0.7
 
 ### Patch Changes

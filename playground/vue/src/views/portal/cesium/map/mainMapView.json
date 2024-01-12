@@ -1,0 +1,21 @@
+{
+  "camera": {
+    "heading": 230.46638857907013,
+    "pitch": -14.837349795178078,
+    "roll": 359.9994886504723,
+    "lng": 119.59408850634337,
+    "lat": 25.59125552168796,
+    "height": 139.85802837647012
+  },
+  "map": {},
+  "terrain": {
+    "id": "qingdao",
+    "type": "Terrain",
+    "provider": {
+      "url": "http://119.3.213.144:8090/open-data/qingdao/terrain",
+      "requestMetadata": true,
+      "requestWaterMask": false,
+      "requestVertexNormals": false
+    }
+  }
+}

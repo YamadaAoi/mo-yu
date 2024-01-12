@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-08 14:21:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-11 18:17:01
+ * @LastEditTime: 2024-01-12 11:28:53
  * @Description: 
 -->
 <template>
@@ -21,7 +21,7 @@ import MapDemo from 'src/components/demo/MapDemo.vue'
 import CodeDisplay from 'src/components/code/CodeDisplay.vue'
 import CommonMap from './CommonMap.vue'
 import map from './CommonMap.vue?raw'
-import json from '../../../../../public/map/mainMapView.json?raw'
+import json from './mainMapView.json?raw'
 
 const source = [
   {

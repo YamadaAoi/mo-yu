@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:07:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-11 17:52:47
+ * @LastEditTime: 2024-01-12 11:20:16
  * @Description:
  */
 import {
@@ -20,6 +20,7 @@ import { guid, getDefault, ToolBase } from '@mo-yu/core'
 import { getDefaultOptions, MapOption } from './mapViewAble'
 import { mapStoreTool } from './tools/storeTool'
 import { MapSceneTool } from './tools/sceneTool'
+import { getColor } from './core/material'
 
 /**
  * 地图视图事件类型
@@ -66,11 +67,9 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
   constructor(container: HTMLElement | string, options: MapOption) {
     super(options)
     this.#options = {
+      ...options,
       id: options?.id ?? guid(),
-      baseOption: getDefault(
-        getDefaultOptions(options.baseColor),
-        options?.baseOption
-      )
+      baseOption: getDefault(getDefaultOptions(), options?.baseOption)
     }
     this.#container = container
   }
@@ -102,7 +101,9 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
     this.#map = new Viewer(this.#container, {
       ...this.#options.baseOption
     })
-    this.#map.scene.globe.baseColor = Color.TRANSPARENT
+    this.#map.scene.globe.baseColor =
+      getColor(this.#options.baseColor) ??
+      Color.fromCssColorString('rgba(13,25,44,0.6)')
     mapStoreTool.setMap(this.id, this)
     this.#map.scene.globe.depthTestAgainstTerrain = true
     this.#insertPopupDom()

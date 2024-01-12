@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-11 14:21:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-11 18:05:14
+ * @LastEditTime: 2024-01-12 11:16:06
  * @Description:
  */
 import {
@@ -12,6 +12,7 @@ import {
   ImageryProvider,
   IonImageryProvider,
   IonResource,
+  MapboxImageryProvider,
   TerrainProvider,
   TileMapServiceImageryProvider,
   WebMapServiceImageryProvider,
@@ -68,6 +69,14 @@ export interface ArcgisConfig extends BaseConfig {
 }
 
 /**
+ * Mapbox地图配置
+ */
+export interface MapboxConfig extends BaseConfig {
+  type: 'Mapbox'
+  provider: MapboxImageryProvider.ConstructorOptions[]
+}
+
+/**
  * 底图配置
  */
 export type BaseMapConfig =
@@ -76,6 +85,7 @@ export type BaseMapConfig =
   | TMSConfig
   | IONConfig
   | ArcgisConfig
+  | MapboxConfig
 
 type TerrOption = ConstructorParameters<typeof CesiumTerrainProvider>[0]
 
@@ -141,6 +151,8 @@ export function createImageryProvider(config: BaseMapConfig) {
     )
   } else if (config.type === 'Arcgis') {
     providers = config.provider.map(p => new ArcGisMapServerImageryProvider(p))
+  } else if (config.type === 'Mapbox') {
+    providers = config.provider.map(p => new MapboxImageryProvider(p))
   }
   return providers
 }

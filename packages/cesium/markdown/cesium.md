@@ -41,7 +41,7 @@
 | [createPolyline(options)](./cesium.createpolyline.md)              | 创建线 Primitive 对象，此方法会根据 clampToGround 创建不同的对象                                           |
 | [getColor(color)](./cesium.getcolor.md)                            | 获取 cesium 颜色对象                                                                                       |
 | [getColorProperty(color)](./cesium.getcolorproperty.md)            | 获取 cesium 颜色对象或颜色 Property                                                                        |
-| [getDefaultOptions(color)](./cesium.getdefaultoptions.md)          | cesium 默认初始化参数                                                                                      |
+| [getDefaultOptions()](./cesium.getdefaultoptions.md)               | cesium 默认初始化参数                                                                                      |
 | [getHorizontalDistance(p1, p2)](./cesium.gethorizontaldistance.md) | 计算两点间水平距离                                                                                         |
 | [getMeterial(mat)](./cesium.getmeterial.md)                        | 获取材质                                                                                                   |
 | [getMeterialProperty(mat)](./cesium.getmeterialproperty.md)        | 获取 cesium 颜色对象或 MaterialProperty                                                                    |

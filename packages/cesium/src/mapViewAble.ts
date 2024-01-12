@@ -2,10 +2,10 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 14:58:29
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-11 17:53:14
+ * @LastEditTime: 2024-01-12 11:06:49
  * @Description:
  */
-import { Rectangle, SceneMode, SingleTileImageryProvider, Viewer } from 'cesium'
+import { SceneMode, Viewer } from 'cesium'
 import { ToolBaseOptions } from '@mo-yu/core'
 
 /**
@@ -40,23 +40,11 @@ export function initCesiumBaseUrl(url: string) {
   window.CESIUM_BASE_URL = url
 }
 
-function createColorCanvas(color: string) {
-  const canvas = document.createElement('canvas')
-  canvas.width = 1
-  canvas.height = 1
-  const ctx = canvas.getContext('2d')
-  if (ctx) {
-    ctx.fillStyle = color
-    ctx.fillRect(0, 0, 1, 1)
-  }
-  return canvas.toDataURL()
-}
-
 /**
  * cesium 默认初始化参数
  * @returns
  */
-export function getDefaultOptions(color?: string): Viewer.ConstructorOptions {
+export function getDefaultOptions(): Viewer.ConstructorOptions {
   return {
     sceneMode: SceneMode.SCENE3D,
     // 查找位置工具
@@ -66,10 +54,7 @@ export function getDefaultOptions(color?: string): Viewer.ConstructorOptions {
     // 3d/2d 模式切换按钮
     sceneModePicker: false,
     // 默认无底图
-    imageryProvider: new SingleTileImageryProvider({
-      url: createColorCanvas(color ?? 'transparent'),
-      rectangle: Rectangle.fromDegrees(-180.0, -90.0, 180.0, 90.0)
-    }),
+    imageryProvider: false as any,
     // 图层选择按钮
     baseLayerPicker: false,
     // 右上角的帮助按钮
