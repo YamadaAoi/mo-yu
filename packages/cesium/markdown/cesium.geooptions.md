@@ -4,7 +4,7 @@
 
 ## GeoOptions type
 
-geojson 参数，在原始参数基础上合并了参数: url: 数据路径 更改了(使用 css 颜色)颜色类参数: markerColor stroke fill 添加了参数 id: 唯一标识 locate: 是否定位 border: 多边形边界线样式
+geojson 参数，在原始参数基础上合并了参数: url: 数据路径 更改了(使用 css 颜色)颜色类参数: markerColor stroke fill 添加了参数 id: 唯一标识 locate: 是否定位 custom: 自定义样式 border: 多边形边界线样式
 
 **Signature:**
 
@@ -19,8 +19,9 @@ export type GeoOptions = Omit<
   fill?: Color | string
   id?: string
   locate?: boolean
-  border?: PolylineEntityOption
+  custom?: {
+    border?: StyleBoder
+    wall?: StyleWall
+  }
 }
 ```
-
-**References:** [PolylineEntityOption](./cesium.polylineentityoption.md)

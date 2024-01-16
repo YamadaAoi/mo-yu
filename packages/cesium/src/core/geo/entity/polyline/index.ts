@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-12 17:53:41
+ * @LastEditTime: 2024-01-15 09:46:53
  * @Description: Polyline
  */
 import { Color, Entity, MaterialProperty, PolylineGraphics } from 'cesium'
@@ -59,30 +59,18 @@ export function createEntityPolylineGraphics(options: PolylineEntityOption) {
  * @returns
  */
 export function createEntityPolyline(options: PolylineEntityOption) {
-  const {
-    id,
-    name,
-    availability,
-    show,
-    description,
-    position,
-    orientation,
-    viewFrom,
-    parent,
-    properties
-  } = options
   const polyline = createEntityPolylineGraphics(options)
   return new Entity({
-    id,
-    name,
-    availability,
-    show,
-    description,
-    position,
-    orientation,
-    viewFrom,
-    parent,
-    properties,
+    id: options.id,
+    name: options.name,
+    availability: options.availability,
+    show: options.show,
+    description: options.description,
+    position: options.position,
+    orientation: options.orientation,
+    viewFrom: options.viewFrom,
+    parent: options.parent,
+    properties: options.properties,
     polyline
   })
 }

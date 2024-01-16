@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2022-06-17 14:35:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-03 10:24:49
+ * @LastEditTime: 2024-01-16 16:13:07
  * @Description:
  */
 import path from 'path'
@@ -58,23 +58,36 @@ export default defineConfig([
   },
   {
     input: path.resolve(__dirname, '../src/index.ts'),
-    output: [
-      {
-        dir: path.dirname(pkg.main),
-        format: 'cjs',
-        exports: 'named',
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-        sourcemap: false
-      },
-      {
-        file: path.resolve(__dirname, '../dist/index.js'),
-        format: 'umd',
-        name: 'MoYuCore',
-        exports: 'named',
-        sourcemap: false
-      }
-    ],
+    output: {
+      dir: path.dirname(pkg.main),
+      format: 'cjs',
+      exports: 'named',
+      preserveModules: true,
+      preserveModulesRoot: 'src',
+      sourcemap: false
+    },
+    plugins: [
+      commonjs(),
+      resolve({
+        extensions
+      }),
+      esbuild({
+        tsconfig: path.resolve(__dirname, '../tsconfig.json'),
+        target: 'esnext',
+        minify: true
+      }),
+      strip()
+    ]
+  },
+  {
+    input: path.resolve(__dirname, '../src/index.ts'),
+    output: {
+      file: path.resolve(__dirname, '../dist/index.js'),
+      format: 'umd',
+      name: 'MoYuCore',
+      exports: 'named',
+      sourcemap: false
+    },
     plugins: [
       commonjs(),
       resolve({

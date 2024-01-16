@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 10:48:22
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 10:53:56
+ * @LastEditTime: 2024-01-15 09:46:30
  * @Description: Point
  */
 import { Color, Entity, PointGraphics, Property } from 'cesium'
@@ -22,11 +22,11 @@ export type PointEntityOption = EntityOption &
   }
 
 /**
- * 创建点entity
+ * 创建点Graphics
  * @param options - 点参数
  * @returns
  */
-export function createEntityPoint(options: PointEntityOption) {
+export function createEntityPointGraphics(options: PointEntityOption) {
   const {
     id,
     name,
@@ -40,22 +40,32 @@ export function createEntityPoint(options: PointEntityOption) {
     properties,
     ...rest
   } = options
-  const point: PointGraphics.ConstructorOptions = {
+  const point = new PointGraphics({
     ...rest,
     color: getColorProperty(rest.color ?? defaultColor),
     outlineColor: getColorProperty(rest.outlineColor ?? defaultColor)
-  }
+  })
+  return point
+}
+
+/**
+ * 创建点entity
+ * @param options - 点参数
+ * @returns
+ */
+export function createEntityPoint(options: PointEntityOption) {
+  const point = createEntityPointGraphics(options)
   return new Entity({
-    id,
-    name,
-    availability,
-    show,
-    description,
-    position,
-    orientation,
-    viewFrom,
-    parent,
-    properties,
+    id: options.id,
+    name: options.name,
+    availability: options.availability,
+    show: options.show,
+    description: options.description,
+    position: options.position,
+    orientation: options.orientation,
+    viewFrom: options.viewFrom,
+    parent: options.parent,
+    properties: options.properties,
     point
   })
 }

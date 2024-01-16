@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:31:44
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 10:55:10
+ * @LastEditTime: 2024-01-15 09:47:36
  * @Description: Polygon
  */
 import {
@@ -47,11 +47,11 @@ function getHierarchy(hierarchy?: Property | Cartesian3[]) {
 }
 
 /**
- * 创建面entity
+ * 创建面Graphics
  * @param options - 面参数
  * @returns
  */
-export function createEntityPolygon(options: PolygonEntityOption) {
+export function createEntityPolygonGraphics(options: PolygonEntityOption) {
   const {
     id,
     name,
@@ -65,23 +65,33 @@ export function createEntityPolygon(options: PolygonEntityOption) {
     properties,
     ...rest
   } = options
-  const polygon: PolygonGraphics.ConstructorOptions = {
+  const polygon = new PolygonGraphics({
     ...rest,
     hierarchy: getHierarchy(rest.hierarchy),
     material: getMeterialProperty(rest.material ?? defaultColor),
     outlineColor: getColorProperty(rest.outlineColor ?? defaultColor)
-  }
+  })
+  return polygon
+}
+
+/**
+ * 创建面entity
+ * @param options - 面参数
+ * @returns
+ */
+export function createEntityPolygon(options: PolygonEntityOption) {
+  const polygon = createEntityPolygonGraphics(options)
   return new Entity({
-    id,
-    name,
-    availability,
-    show,
-    description,
-    position,
-    orientation,
-    viewFrom,
-    parent,
-    properties,
+    id: options.id,
+    name: options.name,
+    availability: options.availability,
+    show: options.show,
+    description: options.description,
+    position: options.position,
+    orientation: options.orientation,
+    viewFrom: options.viewFrom,
+    parent: options.parent,
+    properties: options.properties,
     polygon
   })
 }

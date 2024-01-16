@@ -4,6 +4,8 @@
 
 ## createEntityPolylineGraphics() function
 
+创建线 Graphics
+
 **Signature:**
 
 ```typescript
@@ -16,7 +18,7 @@ export declare function createEntityPolylineGraphics(
 
 | Parameter | Type                                                     | Description |
 | --------- | -------------------------------------------------------- | ----------- |
-| options   | [PolylineEntityOption](./cesium.polylineentityoption.md) |             |
+| options   | [PolylineEntityOption](./cesium.polylineentityoption.md) | 线参数      |
 
 **Returns:**
 

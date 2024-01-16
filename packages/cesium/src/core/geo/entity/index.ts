@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-05 17:49:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-05 17:56:50
+ * @LastEditTime: 2024-01-15 10:53:20
  * @Description: Entity GEO
  */
 import { Entity } from 'cesium'
@@ -38,3 +38,4 @@ export * from './point'
 export * from './polyline'
 export * from './polygon'
 export * from './ellipse'
+export * from './wall'

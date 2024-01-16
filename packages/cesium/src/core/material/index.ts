@@ -2,10 +2,20 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:14:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 11:33:42
+ * @LastEditTime: 2024-01-16 17:06:34
  * @Description: 材质
  */
 import { Color, Material, MaterialProperty, Property } from 'cesium'
+import { FlowMaterialOptions, FlowMaterialProperty } from './addMaterial/flow'
+import {
+  FlashMaterialOptions,
+  FlashMaterialProperty
+} from './addMaterial/flash'
+
+export interface CustomMaterial {
+  flow?: FlowMaterialOptions
+  flash?: FlashMaterialOptions
+}
 
 /**
  * 获取cesium颜色对象
@@ -56,5 +66,67 @@ export function getMeterial(mat?: Material | Color | string) {
     return Material.fromType('Color', { color: mat })
   } else {
     return mat
+  }
+}
+
+/**
+ * 创建色带
+ * @param colors - 颜色断点
+ * @param vertical - false:横向/true:纵向
+ */
+export function createLinearImage(colors: string[], vertical?: boolean) {
+  const canvas = document.createElement('canvas')
+  canvas.width = 256
+  canvas.height = 1
+  const ctx = canvas.getContext('2d')
+  if (ctx && colors?.length) {
+    let gradient: CanvasGradient
+    if (vertical) {
+      canvas.height = 256
+      canvas.width = 1
+      gradient = ctx.createLinearGradient(0, 0, 0, 256)
+      colors.forEach((c, i, arr) => {
+        gradient.addColorStop(i / (arr.length - 1), c)
+      })
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, 1, 256)
+    } else {
+      gradient = ctx.createLinearGradient(0, 0, 256, 0)
+      colors.forEach((c, i, arr) => {
+        gradient.addColorStop(i / (arr.length - 1), c)
+      })
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, 256, 1)
+    }
+  }
+  return canvas
+}
+
+/**
+ * 创建自定义材质Property
+ * @param option - 自定义材质参数
+ * @returns
+ */
+export function createCustomMaterialProperty(option: CustomMaterial) {
+  if (option?.flow) {
+    const u = {
+      speed: option.flow.speed,
+      vertical: option.flow.vertical,
+      color: getColor(option.flow.color),
+      image: option.flow.colors?.length
+        ? createLinearImage(option.flow.colors, option.flow.vertical)
+        : option.flow.image
+    }
+    return new FlowMaterialProperty(u)
+  } else if (option?.flash) {
+    const u = {
+      speed: option.flash.speed,
+      vertical: option.flash.vertical,
+      color: getColor(option.flash.color),
+      image: option.flash.colors?.length
+        ? createLinearImage(option.flash.colors, option.flash.vertical)
+        : option.flash.image
+    }
+    return new FlashMaterialProperty(u)
   }
 }

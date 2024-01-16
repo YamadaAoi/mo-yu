@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.9
+
+### Patch Changes
+
+- geo 工具添加墙样式配置，并定义两种动态材质
+
 ## 1.0.8
 
 ### Patch Changes

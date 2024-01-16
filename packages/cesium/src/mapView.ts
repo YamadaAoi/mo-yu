@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:07:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-12 11:20:16
+ * @LastEditTime: 2024-01-16 16:49:50
  * @Description:
  */
 import {
@@ -21,6 +21,8 @@ import { getDefaultOptions, MapOption } from './mapViewAble'
 import { mapStoreTool } from './tools/storeTool'
 import { MapSceneTool } from './tools/sceneTool'
 import { getColor } from './core/material'
+import { addFlowMaterial } from './core/material/addMaterial/flow'
+import { addFlashMaterial } from './core/material/addMaterial/flash'
 
 /**
  * 地图视图事件类型
@@ -97,7 +99,8 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
   }
 
   protected initMap(): void {
-    // 初始化 maplibre
+    addFlowMaterial()
+    addFlashMaterial()
     this.#map = new Viewer(this.#container, {
       ...this.#options.baseOption
     })
