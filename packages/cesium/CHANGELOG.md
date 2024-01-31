@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.10
+
+### Patch Changes
+
+- 添加遮罩层；底图添加简单的条件加载
+
 ## 1.0.9
 
 ### Patch Changes

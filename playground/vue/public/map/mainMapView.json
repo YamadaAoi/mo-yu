@@ -8,13 +8,27 @@
     "height": 139.85802837647012
   },
   "map": {
-    "id": "ArcGIS",
-    "type": "Arcgis",
-    "provider": [
-      {
-        "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
-      }
-    ]
+    "condition": "https://15.72.186.248:8081/sl/captcha",
+    "map": {
+      "id": "huangdao",
+      "type": "Mapbox",
+      "provider": [
+        {
+          "url": "https://15.72.186.248:8081/sl/vision/image?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjowLCJpZCI6ImNsbmJwcG9nMDAwOXFmZHJtcjUwIiwiaXNzIjoicnMiLCJzY29wZXMiOlsicGVybWFuZW50Il0sInVzYWdlIjoidGlsZSIsInVzZXIiOiJjbGp2OXRtcGw1Z2hrczh1dG92ZyJ9.Yxt2sdBxPDW4K-f0AVgnt-xsQiqi_BBdGH2G-BfWtqk",
+          "mapId": "clnbppog0009qfdrmr50",
+          "accessToken": ""
+        }
+      ]
+    },
+    "default": {
+      "id": "ArcGIS",
+      "type": "Arcgis",
+      "provider": [
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
+        }
+      ]
+    }
   },
   "terrain": {
     "id": "qingdao",

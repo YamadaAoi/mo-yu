@@ -9,5 +9,5 @@
 **Signature:**
 
 ```typescript
-map?: BaseMapConfig;
+map?: BaseMapTryConfig;
 ```

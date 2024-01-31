@@ -14,7 +14,7 @@ export type PolygonEntityOption = EntityOption &
     PolygonGraphics.ConstructorOptions,
     'hierarchy' | 'material' | 'outlineColor'
   > & {
-    hierarchy?: Property | Cartesian3[]
+    hierarchy?: Property | PolygonHierarchy | Cartesian3[]
     material?: MaterialProperty | Color | string
     outlineColor?: Property | Color | string
   }

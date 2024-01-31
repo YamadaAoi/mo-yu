@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:31:44
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-15 09:47:36
+ * @LastEditTime: 2024-01-31 16:23:34
  * @Description: Polygon
  */
 import {
@@ -28,7 +28,7 @@ export type PolygonEntityOption = EntityOption &
     PolygonGraphics.ConstructorOptions,
     'hierarchy' | 'material' | 'outlineColor'
   > & {
-    hierarchy?: Property | Cartesian3[]
+    hierarchy?: Property | PolygonHierarchy | Cartesian3[]
     material?: MaterialProperty | Color | string
     outlineColor?: Property | Color | string
   }
@@ -38,7 +38,7 @@ export type PolygonEntityOption = EntityOption &
  * @param hierarchy - 位置
  * @returns
  */
-function getHierarchy(hierarchy?: Property | Cartesian3[]) {
+function getHierarchy(hierarchy?: Property | PolygonHierarchy | Cartesian3[]) {
   return hierarchy === undefined
     ? undefined
     : Array.isArray(hierarchy)

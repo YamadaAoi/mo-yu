@@ -66,6 +66,7 @@
 | Interface                                                      | Description                                         |
 | -------------------------------------------------------------- | --------------------------------------------------- |
 | [ArcgisConfig](./cesium.arcgisconfig.md)                       | arcgis 地图配置                                     |
+| [BaseMapTryConfig](./cesium.basemaptryconfig.md)               | 地图服务条件配置                                    |
 | [CircleOption](./cesium.circleoption.md)                       | 圆 Primitive 参数                                   |
 | [CircleParam](./cesium.circleparam.md)                         | 圆心、半径确定圆                                    |
 | [CustomMaterial](./cesium.custommaterial.md)                   |                                                     |

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-11 14:21:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-12 14:34:32
+ * @LastEditTime: 2024-01-31 13:33:35
  * @Description:
  */
 import {
@@ -86,6 +86,18 @@ export type BaseMapConfig =
   | IONConfig
   | ArcgisConfig
   | MapboxConfig
+
+/**
+ * 地图服务条件配置
+ */
+export interface BaseMapTryConfig {
+  map: BaseMapConfig
+  /**
+   * 判断条件，是一个可访问的get请求地址或是一个promise
+   */
+  condition?: string | Promise<boolean>
+  default?: BaseMapConfig
+}
 
 type TerrOption = ConstructorParameters<typeof CesiumTerrainProvider>[0]
 
@@ -220,6 +232,35 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
   }
 
   /**
+   * 按条件地图服务加载，先加载默认地图，判断条件condition若为true，替换为map
+   * @param config - 配置
+   */
+  tryImagery(config: BaseMapTryConfig) {
+    if (config.condition) {
+      if (config.default) {
+        this.addImagery(config.default)
+      }
+      let promise: Promise<boolean>
+      if (typeof config.condition === 'string') {
+        promise = this.#createPromise(config.condition)
+      } else {
+        promise = config.condition
+      }
+      promise
+        .then(flag => {
+          if (flag) {
+            this.addImagery(config.map)
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    } else {
+      this.addImagery(config.map)
+    }
+  }
+
+  /**
    * 底图添加(默认只有一个底图)
    * 添加时清除前一个底图
    * @param config - 底图配置BaseMapConfig
@@ -341,6 +382,11 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
       })
       this.#curLayers = []
     }
+  }
+
+  async #createPromise(url: string) {
+    const res = await fetch(url)
+    return res.ok
   }
 
   get #viewer() {

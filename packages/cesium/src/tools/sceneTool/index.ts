@@ -2,14 +2,15 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:38:10
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-11 17:08:36
+ * @LastEditTime: 2024-01-31 16:34:18
  * @Description: 地图场景初始化工具
  */
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
 import { CameraParam, MapCameraTool } from '../cameraTool'
 import { TileOption, MapTileTool } from '../tileTool'
 import { GeoOptions, MapGeoTool } from '../geoTool'
-import { BaseMapConfig, BaseMapTool, TerrainConfig } from '../baseMapTool'
+import { BaseMapTryConfig, BaseMapTool, TerrainConfig } from '../baseMapTool'
+import { MaskEntityOption, MapMaskTool } from '../mapMaskTool'
 
 /**
  * 场景配置
@@ -30,11 +31,15 @@ export interface SceneConfig {
   /**
    * 默认底图
    */
-  map?: BaseMapConfig
+  map?: BaseMapTryConfig
   /**
    * 默认地形
    */
   terrain?: TerrainConfig
+  /**
+   * 遮罩
+   */
+  mask?: MaskEntityOption
 }
 
 /**
@@ -68,6 +73,7 @@ export class MapSceneTool extends ToolBase<
   tile = new MapTileTool({})
   geo = new MapGeoTool({})
   baseMap = new BaseMapTool({})
+  mask = new MapMaskTool({})
   constructor(options: MapSceneToolOptions) {
     super(options)
     this.prepareScene(options.config)
@@ -81,6 +87,7 @@ export class MapSceneTool extends ToolBase<
     this.tile.enable()
     this.geo.enable()
     this.baseMap.enable()
+    this.mask.enable()
   }
 
   /**
@@ -91,6 +98,7 @@ export class MapSceneTool extends ToolBase<
     this.tile.destroy()
     this.geo.destroy()
     this.baseMap.destroy()
+    this.mask.destroy()
   }
 
   prepareScene(config?: SceneConfig, duration = 0) {
@@ -113,10 +121,13 @@ export class MapSceneTool extends ToolBase<
         })
       }
       if (config.map) {
-        this.baseMap.addImagery(config.map)
+        this.baseMap.tryImagery(config.map)
       }
       if (config.terrain) {
         this.baseMap.addTerrain(config.terrain)
+      }
+      if (config.mask) {
+        this.mask.addMask(config.mask)
       }
     }
   }
