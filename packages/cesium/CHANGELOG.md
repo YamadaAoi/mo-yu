@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.11
+
+### Patch Changes
+
+- 点聚合优化
+
 ## 1.0.10
 
 ### Patch Changes

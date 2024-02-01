@@ -29,37 +29,39 @@
 
 ## Functions
 
-| Function                                                                          | Description                                                                                                |
-| --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [cartesian3ToLngLat(cartesian3)](./cesium.cartesian3tolnglat.md)                  | 世界坐标(笛卡尔空间直角坐标)转经纬度坐标(WGS84 坐标系)                                                     |
-| [createCircle(options)](./cesium.createcircle.md)                                 | 创建圆 Primitive 对象，此方法会根据 heightReference 创建不同的对象                                         |
-| [createCustomMaterialProperty(option)](./cesium.createcustommaterialproperty.md)  | 创建自定义材质 Property                                                                                    |
-| [createEntityEllipse(options)](./cesium.createentityellipse.md)                   | 创建椭圆 entity                                                                                            |
-| [createEntityEllipseGraphics(options)](./cesium.createentityellipsegraphics.md)   | 创建椭圆 Graphics                                                                                          |
-| [createEntityPoint(options)](./cesium.createentitypoint.md)                       | 创建点 entity                                                                                              |
-| [createEntityPointGraphics(options)](./cesium.createentitypointgraphics.md)       | 创建点 Graphics                                                                                            |
-| [createEntityPolygon(options)](./cesium.createentitypolygon.md)                   | 创建面 entity                                                                                              |
-| [createEntityPolygonGraphics(options)](./cesium.createentitypolygongraphics.md)   | 创建面 Graphics                                                                                            |
-| [createEntityPolyline(options)](./cesium.createentitypolyline.md)                 | 创建线 entity                                                                                              |
-| [createEntityPolylineGraphics(options)](./cesium.createentitypolylinegraphics.md) | 创建线 Graphics                                                                                            |
-| [createEntityWall(options)](./cesium.createentitywall.md)                         | 创建墙 entity                                                                                              |
-| [createEntityWallGraphics(options)](./cesium.createentitywallgraphics.md)         | 创建墙 Graphics                                                                                            |
-| [createImageryProvider(config)](./cesium.createimageryprovider.md)                | 创建 Imagery                                                                                               |
-| [createLinearImage(colors, vertical)](./cesium.createlinearimage.md)              | 创建色带                                                                                                   |
-| [createPoint(options)](./cesium.createpoint.md)                                   | 创建 PointPrimitive 参数对象，此方法会在 heightReference 为 CLAMP_TO_GROUND 时尝试获取点的高度             |
-| [createPolygon(options)](./cesium.createpolygon.md)                               | 创建面 Primitive 对象，此方法会根据 heightReference 创建不同的对象                                         |
-| [createPolyline(options)](./cesium.createpolyline.md)                             | 创建线 Primitive 对象，此方法会根据 clampToGround 创建不同的对象                                           |
-| [getColor(color)](./cesium.getcolor.md)                                           | 获取 cesium 颜色对象                                                                                       |
-| [getColorProperty(color)](./cesium.getcolorproperty.md)                           | 获取 cesium 颜色对象或颜色 Property                                                                        |
-| [getDefaultOptions()](./cesium.getdefaultoptions.md)                              | cesium 默认初始化参数                                                                                      |
-| [getHorizontalDistance(p1, p2)](./cesium.gethorizontaldistance.md)                | 计算两点间水平距离                                                                                         |
-| [getMeterial(mat)](./cesium.getmeterial.md)                                       | 获取材质                                                                                                   |
-| [getMeterialProperty(mat)](./cesium.getmeterialproperty.md)                       | 获取 cesium 颜色对象或 MaterialProperty                                                                    |
-| [getPosiOn3DTiles(posi)](./cesium.getposion3dtiles.md)                            | 获取点在 3DTiles 上的位置                                                                                  |
-| [getPosiOnAction(endPosition)](./cesium.getposionaction.md)                       | 获取鼠标事件点的位置                                                                                       |
-| [getPosiOnMap(position)](./cesium.getposionmap.md)                                | 获取点在当前地图上上的位置 先尝试获取在几何体上的位置，获取失败再尝试获取在地形上的位置 都失败则返回原位置 |
-| [getPosiOnTerrain(posi)](./cesium.getposionterrain.md)                            | 获取点在地形上的位置                                                                                       |
-| [initCesiumBaseUrl(url)](./cesium.initcesiumbaseurl.md)                           | 初始化 cesium CESIUM_BASE_URL                                                                              |
+| Function                                                                            | Description                                                                                                |
+| ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [cartesian3ToLngLat(cartesian3)](./cesium.cartesian3tolnglat.md)                    | 世界坐标(笛卡尔空间直角坐标)转经纬度坐标(WGS84 坐标系)                                                     |
+| [createCircle(options)](./cesium.createcircle.md)                                   | 创建圆 Primitive 对象，此方法会根据 heightReference 创建不同的对象                                         |
+| [createCustomMaterialProperty(option)](./cesium.createcustommaterialproperty.md)    | 创建自定义材质 Property                                                                                    |
+| [createEntityBillboard(options)](./cesium.createentitybillboard.md)                 | 创建 billboard entity                                                                                      |
+| [createEntityBillboardGraphics(options)](./cesium.createentitybillboardgraphics.md) | 创建 BillboardGraphics                                                                                     |
+| [createEntityEllipse(options)](./cesium.createentityellipse.md)                     | 创建椭圆 entity                                                                                            |
+| [createEntityEllipseGraphics(options)](./cesium.createentityellipsegraphics.md)     | 创建椭圆 Graphics                                                                                          |
+| [createEntityPoint(options)](./cesium.createentitypoint.md)                         | 创建点 entity                                                                                              |
+| [createEntityPointGraphics(options)](./cesium.createentitypointgraphics.md)         | 创建点 Graphics                                                                                            |
+| [createEntityPolygon(options)](./cesium.createentitypolygon.md)                     | 创建面 entity                                                                                              |
+| [createEntityPolygonGraphics(options)](./cesium.createentitypolygongraphics.md)     | 创建面 Graphics                                                                                            |
+| [createEntityPolyline(options)](./cesium.createentitypolyline.md)                   | 创建线 entity                                                                                              |
+| [createEntityPolylineGraphics(options)](./cesium.createentitypolylinegraphics.md)   | 创建线 Graphics                                                                                            |
+| [createEntityWall(options)](./cesium.createentitywall.md)                           | 创建墙 entity                                                                                              |
+| [createEntityWallGraphics(options)](./cesium.createentitywallgraphics.md)           | 创建墙 Graphics                                                                                            |
+| [createImageryProvider(config)](./cesium.createimageryprovider.md)                  | 创建 Imagery                                                                                               |
+| [createLinearImage(colors, vertical)](./cesium.createlinearimage.md)                | 创建色带                                                                                                   |
+| [createPoint(options)](./cesium.createpoint.md)                                     | 创建 PointPrimitive 参数对象，此方法会在 heightReference 为 CLAMP_TO_GROUND 时尝试获取点的高度             |
+| [createPolygon(options)](./cesium.createpolygon.md)                                 | 创建面 Primitive 对象，此方法会根据 heightReference 创建不同的对象                                         |
+| [createPolyline(options)](./cesium.createpolyline.md)                               | 创建线 Primitive 对象，此方法会根据 clampToGround 创建不同的对象                                           |
+| [getColor(color)](./cesium.getcolor.md)                                             | 获取 cesium 颜色对象                                                                                       |
+| [getColorProperty(color)](./cesium.getcolorproperty.md)                             | 获取 cesium 颜色对象或颜色 Property                                                                        |
+| [getDefaultOptions()](./cesium.getdefaultoptions.md)                                | cesium 默认初始化参数                                                                                      |
+| [getHorizontalDistance(p1, p2)](./cesium.gethorizontaldistance.md)                  | 计算两点间水平距离                                                                                         |
+| [getMeterial(mat)](./cesium.getmeterial.md)                                         | 获取材质                                                                                                   |
+| [getMeterialProperty(mat)](./cesium.getmeterialproperty.md)                         | 获取 cesium 颜色对象或 MaterialProperty                                                                    |
+| [getPosiOn3DTiles(posi)](./cesium.getposion3dtiles.md)                              | 获取点在 3DTiles 上的位置                                                                                  |
+| [getPosiOnAction(endPosition)](./cesium.getposionaction.md)                         | 获取鼠标事件点的位置                                                                                       |
+| [getPosiOnMap(position)](./cesium.getposionmap.md)                                  | 获取点在当前地图上上的位置 先尝试获取在几何体上的位置，获取失败再尝试获取在地形上的位置 都失败则返回原位置 |
+| [getPosiOnTerrain(posi)](./cesium.getposionterrain.md)                              | 获取点在地形上的位置                                                                                       |
+| [initCesiumBaseUrl(url)](./cesium.initcesiumbaseurl.md)                             | 初始化 cesium CESIUM_BASE_URL                                                                              |
 
 ## Interfaces
 
@@ -92,6 +94,9 @@
 | [Position](./cesium.position.md)                               | 位置信息                                            |
 | [Rotation](./cesium.rotation.md)                               | 旋转参数 heading：偏航角 pitch：俯仰角 roll：翻滚角 |
 | [SceneConfig](./cesium.sceneconfig.md)                         | 场景配置                                            |
+| [StyleBillboard](./cesium.stylebillboard.md)                   |                                                     |
+| [StyleBoder](./cesium.styleboder.md)                           |                                                     |
+| [StyleWall](./cesium.stylewall.md)                             |                                                     |
 | [TerrainConfig](./cesium.terrainconfig.md)                     | Terrain 底图配置                                    |
 | [TerrProvider](./cesium.terrprovider.md)                       |                                                     |
 | [TilesTransform](./cesium.tilestransform.md)                   | 3DTiles 偏移、旋转，缩放参数                        |
@@ -110,6 +115,8 @@
 | Type Alias                                                   | Description                                                                                                                                                                                                                                           |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [BaseMapConfig](./cesium.basemapconfig.md)                   | 底图配置                                                                                                                                                                                                                                              |
+| [BillboardEntityOption](./cesium.billboardentityoption.md)   | BillboardEntity 参数，改造了 Billboard 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: color                                                                                                                                                   |
+| [BillboardParam](./cesium.billboardparam.md)                 |                                                                                                                                                                                                                                                       |
 | [CameraParam](./cesium.cameraparam.md)                       | 相机位置角度                                                                                                                                                                                                                                          |
 | [CursorProperty](./cesium.cursorproperty.md)                 | 鼠标样式                                                                                                                                                                                                                                              |
 | [EllipseEntityOption](./cesium.ellipseentityoption.md)       | EllipseEntity 参数，改造了 Ellipse 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor                                                                                                                                       |
@@ -118,6 +125,7 @@
 | [GeometryInstanceOption](./cesium.geometryinstanceoption.md) | GeometryInstance 通用构造参数 剔除 geometry                                                                                                                                                                                                           |
 | [GeoOptions](./cesium.geooptions.md)                         | geojson 参数，在原始参数基础上合并了参数: url: 数据路径 更改了(使用 css 颜色)颜色类参数: markerColor stroke fill 添加了参数 id: 唯一标识 locate: 是否定位 custom: 自定义样式 border: 多边形边界线样式                                                 |
 | [GroundPrimitiveOption](./cesium.groundprimitiveoption.md)   | GroundPrimitive 通用构造参数 剔除 appearance，geometryInstances 属性                                                                                                                                                                                  |
+| [LabelParam](./cesium.labelparam.md)                         |                                                                                                                                                                                                                                                       |
 | [PointEntityOption](./cesium.pointentityoption.md)           | PointEntity 参数，改造了 Point 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: color outlineColor                                                                                                                                              |
 | [PolygonEntityOption](./cesium.polygonentityoption.md)       | PolygonEntity 参数，改造了 Polygon 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor                                                                                                                                       |
 | [PolylineEntityOption](./cesium.polylineentityoption.md)     | PolylineEntity 参数，改造了 Polyline 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material depthFailMaterial                                                                                                                                |

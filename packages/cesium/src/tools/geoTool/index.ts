@@ -2,10 +2,20 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-16 15:00:23
+ * @LastEditTime: 2024-02-01 17:22:14
  * @Description: geojson工具
  */
-import { GeoJsonDataSource, Resource, Color, JulianDate, Entity } from 'cesium'
+import {
+  GeoJsonDataSource,
+  Resource,
+  Color,
+  JulianDate,
+  Entity,
+  EntityCluster,
+  Billboard,
+  Label,
+  Cartesian2
+} from 'cesium'
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
 import { mapStoreTool } from '../storeTool'
 import { getColor } from '../../core/material'
@@ -17,6 +27,10 @@ import {
   WallEntityOption,
   createEntityWallGraphics
 } from '../../core/geo/entity/wall'
+import {
+  BillboardEntityOption,
+  createEntityBillboardGraphics
+} from '../../core/geo/entity/billboard'
 
 /**
  * geojson参数，在原始参数基础上合并了参数:
@@ -50,15 +64,39 @@ export type GeoOptions = Omit<
      * 多边形边界墙样式
      */
     wall?: StyleWall
+    /**
+     * 覆盖广告牌样式
+     */
+    billboard?: StyleBillboard
+  }
+  /**
+   * 广告牌聚合参数
+   */
+  cluster?: {
+    options?: ConstructorParameters<typeof EntityCluster>[0]
+    billboard?: BillboardParam
+    label?: LabelParam
   }
 }
 
-interface StyleBoder {
+export type BillboardParam = Omit<Billboard, 'pixelOffset'> & {
+  pixelOffset: Cartesian2 | [number, number]
+}
+
+export type LabelParam = Omit<Label, 'pixelOffset'> & {
+  pixelOffset: Cartesian2 | [number, number]
+}
+
+export interface StyleBoder {
   style: PolylineEntityOption
 }
 
-interface StyleWall {
+export interface StyleWall {
   style: WallEntityOption
+}
+
+export interface StyleBillboard {
+  style: BillboardEntityOption
 }
 
 interface MapGeoToolEvents {}
@@ -172,11 +210,8 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
       source
         .load(url, o)
         .then(s => {
-          this.#geoNames.push(s.name)
           this.#viewer?.dataSources.add(s)
-          if (locate) {
-            this.#viewer.zoomTo(s)
-          }
+          this.#geoNames.push(s.name)
           if (option.custom) {
             const entities = s.entities.values
             if (entities?.length) {
@@ -187,9 +222,59 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
                 if (option.custom?.wall) {
                   this.#handleWall(e, option.custom.wall)
                 }
+                if (option.custom?.billboard) {
+                  this.#handleBillboard(e, option.custom.billboard)
+                }
               })
             }
           }
+          if (option.cluster?.options) {
+            const options: any = option.cluster.options
+            const cluster: any = s.clustering
+            Object.keys(options).forEach((key: string) => {
+              cluster[key] = options[key]
+            })
+            s.clustering.clusterEvent.addEventListener((entities, cluster) => {
+              if (option.cluster?.label) {
+                const style: any = option.cluster.label
+                const label: any = cluster.label
+                Object.keys(style).forEach(key => {
+                  if (
+                    key === 'pixelOffset' &&
+                    Array.isArray(style[key]) &&
+                    style[key].length === 2
+                  ) {
+                    label[key] = new Cartesian2(style[key][0], style[key][1])
+                  } else {
+                    label[key] = style[key]
+                  }
+                })
+                cluster.label.text = entities.length.toLocaleString()
+              }
+              if (option.cluster?.billboard) {
+                const style: any = option.cluster.billboard
+                const billboard: any = cluster.billboard
+                Object.keys(style).forEach(key => {
+                  if (
+                    key === 'pixelOffset' &&
+                    Array.isArray(style[key]) &&
+                    style[key].length === 2
+                  ) {
+                    billboard[key] = new Cartesian2(
+                      style[key][0],
+                      style[key][1]
+                    )
+                  } else {
+                    billboard[key] = style[key]
+                  }
+                })
+              }
+            })
+          }
+          if (locate) {
+            this.#viewer.flyTo(s, { duration: 1 })
+          }
+          this.#viewer?.scene.requestRender()
         })
         .catch(err => {
           console.error(`load geojson [${url}] failed![${err}]`)
@@ -222,6 +307,12 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
           positions
         })
       }
+    }
+  }
+
+  #handleBillboard(e: Entity, option: StyleBillboard) {
+    if (e.billboard) {
+      e.billboard = createEntityBillboardGraphics(option.style)
     }
   }
 
