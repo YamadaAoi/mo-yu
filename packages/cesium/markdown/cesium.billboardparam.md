@@ -7,7 +7,7 @@
 **Signature:**
 
 ```typescript
-export type BillboardParam = Omit<Billboard, 'pixelOffset'> & {
-  pixelOffset: Cartesian2 | [number, number]
+export type BillboardParam = Omit<Partial<Billboard>, 'pixelOffset'> & {
+  pixelOffset?: Cartesian2 | [number, number]
 }
 ```

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-12 14:16:50
+ * @LastEditTime: 2024-02-05 13:57:21
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -17,11 +17,22 @@ import {
   Transforms,
   PrimitiveCollection,
   Cesium3DTileset,
-  ShadowMode
+  ShadowMode,
+  Cesium3DTileStyle,
+  ScreenSpaceEventHandler,
+  ScreenSpaceEventType,
+  Cesium3DTileFeature
 } from 'cesium'
-import { ToolBase, ToolBaseOptions, getDefault, guid } from '@mo-yu/core'
+import {
+  ToolBase,
+  ToolBaseOptions,
+  getDefault,
+  guid,
+  debounce
+} from '@mo-yu/core'
 import { mapStoreTool } from '../storeTool'
 import { CameraParam } from '../cameraTool'
+import { defaultColor } from '../../core/defaultVal'
 
 /**
  * cesium原生3DTiles构造参数
@@ -33,6 +44,15 @@ type TilesetOption = ConstructorParameters<typeof Cesium3DTileset>[0]
  */
 export interface TilesTransform extends CameraParam {
   scale?: number
+}
+
+/**
+ * 简单色例参数
+ */
+export interface Cesium3DTileColor {
+  value: any
+  label: string
+  color: string
 }
 
 /**
@@ -51,12 +71,30 @@ export type TileOption = TilesetOption &
   TilesTransform & {
     id?: string
     locate?: string
+    /**
+     * 组装Cesium3DTileStyle，必须是合法的Cesium3DTileStyle入参
+     */
+    style?: {
+      [key: string]: any
+      /**
+       * 组装到color.conditions
+       */
+      paramName?: string
+      colorList?: Cesium3DTileColor[]
+    }
   }
 
 /**
  * 事件
  */
-export interface MapTileToolEvents {}
+export interface MapTileToolEvents {
+  /**
+   * 选中feature
+   */
+  'feature-pick': {
+    properties: any
+  }
+}
 
 /**
  * 3DTiles展示，配合TileConfigTool配置结果使用更佳
@@ -72,6 +110,7 @@ export class MapTileTool<
   E extends MapTileToolEvents = MapTileToolEvents
 > extends ToolBase<ToolBaseOptions, E> {
   protected tiles = new PrimitiveCollection()
+  #handler: ScreenSpaceEventHandler | undefined
   constructor(options: ToolBaseOptions) {
     super(options)
   }
@@ -80,7 +119,15 @@ export class MapTileTool<
    * 启用
    */
   enable(): void {
-    this.viewer?.scene.primitives.add(this.tiles)
+    if (this.viewer) {
+      const viewer = this.viewer
+      viewer.scene.primitives.add(this.tiles)
+      this.#handler = new ScreenSpaceEventHandler(viewer.canvas)
+      this.#handler.setInputAction(
+        this.#handleClick,
+        ScreenSpaceEventType.LEFT_CLICK
+      )
+    }
   }
 
   /**
@@ -89,6 +136,7 @@ export class MapTileTool<
   destroy(): void {
     this.clear()
     this.viewer?.scene.primitives.remove(this.tiles)
+    this.#handler?.destroy()
   }
 
   /**
@@ -198,6 +246,7 @@ export class MapTileTool<
         )
       )
       const tile = await tileset.readyPromise
+      this.#handleStyle(option, tile)
       const modelMatrix = this.getTransform(tile.root.transform, {
         lng,
         lat,
@@ -300,6 +349,44 @@ export class MapTileTool<
   protected get viewer() {
     return mapStoreTool.getMap()?.viewer
   }
+
+  #handleStyle(option: TileOption, tileset: Cesium3DTileset) {
+    if (option.style) {
+      const { colorList, paramName, ...rest } = option.style
+      if (colorList?.length && paramName && rest.color === undefined) {
+        rest.color = {
+          conditions: colorList.map(c => {
+            let cond = '${' + paramName + '} === '
+            if (typeof c.value === 'string') {
+              cond = `${cond}'${c.value}'`
+            } else {
+              cond = `${cond}${c.value}`
+            }
+            if (c.value === true || c.value === 'true') {
+              cond = 'true'
+            }
+            return [
+              cond,
+              `color('${c.color ?? defaultColor.toCssColorString()}')`
+            ]
+          })
+        }
+      }
+      tileset.style = new Cesium3DTileStyle(rest)
+    }
+  }
+
+  #handleClick = debounce((event: ScreenSpaceEventHandler.PositionedEvent) => {
+    const feature = this.viewer?.scene.pick(event.position)
+    if (feature instanceof Cesium3DTileFeature) {
+      const propertyIds = feature.getPropertyIds()
+      const properties: any = {}
+      propertyIds.forEach(propertyId => {
+        properties[propertyId] = feature.getProperty(propertyId)
+      })
+      this.eventBus.fire('feature-pick', { properties })
+    }
+  })
 
   #removeAllTiles() {
     this.tiles.removeAll()

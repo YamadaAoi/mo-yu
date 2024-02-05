@@ -13,7 +13,12 @@ export type TileOption = TilesetOption &
   TilesTransform & {
     id?: string
     locate?: string
+    style?: {
+      [key: string]: any
+      paramName?: string
+      colorList?: Cesium3DTileColor[]
+    }
   }
 ```
 
-**References:** [TilesTransform](./cesium.tilestransform.md)
+**References:** [TilesTransform](./cesium.tilestransform.md)<!-- -->, [Cesium3DTileColor](./cesium.cesium3dtilecolor.md)

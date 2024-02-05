@@ -23,6 +23,7 @@
 
 | Function                                                  | Description                |
 | --------------------------------------------------------- | -------------------------- |
+| [debounce(this, func, delay)](./core.debounce.md)         | 简易防抖                   |
 | [download(url, fileName)](./core.download.md)             | 下载                       |
 | [fixed(value, len)](./core.fixed.md)                      | 保留 len 位小数            |
 | [getDefault(defaultValue, initial)](./core.getdefault.md) | 初始化变量                 |

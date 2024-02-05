@@ -11,3 +11,9 @@
 ```typescript
 export interface MapTileToolEvents
 ```
+
+## Properties
+
+| Property                                                       | Modifiers | Type                 | Description  |
+| -------------------------------------------------------------- | --------- | -------------------- | ------------ |
+| ["feature-pick"](./cesium.maptiletoolevents._feature-pick_.md) |           | { properties: any; } | 选中 feature |

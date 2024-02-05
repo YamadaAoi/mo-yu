@@ -1,5 +1,13 @@
 # @mo-yu/cesium
 
+## 1.0.12
+
+### Patch Changes
+
+- 3dtiles 白膜样式简单定义，添加防抖
+- Updated dependencies
+  - @mo-yu/core@1.0.12
+
 ## 1.0.11
 
 ### Patch Changes

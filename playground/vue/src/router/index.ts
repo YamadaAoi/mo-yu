@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 14:23:44
+ * @LastEditTime: 2024-02-04 17:48:28
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -117,6 +117,16 @@ export function getCesiumMenus() {
       component: () => import('../views/portal/cesium/tile/TileDemo.vue'),
       meta: {
         label: '3DTiles',
+        cname: 'MapTile[Config]Tool'
+      }
+    },
+    {
+      path: '/portal/tileStyle',
+      name: 'TileStyle',
+      component: () =>
+        import('../views/portal/cesium/tileStyle/TileStyleDemo.vue'),
+      meta: {
+        label: '白膜样式',
         cname: 'MapTile[Config]Tool'
       }
     },

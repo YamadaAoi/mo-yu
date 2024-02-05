@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-02-01 17:22:14
+ * @LastEditTime: 2024-02-04 10:58:03
  * @Description: geojson工具
  */
 import {
@@ -79,12 +79,12 @@ export type GeoOptions = Omit<
   }
 }
 
-export type BillboardParam = Omit<Billboard, 'pixelOffset'> & {
-  pixelOffset: Cartesian2 | [number, number]
+export type BillboardParam = Omit<Partial<Billboard>, 'pixelOffset'> & {
+  pixelOffset?: Cartesian2 | [number, number]
 }
 
-export type LabelParam = Omit<Label, 'pixelOffset'> & {
-  pixelOffset: Cartesian2 | [number, number]
+export type LabelParam = Omit<Partial<Label>, 'pixelOffset'> & {
+  pixelOffset?: Cartesian2 | [number, number]
 }
 
 export interface StyleBoder {
@@ -228,53 +228,12 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
               })
             }
           }
-          if (option.cluster?.options) {
-            const options: any = option.cluster.options
-            const cluster: any = s.clustering
-            Object.keys(options).forEach((key: string) => {
-              cluster[key] = options[key]
-            })
-            s.clustering.clusterEvent.addEventListener((entities, cluster) => {
-              if (option.cluster?.label) {
-                const style: any = option.cluster.label
-                const label: any = cluster.label
-                Object.keys(style).forEach(key => {
-                  if (
-                    key === 'pixelOffset' &&
-                    Array.isArray(style[key]) &&
-                    style[key].length === 2
-                  ) {
-                    label[key] = new Cartesian2(style[key][0], style[key][1])
-                  } else {
-                    label[key] = style[key]
-                  }
-                })
-                cluster.label.text = entities.length.toLocaleString()
-              }
-              if (option.cluster?.billboard) {
-                const style: any = option.cluster.billboard
-                const billboard: any = cluster.billboard
-                Object.keys(style).forEach(key => {
-                  if (
-                    key === 'pixelOffset' &&
-                    Array.isArray(style[key]) &&
-                    style[key].length === 2
-                  ) {
-                    billboard[key] = new Cartesian2(
-                      style[key][0],
-                      style[key][1]
-                    )
-                  } else {
-                    billboard[key] = style[key]
-                  }
-                })
-              }
-            })
-          }
+          this.#handleCluster(option, s)
           if (locate) {
             this.#viewer.flyTo(s, { duration: 1 })
+          } else {
+            this.#viewer?.scene.requestRender()
           }
-          this.#viewer?.scene.requestRender()
         })
         .catch(err => {
           console.error(`load geojson [${url}] failed![${err}]`)
@@ -313,6 +272,49 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
   #handleBillboard(e: Entity, option: StyleBillboard) {
     if (e.billboard) {
       e.billboard = createEntityBillboardGraphics(option.style)
+    }
+  }
+
+  #handleCluster(option: GeoOptions, s: GeoJsonDataSource) {
+    if (option.cluster?.options) {
+      const options: any = option.cluster.options
+      const cluster: any = s.clustering
+      Object.keys(options).forEach((key: string) => {
+        cluster[key] = options[key]
+      })
+      s.clustering.clusterEvent.addEventListener((entities, cluster) => {
+        if (option.cluster?.label) {
+          const style: any = option.cluster.label
+          const label: any = cluster.label
+          Object.keys(style).forEach(key => {
+            if (
+              key === 'pixelOffset' &&
+              Array.isArray(style[key]) &&
+              style[key].length === 2
+            ) {
+              label[key] = new Cartesian2(style[key][0], style[key][1])
+            } else {
+              label[key] = style[key]
+            }
+          })
+          cluster.label.text = entities.length.toLocaleString()
+        }
+        if (option.cluster?.billboard) {
+          const style: any = option.cluster.billboard
+          const billboard: any = cluster.billboard
+          Object.keys(style).forEach(key => {
+            if (
+              key === 'pixelOffset' &&
+              Array.isArray(style[key]) &&
+              style[key].length === 2
+            ) {
+              billboard[key] = new Cartesian2(style[key][0], style[key][1])
+            } else {
+              billboard[key] = style[key]
+            }
+          })
+        }
+      })
     }
   }
 
