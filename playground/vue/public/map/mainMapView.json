@@ -1,14 +1,15 @@
 {
   "camera": {
-    "heading": 230.46638857907013,
-    "pitch": -14.837349795178078,
-    "roll": 359.9994886504723,
-    "lng": 119.59408850634337,
-    "lat": 25.59125552168796,
-    "height": 139.85802837647012
+    "heading": 356.59370490211097,
+    "pitch": -21.448515521042864,
+    "roll": 0.007733530122760293,
+    "lng": 119.66762845212162,
+    "lat": 35.40247020394134,
+    "height": 10971.21914434521
   },
+  "tiles": [],
   "map": {
-    "condition": "https://15.72.186.248:8081/sl/captcha",
+    "condition": "https://15.72.186.248:8081/sl/tiles/image/cle4h4gg0001tp5ruc20/11/1706/805.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjowLCJpZCI6ImNsbmJwcG9nMDAwOXFmZHJtcjUwIiwiaXNzIjoicnMiLCJzY29wZXMiOlsicGVybWFuZW50Il0sInVzYWdlIjoidGlsZSIsInVzZXIiOiJjbGp2OXRtcGw1Z2hrczh1dG92ZyJ9.Yxt2sdBxPDW4K-f0AVgnt-xsQiqi_BBdGH2G-BfWtqk",
     "map": {
       "id": "huangdao",
       "type": "Mapbox",
@@ -39,5 +40,13 @@
       "requestWaterMask": false,
       "requestVertexNormals": false
     }
+  },
+  "mask": {
+    "id": "dachang",
+    "name": "大场边界",
+    "material": "rgba(0,0,0,0.5)",
+    "heightReference": 1,
+    "hierarchy": [73, 53, 135, 53, 135, 4, 73, 4],
+    "holes": "/data/dachang.json"
   }
 }

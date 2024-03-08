@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-03 09:46:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 14:25:24
+ * @LastEditTime: 2024-03-08 15:16:49
  * @Description: 绘制工具
 -->
 <template>
@@ -49,7 +49,6 @@
 import { ref, onBeforeUnmount } from 'vue'
 import { NPopover } from 'naive-ui'
 import {
-  mapStoreTool,
   DrawBase,
   DrawPointTool,
   DrawPolylineTool,
@@ -172,18 +171,6 @@ function clearTool() {
 
 function onLoaded() {
   mapReady.value = true
-  const sceneTool = mapStoreTool.getMap().sceneTool
-  sceneTool.camera.flyTo(
-    {
-      heading: 230.46638857907013,
-      pitch: -14.837349795178078,
-      roll: 359.9994886504723,
-      lng: 119.59408850634337,
-      lat: 25.59125552168796,
-      height: 139.85802837647012
-    },
-    1
-  )
 }
 </script>
 

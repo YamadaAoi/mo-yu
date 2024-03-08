@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-02-04 17:48:28
+ * @LastEditTime: 2024-03-08 15:39:00
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -109,6 +109,24 @@ export function getCesiumMenus() {
       meta: {
         label: '初始化地图',
         cname: 'MapView'
+      }
+    },
+    {
+      path: '/portal/border',
+      name: 'Border',
+      component: () => import('../views/portal/cesium/border/BoderDemo.vue'),
+      meta: {
+        label: '自定义材质墙',
+        cname: 'MapGeoTool'
+      }
+    },
+    {
+      path: '/portal/points',
+      name: 'Points',
+      component: () => import('../views/portal/cesium/points/PointsDemo.vue'),
+      meta: {
+        label: '多点聚合',
+        cname: 'MapGeoTool'
       }
     },
     {

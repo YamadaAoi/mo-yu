@@ -2,8 +2,8 @@
  * @Author: zhouyinkui
  * @Date: 2024-02-04 10:16:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-02-05 14:07:45
- * @Description: 
+ * @LastEditTime: 2024-03-08 14:54:45
+ * @Description: shp生成的白膜图层根据属性设置样式
 -->
 <template>
   <div class="tile-style">
@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { ref, onBeforeUnmount } from 'vue'
-import { mapStoreTool, MapTileTool } from '@mo-yu/cesium'
+import { MapTileTool } from '@mo-yu/cesium'
 import CommonMap from '../map/CommonMap.vue'
 
 const mapReady = ref(false)
@@ -54,12 +54,12 @@ function onLoaded() {
         {
           label: '茶园',
           value: '0202',
-          color: ''
+          color: 'rgba(213, 167, 176, 1)'
         },
         {
           label: '其他园地',
           value: '0204',
-          color: ''
+          color: 'rgba(231, 204, 226, 1)'
         },
         {
           label: '乔木林地',
@@ -69,7 +69,7 @@ function onLoaded() {
         {
           label: '竹林地',
           value: '0302',
-          color: ''
+          color: 'rgba(49, 173, 50, 1)'
         },
         {
           label: '其他林地',
@@ -84,17 +84,17 @@ function onLoaded() {
         {
           label: '物流仓储用地',
           value: '0508',
-          color: ''
+          color: 'rgba(197, 154, 145, 1)'
         },
         {
           label: '商业服务业设施用地',
           value: '05H1',
-          color: ''
+          color: 'rgba(226, 141, 229, 1)'
         },
         {
           label: '工业用地',
           value: '0601',
-          color: 'rgba(255, 251, 177, 1)'
+          color: 'rgba(197, 154, 140, 1)'
         },
         {
           label: '采矿用地',
@@ -104,7 +104,7 @@ function onLoaded() {
         {
           label: '城镇住宅用地',
           value: '0701',
-          color: ''
+          color: 'rgba(229, 103, 102, 1)'
         },
         {
           label: '农村宅基地',
@@ -114,22 +114,22 @@ function onLoaded() {
         {
           label: '公用设施用地',
           value: '0809',
-          color: ''
+          color: 'rgba(241, 165, 180, 1)'
         },
         {
           label: '广场用地',
           value: '0810A',
-          color: 'rgba(128, 196, 93, 1)'
+          color: 'rgba(255, 163, 214, 1)'
         },
         {
           label: '机关团体新闻出版用地',
           value: '08H1',
-          color: ''
+          color: 'rgba(241, 165, 180, 1)'
         },
         {
           label: '科教文卫用地',
           value: '08H2',
-          color: ''
+          color: 'rgba(241, 165, 180, 1)'
         },
         {
           label: '特殊用地',
@@ -139,7 +139,7 @@ function onLoaded() {
         {
           label: '铁路用地',
           value: '1001',
-          color: ''
+          color: 'rgba(209, 201, 211, 1)'
         },
         {
           label: '公路用地',
@@ -149,12 +149,12 @@ function onLoaded() {
         {
           label: '城镇村道路用地',
           value: '1004',
-          color: ''
+          color: 'rgba(222, 222, 221, 1)'
         },
         {
           label: '交通服务场站用地',
           value: '1005',
-          color: ''
+          color: 'rgba(170, 169, 169, 1)'
         },
         {
           label: '农村道路',
@@ -164,12 +164,12 @@ function onLoaded() {
         {
           label: '河流水面',
           value: '1101',
-          color: 'rgba(163, 214, 245, 1)'
+          color: 'rgba(163, 214, 255, 1)'
         },
         {
           label: '水库水面',
           value: '1103',
-          color: ''
+          color: 'rgba(163, 214, 245, 1)'
         },
         {
           label: '坑塘水面',
@@ -179,17 +179,17 @@ function onLoaded() {
         {
           label: '养殖坑塘',
           value: '1104A',
-          color: ''
+          color: 'rgba(69, 107, 161, 1)'
         },
         {
           label: '沟渠',
           value: '1107',
-          color: ''
+          color: 'rgba(160, 205, 240, 1)'
         },
         {
           label: '水工建筑用地',
           value: '1109',
-          color: ''
+          color: 'rgba(230, 130, 100, 1)'
         },
         {
           label: '设施农用地',
@@ -199,23 +199,11 @@ function onLoaded() {
         {
           label: '裸岩石砾地',
           value: '1207',
-          color: ''
+          color: 'rgba(222, 221, 214, 1)'
         }
       ]
     }
   })
-  const sceneTool = mapStoreTool.getMap().sceneTool
-  sceneTool?.camera.flyTo(
-    {
-      heading: 356.59370490211097,
-      pitch: -21.448515521042864,
-      roll: 0.007733530122760293,
-      lng: 119.66762845212162,
-      lat: 35.40247020394134,
-      height: 10971.21914434521
-    },
-    1
-  )
 }
 </script>
 

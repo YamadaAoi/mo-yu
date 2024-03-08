@@ -2,8 +2,8 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-08 14:20:32
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-11 18:15:19
- * @Description: 
+ * @LastEditTime: 2024-03-08 14:40:06
+ * @Description: 初始化一个简单的地图场景，包括底图，地形，遮罩
 -->
 <template>
   <div class="common-map">
