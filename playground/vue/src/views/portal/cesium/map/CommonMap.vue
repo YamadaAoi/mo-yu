@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-08 14:20:32
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-08 14:40:06
+ * @LastEditTime: 2024-03-08 17:18:40
  * @Description: 初始化一个简单的地图场景，包括底图，地形，遮罩
 -->
 <template>
@@ -21,7 +21,7 @@ import 'cesiumcss'
 import { initCesiumBaseUrl, MapView, SceneConfig } from '@mo-yu/cesium'
 import { useRem } from '@mo-yu/vue'
 
-initCesiumBaseUrl(import.meta.env.CESIUM_BASE_URL)
+initCesiumBaseUrl('/cesium')
 
 const props = withDefaults(
   defineProps<{

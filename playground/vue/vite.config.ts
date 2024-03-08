@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 15:33:24
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-18 13:25:16
+ * @LastEditTime: 2024-03-08 17:21:57
  * @Description:
  */
 import path from 'path'
@@ -30,7 +30,6 @@ function getBrowsers(command: 'build' | 'serve') {
 export default defineConfig(({ command, mode }) => {
   loadEnv(mode, process.cwd())
   const config: UserConfig = {
-    envPrefix: ['VITE_', 'CESIUM_'],
     server: {
       open: true
     },
