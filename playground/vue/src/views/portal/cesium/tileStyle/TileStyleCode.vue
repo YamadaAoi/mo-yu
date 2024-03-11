@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-02-04 10:16:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-08 14:54:45
+ * @LastEditTime: 2024-03-11 17:33:06
  * @Description: shp生成的白膜图层根据属性设置样式
 -->
 <template>
@@ -202,6 +202,9 @@ function onLoaded() {
           color: 'rgba(222, 221, 214, 1)'
         }
       ]
+    },
+    pick: {
+      color: 'yellow'
     }
   })
 }

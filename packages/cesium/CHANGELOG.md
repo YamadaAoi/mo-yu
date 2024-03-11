@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.13
+
+### Patch Changes
+
+- 白膜默认样式和选择样式设置
+
 ## 1.0.12
 
 ### Patch Changes

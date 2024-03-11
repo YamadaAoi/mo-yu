@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-02-05 13:57:21
+ * @LastEditTime: 2024-03-11 17:30:38
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -21,7 +21,8 @@ import {
   Cesium3DTileStyle,
   ScreenSpaceEventHandler,
   ScreenSpaceEventType,
-  Cesium3DTileFeature
+  Cesium3DTileFeature,
+  Color
 } from 'cesium'
 import {
   ToolBase,
@@ -33,6 +34,7 @@ import {
 import { mapStoreTool } from '../storeTool'
 import { CameraParam } from '../cameraTool'
 import { defaultColor } from '../../core/defaultVal'
+import { getColor } from '../../core'
 
 /**
  * cesium原生3DTiles构造参数
@@ -70,17 +72,27 @@ export interface Cesium3DTileColor {
 export type TileOption = TilesetOption &
   TilesTransform & {
     id?: string
-    locate?: string
+    locate?: boolean
     /**
      * 组装Cesium3DTileStyle，必须是合法的Cesium3DTileStyle入参
      */
     style?: {
       [key: string]: any
       /**
+       * 整体颜色，存在colorAll则忽略paramName和colorList
+       */
+      colorAll?: string
+      /**
        * 组装到color.conditions
        */
       paramName?: string
       colorList?: Cesium3DTileColor[]
+    }
+    /**
+     * 选中时Cesium3DTileFeature的样式
+     */
+    pick?: {
+      color: Color | string
     }
   }
 
@@ -111,6 +123,14 @@ export class MapTileTool<
 > extends ToolBase<ToolBaseOptions, E> {
   protected tiles = new PrimitiveCollection()
   #handler: ScreenSpaceEventHandler | undefined
+  #pickStyles: Map<
+    string,
+    {
+      color: Color | string
+    }
+  > = new Map()
+  #prevColor = new Color()
+  #prevFea: Cesium3DTileFeature | undefined
   constructor(options: ToolBaseOptions) {
     super(options)
   }
@@ -144,6 +164,7 @@ export class MapTileTool<
    */
   clear() {
     this.#removeAllTiles()
+    this.#pickStyles.clear()
   }
 
   /**
@@ -222,6 +243,7 @@ export class MapTileTool<
         scale,
         ...rest
       } = option
+      const MoYuTileId = id ?? guid()
       const tileset = new Cesium3DTileset(
         getDefault(
           {
@@ -247,6 +269,7 @@ export class MapTileTool<
       )
       const tile = await tileset.readyPromise
       this.#handleStyle(option, tile)
+      this.#handlePickStyle(option, MoYuTileId)
       const modelMatrix = this.getTransform(tile.root.transform, {
         lng,
         lat,
@@ -257,7 +280,7 @@ export class MapTileTool<
         scale
       })
       tile.root.transform = modelMatrix
-      ;(tile as any).MoYuTileId = id ?? guid()
+      ;(tile as any).MoYuTileId = MoYuTileId
       primitive = this.tiles.add(tile)
       if (locate) {
         await this.viewer?.zoomTo(tile)
@@ -352,8 +375,10 @@ export class MapTileTool<
 
   #handleStyle(option: TileOption, tileset: Cesium3DTileset) {
     if (option.style) {
-      const { colorList, paramName, ...rest } = option.style
-      if (colorList?.length && paramName && rest.color === undefined) {
+      const { colorAll, colorList, paramName, ...rest } = option.style
+      if (colorAll) {
+        rest.color = `color('${colorAll}')`
+      } else if (colorList?.length && paramName && rest.color === undefined) {
         rest.color = {
           conditions: colorList.map(c => {
             let cond = '${' + paramName + '} === '
@@ -376,15 +401,39 @@ export class MapTileTool<
     }
   }
 
+  #handlePickStyle(option: TileOption, tileId: string) {
+    if (option.pick?.color) {
+      this.#pickStyles.set(tileId, option.pick)
+    }
+  }
+
   #handleClick = debounce((event: ScreenSpaceEventHandler.PositionedEvent) => {
     const feature = this.viewer?.scene.pick(event.position)
     if (feature instanceof Cesium3DTileFeature) {
+      const tileId = (feature.tileset as any).MoYuTileId
+      const pickStyle = this.#pickStyles.get(tileId)
+      const pickColor = getColor(pickStyle?.color)
+      if (pickColor) {
+        if (feature !== this.#prevFea) {
+          if (this.#prevFea) {
+            this.#prevFea.color = this.#prevColor
+          }
+          this.#prevFea = feature
+          this.#prevColor = feature.color.clone()
+          feature.color = pickColor
+        }
+      }
+
       const propertyIds = feature.getPropertyIds()
       const properties: any = {}
       propertyIds.forEach(propertyId => {
         properties[propertyId] = feature.getProperty(propertyId)
       })
       this.eventBus.fire('feature-pick', { properties })
+    } else {
+      if (this.#prevFea) {
+        this.#prevFea.color = this.#prevColor
+      }
     }
   })
 

@@ -12,11 +12,15 @@
 export type TileOption = TilesetOption &
   TilesTransform & {
     id?: string
-    locate?: string
+    locate?: boolean
     style?: {
       [key: string]: any
+      colorAll?: string
       paramName?: string
       colorList?: Cesium3DTileColor[]
+    }
+    pick?: {
+      color: Color | string
     }
   }
 ```
