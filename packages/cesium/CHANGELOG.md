@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.14
+
+### Patch Changes
+
+- 简易滚动组件添加；白膜交互优化；
+
 ## 1.0.13
 
 ### Patch Changes

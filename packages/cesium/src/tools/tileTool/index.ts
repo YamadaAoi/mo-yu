@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-11 17:30:38
+ * @LastEditTime: 2024-03-13 17:27:13
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -91,10 +91,20 @@ export type TileOption = TilesetOption &
     /**
      * 选中时Cesium3DTileFeature的样式
      */
-    pick?: {
-      color: Color | string
-    }
+    pick?: PickTileFeatureStyle
   }
+
+/**
+ * 选中时Cesium3DTileFeature的样式
+ */
+export interface PickTileFeatureStyle {
+  hover?: {
+    color: Color | string
+  }
+  click?: {
+    color: Color | string
+  }
+}
 
 /**
  * 事件
@@ -104,6 +114,12 @@ export interface MapTileToolEvents {
    * 选中feature
    */
   'feature-pick': {
+    properties: any
+  }
+  /**
+   * 鼠标悬浮于feature上
+   */
+  'feature-hover': {
     properties: any
   }
 }
@@ -123,14 +139,11 @@ export class MapTileTool<
 > extends ToolBase<ToolBaseOptions, E> {
   protected tiles = new PrimitiveCollection()
   #handler: ScreenSpaceEventHandler | undefined
-  #pickStyles: Map<
-    string,
-    {
-      color: Color | string
-    }
-  > = new Map()
-  #prevColor = new Color()
-  #prevFea: Cesium3DTileFeature | undefined
+  #pickStyles: Map<string, PickTileFeatureStyle> = new Map()
+  #prevClickColor: Color | undefined
+  #prevClickFea: Cesium3DTileFeature | undefined
+  #prevHoverColor: Color | undefined
+  #prevHoverFea: Cesium3DTileFeature | undefined
   constructor(options: ToolBaseOptions) {
     super(options)
   }
@@ -146,6 +159,10 @@ export class MapTileTool<
       this.#handler.setInputAction(
         this.#handleClick,
         ScreenSpaceEventType.LEFT_CLICK
+      )
+      this.#handler.setInputAction(
+        this.#handleMove,
+        ScreenSpaceEventType.MOUSE_MOVE
       )
     }
   }
@@ -402,24 +419,60 @@ export class MapTileTool<
   }
 
   #handlePickStyle(option: TileOption, tileId: string) {
-    if (option.pick?.color) {
+    if (option.pick) {
       this.#pickStyles.set(tileId, option.pick)
+    }
+  }
+
+  #handleMove = (event: ScreenSpaceEventHandler.MotionEvent) => {
+    const feature = this.viewer?.scene.pick(event.endPosition)
+    if (feature instanceof Cesium3DTileFeature) {
+      const tileset: any = feature.tileset
+      const tileId = tileset.MoYuTileId
+      const pickColor = getColor(this.#pickStyles.get(tileId)?.hover?.color)
+      if (pickColor) {
+        if (feature !== this.#prevHoverFea && feature !== this.#prevClickFea) {
+          if (this.#prevHoverFea && this.#prevHoverColor) {
+            this.#prevHoverFea.color = this.#prevHoverColor
+          }
+          this.#prevHoverFea = feature
+          this.#prevHoverColor = feature.color.clone()
+          feature.color = pickColor
+        }
+      }
+
+      const propertyIds = feature.getPropertyIds()
+      const properties: any = {}
+      propertyIds.forEach(propertyId => {
+        properties[propertyId] = feature.getProperty(propertyId)
+      })
+      this.eventBus.fire('feature-hover', { properties })
+    } else {
+      if (this.#prevHoverFea && this.#prevHoverColor) {
+        this.#prevHoverFea.color = this.#prevHoverColor
+        this.#prevHoverFea = undefined
+        this.#prevHoverColor = undefined
+      }
     }
   }
 
   #handleClick = debounce((event: ScreenSpaceEventHandler.PositionedEvent) => {
     const feature = this.viewer?.scene.pick(event.position)
     if (feature instanceof Cesium3DTileFeature) {
-      const tileId = (feature.tileset as any).MoYuTileId
-      const pickStyle = this.#pickStyles.get(tileId)
-      const pickColor = getColor(pickStyle?.color)
+      const tileset: any = feature.tileset
+      const tileId = tileset.MoYuTileId
+      const pickColor = getColor(this.#pickStyles.get(tileId)?.click?.color)
       if (pickColor) {
-        if (feature !== this.#prevFea) {
-          if (this.#prevFea) {
-            this.#prevFea.color = this.#prevColor
+        if (feature !== this.#prevClickFea) {
+          if (this.#prevClickFea && this.#prevClickColor) {
+            this.#prevClickFea.color = this.#prevClickColor
           }
-          this.#prevFea = feature
-          this.#prevColor = feature.color.clone()
+          if (feature === this.#prevHoverFea && this.#prevHoverColor) {
+            this.#prevClickColor = this.#prevHoverColor
+          } else {
+            this.#prevClickColor = feature.color.clone()
+          }
+          this.#prevClickFea = feature
           feature.color = pickColor
         }
       }
@@ -431,8 +484,10 @@ export class MapTileTool<
       })
       this.eventBus.fire('feature-pick', { properties })
     } else {
-      if (this.#prevFea) {
-        this.#prevFea.color = this.#prevColor
+      if (this.#prevClickFea && this.#prevClickColor) {
+        this.#prevClickFea.color = this.#prevClickColor
+        this.#prevClickFea = undefined
+        this.#prevClickColor = undefined
       }
     }
   })

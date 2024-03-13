@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:07:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-16 16:49:50
+ * @LastEditTime: 2024-03-13 15:35:31
  * @Description:
  */
 import {
@@ -149,11 +149,11 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
           container.getElementsByClassName('cesium-viewer')?.[0]
         if (cesiumContainer) {
           const popupContainer = document.createElement('div')
-          popupContainer.className = 'cesium-viewer-popup-container'
+          popupContainer.className = 'mo-yu-cesium-popup-container'
           popupContainer.style.position = 'absolute'
           popupContainer.style.top = '0'
           popupContainer.style.left = '0'
-          popupContainer.id = `cesium-viewer-popup-container-${this.id}`
+          popupContainer.id = `mo-yu-cesium-popup-container-${this.id}`
           cesiumContainer.appendChild(popupContainer)
         }
       }

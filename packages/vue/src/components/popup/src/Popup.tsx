@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 18:10:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-02-15 10:46:34
+ * @LastEditTime: 2024-03-13 15:47:39
  * @Description: 拖拽弹框
  */
 import './popup.scss'
@@ -64,11 +64,11 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const { zoom } = useRem()
-    const popupWinId = ref(`popupWin${guid()}`)
-    const popupHeadId = ref(`popupHead${guid()}`)
+    const popupWinId = `popupWin${guid()}`
+    const popupHeadId = `popupHead${guid()}`
     const drag = new DragTool({
-      handleId: popupHeadId.value,
-      targetId: popupWinId.value,
+      handleId: popupHeadId,
+      targetId: popupWinId,
       zoom: zoom.value
     })
 

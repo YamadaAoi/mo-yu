@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-08 15:39:00
+ * @LastEditTime: 2024-03-13 17:35:40
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -88,6 +88,15 @@ export function getVueMenus() {
       }
     },
     {
+      path: '/portal/scroll',
+      name: 'Scroll',
+      component: () => import('../views/portal/vue/scroll/Scroll.vue'),
+      meta: {
+        label: '简易滚动',
+        cname: 'MScroll'
+      }
+    },
+    {
       path: '/portal/remHook',
       name: 'RemHook',
       component: () => import('../views/portal/vue/useRem/RemHook.vue'),
@@ -145,6 +154,16 @@ export function getCesiumMenus() {
         import('../views/portal/cesium/tileStyle/TileStyleDemo.vue'),
       meta: {
         label: '白膜样式',
+        cname: 'MapTile[Config]Tool'
+      }
+    },
+    {
+      path: '/portal/tilePick',
+      name: 'TilePick',
+      component: () =>
+        import('../views/portal/cesium/tilePick/TilePickDemo.vue'),
+      meta: {
+        label: '白膜交互',
         cname: 'MapTile[Config]Tool'
       }
     },

@@ -41,8 +41,8 @@ _default: import('vue').DefineComponent<
     }
   },
   {
-    popupWinId: import('vue').Ref<string>
-    popupHeadId: import('vue').Ref<string>
+    popupWinId: string
+    popupHeadId: string
     close: () => void
   },
   unknown,

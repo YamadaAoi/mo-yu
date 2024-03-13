@@ -6,26 +6,26 @@
 
 ## Functions
 
-|  Function | Description |
-|  --- | --- |
-|  [createInjectKey(key)](./vue.createinjectkey.md) | vue3注入key |
-|  [useLoading()](./vue.useloading.md) | 全局共享loading方法 |
-|  [useLocale(locale)](./vue.uselocale.md) | locale hook 提供响应式国际化切换能力 可以考虑二次封装，不要每次都传入LocaleTool类实例 |
-|  [useRem()](./vue.userem.md) | rem hook 将rem zoom转为响应式变量 对外暴露remToPx方法 |
+| Function                                         | Description                                                                             |
+| ------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| [createInjectKey(key)](./vue.createinjectkey.md) | vue3 注入 key                                                                           |
+| [useLoading()](./vue.useloading.md)              | 全局共享 loading 方法                                                                   |
+| [useLocale(locale)](./vue.uselocale.md)          | locale hook 提供响应式国际化切换能力 可以考虑二次封装，不要每次都传入 LocaleTool 类实例 |
+| [useRem()](./vue.userem.md)                      | rem hook 将 rem zoom 转为响应式变量 对外暴露 remToPx 方法                               |
 
 ## Interfaces
 
-|  Interface | Description |
-|  --- | --- |
-|  [LoadingInjection](./vue.loadinginjection.md) | loading注入方法 |
+| Interface                                     | Description      |
+| --------------------------------------------- | ---------------- |
+| [LoadingInjection](./vue.loadinginjection.md) | loading 注入方法 |
 
 ## Variables
 
-|  Variable | Description |
-|  --- | --- |
-|  [LoadingInjectionKey](./vue.loadinginjectionkey.md) | loading provider方法注入id |
-|  [MAniNumber](./vue.maninumber.md) | 从0到任意数值的动画（参考“naive-ui” \# NumberAnimation的简易版本） |
-|  [MHighlight](./vue.mhighlight.md) | 高亮搜索关键字 |
-|  [MLoading](./vue.mloading.md) | loading遮罩组件，需要将项目代码包裹在MLoading内 |
-|  [MPopup](./vue.mpopup.md) | 可拖拽弹框组件，相对于整个可视窗口拖动 在项目入口先调用initPopupContainer()方法渲染popup父节点 |
-
+| Variable                                            | Description                                                                                       |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [LoadingInjectionKey](./vue.loadinginjectionkey.md) | loading provider 方法注入 id                                                                      |
+| [MAniNumber](./vue.maninumber.md)                   | 从 0 到任意数值的动画（参考“naive-ui” \# NumberAnimation 的简易版本）                             |
+| [MHighlight](./vue.mhighlight.md)                   | 高亮搜索关键字                                                                                    |
+| [MLoading](./vue.mloading.md)                       | loading 遮罩组件，需要将项目代码包裹在 MLoading 内                                                |
+| [MPopup](./vue.mpopup.md)                           | 可拖拽弹框组件，相对于整个可视窗口拖动 在项目入口先调用 initPopupContainer()方法渲染 popup 父节点 |
+| [MScroll](./vue.mscroll.md)                         | 自动滚动 interval：AnimationFrame 时间间隔，单位毫秒                                              |

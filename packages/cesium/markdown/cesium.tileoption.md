@@ -19,10 +19,8 @@ export type TileOption = TilesetOption &
       paramName?: string
       colorList?: Cesium3DTileColor[]
     }
-    pick?: {
-      color: Color | string
-    }
+    pick?: PickTileFeatureStyle
   }
 ```
 
-**References:** [TilesTransform](./cesium.tilestransform.md)<!-- -->, [Cesium3DTileColor](./cesium.cesium3dtilecolor.md)
+**References:** [TilesTransform](./cesium.tilestransform.md)<!-- -->, [Cesium3DTileColor](./cesium.cesium3dtilecolor.md)<!-- -->, [PickTileFeatureStyle](./cesium.picktilefeaturestyle.md)

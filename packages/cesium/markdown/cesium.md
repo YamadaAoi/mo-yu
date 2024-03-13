@@ -89,6 +89,7 @@
 | [MapOption](./cesium.mapoption.md)                             | 扩展 cesium 默认初始化参数                          |
 | [MapTileConfigToolEvents](./cesium.maptileconfigtoolevents.md) | 3DTiles 配置事件                                    |
 | [MapTileToolEvents](./cesium.maptiletoolevents.md)             | 事件                                                |
+| [PickTileFeatureStyle](./cesium.picktilefeaturestyle.md)       | 选中时 Cesium3DTileFeature 的样式                   |
 | [PointOption](./cesium.pointoption.md)                         | PointPrimitive 属性                                 |
 | [PolygonOption](./cesium.polygonoption.md)                     | 面 Primitive 参数                                   |
 | [PolylineOption](./cesium.polylineoption.md)                   | 线 Primitive 参数                                   |

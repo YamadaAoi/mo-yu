@@ -14,6 +14,7 @@ export interface MapTileToolEvents
 
 ## Properties
 
-| Property                                                       | Modifiers | Type                 | Description  |
-| -------------------------------------------------------------- | --------- | -------------------- | ------------ |
-| ["feature-pick"](./cesium.maptiletoolevents._feature-pick_.md) |           | { properties: any; } | 选中 feature |
+| Property                                                         | Modifiers | Type                 | Description           |
+| ---------------------------------------------------------------- | --------- | -------------------- | --------------------- |
+| ["feature-hover"](./cesium.maptiletoolevents._feature-hover_.md) |           | { properties: any; } | 鼠标悬浮于 feature 上 |
+| ["feature-pick"](./cesium.maptiletoolevents._feature-pick_.md)   |           | { properties: any; } | 选中 feature          |
