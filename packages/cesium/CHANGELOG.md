@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.16
+
+### Patch Changes
+
+- geo bug fix
+
 ## 1.0.15
 
 ### Patch Changes

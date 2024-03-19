@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-19 13:24:08
+ * @LastEditTime: 2024-03-19 14:24:22
  * @Description: geojson工具
  */
 import {
@@ -141,7 +141,6 @@ interface MapGeoToolEvents {}
  * ```
  */
 export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
-  #geoNames: string[] = []
   constructor(options: ToolBaseOptions) {
     super(options)
   }
@@ -239,8 +238,8 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
       source
         .load(url, o)
         .then(s => {
+          s.name = id ?? s.name
           this.#viewer?.dataSources.add(s)
-          this.#geoNames.push(s.name)
           if (option.custom) {
             const entities = s.entities.values
             if (entities?.length) {
