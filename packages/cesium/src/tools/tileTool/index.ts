@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-13 17:27:13
+ * @LastEditTime: 2024-03-19 19:41:57
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -113,14 +113,20 @@ export interface MapTileToolEvents {
   /**
    * 选中feature
    */
-  'feature-pick': {
+  'pick-fea': {
     properties: any
+  }
+  'pick-fea-all': {
+    properties: any[]
   }
   /**
    * 鼠标悬浮于feature上
    */
-  'feature-hover': {
+  'hover-fea': {
     properties: any
+  }
+  'hover-fea-all': {
+    properties: any[]
   }
 }
 
@@ -425,69 +431,88 @@ export class MapTileTool<
   }
 
   #handleMove = (event: ScreenSpaceEventHandler.MotionEvent) => {
-    const feature = this.viewer?.scene.pick(event.endPosition)
-    if (feature instanceof Cesium3DTileFeature) {
-      const tileset: any = feature.tileset
-      const tileId = tileset.MoYuTileId
-      const pickColor = getColor(this.#pickStyles.get(tileId)?.hover?.color)
-      if (pickColor) {
-        if (feature !== this.#prevHoverFea && feature !== this.#prevClickFea) {
-          if (this.#prevHoverFea && this.#prevHoverColor) {
-            this.#prevHoverFea.color = this.#prevHoverColor
+    const picked = this.viewer?.scene.drillPick(event.endPosition)
+    if (picked?.length) {
+      const features = picked.filter(p => p instanceof Cesium3DTileFeature)
+      if (features.length) {
+        const feature = features[0]
+        const tileset = feature.tileset
+        const tileId = tileset.MoYuTileId
+        const pickColor = getColor(this.#pickStyles.get(tileId)?.hover?.color)
+        if (pickColor) {
+          if (
+            feature !== this.#prevHoverFea &&
+            feature !== this.#prevClickFea
+          ) {
+            if (this.#prevHoverFea && this.#prevHoverColor) {
+              this.#prevHoverFea.color = this.#prevHoverColor
+            }
+            this.#prevHoverFea = feature
+            this.#prevHoverColor = feature.color.clone()
+            feature.color = pickColor
           }
-          this.#prevHoverFea = feature
-          this.#prevHoverColor = feature.color.clone()
-          feature.color = pickColor
         }
-      }
-
-      const propertyIds = feature.getPropertyIds()
-      const properties: any = {}
-      propertyIds.forEach(propertyId => {
-        properties[propertyId] = feature.getProperty(propertyId)
-      })
-      this.eventBus.fire('feature-hover', { properties })
-    } else {
-      if (this.#prevHoverFea && this.#prevHoverColor) {
-        this.#prevHoverFea.color = this.#prevHoverColor
-        this.#prevHoverFea = undefined
-        this.#prevHoverColor = undefined
+        const properties = features.map(f => {
+          const MoYuTileId = f.tileset.MoYuTileId
+          const properties: any = { MoYuTileId }
+          const propertyIds: string[] = f.getPropertyIds()
+          propertyIds.forEach(propertyId => {
+            properties[propertyId] = f.getProperty(propertyId)
+          })
+          return properties
+        })
+        this.eventBus.fire('hover-fea', { properties: properties[0] })
+        this.eventBus.fire('hover-fea-all', { properties })
+      } else {
+        if (this.#prevHoverFea && this.#prevHoverColor) {
+          this.#prevHoverFea.color = this.#prevHoverColor
+          this.#prevHoverFea = undefined
+          this.#prevHoverColor = undefined
+        }
       }
     }
   }
 
   #handleClick = debounce((event: ScreenSpaceEventHandler.PositionedEvent) => {
-    const feature = this.viewer?.scene.pick(event.position)
-    if (feature instanceof Cesium3DTileFeature) {
-      const tileset: any = feature.tileset
-      const tileId = tileset.MoYuTileId
-      const pickColor = getColor(this.#pickStyles.get(tileId)?.click?.color)
-      if (pickColor) {
-        if (feature !== this.#prevClickFea) {
-          if (this.#prevClickFea && this.#prevClickColor) {
-            this.#prevClickFea.color = this.#prevClickColor
+    const picked = this.viewer?.scene.drillPick(event.position)
+    if (picked?.length) {
+      const features = picked.filter(p => p instanceof Cesium3DTileFeature)
+      if (features.length) {
+        const feature = features[0]
+        const tileset = feature.tileset
+        const tileId = tileset.MoYuTileId
+        const pickColor = getColor(this.#pickStyles.get(tileId)?.click?.color)
+        if (pickColor) {
+          if (feature !== this.#prevClickFea) {
+            if (this.#prevClickFea && this.#prevClickColor) {
+              this.#prevClickFea.color = this.#prevClickColor
+            }
+            if (feature === this.#prevHoverFea && this.#prevHoverColor) {
+              this.#prevClickColor = this.#prevHoverColor
+            } else {
+              this.#prevClickColor = feature.color.clone()
+            }
+            this.#prevClickFea = feature
+            feature.color = pickColor
           }
-          if (feature === this.#prevHoverFea && this.#prevHoverColor) {
-            this.#prevClickColor = this.#prevHoverColor
-          } else {
-            this.#prevClickColor = feature.color.clone()
-          }
-          this.#prevClickFea = feature
-          feature.color = pickColor
         }
-      }
-
-      const propertyIds = feature.getPropertyIds()
-      const properties: any = {}
-      propertyIds.forEach(propertyId => {
-        properties[propertyId] = feature.getProperty(propertyId)
-      })
-      this.eventBus.fire('feature-pick', { properties })
-    } else {
-      if (this.#prevClickFea && this.#prevClickColor) {
-        this.#prevClickFea.color = this.#prevClickColor
-        this.#prevClickFea = undefined
-        this.#prevClickColor = undefined
+        const properties = features.map(f => {
+          const MoYuTileId = f.tileset.MoYuTileId
+          const properties: any = { MoYuTileId }
+          const propertyIds: string[] = f.getPropertyIds()
+          propertyIds.forEach(propertyId => {
+            properties[propertyId] = f.getProperty(propertyId)
+          })
+          return properties
+        })
+        this.eventBus.fire('pick-fea', { properties: properties[0] })
+        this.eventBus.fire('pick-fea-all', { properties })
+      } else {
+        if (this.#prevClickFea && this.#prevClickColor) {
+          this.#prevClickFea.color = this.#prevClickColor
+          this.#prevClickFea = undefined
+          this.#prevClickColor = undefined
+        }
       }
     }
   })

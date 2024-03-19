@@ -257,7 +257,7 @@ const addParam: Omit<TileInfo, 'id'> = reactive({
 const tiles = ref<TileInfo[]>([
   {
     id: '5a685fb6-2aa8-477c-a715-efcf3f39a862',
-    url: 'http://119.3.213.144:8090/open-data/yiling/qxz/tileset.json',
+    url: 'https://nync.piesat.cn/oss/yiling/qxz/tileset.json',
     name: '气象站',
     lng: 119.64264079934783,
     lat: 35.64920129045164,

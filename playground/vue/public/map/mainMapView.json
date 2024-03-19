@@ -35,7 +35,7 @@
     "id": "qingdao",
     "type": "Terrain",
     "provider": {
-      "url": "http://119.3.213.144:8090/open-data/qingdao/terrain",
+      "url": "https://nync.piesat.cn/oss/qingdao/terrain",
       "requestMetadata": true,
       "requestWaterMask": false,
       "requestVertexNormals": false

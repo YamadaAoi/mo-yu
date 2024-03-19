@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.17
+
+### Patch Changes
+
+- geo 工具和 tile 工具嗅探升级
+
 ## 1.0.16
 
 ### Patch Changes

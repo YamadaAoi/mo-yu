@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-13 17:30:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-13 17:36:12
+ * @LastEditTime: 2024-03-19 19:37:09
  * @Description: shp生成的白膜图层选中交互
 -->
 <template>
@@ -27,11 +27,11 @@ function onLoaded() {
   mapReady.value = true
   tool = new MapTileTool({})
   tool.enable()
-  tool.eventBus.on('feature-pick', e => {
+  tool.eventBus.on('pick-fea', e => {
     console.log(e.properties)
   })
   tool.add3DTileset({
-    url: 'http://119.3.213.144:8090/open-data/qingdao/jianzhu/tileset.json',
+    url: 'https://nync.piesat.cn/oss/qingdao/jianzhu/tileset.json',
     id: 'jianzhu',
     locate: true,
     style: {

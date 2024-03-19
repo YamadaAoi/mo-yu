@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-19 14:24:22
+ * @LastEditTime: 2024-03-19 19:31:32
  * @Description: geojson工具
  */
 import {
@@ -15,7 +15,9 @@ import {
   Billboard,
   Label,
   Cartesian2,
-  Cartesian3
+  Cartesian3,
+  ScreenSpaceEventHandler,
+  ScreenSpaceEventType
 } from 'cesium'
 import { polygon } from '@turf/helpers'
 import centroid from '@turf/centroid'
@@ -128,7 +130,20 @@ export interface StylePolygon {
   style: PolygonEntityOption
 }
 
-interface MapGeoToolEvents {}
+interface MapGeoToolEvents {
+  /**
+   * 选取最上层fea属性
+   */
+  'pick-fea': {
+    properties: any
+  }
+  /**
+   * 选取所有fea属性
+   */
+  'pick-fea-all': {
+    properties: any[]
+  }
+}
 
 /**
  * 添加geojson
@@ -240,6 +255,7 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
         .then(s => {
           s.name = id ?? s.name
           this.#viewer?.dataSources.add(s)
+          this.#handlePick(id ?? s.name)
           if (option.custom) {
             const entities = s.entities.values
             if (entities?.length) {
@@ -273,6 +289,34 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
           console.error(`load geojson [${url}] failed![${err}]`)
         })
     }
+  }
+
+  #handlePick(MoYuGeoId: string) {
+    const handler = new ScreenSpaceEventHandler(this.#viewer.canvas)
+    handler.setInputAction((event: ScreenSpaceEventHandler.PositionedEvent) => {
+      if (event?.position) {
+        const picked = this.#viewer.scene.drillPick(event.position)
+        if (picked?.length) {
+          const properties = picked
+            .filter(p => p?.id instanceof Entity)
+            .map(p => {
+              const property: any = { MoYuGeoId }
+              p.id.properties?.propertyNames?.forEach((str: string) => {
+                property[str] = p.id.properties[str]?._value
+              })
+              return property
+            })
+          if (properties.length) {
+            this.eventBus.fire('pick-fea', {
+              properties: properties[0]
+            })
+            this.eventBus.fire('pick-fea-all', {
+              properties
+            })
+          }
+        }
+      }
+    }, ScreenSpaceEventType.LEFT_CLICK)
   }
 
   #handleBorder(e: Entity, option: StyleBoder) {

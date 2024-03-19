@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-02-04 10:16:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-13 17:31:32
+ * @LastEditTime: 2024-03-19 19:40:23
  * @Description: shp生成的白膜图层根据属性设置样式
 -->
 <template>
@@ -27,11 +27,11 @@ function onLoaded() {
   mapReady.value = true
   tool = new MapTileTool({})
   tool.enable()
-  tool.eventBus.on('feature-pick', e => {
+  tool.eventBus.on('pick-fea', e => {
     console.log(e.properties)
   })
   tool.add3DTileset({
-    url: 'http://119.3.213.144:8090/open-data/qingdao/gtsd/tileset.json',
+    url: 'https://nync.piesat.cn/oss/qingdao/gtsd/tileset.json',
     id: 'gtsd',
     style: {
       paramName: 'DLBM',
