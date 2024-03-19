@@ -2,26 +2,40 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-15 09:46:53
+ * @LastEditTime: 2024-03-18 18:30:39
  * @Description: Polyline
  */
-import { Color, Entity, MaterialProperty, PolylineGraphics } from 'cesium'
+import {
+  Color,
+  DistanceDisplayCondition,
+  Entity,
+  MaterialProperty,
+  PolylineGraphics,
+  Property
+} from 'cesium'
 import { getMeterialProperty } from '../../../material'
 import { EntityOption } from '..'
 import { defaultColor } from '../../../defaultVal'
+import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
 
 /**
  * PolylineEntity参数，改造了Polyline属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
  * material
  * depthFailMaterial
+ * 扩展distanceDisplayCondition传递方式
+ * distanceDisplayCondition: [near, far]
  */
 export type PolylineEntityOption = EntityOption &
   Omit<
     PolylineGraphics.ConstructorOptions,
-    'material' | 'depthFailMaterial'
+    'material' | 'depthFailMaterial' | 'distanceDisplayCondition'
   > & {
     material?: MaterialProperty | Color | string
     depthFailMaterial?: MaterialProperty | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 
 /**
@@ -48,6 +62,9 @@ export function createEntityPolylineGraphics(options: PolylineEntityOption) {
     material: getMeterialProperty(rest.material ?? defaultColor),
     depthFailMaterial: getMeterialProperty(
       rest.depthFailMaterial ?? defaultColor
+    ),
+    distanceDisplayCondition: getDistanceDisplayCondition(
+      rest.distanceDisplayCondition
     )
   })
   return polyline

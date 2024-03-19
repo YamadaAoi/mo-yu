@@ -4,15 +4,22 @@
 
 ## EllipseEntityOption type
 
-EllipseEntity 参数，改造了 Ellipse 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor
+EllipseEntity 参数，改造了 Ellipse 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
 
 **Signature:**
 
 ```typescript
 export type EllipseEntityOption = EntityOption &
-  Omit<EllipseGraphics.ConstructorOptions, 'material' | 'outlineColor'> & {
+  Omit<
+    EllipseGraphics.ConstructorOptions,
+    'material' | 'outlineColor' | 'distanceDisplayCondition'
+  > & {
     material?: MaterialProperty | Color | string
     outlineColor?: Property | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 ```
 

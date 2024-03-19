@@ -4,7 +4,7 @@
 
 ## WallEntityOption type
 
-WallEntity 参数，改造了 Wall 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor 更改了高度数组围为数字，由实际的点数确定数组 minimumHeights maximumHeights 添加了自定义材质 customMaterial，会覆盖 cesium 原生材质 material
+WallEntity 参数，改造了 Wall 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor 更改了高度数组围为数字，由实际的点数确定数组 minimumHeights maximumHeights 添加了自定义材质 customMaterial，会覆盖 cesium 原生材质 material 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
 
 **Signature:**
 
@@ -17,6 +17,7 @@ export type WallEntityOption = EntityOption &
     | 'maximumHeights'
     | 'material'
     | 'outlineColor'
+    | 'distanceDisplayCondition'
   > & {
     material?: MaterialProperty | Color | string
     customMaterial?: CustomMaterial
@@ -24,6 +25,10 @@ export type WallEntityOption = EntityOption &
     minimumHeights?: number
     maximumHeights?: number
     outlineColor?: Property | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 ```
 

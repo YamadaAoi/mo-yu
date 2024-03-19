@@ -4,14 +4,21 @@
 
 ## BillboardEntityOption type
 
-BillboardEntity 参数，改造了 Billboard 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: color
+BillboardEntity 参数，改造了 Billboard 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: color 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
 
 **Signature:**
 
 ```typescript
 export type BillboardEntityOption = EntityOption &
-  Omit<BillboardGraphics.ConstructorOptions, 'color'> & {
+  Omit<
+    BillboardGraphics.ConstructorOptions,
+    'color' | 'distanceDisplayCondition'
+  > & {
     color?: Property | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 ```
 

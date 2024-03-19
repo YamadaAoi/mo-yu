@@ -1,5 +1,12 @@
 # mo-yu-vue-demo
 
+## 1.0.27
+
+### Patch Changes
+
+- Updated dependencies
+  - @mo-yu/cesium@1.0.15
+
 ## 1.0.26
 
 ### Patch Changes

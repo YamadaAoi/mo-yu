@@ -2,12 +2,13 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-15 10:53:29
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-16 17:03:52
+ * @LastEditTime: 2024-03-18 18:33:12
  * @Description: Wall
  */
 import {
   Cartesian3,
   Color,
+  DistanceDisplayCondition,
   Entity,
   MaterialProperty,
   Property,
@@ -21,6 +22,7 @@ import {
 import { EntityOption } from '..'
 import { defaultColor } from '../../../defaultVal'
 import { CustomMaterial } from '../../../material'
+import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
 
 /**
  * WallEntity参数，改造了Wall属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
@@ -31,6 +33,8 @@ import { CustomMaterial } from '../../../material'
  * maximumHeights
  * 添加了自定义材质
  * customMaterial，会覆盖cesium原生材质material
+ * 扩展distanceDisplayCondition传递方式
+ * distanceDisplayCondition: [near, far]
  */
 export type WallEntityOption = EntityOption &
   Omit<
@@ -40,6 +44,7 @@ export type WallEntityOption = EntityOption &
     | 'maximumHeights'
     | 'material'
     | 'outlineColor'
+    | 'distanceDisplayCondition'
   > & {
     material?: MaterialProperty | Color | string
     customMaterial?: CustomMaterial
@@ -47,6 +52,10 @@ export type WallEntityOption = EntityOption &
     minimumHeights?: number
     maximumHeights?: number
     outlineColor?: Property | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 
 function createWallMaterial(
@@ -91,7 +100,10 @@ export function createEntityWallGraphics(options: WallEntityOption) {
       rest.material ?? defaultColor,
       options.customMaterial
     ),
-    outlineColor: getColorProperty(rest.outlineColor ?? defaultColor)
+    outlineColor: getColorProperty(rest.outlineColor ?? defaultColor),
+    distanceDisplayCondition: getDistanceDisplayCondition(
+      rest.distanceDisplayCondition
+    )
   })
   return wall
 }

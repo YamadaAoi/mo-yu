@@ -5,20 +5,36 @@
  * @LastEditTime: 2024-01-15 09:46:30
  * @Description: Point
  */
-import { Color, Entity, PointGraphics, Property } from 'cesium'
+import {
+  Color,
+  DistanceDisplayCondition,
+  Entity,
+  PointGraphics,
+  Property
+} from 'cesium'
 import { getColorProperty } from '../../../material'
 import { EntityOption } from '..'
 import { defaultColor } from '../../../defaultVal'
+import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
 
 /**
  * PointEntity参数，改造了Point属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
  * color
  * outlineColor
+ * 扩展distanceDisplayCondition传递方式
+ * distanceDisplayCondition: [near, far]
  */
 export type PointEntityOption = EntityOption &
-  Omit<PointGraphics.ConstructorOptions, 'color' | 'outlineColor'> & {
+  Omit<
+    PointGraphics.ConstructorOptions,
+    'color' | 'outlineColor' | 'distanceDisplayCondition'
+  > & {
     color?: Property | Color | string
     outlineColor?: Property | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 
 /**
@@ -43,7 +59,10 @@ export function createEntityPointGraphics(options: PointEntityOption) {
   const point = new PointGraphics({
     ...rest,
     color: getColorProperty(rest.color ?? defaultColor),
-    outlineColor: getColorProperty(rest.outlineColor ?? defaultColor)
+    outlineColor: getColorProperty(rest.outlineColor ?? defaultColor),
+    distanceDisplayCondition: getDistanceDisplayCondition(
+      rest.distanceDisplayCondition
+    )
   })
   return point
 }

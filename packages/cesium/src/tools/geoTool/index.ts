@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-02-04 10:58:03
+ * @LastEditTime: 2024-03-19 13:24:08
  * @Description: geojson工具
  */
 import {
@@ -14,8 +14,11 @@ import {
   EntityCluster,
   Billboard,
   Label,
-  Cartesian2
+  Cartesian2,
+  Cartesian3
 } from 'cesium'
+import { polygon } from '@turf/helpers'
+import centroid from '@turf/centroid'
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
 import { mapStoreTool } from '../storeTool'
 import { getColor } from '../../core/material'
@@ -31,6 +34,16 @@ import {
   BillboardEntityOption,
   createEntityBillboardGraphics
 } from '../../core/geo/entity/billboard'
+import {
+  LabelEntityOption,
+  createEntityLabelGraphics
+} from '../../core/geo/entity/label'
+import {
+  PolygonEntityOption,
+  createEntityPolygonGraphics
+} from '../../core/geo/entity/polygon'
+import { cartesian3ToLngLat } from '../../utils/coordTranform'
+import { getPosiOnMap } from '../../utils/getPosi'
 
 /**
  * geojson参数，在原始参数基础上合并了参数:
@@ -65,9 +78,17 @@ export type GeoOptions = Omit<
      */
     wall?: StyleWall
     /**
+     * 多边形添加label样式
+     */
+    label?: StyleLabel
+    /**
      * 覆盖广告牌样式
      */
     billboard?: StyleBillboard
+    /**
+     * 覆盖多边形样式，只会覆盖PolygonGraphics.ConstructorOptions除了hierarchy的所有参数
+     */
+    polygon?: StylePolygon
   }
   /**
    * 广告牌聚合参数
@@ -97,6 +118,14 @@ export interface StyleWall {
 
 export interface StyleBillboard {
   style: BillboardEntityOption
+}
+
+export interface StyleLabel {
+  style: LabelEntityOption
+}
+
+export interface StylePolygon {
+  style: PolygonEntityOption
 }
 
 interface MapGeoToolEvents {}
@@ -222,8 +251,14 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
                 if (option.custom?.wall) {
                   this.#handleWall(e, option.custom.wall)
                 }
+                if (option.custom?.label) {
+                  this.#handleLabel(e, option.custom.label)
+                }
                 if (option.custom?.billboard) {
                   this.#handleBillboard(e, option.custom.billboard)
+                }
+                if (option.custom?.polygon) {
+                  this.#handlePolygon(e, option.custom.polygon)
                 }
               })
             }
@@ -269,9 +304,65 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
     }
   }
 
+  #handleLabel(e: Entity, option: StyleLabel) {
+    if (e.polygon) {
+      const positions: Cartesian3[] = e.polygon.hierarchy?.getValue(
+        JulianDate.now()
+      )?.positions
+      if (positions?.length) {
+        const points = positions.map(p => {
+          const ll = cartesian3ToLngLat(p)
+          return [ll[0], ll[1]]
+        })
+        const center = centroid(polygon([points]))
+        getPosiOnMap(
+          Cartesian3.fromDegrees(
+            center.geometry.coordinates[0],
+            center.geometry.coordinates[1],
+            0
+          )
+        )
+          .then(p => {
+            const polyCenter: any = p
+            e.position = polyCenter
+            e.label = createEntityLabelGraphics({
+              ...option.style,
+              properties: e.properties
+            })
+          })
+          .catch(err => {
+            console.error(err)
+          })
+      }
+    }
+  }
+
   #handleBillboard(e: Entity, option: StyleBillboard) {
     if (e.billboard) {
       e.billboard = createEntityBillboardGraphics(option.style)
+    }
+  }
+
+  #handlePolygon(e: Entity, option: StylePolygon) {
+    if (e.polygon && option.style) {
+      const {
+        id,
+        name,
+        availability,
+        show,
+        description,
+        position,
+        orientation,
+        viewFrom,
+        parent,
+        properties,
+        hierarchy,
+        ...rest
+      } = option.style
+      e.polygon = createEntityPolygonGraphics({
+        hierarchy: e.polygon.hierarchy,
+        ...rest
+      })
     }
   }
 

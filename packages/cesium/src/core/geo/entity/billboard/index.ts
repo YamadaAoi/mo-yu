@@ -2,20 +2,36 @@
  * @Author: zhouyinkui
  * @Date: 2024-02-01 15:05:41
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-02-01 15:14:47
+ * @LastEditTime: 2024-03-18 18:32:24
  * @Description: Billboard
  */
-import { Color, Entity, BillboardGraphics, Property } from 'cesium'
+import {
+  Color,
+  Entity,
+  BillboardGraphics,
+  Property,
+  DistanceDisplayCondition
+} from 'cesium'
 import { getColorProperty } from '../../../material'
 import { EntityOption } from '..'
+import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
 
 /**
  * BillboardEntity参数，改造了Billboard属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
  * color
+ * 扩展distanceDisplayCondition传递方式
+ * distanceDisplayCondition: [near, far]
  */
 export type BillboardEntityOption = EntityOption &
-  Omit<BillboardGraphics.ConstructorOptions, 'color'> & {
+  Omit<
+    BillboardGraphics.ConstructorOptions,
+    'color' | 'distanceDisplayCondition'
+  > & {
     color?: Property | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 
 /**
@@ -39,7 +55,10 @@ export function createEntityBillboardGraphics(options: BillboardEntityOption) {
   } = options
   const billboard = new BillboardGraphics({
     ...rest,
-    color: getColorProperty(rest.color ?? Color.WHITE)
+    color: getColorProperty(rest.color ?? Color.WHITE),
+    distanceDisplayCondition: getDistanceDisplayCondition(
+      rest.distanceDisplayCondition
+    )
   })
   return billboard
 }

@@ -4,7 +4,7 @@
 
 ## PolylineEntityOption type
 
-PolylineEntity 参数，改造了 Polyline 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material depthFailMaterial
+PolylineEntity 参数，改造了 Polyline 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material depthFailMaterial 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
 
 **Signature:**
 
@@ -12,10 +12,14 @@ PolylineEntity 参数，改造了 Polyline 属性，在原始参数基础上更�
 export type PolylineEntityOption = EntityOption &
   Omit<
     PolylineGraphics.ConstructorOptions,
-    'material' | 'depthFailMaterial'
+    'material' | 'depthFailMaterial' | 'distanceDisplayCondition'
   > & {
     material?: MaterialProperty | Color | string
     depthFailMaterial?: MaterialProperty | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 ```
 

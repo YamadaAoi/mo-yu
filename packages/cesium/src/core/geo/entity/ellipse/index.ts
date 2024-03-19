@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 17:19:02
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-15 09:59:45
+ * @LastEditTime: 2024-03-18 18:32:33
  * @Description: Ellipse
  */
 import {
@@ -10,21 +10,32 @@ import {
   Entity,
   MaterialProperty,
   EllipseGraphics,
-  Property
+  Property,
+  DistanceDisplayCondition
 } from 'cesium'
 import { getColorProperty, getMeterialProperty } from '../../../material'
 import { EntityOption } from '..'
 import { defaultColor } from '../../../defaultVal'
+import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
 
 /**
  * EllipseEntity参数，改造了Ellipse属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
  * material
  * outlineColor
+ * 扩展distanceDisplayCondition传递方式
+ * distanceDisplayCondition: [near, far]
  */
 export type EllipseEntityOption = EntityOption &
-  Omit<EllipseGraphics.ConstructorOptions, 'material' | 'outlineColor'> & {
+  Omit<
+    EllipseGraphics.ConstructorOptions,
+    'material' | 'outlineColor' | 'distanceDisplayCondition'
+  > & {
     material?: MaterialProperty | Color | string
     outlineColor?: Property | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 
 /**
@@ -49,7 +60,10 @@ export function createEntityEllipseGraphics(options: EllipseEntityOption) {
   const ellipse = new EllipseGraphics({
     ...rest,
     material: getMeterialProperty(rest.material ?? defaultColor),
-    outlineColor: getColorProperty(rest.outlineColor ?? defaultColor)
+    outlineColor: getColorProperty(rest.outlineColor ?? defaultColor),
+    distanceDisplayCondition: getDistanceDisplayCondition(
+      rest.distanceDisplayCondition
+    )
   })
   return ellipse
 }

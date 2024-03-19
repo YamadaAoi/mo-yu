@@ -114,6 +114,13 @@ importers:
         version: 4.9.5
 
   packages/cesium:
+    dependencies:
+      '@turf/centroid':
+        specifier: ^6.5.0
+        version: 6.5.0
+      '@turf/helpers':
+        specifier: ^6.5.0
+        version: 6.5.0
     devDependencies:
       '@mo-yu/core':
         specifier: workspace:*
@@ -2309,6 +2316,32 @@ packages:
       }
     engines: { node: '>=10.13.0' }
     dev: true
+
+  /@turf/centroid@6.5.0:
+    resolution:
+      {
+        integrity: sha512-MwE1oq5E3isewPprEClbfU5pXljIK/GUOMbn22UM3IFPDJX0KeoyLNwghszkdmFp/qMGL/M13MMWvU+GNLXP/A==
+      }
+    dependencies:
+      '@turf/helpers': 6.5.0
+      '@turf/meta': 6.5.0
+    dev: false
+
+  /@turf/helpers@6.5.0:
+    resolution:
+      {
+        integrity: sha512-VbI1dV5bLFzohYYdgqwikdMVpe7pJ9X3E+dlr425wa2/sMJqYDhTO++ec38/pcPvPE6oD9WEEeU3Xu3gza+VPw==
+      }
+    dev: false
+
+  /@turf/meta@6.5.0:
+    resolution:
+      {
+        integrity: sha512-RrArvtsV0vdsCBegoBtOalgdSOfkBrTJ07VkpiCnq/491W67hnMWmDu7e6Ztw0C3WldRYTXkg3SumfdzZxLBHA==
+      }
+    dependencies:
+      '@turf/helpers': 6.5.0
+    dev: false
 
   /@types/argparse@1.0.38:
     resolution:

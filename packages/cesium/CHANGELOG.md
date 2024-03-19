@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.15
+
+### Patch Changes
+
+- geo 工具添加 distanceDisplayCondition 支持，标签添加
+
 ## 1.0.14
 
 ### Patch Changes

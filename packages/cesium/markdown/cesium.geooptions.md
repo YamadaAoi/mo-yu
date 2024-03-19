@@ -22,7 +22,9 @@ export type GeoOptions = Omit<
   custom?: {
     border?: StyleBoder
     wall?: StyleWall
+    label?: StyleLabel
     billboard?: StyleBillboard
+    polygon?: StylePolygon
   }
   cluster?: {
     options?: ConstructorParameters<typeof EntityCluster>[0]
@@ -32,4 +34,4 @@ export type GeoOptions = Omit<
 }
 ```
 
-**References:** [StyleBoder](./cesium.styleboder.md)<!-- -->, [StyleWall](./cesium.stylewall.md)<!-- -->, [StyleBillboard](./cesium.stylebillboard.md)<!-- -->, [BillboardParam](./cesium.billboardparam.md)<!-- -->, [LabelParam](./cesium.labelparam.md)
+**References:** [StyleBoder](./cesium.styleboder.md)<!-- -->, [StyleWall](./cesium.stylewall.md)<!-- -->, [StyleLabel](./cesium.stylelabel.md)<!-- -->, [StyleBillboard](./cesium.stylebillboard.md)<!-- -->, [StylePolygon](./cesium.stylepolygon.md)<!-- -->, [BillboardParam](./cesium.billboardparam.md)<!-- -->, [LabelParam](./cesium.labelparam.md)

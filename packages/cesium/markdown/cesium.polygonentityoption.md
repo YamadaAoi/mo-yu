@@ -4,7 +4,7 @@
 
 ## PolygonEntityOption type
 
-PolygonEntity 参数，改造了 Polygon 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor
+PolygonEntity 参数，改造了 Polygon 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
 
 **Signature:**
 
@@ -12,11 +12,15 @@ PolygonEntity 参数，改造了 Polygon 属性，在原始参数基础上更改
 export type PolygonEntityOption = EntityOption &
   Omit<
     PolygonGraphics.ConstructorOptions,
-    'hierarchy' | 'material' | 'outlineColor'
+    'hierarchy' | 'material' | 'outlineColor' | 'distanceDisplayCondition'
   > & {
     hierarchy?: Property | PolygonHierarchy | Cartesian3[]
     material?: MaterialProperty | Color | string
     outlineColor?: Property | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 ```
 

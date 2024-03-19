@@ -4,15 +4,22 @@
 
 ## PointEntityOption type
 
-PointEntity 参数，改造了 Point 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: color outlineColor
+PointEntity 参数，改造了 Point 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: color outlineColor 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
 
 **Signature:**
 
 ```typescript
 export type PointEntityOption = EntityOption &
-  Omit<PointGraphics.ConstructorOptions, 'color' | 'outlineColor'> & {
+  Omit<
+    PointGraphics.ConstructorOptions,
+    'color' | 'outlineColor' | 'distanceDisplayCondition'
+  > & {
     color?: Property | Color | string
     outlineColor?: Property | Color | string
+    distanceDisplayCondition?:
+      | [number, number]
+      | Property
+      | DistanceDisplayCondition
   }
 ```
 
