@@ -2,8 +2,8 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-08 14:44:23
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-19 19:10:41
- * @Description: 简单自定义材质墙，支持颜色和图片
+ * @LastEditTime: 2024-03-22 18:09:57
+ * @Description: 简单自定义材质线，支持颜色和图片
 -->
 <template>
   <div class="border-wrap">
@@ -36,30 +36,34 @@ function onLoaded() {
     fill: 'rgba(0,0,0,0)',
     clampToGround: true,
     custom: {
-      wall: {
+      border: {
         style: {
+          width: 6,
+          clampToGround: true,
           customMaterial: {
             flow: {
-              vertical: true,
-              speed: 4,
+              vertical: false,
+              speed: 0.5,
               colors: [
-                'rgba(0,248,255,0.1)',
-                'rgba(0,248,255,0.8)',
-                'rgba(0,248,255,0.1)'
+                'rgba(255, 206, 0, 1)',
+                'rgba(0, 255, 255, 1)',
+                'rgba(255, 206, 0, 1)',
+                'rgba(76, 245, 250, 1)'
               ]
             }
           },
-          maximumHeights: 200,
-          distanceDisplayCondition: [0, 10000]
-        }
-      },
-      label: {
-        style: {
-          field: 'name',
-          fillColor: '#fff',
-          font: 'normal 20px MicroSoft YaHei',
-          disableDepthTestDistance: Number.POSITIVE_INFINITY,
-          distanceDisplayCondition: [0, 10000]
+          customDepthFailMaterial: {
+            flow: {
+              vertical: false,
+              speed: 0.5,
+              colors: [
+                'rgba(255, 206, 0, 1)',
+                'rgba(0, 255, 255, 1)',
+                'rgba(255, 206, 0, 1)',
+                'rgba(76, 245, 250, 1)'
+              ]
+            }
+          }
         }
       }
     }

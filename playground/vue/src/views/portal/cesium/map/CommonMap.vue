@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-08 14:20:32
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-08 17:18:40
+ * @LastEditTime: 2024-03-22 18:14:06
  * @Description: 初始化一个简单的地图场景，包括底图，地形，遮罩
 -->
 <template>
@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount } from 'vue'
 import 'cesiumcss'
+import { ScreenSpaceEventType } from 'cesium'
 import { initCesiumBaseUrl, MapView, SceneConfig } from '@mo-yu/cesium'
 import { useRem } from '@mo-yu/vue'
 
@@ -50,6 +51,9 @@ onMounted(() => {
         map.sceneTool.prepareScene(config)
         emits('loaded', e.view?.id)
       })
+      map.viewer.screenSpaceEventHandler.setInputAction(() => {
+        console.log(map.sceneTool.camera.getCameraParam())
+      }, ScreenSpaceEventType.LEFT_CLICK)
     })
     .catch(err => {
       console.error(err)

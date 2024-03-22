@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:31:44
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-18 18:29:40
+ * @LastEditTime: 2024-03-22 10:56:52
  * @Description: Polygon
  */
 import {
@@ -55,11 +55,13 @@ function getHierarchy(hierarchy?: Property | PolygonHierarchy | Cartesian3[]) {
 }
 
 /**
- * 创建面Graphics
+ * 创建面Graphics.ConstructorOptions
  * @param options - 面参数
  * @returns
  */
-export function createEntityPolygonGraphics(options: PolygonEntityOption) {
+export function createEntityPolygonGraphicsOptions(
+  options: PolygonEntityOption
+) {
   const {
     id,
     name,
@@ -73,7 +75,7 @@ export function createEntityPolygonGraphics(options: PolygonEntityOption) {
     properties,
     ...rest
   } = options
-  const polygon = new PolygonGraphics({
+  const opt: PolygonGraphics.ConstructorOptions = {
     ...rest,
     hierarchy: getHierarchy(rest.hierarchy),
     material: getMeterialProperty(rest.material ?? defaultColor),
@@ -81,7 +83,18 @@ export function createEntityPolygonGraphics(options: PolygonEntityOption) {
     distanceDisplayCondition: getDistanceDisplayCondition(
       rest.distanceDisplayCondition
     )
-  })
+  }
+  return opt
+}
+
+/**
+ * 创建面Graphics
+ * @param options - 面参数
+ * @returns
+ */
+export function createEntityPolygonGraphics(options: PolygonEntityOption) {
+  const opt = createEntityPolygonGraphicsOptions(options)
+  const polygon = new PolygonGraphics(opt)
   return polygon
 }
 

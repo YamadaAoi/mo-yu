@@ -31,14 +31,15 @@ tool.prepareScene(config, 1)
 
 ## Properties
 
-| Property                                    | Modifiers             | Type                                                                                                                                   | Description |
-| ------------------------------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [baseMap](./cesium.mapscenetool.basemap.md) |                       | [BaseMapTool](./cesium.basemaptool.md)                                                                                                 |             |
-| [camera](./cesium.mapscenetool.camera.md)   |                       | [MapCameraTool](./cesium.mapcameratool.md)                                                                                             |             |
-| [config](./cesium.mapscenetool.config.md)   | <code>readonly</code> | [SceneConfig](./cesium.sceneconfig.md) \| undefined                                                                                    |             |
-| [geo](./cesium.mapscenetool.geo.md)         |                       | [MapGeoTool](./cesium.mapgeotool.md)                                                                                                   |             |
-| [mask](./cesium.mapscenetool.mask.md)       |                       | MapMaskTool                                                                                                                            |             |
-| [tile](./cesium.mapscenetool.tile.md)       |                       | [MapTileTool](./cesium.maptiletool.md)<!-- -->&lt;import("../tileTool").[MapTileToolEvents](./cesium.maptiletoolevents.md)<!-- -->&gt; |             |
+| Property                                    | Modifiers             | Type                                                | Description |
+| ------------------------------------------- | --------------------- | --------------------------------------------------- | ----------- |
+| [baseMap](./cesium.mapscenetool.basemap.md) |                       | [BaseMapTool](./cesium.basemaptool.md)              |             |
+| [camera](./cesium.mapscenetool.camera.md)   |                       | [MapCameraTool](./cesium.mapcameratool.md)          |             |
+| [config](./cesium.mapscenetool.config.md)   | <code>readonly</code> | [SceneConfig](./cesium.sceneconfig.md) \| undefined |             |
+| [fly](./cesium.mapscenetool.fly.md)         |                       | [MapFlyTool](./cesium.mapflytool.md)                |             |
+| [geo](./cesium.mapscenetool.geo.md)         |                       | [MapGeoTool](./cesium.mapgeotool.md)                |             |
+| [mask](./cesium.mapscenetool.mask.md)       |                       | MapMaskTool                                         |             |
+| [tile](./cesium.mapscenetool.tile.md)       |                       | [MapTileTool](./cesium.maptiletool.md)              |             |
 
 ## Methods
 

@@ -12,9 +12,10 @@ BillboardEntity 参数，改造了 Billboard 属性，在原始参数基础上�
 export type BillboardEntityOption = EntityOption &
   Omit<
     BillboardGraphics.ConstructorOptions,
-    'color' | 'distanceDisplayCondition'
+    'color' | 'distanceDisplayCondition' | 'pixelOffset'
   > & {
     color?: Property | Color | string
+    pixelOffset?: Cartesian2 | [number, number]
     distanceDisplayCondition?:
       | [number, number]
       | Property

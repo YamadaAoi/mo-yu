@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-18 18:30:39
+ * @LastEditTime: 2024-03-21 17:05:26
  * @Description: Polyline
  */
 import {
@@ -13,7 +13,7 @@ import {
   PolylineGraphics,
   Property
 } from 'cesium'
-import { getMeterialProperty } from '../../../material'
+import { CustomMaterial, createMaterial } from '../../../material'
 import { EntityOption } from '..'
 import { defaultColor } from '../../../defaultVal'
 import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
@@ -22,6 +22,9 @@ import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
  * PolylineEntity参数，改造了Polyline属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
  * material
  * depthFailMaterial
+ * 添加了自定义材质
+ * customMaterial，会覆盖cesium原生材质material
+ * customDepthFailMaterial，会覆盖cesium原生材质depthFailMaterial
  * 扩展distanceDisplayCondition传递方式
  * distanceDisplayCondition: [near, far]
  */
@@ -31,7 +34,9 @@ export type PolylineEntityOption = EntityOption &
     'material' | 'depthFailMaterial' | 'distanceDisplayCondition'
   > & {
     material?: MaterialProperty | Color | string
+    customMaterial?: CustomMaterial
     depthFailMaterial?: MaterialProperty | Color | string
+    customDepthFailMaterial?: CustomMaterial
     distanceDisplayCondition?:
       | [number, number]
       | Property
@@ -39,11 +44,13 @@ export type PolylineEntityOption = EntityOption &
   }
 
 /**
- * 创建线Graphics
+ * 创建线Graphics.ConstructorOptions
  * @param options - 线参数
  * @returns
  */
-export function createEntityPolylineGraphics(options: PolylineEntityOption) {
+export function createEntityPolylineGraphicsOptions(
+  options: PolylineEntityOption
+) {
   const {
     id,
     name,
@@ -57,16 +64,31 @@ export function createEntityPolylineGraphics(options: PolylineEntityOption) {
     properties,
     ...rest
   } = options
-  const polyline = new PolylineGraphics({
+  const opt: PolylineGraphics.ConstructorOptions = {
     ...rest,
-    material: getMeterialProperty(rest.material ?? defaultColor),
-    depthFailMaterial: getMeterialProperty(
-      rest.depthFailMaterial ?? defaultColor
+    material: createMaterial(
+      rest.material ?? defaultColor,
+      options.customMaterial
+    ),
+    depthFailMaterial: createMaterial(
+      rest.depthFailMaterial ?? defaultColor,
+      options.customDepthFailMaterial
     ),
     distanceDisplayCondition: getDistanceDisplayCondition(
       rest.distanceDisplayCondition
     )
-  })
+  }
+  return opt
+}
+
+/**
+ * 创建线Graphics
+ * @param options - 线参数
+ * @returns
+ */
+export function createEntityPolylineGraphics(options: PolylineEntityOption) {
+  const opt = createEntityPolylineGraphicsOptions(options)
+  const polyline = new PolylineGraphics(opt)
   return polyline
 }
 

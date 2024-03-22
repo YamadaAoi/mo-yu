@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-02-01 15:05:41
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-18 18:32:24
+ * @LastEditTime: 2024-03-22 10:50:54
  * @Description: Billboard
  */
 import {
@@ -10,11 +10,15 @@ import {
   Entity,
   BillboardGraphics,
   Property,
-  DistanceDisplayCondition
+  DistanceDisplayCondition,
+  Cartesian2
 } from 'cesium'
 import { getColorProperty } from '../../../material'
 import { EntityOption } from '..'
-import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
+import {
+  getDistanceDisplayCondition,
+  getpixelOffset
+} from '../../../../utils/objectCreate'
 
 /**
  * BillboardEntity参数，改造了Billboard属性，在原始参数基础上更改了(使用css颜色)颜色类参数:
@@ -25,9 +29,10 @@ import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
 export type BillboardEntityOption = EntityOption &
   Omit<
     BillboardGraphics.ConstructorOptions,
-    'color' | 'distanceDisplayCondition'
+    'color' | 'distanceDisplayCondition' | 'pixelOffset'
   > & {
     color?: Property | Color | string
+    pixelOffset?: Cartesian2 | [number, number]
     distanceDisplayCondition?:
       | [number, number]
       | Property
@@ -35,11 +40,13 @@ export type BillboardEntityOption = EntityOption &
   }
 
 /**
- * 创建BillboardGraphics
+ * 创建BillboardGraphics.ConstructorOptions
  * @param options - Billboard参数
  * @returns
  */
-export function createEntityBillboardGraphics(options: BillboardEntityOption) {
+export function createEntityBillboardGraphicsOptions(
+  options: BillboardEntityOption
+) {
   const {
     id,
     name,
@@ -53,13 +60,25 @@ export function createEntityBillboardGraphics(options: BillboardEntityOption) {
     properties,
     ...rest
   } = options
-  const billboard = new BillboardGraphics({
+  const opt: BillboardGraphics.ConstructorOptions = {
     ...rest,
     color: getColorProperty(rest.color ?? Color.WHITE),
+    pixelOffset: getpixelOffset(rest.pixelOffset),
     distanceDisplayCondition: getDistanceDisplayCondition(
       rest.distanceDisplayCondition
     )
-  })
+  }
+  return opt
+}
+
+/**
+ * 创建BillboardGraphics
+ * @param options - Billboard参数
+ * @returns
+ */
+export function createEntityBillboardGraphics(options: BillboardEntityOption) {
+  const opt = createEntityBillboardGraphicsOptions(options)
+  const billboard = new BillboardGraphics(opt)
   return billboard
 }
 

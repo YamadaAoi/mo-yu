@@ -12,7 +12,7 @@
 export declare class MapCameraTool extends ToolBase<ToolBaseOptions, MapCameraToolEvents>
 ```
 
-**Extends:** ToolBase&lt;ToolBaseOptions, MapCameraToolEvents&gt;
+**Extends:** ToolBase&lt;ToolBaseOptions, [MapCameraToolEvents](./cesium.mapcameratoolevents.md)<!-- -->&gt;
 
 ## Example
 

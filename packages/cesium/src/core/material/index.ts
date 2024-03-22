@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:14:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-16 17:06:34
+ * @LastEditTime: 2024-03-22 17:44:52
  * @Description: 材质
  */
 import { Color, Material, MaterialProperty, Property } from 'cesium'
@@ -128,5 +128,22 @@ export function createCustomMaterialProperty(option: CustomMaterial) {
         : option.flash.image
     }
     return new FlashMaterialProperty(u)
+  }
+}
+
+/**
+ * 创建自定义材质或原生材质
+ * @param material - 原生材质
+ * @param customMaterial - 自定义材质
+ * @returns
+ */
+export function createMaterial(
+  material?: MaterialProperty | Color | string,
+  customMaterial?: CustomMaterial
+) {
+  if (customMaterial) {
+    return createCustomMaterialProperty(customMaterial)
+  } else {
+    return getMeterialProperty(material)
   }
 }

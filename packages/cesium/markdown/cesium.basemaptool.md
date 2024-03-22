@@ -10,7 +10,7 @@
 export declare class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents>
 ```
 
-**Extends:** ToolBase&lt;ToolBaseOptions, BaseMapToolEvents&gt;
+**Extends:** ToolBase&lt;ToolBaseOptions, [BaseMapToolEvents](./cesium.basemaptoolevents.md)<!-- -->&gt;
 
 ## Constructors
 

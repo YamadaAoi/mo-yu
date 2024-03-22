@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-15 10:53:29
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-18 18:33:12
+ * @LastEditTime: 2024-03-22 10:58:27
  * @Description: Wall
  */
 import {
@@ -14,11 +14,7 @@ import {
   Property,
   WallGraphics
 } from 'cesium'
-import {
-  createCustomMaterialProperty,
-  getColorProperty,
-  getMeterialProperty
-} from '../../../material'
+import { createMaterial, getColorProperty } from '../../../material'
 import { EntityOption } from '..'
 import { defaultColor } from '../../../defaultVal'
 import { CustomMaterial } from '../../../material'
@@ -58,23 +54,12 @@ export type WallEntityOption = EntityOption &
       | DistanceDisplayCondition
   }
 
-function createWallMaterial(
-  material?: MaterialProperty | Color | string,
-  customMaterial?: CustomMaterial
-) {
-  if (customMaterial) {
-    return createCustomMaterialProperty(customMaterial)
-  } else {
-    return getMeterialProperty(material)
-  }
-}
-
 /**
- * 创建墙Graphics
+ * 创建墙Graphics.ConstructorOptions
  * @param options - 墙参数
  * @returns
  */
-export function createEntityWallGraphics(options: WallEntityOption) {
+export function createEntityWallGraphicsOptions(options: WallEntityOption) {
   const {
     id,
     name,
@@ -88,7 +73,7 @@ export function createEntityWallGraphics(options: WallEntityOption) {
     properties,
     ...rest
   } = options
-  const wall = new WallGraphics({
+  const opt: WallGraphics.ConstructorOptions = {
     ...rest,
     minimumHeights: new Array((options.positions ?? []).length).fill(
       options.minimumHeights ?? 0
@@ -96,7 +81,7 @@ export function createEntityWallGraphics(options: WallEntityOption) {
     maximumHeights: new Array((options.positions ?? []).length).fill(
       options.maximumHeights ?? 500
     ),
-    material: createWallMaterial(
+    material: createMaterial(
       rest.material ?? defaultColor,
       options.customMaterial
     ),
@@ -104,7 +89,18 @@ export function createEntityWallGraphics(options: WallEntityOption) {
     distanceDisplayCondition: getDistanceDisplayCondition(
       rest.distanceDisplayCondition
     )
-  })
+  }
+  return opt
+}
+
+/**
+ * 创建墙Graphics
+ * @param options - 墙参数
+ * @returns
+ */
+export function createEntityWallGraphics(options: WallEntityOption) {
+  const opt = createEntityWallGraphicsOptions(options)
+  const wall = new WallGraphics(opt)
   return wall
 }
 

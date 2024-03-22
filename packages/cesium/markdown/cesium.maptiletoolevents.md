@@ -14,9 +14,9 @@ export interface MapTileToolEvents
 
 ## Properties
 
-| Property                                                         | Modifiers | Type                     | Description           |
-| ---------------------------------------------------------------- | --------- | ------------------------ | --------------------- |
-| ["hover-fea-all"](./cesium.maptiletoolevents._hover-fea-all_.md) |           | { properties: any\[\]; } |                       |
-| ["hover-fea"](./cesium.maptiletoolevents._hover-fea_.md)         |           | { properties: any; }     | 鼠标悬浮于 feature 上 |
-| ["pick-fea-all"](./cesium.maptiletoolevents._pick-fea-all_.md)   |           | { properties: any\[\]; } |                       |
-| ["pick-fea"](./cesium.maptiletoolevents._pick-fea_.md)           |           | { properties: any; }     | 选中 feature          |
+| Property                                                           | Modifiers | Type                     | Description           |
+| ------------------------------------------------------------------ | --------- | ------------------------ | --------------------- |
+| ["hover-tile-all"](./cesium.maptiletoolevents._hover-tile-all_.md) |           | { properties: any\[\]; } |                       |
+| ["hover-tile"](./cesium.maptiletoolevents._hover-tile_.md)         |           | { properties: any; }     | 鼠标悬浮于 feature 上 |
+| ["pick-tile-all"](./cesium.maptiletoolevents._pick-tile-all_.md)   |           | { properties: any\[\]; } |                       |
+| ["pick-tile"](./cesium.maptiletoolevents._pick-tile_.md)           |           | { properties: any; }     | 选中 feature          |

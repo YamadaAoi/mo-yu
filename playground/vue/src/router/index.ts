@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-13 17:35:40
+ * @LastEditTime: 2024-03-22 18:17:02
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -123,7 +123,16 @@ export function getCesiumMenus() {
     {
       path: '/portal/border',
       name: 'Border',
-      component: () => import('../views/portal/cesium/border/BoderDemo.vue'),
+      component: () => import('../views/portal/cesium/border/BorderDemo.vue'),
+      meta: {
+        label: '自定义材质线',
+        cname: 'MapGeoTool'
+      }
+    },
+    {
+      path: '/portal/wall',
+      name: 'Wall',
+      component: () => import('../views/portal/cesium/wall/WallDemo.vue'),
       meta: {
         label: '自定义材质墙',
         cname: 'MapGeoTool'
@@ -174,6 +183,15 @@ export function getCesiumMenus() {
       meta: {
         label: '绘制工具',
         cname: 'Draw[Point|polyline|polygon|Rect|Circle]Tool'
+      }
+    },
+    {
+      path: '/portal/fly',
+      name: 'Fly',
+      component: () => import('../views/portal/cesium/fly/FlyDemo.vue'),
+      meta: {
+        label: '模拟飞行',
+        cname: 'MapFlyTool'
       }
     }
   ]

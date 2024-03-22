@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-19 19:31:32
+ * @LastEditTime: 2024-03-22 14:55:43
  * @Description: geojson工具
  */
 import {
@@ -21,12 +21,13 @@ import {
 } from 'cesium'
 import { polygon } from '@turf/helpers'
 import centroid from '@turf/centroid'
-import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
+import { ToolBase, ToolBaseOptions, debounce } from '@mo-yu/core'
 import { mapStoreTool } from '../storeTool'
 import { getColor } from '../../core/material'
 import {
   PolylineEntityOption,
-  createEntityPolylineGraphics
+  createEntityPolylineGraphics,
+  createEntityPolylineGraphicsOptions
 } from '../../core/geo/entity/polyline'
 import {
   WallEntityOption,
@@ -46,6 +47,7 @@ import {
 } from '../../core/geo/entity/polygon'
 import { cartesian3ToLngLat } from '../../utils/coordTranform'
 import { getPosiOnMap } from '../../utils/getPosi'
+import { getpixelOffset } from '../../utils/objectCreate'
 
 /**
  * geojson参数，在原始参数基础上合并了参数:
@@ -112,6 +114,7 @@ export type LabelParam = Omit<Partial<Label>, 'pixelOffset'> & {
 
 export interface StyleBoder {
   style: PolylineEntityOption
+  pick?: PolylineEntityOption
 }
 
 export interface StyleWall {
@@ -130,7 +133,7 @@ export interface StylePolygon {
   style: PolygonEntityOption
 }
 
-interface MapGeoToolEvents {
+export interface MapGeoToolEvents {
   /**
    * 选取最上层fea属性
    */
@@ -156,6 +159,8 @@ interface MapGeoToolEvents {
  * ```
  */
 export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
+  #geoOptions: GeoOptions[] = []
+  #handler: ScreenSpaceEventHandler | undefined
   constructor(options: ToolBaseOptions) {
     super(options)
   }
@@ -164,7 +169,13 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
    * 启用
    */
   enable(): void {
-    //
+    if (this.#viewer?.canvas) {
+      this.#handler = new ScreenSpaceEventHandler(this.#viewer.canvas)
+      this.#handler.setInputAction(
+        this.#handlePick,
+        ScreenSpaceEventType.LEFT_CLICK
+      )
+    }
   }
 
   /**
@@ -172,6 +183,7 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
    */
   destroy(): void {
     this.clear()
+    this.#handler?.destroy()
   }
 
   /**
@@ -239,6 +251,9 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
     if (option) {
       const { id, locate, url, markerColor, stroke, fill, custom, ...rest } =
         option
+      if (id && !this.#geoOptions.some(g => g.id === id)) {
+        this.#geoOptions.push(option)
+      }
       const source = new GeoJsonDataSource(id)
       const o: GeoJsonDataSource.LoadOptions = { ...rest }
       if (markerColor) {
@@ -255,29 +270,31 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
         .then(s => {
           s.name = id ?? s.name
           this.#viewer?.dataSources.add(s)
-          this.#handlePick(id ?? s.name)
-          if (option.custom) {
-            const entities = s.entities.values
-            if (entities?.length) {
-              entities.forEach(e => {
-                if (option.custom?.border) {
+          const entities = s.entities.values
+          if (entities?.length) {
+            entities.forEach(e => {
+              e.properties?.addProperty('MoYuGeoId', s.name)
+              e.properties?.addProperty('MoYuEntityId', e.id)
+              if (option.custom) {
+                if (option.custom.border) {
                   this.#handleBorder(e, option.custom.border)
                 }
-                if (option.custom?.wall) {
+                if (option.custom.wall) {
                   this.#handleWall(e, option.custom.wall)
                 }
-                if (option.custom?.label) {
+                if (option.custom.label) {
                   this.#handleLabel(e, option.custom.label)
                 }
-                if (option.custom?.billboard) {
+                if (option.custom.billboard) {
                   this.#handleBillboard(e, option.custom.billboard)
                 }
-                if (option.custom?.polygon) {
+                if (option.custom.polygon) {
                   this.#handlePolygon(e, option.custom.polygon)
                 }
-              })
-            }
+              }
+            })
           }
+
           this.#handleCluster(option, s)
           if (locate) {
             this.#viewer.flyTo(s, { duration: 1 })
@@ -291,33 +308,43 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
     }
   }
 
-  #handlePick(MoYuGeoId: string) {
-    const handler = new ScreenSpaceEventHandler(this.#viewer.canvas)
-    handler.setInputAction((event: ScreenSpaceEventHandler.PositionedEvent) => {
-      if (event?.position) {
-        const picked = this.#viewer.scene.drillPick(event.position)
-        if (picked?.length) {
-          const properties = picked
-            .filter(p => p?.id instanceof Entity)
-            .map(p => {
-              const property: any = { MoYuGeoId }
-              p.id.properties?.propertyNames?.forEach((str: string) => {
-                property[str] = p.id.properties[str]?._value
-              })
-              return property
+  #handlePick = debounce((event: ScreenSpaceEventHandler.PositionedEvent) => {
+    if (event?.position) {
+      const picked = this.#viewer.scene.drillPick(event.position)
+      if (picked?.length) {
+        const properties = picked
+          .filter(p => p?.id instanceof Entity)
+          .map(p => {
+            const entity: Entity = p.id
+            const MoYuGeoId = entity.properties?.MoYuGeoId?._value
+            const MoYuEntityId = entity.id
+            if (MoYuGeoId && MoYuEntityId) {
+              const option = this.#geoOptions.find(g => g.id === MoYuGeoId)
+              if (option?.custom?.border?.pick) {
+                this.#refreshBorder(
+                  MoYuGeoId,
+                  MoYuEntityId,
+                  option.custom.border
+                )
+              }
+            }
+            const property: any = {}
+            entity.properties?.propertyNames?.forEach((str: string) => {
+              property[str] = entity.properties?.[str]?._value
             })
-          if (properties.length) {
-            this.eventBus.fire('pick-fea', {
-              properties: properties[0]
-            })
-            this.eventBus.fire('pick-fea-all', {
-              properties
-            })
-          }
+            return property
+          })
+        if (properties.length) {
+          this.eventBus.fire('pick-fea', {
+            properties: properties[0]
+          })
+          this.eventBus.fire('pick-fea-all', {
+            properties
+          })
         }
       }
-    }, ScreenSpaceEventType.LEFT_CLICK)
-  }
+    }
+  })
 
   #handleBorder(e: Entity, option: StyleBoder) {
     if (e.polygon) {
@@ -328,6 +355,31 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
         e.polyline = createEntityPolylineGraphics({
           ...option.style,
           positions
+        })
+      }
+    }
+  }
+
+  #refreshBorder(geoId: string, entityId: string, style: StyleBoder) {
+    const geo = this.getGeoById(geoId)
+    if (geo) {
+      const entities = geo.entities.values
+      if (entities?.length && style.pick) {
+        const optNew: any = createEntityPolylineGraphicsOptions(style.pick)
+        const opt: any = createEntityPolylineGraphicsOptions(style.style)
+        entities.forEach(e => {
+          if (e.polyline) {
+            const polyline: any = e.polyline
+            if (e.id === entityId) {
+              Object.keys(optNew).forEach(key => {
+                polyline[key] = optNew[key]
+              })
+            } else {
+              Object.keys(optNew).forEach(key => {
+                polyline[key] = opt[key]
+              })
+            }
+          }
         })
       }
     }
@@ -381,8 +433,17 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
   }
 
   #handleBillboard(e: Entity, option: StyleBillboard) {
-    if (e.billboard) {
-      e.billboard = createEntityBillboardGraphics(option.style)
+    const position = e.position?.getValue(JulianDate.now())
+    if (e.billboard && position) {
+      getPosiOnMap(position)
+        .then(p => {
+          const polyCenter: any = p
+          e.position = polyCenter
+          e.billboard = createEntityBillboardGraphics(option.style)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 
@@ -421,12 +482,8 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
           const style: any = option.cluster.label
           const label: any = cluster.label
           Object.keys(style).forEach(key => {
-            if (
-              key === 'pixelOffset' &&
-              Array.isArray(style[key]) &&
-              style[key].length === 2
-            ) {
-              label[key] = new Cartesian2(style[key][0], style[key][1])
+            if (key === 'pixelOffset') {
+              label[key] = getpixelOffset(style[key])
             } else {
               label[key] = style[key]
             }
@@ -437,12 +494,8 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
           const style: any = option.cluster.billboard
           const billboard: any = cluster.billboard
           Object.keys(style).forEach(key => {
-            if (
-              key === 'pixelOffset' &&
-              Array.isArray(style[key]) &&
-              style[key].length === 2
-            ) {
-              billboard[key] = new Cartesian2(style[key][0], style[key][1])
+            if (key === 'pixelOffset') {
+              billboard[key] = getpixelOffset(style[key])
             } else {
               billboard[key] = style[key]
             }

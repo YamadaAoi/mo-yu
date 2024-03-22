@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-tile: MapTileTool<import('../tileTool').MapTileToolEvents>
+tile: MapTileTool
 ```

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-11 14:21:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-31 13:33:35
+ * @LastEditTime: 2024-03-20 13:20:45
  * @Description:
  */
 import {
@@ -172,7 +172,7 @@ export function createImageryProvider(config: BaseMapConfig) {
 /**
  * 底图事件
  */
-interface BaseMapToolEvents {
+export interface BaseMapToolEvents {
   /**
    * 底图切换事件
    */

@@ -17,6 +17,7 @@ export interface SceneConfig
 | Property                                    | Modifiers | Type                                             | Description                     |
 | ------------------------------------------- | --------- | ------------------------------------------------ | ------------------------------- |
 | [camera?](./cesium.sceneconfig.camera.md)   |           | [CameraParam](./cesium.cameraparam.md)           | _(Optional)_ 初始相机位置，角度 |
+| [fly?](./cesium.sceneconfig.fly.md)         |           | [FlyConfig](./cesium.flyconfig.md)               | _(Optional)_ 飞行参数           |
 | [geos?](./cesium.sceneconfig.geos.md)       |           | [GeoOptions](./cesium.geooptions.md)<!-- -->\[\] | _(Optional)_ 场景中默认矢量     |
 | [map?](./cesium.sceneconfig.map.md)         |           | [BaseMapTryConfig](./cesium.basemaptryconfig.md) | _(Optional)_ 默认底图           |
 | [mask?](./cesium.sceneconfig.mask.md)       |           | MaskEntityOption                                 | _(Optional)_ 遮罩               |

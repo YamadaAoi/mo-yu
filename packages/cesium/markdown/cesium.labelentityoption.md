@@ -4,7 +4,7 @@
 
 ## LabelEntityOption type
 
-LabelEntity 参数，改造了 Label 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: fillColor backgroundColor outlineColor 增加了文本获取字段 field: text 未提供时，取 property 内的\[field\]字段 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
+LabelEntity 参数，改造了 Label 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: fillColor backgroundColor outlineColor 增加了文本获取字段 field: text 未提供时，取 property 内的\[field\]字段 扩展 pixelOffset 传递方式 pixelOffset: \[x, y\] 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
 
 **Signature:**
 
@@ -15,12 +15,14 @@ export type LabelEntityOption = EntityOption &
     | 'fillColor'
     | 'backgroundColor'
     | 'outlineColor'
+    | 'pixelOffset'
     | 'distanceDisplayCondition'
   > & {
     fillColor?: Property | Color | string
     backgroundColor?: Property | Color | string
     outlineColor?: Property | Color | string
     field?: string
+    pixelOffset?: Cartesian2 | [number, number]
     distanceDisplayCondition?:
       | [number, number]
       | Property

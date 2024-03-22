@@ -4,7 +4,7 @@
 
 ## PolylineEntityOption type
 
-PolylineEntity 参数，改造了 Polyline 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material depthFailMaterial 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
+PolylineEntity 参数，改造了 Polyline 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material depthFailMaterial 添加了自定义材质 customMaterial，会覆盖 cesium 原生材质 material customDepthFailMaterial，会覆盖 cesium 原生材质 depthFailMaterial 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
 
 **Signature:**
 
@@ -15,7 +15,9 @@ export type PolylineEntityOption = EntityOption &
     'material' | 'depthFailMaterial' | 'distanceDisplayCondition'
   > & {
     material?: MaterialProperty | Color | string
+    customMaterial?: CustomMaterial
     depthFailMaterial?: MaterialProperty | Color | string
+    customDepthFailMaterial?: CustomMaterial
     distanceDisplayCondition?:
       | [number, number]
       | Property
@@ -23,4 +25,4 @@ export type PolylineEntityOption = EntityOption &
   }
 ```
 
-**References:** [EntityOption](./cesium.entityoption.md)
+**References:** [EntityOption](./cesium.entityoption.md)<!-- -->, [CustomMaterial](./cesium.custommaterial.md)

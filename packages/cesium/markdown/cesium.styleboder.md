@@ -12,6 +12,7 @@ export interface StyleBoder
 
 ## Properties
 
-| Property                              | Modifiers | Type                                                     | Description |
-| ------------------------------------- | --------- | -------------------------------------------------------- | ----------- |
-| [style](./cesium.styleboder.style.md) |           | [PolylineEntityOption](./cesium.polylineentityoption.md) |             |
+| Property                              | Modifiers | Type                                                     | Description  |
+| ------------------------------------- | --------- | -------------------------------------------------------- | ------------ |
+| [pick?](./cesium.styleboder.pick.md)  |           | [PolylineEntityOption](./cesium.polylineentityoption.md) | _(Optional)_ |
+| [style](./cesium.styleboder.style.md) |           | [PolylineEntityOption](./cesium.polylineentityoption.md) |              |

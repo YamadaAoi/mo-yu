@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-08 15:33:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-08 15:56:52
+ * @LastEditTime: 2024-03-22 17:48:27
  * @Description: 多点聚合
 -->
 <template>
@@ -36,7 +36,8 @@ function onLoaded() {
       billboard: {
         style: {
           image: '/images/video.png',
-          heightReference: 2,
+          horizontalOrigin: 0,
+          verticalOrigin: 1,
           disableDepthTestDistance: 999999999,
           scale: 0.7
         }

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-31 13:49:17
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-31 16:53:45
+ * @LastEditTime: 2024-03-21 13:45:51
  * @Description: 地图简单遮罩
  */
 import { Cartesian3, Entity, PolygonHierarchy } from 'cesium'
@@ -28,7 +28,7 @@ export type MaskEntityOption = Omit<PolygonEntityOption, 'hierarchy'> & {
 /**
  * 场景事件
  */
-interface MapMaskToolEvents {}
+export interface MapMaskToolEvents {}
 
 /**
  * 遮罩工具
@@ -57,13 +57,13 @@ export class MapMaskTool extends ToolBase<ToolBaseOptions, MapMaskToolEvents> {
    * 销毁
    */
   destroy(): void {
-    this.clearMask()
+    this.clear()
   }
 
   /**
    * 清除遮罩
    */
-  clearMask() {
+  clear() {
     if (this.#mask) {
       this.#viewer?.entities.remove(this.#mask)
     }

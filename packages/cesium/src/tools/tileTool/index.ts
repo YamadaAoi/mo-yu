@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-19 19:41:57
+ * @LastEditTime: 2024-03-20 13:33:34
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -113,19 +113,19 @@ export interface MapTileToolEvents {
   /**
    * 选中feature
    */
-  'pick-fea': {
+  'pick-tile': {
     properties: any
   }
-  'pick-fea-all': {
+  'pick-tile-all': {
     properties: any[]
   }
   /**
    * 鼠标悬浮于feature上
    */
-  'hover-fea': {
+  'hover-tile': {
     properties: any
   }
-  'hover-fea-all': {
+  'hover-tile-all': {
     properties: any[]
   }
 }
@@ -461,8 +461,8 @@ export class MapTileTool<
           })
           return properties
         })
-        this.eventBus.fire('hover-fea', { properties: properties[0] })
-        this.eventBus.fire('hover-fea-all', { properties })
+        this.eventBus.fire('hover-tile', { properties: properties[0] })
+        this.eventBus.fire('hover-tile-all', { properties })
       } else {
         if (this.#prevHoverFea && this.#prevHoverColor) {
           this.#prevHoverFea.color = this.#prevHoverColor
@@ -505,8 +505,8 @@ export class MapTileTool<
           })
           return properties
         })
-        this.eventBus.fire('pick-fea', { properties: properties[0] })
-        this.eventBus.fire('pick-fea-all', { properties })
+        this.eventBus.fire('pick-tile', { properties: properties[0] })
+        this.eventBus.fire('pick-tile-all', { properties })
       } else {
         if (this.#prevClickFea && this.#prevClickColor) {
           this.#prevClickFea.color = this.#prevClickColor

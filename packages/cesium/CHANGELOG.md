@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.18
+
+### Patch Changes
+
+- 模拟飞行；geojson 点优化，线优化
+
 ## 1.0.17
 
 ### Patch Changes

@@ -12,7 +12,7 @@
 export declare class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents>
 ```
 
-**Extends:** ToolBase&lt;ToolBaseOptions, MapGeoToolEvents&gt;
+**Extends:** ToolBase&lt;ToolBaseOptions, [MapGeoToolEvents](./cesium.mapgeotoolevents.md)<!-- -->&gt;
 
 ## Example
 

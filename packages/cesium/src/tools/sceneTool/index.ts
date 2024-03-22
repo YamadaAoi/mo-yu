@@ -2,15 +2,25 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:38:10
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-31 16:34:18
+ * @LastEditTime: 2024-03-21 13:54:37
  * @Description: 地图场景初始化工具
  */
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
-import { CameraParam, MapCameraTool } from '../cameraTool'
-import { TileOption, MapTileTool } from '../tileTool'
-import { GeoOptions, MapGeoTool } from '../geoTool'
-import { BaseMapTryConfig, BaseMapTool, TerrainConfig } from '../baseMapTool'
-import { MaskEntityOption, MapMaskTool } from '../mapMaskTool'
+import { CameraParam, MapCameraTool, MapCameraToolEvents } from '../cameraTool'
+import { TileOption, MapTileTool, MapTileToolEvents } from '../tileTool'
+import { GeoOptions, MapGeoTool, MapGeoToolEvents } from '../geoTool'
+import {
+  BaseMapTryConfig,
+  BaseMapTool,
+  TerrainConfig,
+  BaseMapToolEvents
+} from '../baseMapTool'
+import {
+  MaskEntityOption,
+  MapMaskTool,
+  MapMaskToolEvents
+} from '../mapMaskTool'
+import { FlyConfig, MapFlyTool, MapFlyToolEvents } from '../flyTool'
 
 /**
  * 场景配置
@@ -20,6 +30,10 @@ export interface SceneConfig {
    * 初始相机位置，角度
    */
   camera?: CameraParam
+  /**
+   * 飞行参数
+   */
+  fly?: FlyConfig
   /**
    * 场景中默认3dTiles
    */
@@ -52,7 +66,12 @@ interface MapSceneToolOptions extends ToolBaseOptions {
 /**
  * 场景事件
  */
-interface MapSceneToolEvents {}
+type MapSceneToolEvents = MapCameraToolEvents &
+  MapTileToolEvents &
+  MapGeoToolEvents &
+  BaseMapToolEvents &
+  MapMaskToolEvents &
+  MapFlyToolEvents
 
 /**
  * 初始化场景
@@ -69,13 +88,53 @@ export class MapSceneTool extends ToolBase<
   MapSceneToolEvents
 > {
   #config: SceneConfig | undefined
-  camera = new MapCameraTool({})
-  tile = new MapTileTool({})
-  geo = new MapGeoTool({})
-  baseMap = new BaseMapTool({})
-  mask = new MapMaskTool({})
+  camera: MapCameraTool
+  tile: MapTileTool
+  geo: MapGeoTool
+  baseMap: BaseMapTool
+  mask: MapMaskTool
+  fly: MapFlyTool
   constructor(options: MapSceneToolOptions) {
     super(options)
+    this.camera = new MapCameraTool({})
+    this.camera.eventBus.on('camera-change', e => {
+      this.eventBus.fire('camera-change', e)
+    })
+    this.tile = new MapTileTool({})
+    this.tile.eventBus.on('pick-tile', e => {
+      this.eventBus.fire('pick-fea', e)
+    })
+    this.tile.eventBus.on('pick-tile-all', e => {
+      this.eventBus.fire('pick-fea-all', e)
+    })
+    this.tile.eventBus.on('hover-tile', e => {
+      this.eventBus.fire('hover-tile', e)
+    })
+    this.tile.eventBus.on('hover-tile-all', e => {
+      this.eventBus.fire('hover-tile-all', e)
+    })
+    this.geo = new MapGeoTool({})
+    this.geo.eventBus.on('pick-fea', e => {
+      this.eventBus.fire('pick-fea', e)
+    })
+    this.geo.eventBus.on('pick-fea-all', e => {
+      this.eventBus.fire('pick-fea-all', e)
+    })
+    this.baseMap = new BaseMapTool({})
+    this.baseMap.eventBus.on('base-map-change', e => {
+      this.eventBus.fire('base-map-change', e)
+    })
+    this.baseMap.eventBus.on('terrain-change', e => {
+      this.eventBus.fire('terrain-change', e)
+    })
+    this.mask = new MapMaskTool({})
+    this.fly = new MapFlyTool({})
+    this.fly.eventBus.on('flying-change', e => {
+      this.eventBus.fire('flying-change', e)
+    })
+    this.fly.eventBus.on('time-change', e => {
+      this.eventBus.fire('time-change', e)
+    })
     this.prepareScene(options.config)
   }
 
@@ -88,6 +147,7 @@ export class MapSceneTool extends ToolBase<
     this.geo.enable()
     this.baseMap.enable()
     this.mask.enable()
+    this.fly.enable()
   }
 
   /**
@@ -99,16 +159,17 @@ export class MapSceneTool extends ToolBase<
     this.geo.destroy()
     this.baseMap.destroy()
     this.mask.destroy()
+    this.fly.destroy()
   }
 
   prepareScene(config?: SceneConfig, duration = 0) {
     this.#config = config
     this.tile.clear()
     this.geo.clear()
+    this.baseMap.clear()
+    this.mask.clear()
+    this.fly.clear()
     if (config) {
-      if (config.camera) {
-        this.camera.flyTo(config.camera, duration)
-      }
       if (config.tiles?.length) {
         const promises = config.tiles.map(t => this.tile.add3DTileset(t))
         Promise.allSettled(promises).catch(err => {
@@ -128,6 +189,12 @@ export class MapSceneTool extends ToolBase<
       }
       if (config.mask) {
         this.mask.addMask(config.mask)
+      }
+      if (config.fly) {
+        this.fly.initRoute(config.fly.route, config.fly.handleHeading)
+        this.fly.play()
+      } else if (config.camera) {
+        this.camera.flyTo(config.camera, duration)
       }
     }
   }

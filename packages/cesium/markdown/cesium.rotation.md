@@ -4,7 +4,7 @@
 
 ## Rotation interface
 
-旋转参数 heading：偏航角 pitch：俯仰角 roll：翻滚角
+旋转参数(角度) heading：偏航角 pitch：俯仰角 roll：翻滚角
 
 **Signature:**
 

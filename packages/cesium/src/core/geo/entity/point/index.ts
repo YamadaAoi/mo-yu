@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 10:48:22
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-15 09:46:30
+ * @LastEditTime: 2024-03-22 10:54:30
  * @Description: Point
  */
 import {
@@ -38,11 +38,11 @@ export type PointEntityOption = EntityOption &
   }
 
 /**
- * 创建点Graphics
+ * 创建点Graphics.ConstructorOptions
  * @param options - 点参数
  * @returns
  */
-export function createEntityPointGraphics(options: PointEntityOption) {
+export function createEntityPointGraphicsOptions(options: PointEntityOption) {
   const {
     id,
     name,
@@ -56,14 +56,25 @@ export function createEntityPointGraphics(options: PointEntityOption) {
     properties,
     ...rest
   } = options
-  const point = new PointGraphics({
+  const opt: PointGraphics.ConstructorOptions = {
     ...rest,
     color: getColorProperty(rest.color ?? defaultColor),
     outlineColor: getColorProperty(rest.outlineColor ?? defaultColor),
     distanceDisplayCondition: getDistanceDisplayCondition(
       rest.distanceDisplayCondition
     )
-  })
+  }
+  return opt
+}
+
+/**
+ * 创建点Graphics
+ * @param options - 点参数
+ * @returns
+ */
+export function createEntityPointGraphics(options: PointEntityOption) {
+  const opt = createEntityPointGraphicsOptions(options)
+  const point = new PointGraphics(opt)
   return point
 }
 

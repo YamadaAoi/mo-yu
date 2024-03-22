@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 17:19:02
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-18 18:32:33
+ * @LastEditTime: 2024-03-22 10:52:42
  * @Description: Ellipse
  */
 import {
@@ -39,11 +39,13 @@ export type EllipseEntityOption = EntityOption &
   }
 
 /**
- * 创建椭圆Graphics
+ * 创建椭圆Graphics.ConstructorOptions
  * @param options - 椭圆参数
  * @returns
  */
-export function createEntityEllipseGraphics(options: EllipseEntityOption) {
+export function createEntityEllipseGraphicsOptions(
+  options: EllipseEntityOption
+) {
   const {
     id,
     name,
@@ -57,14 +59,25 @@ export function createEntityEllipseGraphics(options: EllipseEntityOption) {
     properties,
     ...rest
   } = options
-  const ellipse = new EllipseGraphics({
+  const opt: EllipseGraphics.ConstructorOptions = {
     ...rest,
     material: getMeterialProperty(rest.material ?? defaultColor),
     outlineColor: getColorProperty(rest.outlineColor ?? defaultColor),
     distanceDisplayCondition: getDistanceDisplayCondition(
       rest.distanceDisplayCondition
     )
-  })
+  }
+  return opt
+}
+
+/**
+ * 创建椭圆Graphics
+ * @param options - 椭圆参数
+ * @returns
+ */
+export function createEntityEllipseGraphics(options: EllipseEntityOption) {
+  const opt = createEntityEllipseGraphicsOptions(options)
+  const ellipse = new EllipseGraphics(opt)
   return ellipse
 }
 

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-13 17:30:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-19 19:37:09
+ * @LastEditTime: 2024-03-22 17:49:15
  * @Description: shp生成的白膜图层选中交互
 -->
 <template>
@@ -27,7 +27,7 @@ function onLoaded() {
   mapReady.value = true
   tool = new MapTileTool({})
   tool.enable()
-  tool.eventBus.on('pick-fea', e => {
+  tool.eventBus.on('pick-tile', e => {
     console.log(e.properties)
   })
   tool.add3DTileset({

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:02:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-12-29 14:45:01
+ * @LastEditTime: 2024-03-21 10:27:52
  * @Description: 摄像机工具
  */
 import { Math, Cartesian3 } from 'cesium'
@@ -11,7 +11,7 @@ import { mapStoreTool } from '../storeTool'
 import { Position } from '../../mapViewAble'
 
 /**
- * 旋转参数
+ * 旋转参数(角度)
  * heading：偏航角
  * pitch：俯仰角
  * roll：翻滚角
@@ -39,7 +39,7 @@ export type CameraParam = Partial<Position> & Partial<Rotation>
 /**
  * 相机事件
  */
-interface MapCameraToolEvents {
+export interface MapCameraToolEvents {
   'camera-change': {
     param: Required<CameraParam>
   }
