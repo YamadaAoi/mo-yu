@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:07:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-13 15:35:31
+ * @LastEditTime: 2024-03-26 20:53:41
  * @Description:
  */
 import {
@@ -120,7 +120,6 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
     helper.add(this.#map?.scene.globe.tileLoadProgressEvent, number => {
       if (number < 1) {
         this.eventBus.fire('ready', { view: this })
-        this.sceneTool.enable()
       }
     })
   }

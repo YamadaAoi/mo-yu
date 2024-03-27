@@ -12,8 +12,12 @@
     "useDefineForClassFields": true,
     "sourceMap": false,
     "types": ["node"],
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "baseUrl": "./",
+    "paths": {
+      "heatmap.js": ["src/external/heatmap"]
+    }
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "src/external/**"],
   "include": ["src", "env.d.ts"]
 }

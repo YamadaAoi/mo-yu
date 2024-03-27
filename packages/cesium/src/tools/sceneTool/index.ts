@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:38:10
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-21 13:54:37
+ * @LastEditTime: 2024-03-26 20:49:31
  * @Description: 地图场景初始化工具
  */
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
@@ -21,6 +21,7 @@ import {
   MapMaskToolEvents
 } from '../mapMaskTool'
 import { FlyConfig, MapFlyTool, MapFlyToolEvents } from '../flyTool'
+import { HeatMapOptions, HeatMapTool } from '../heatMapTool'
 
 /**
  * 场景配置
@@ -54,6 +55,10 @@ export interface SceneConfig {
    * 遮罩
    */
   mask?: MaskEntityOption
+  /**
+   * 热力图
+   */
+  heatMaps?: HeatMapOptions[]
 }
 
 /**
@@ -94,8 +99,10 @@ export class MapSceneTool extends ToolBase<
   baseMap: BaseMapTool
   mask: MapMaskTool
   fly: MapFlyTool
+  heat: HeatMapTool
   constructor(options: MapSceneToolOptions) {
     super(options)
+    this.#config = options.config
     this.camera = new MapCameraTool({})
     this.camera.eventBus.on('camera-change', e => {
       this.eventBus.fire('camera-change', e)
@@ -135,7 +142,7 @@ export class MapSceneTool extends ToolBase<
     this.fly.eventBus.on('time-change', e => {
       this.eventBus.fire('time-change', e)
     })
-    this.prepareScene(options.config)
+    this.heat = new HeatMapTool({})
   }
 
   /**
@@ -148,6 +155,7 @@ export class MapSceneTool extends ToolBase<
     this.baseMap.enable()
     this.mask.enable()
     this.fly.enable()
+    this.heat.enable()
   }
 
   /**
@@ -160,6 +168,7 @@ export class MapSceneTool extends ToolBase<
     this.baseMap.destroy()
     this.mask.destroy()
     this.fly.destroy()
+    this.heat.destroy()
   }
 
   prepareScene(config?: SceneConfig, duration = 0) {
@@ -169,6 +178,7 @@ export class MapSceneTool extends ToolBase<
     this.baseMap.clear()
     this.mask.clear()
     this.fly.clear()
+    this.heat.clear()
     if (config) {
       if (config.tiles?.length) {
         const promises = config.tiles.map(t => this.tile.add3DTileset(t))
@@ -195,6 +205,12 @@ export class MapSceneTool extends ToolBase<
         this.fly.play()
       } else if (config.camera) {
         this.camera.flyTo(config.camera, duration)
+      }
+      if (config.heatMaps?.length) {
+        const promises = config.heatMaps.map(t => this.heat.addHeatMap(t))
+        Promise.allSettled(promises).catch(err => {
+          console.error(err)
+        })
       }
     }
   }

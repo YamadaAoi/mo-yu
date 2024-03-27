@@ -14,6 +14,7 @@
 | [DrawPolygonTool](./cesium.drawpolygontool.md)     | 绘制多边形                                         |
 | [DrawPolylineTool](./cesium.drawpolylinetool.md)   | 绘制线                                             |
 | [DrawRectTool](./cesium.drawrecttool.md)           | 绘制矩形                                           |
+| [HeatMapTool](./cesium.heatmaptool.md)             | 热力图展示                                         |
 | [MapCameraTool](./cesium.mapcameratool.md)         | 相机操作                                           |
 | [MapFlyTool](./cesium.mapflytool.md)               | 飞行实现类                                         |
 | [MapGeoTool](./cesium.mapgeotool.md)               | 添加 geojson                                       |
@@ -99,6 +100,7 @@
 | [DrawRectToolEvents](./cesium.drawrecttoolevents.md)           | 画矩形事件                                                |
 | [DrawRectToolOptions](./cesium.drawrecttooloptions.md)         | 画矩形功能入参                                            |
 | [FlyConfig](./cesium.flyconfig.md)                             | 飞行参数                                                  |
+| [HeatMapOptions](./cesium.heatmapoptions.md)                   | 热力图配置参数                                            |
 | [IONConfig](./cesium.ionconfig.md)                             | ION 底图配置                                              |
 | [MapboxConfig](./cesium.mapboxconfig.md)                       | Mapbox 地图配置                                           |
 | [MapCameraToolEvents](./cesium.mapcameratoolevents.md)         | 相机事件                                                  |

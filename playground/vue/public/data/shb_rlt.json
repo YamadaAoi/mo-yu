@@ -1,0 +1,2378 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": 1,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.653232932, 35.706921719]
+      },
+      "properties": {
+        "id": 1,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 2,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.653529996, 35.705304812]
+      },
+      "properties": {
+        "id": 2,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 3,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.653842634, 35.703519459]
+      },
+      "properties": {
+        "id": 3,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 4,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.654352449, 35.707049867]
+      },
+      "properties": {
+        "id": 4,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 5,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.654694919, 35.705397934]
+      },
+      "properties": {
+        "id": 5,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 6,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.655033879, 35.703560862]
+      },
+      "properties": {
+        "id": 6,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 7,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.655863614, 35.707195485]
+      },
+      "properties": {
+        "id": 7,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 8,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.656060327, 35.705548796]
+      },
+      "properties": {
+        "id": 8,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 9,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.656332372, 35.703700602]
+      },
+      "properties": {
+        "id": 9,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 10,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.647231646, 35.694241255]
+      },
+      "properties": {
+        "id": 10,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 11,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.64750204, 35.692846714]
+      },
+      "properties": {
+        "id": 11,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 12,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.647642244, 35.691969715]
+      },
+      "properties": {
+        "id": 12,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 13,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.64863106, 35.694338114]
+      },
+      "properties": {
+        "id": 13,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 14,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.648840327, 35.69299167]
+      },
+      "properties": {
+        "id": 14,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 15,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.648989486, 35.692090336]
+      },
+      "properties": {
+        "id": 15,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 16,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.649787933, 35.694483996]
+      },
+      "properties": {
+        "id": 16,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 17,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.649976743, 35.69313671]
+      },
+      "properties": {
+        "id": 17,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 18,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.650159271, 35.692243444]
+      },
+      "properties": {
+        "id": 18,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 19,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.651214559, 35.694522475]
+      },
+      "properties": {
+        "id": 19,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 20,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.651455065, 35.693249018]
+      },
+      "properties": {
+        "id": 20,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 21,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.651575524, 35.692380088]
+      },
+      "properties": {
+        "id": 21,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 22,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.672914575, 35.711018021]
+      },
+      "properties": {
+        "id": 22,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 23,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.672634276, 35.709942605]
+      },
+      "properties": {
+        "id": 23,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 24,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.672420941, 35.70860394]
+      },
+      "properties": {
+        "id": 24,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 25,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673933269, 35.710861896]
+      },
+      "properties": {
+        "id": 25,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 26,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673771187, 35.709825777]
+      },
+      "properties": {
+        "id": 26,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 27,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673401788, 35.708110829]
+      },
+      "properties": {
+        "id": 27,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 28,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.674675353, 35.710786527]
+      },
+      "properties": {
+        "id": 28,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 29,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.67442127, 35.70949735]
+      },
+      "properties": {
+        "id": 29,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 30,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.674136307, 35.707927515]
+      },
+      "properties": {
+        "id": 30,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 31,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.675963302, 35.710118347]
+      },
+      "properties": {
+        "id": 31,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 32,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.675779549, 35.709228596]
+      },
+      "properties": {
+        "id": 32,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 33,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.675469971, 35.707907889]
+      },
+      "properties": {
+        "id": 33,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 34,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.671202774, 35.704795962]
+      },
+      "properties": {
+        "id": 34,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 35,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.671118216, 35.70330071]
+      },
+      "properties": {
+        "id": 35,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 36,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.672305326, 35.704617271]
+      },
+      "properties": {
+        "id": 36,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 37,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.672421806, 35.703172396]
+      },
+      "properties": {
+        "id": 37,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 38,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673422873, 35.704583858]
+      },
+      "properties": {
+        "id": 38,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 39,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673323217, 35.70328376]
+      },
+      "properties": {
+        "id": 39,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 40,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.67257626, 35.703797468]
+      },
+      "properties": {
+        "id": 40,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 41,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.671233433, 35.703856636]
+      },
+      "properties": {
+        "id": 41,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 42,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673289355, 35.703787138]
+      },
+      "properties": {
+        "id": 42,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 43,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.669292494, 35.702486747]
+      },
+      "properties": {
+        "id": 43,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 44,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.669337099, 35.701119794]
+      },
+      "properties": {
+        "id": 44,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 45,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.669630841, 35.699720441]
+      },
+      "properties": {
+        "id": 45,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 46,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.671084054, 35.702486433]
+      },
+      "properties": {
+        "id": 46,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 47,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.671061709, 35.701128303]
+      },
+      "properties": {
+        "id": 47,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 48,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.670996413, 35.699790849]
+      },
+      "properties": {
+        "id": 48,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 49,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.665962461, 35.693591972]
+      },
+      "properties": {
+        "id": 49,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 50,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.665811695, 35.692302688]
+      },
+      "properties": {
+        "id": 50,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 51,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.665708353, 35.69130873]
+      },
+      "properties": {
+        "id": 51,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 52,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.66749211, 35.693614935]
+      },
+      "properties": {
+        "id": 52,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 53,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.667339607, 35.692294755]
+      },
+      "properties": {
+        "id": 53,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 54,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.667253903, 35.691293111]
+      },
+      "properties": {
+        "id": 54,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 55,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.679333167, 35.704316488]
+      },
+      "properties": {
+        "id": 55,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 56,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.681378548, 35.70445939]
+      },
+      "properties": {
+        "id": 56,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 57,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.683378915, 35.704607644]
+      },
+      "properties": {
+        "id": 57,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 58,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.679538723, 35.703101938]
+      },
+      "properties": {
+        "id": 58,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 59,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.681626688, 35.703254991]
+      },
+      "properties": {
+        "id": 59,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 60,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.683611035, 35.703413394]
+      },
+      "properties": {
+        "id": 60,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 61,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.68160218, 35.702028788]
+      },
+      "properties": {
+        "id": 61,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智慧路灯"
+      }
+    },
+    {
+      "id": 62,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.654199974, 35.706261527]
+      },
+      "properties": {
+        "id": 62,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 63,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.648169821, 35.693625912]
+      },
+      "properties": {
+        "id": 63,
+        "base": 0,
+        "name": "未命名地标 [3:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 64,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.655302444, 35.705444531]
+      },
+      "properties": {
+        "id": 64,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 65,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.654695858, 35.704471225]
+      },
+      "properties": {
+        "id": 65,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 66,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.66743983, 35.692991559]
+      },
+      "properties": {
+        "id": 66,
+        "base": 0,
+        "name": "未命名地标 [6:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 67,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.671077234, 35.701699196]
+      },
+      "properties": {
+        "id": 67,
+        "base": 0,
+        "name": "未命名地标 [7:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 68,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.670363665, 35.700260809]
+      },
+      "properties": {
+        "id": 68,
+        "base": 0,
+        "name": "未命名地标 [8:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 69,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.67259632, 35.704387299]
+      },
+      "properties": {
+        "id": 69,
+        "base": 0,
+        "name": "未命名地标 [9:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 70,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.671909916, 35.703597357]
+      },
+      "properties": {
+        "id": 70,
+        "base": 0,
+        "name": "未命名地标 [10:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 71,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673334813, 35.710242446]
+      },
+      "properties": {
+        "id": 71,
+        "base": 0,
+        "name": "未命名地标 [11:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 72,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.684129155, 35.703055637]
+      },
+      "properties": {
+        "id": 72,
+        "base": 0,
+        "name": "未命名地标 [14:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 73,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.649477255, 35.692548456]
+      },
+      "properties": {
+        "id": 73,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 74,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.650515982, 35.69367356]
+      },
+      "properties": {
+        "id": 74,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 75,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.665811647, 35.692502868]
+      },
+      "properties": {
+        "id": 75,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 76,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.666663176, 35.691590568]
+      },
+      "properties": {
+        "id": 76,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 77,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.669565236, 35.701283519]
+      },
+      "properties": {
+        "id": 77,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 78,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.674141167, 35.708540934]
+      },
+      "properties": {
+        "id": 78,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 79,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.674833692, 35.709665237]
+      },
+      "properties": {
+        "id": 79,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 80,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.682376445, 35.703835164]
+      },
+      "properties": {
+        "id": 80,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 81,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.680542311, 35.703116145]
+      },
+      "properties": {
+        "id": 81,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/消防安全监测"
+      }
+    },
+    {
+      "id": 82,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.645046095, 35.693092907]
+      },
+      "properties": {
+        "id": 82,
+        "base": 0,
+        "name": "未命名地标 [1:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 83,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.645984294, 35.696294351]
+      },
+      "properties": {
+        "id": 83,
+        "base": 0,
+        "name": "未命名地标 [2:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 84,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.643238476, 35.687258375]
+      },
+      "properties": {
+        "id": 84,
+        "base": 0,
+        "name": "未命名地标 [3:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 85,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.646595244, 35.706860326]
+      },
+      "properties": {
+        "id": 85,
+        "base": 0,
+        "name": "未命名地标 [4:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 86,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.647060027, 35.704188912]
+      },
+      "properties": {
+        "id": 86,
+        "base": 0,
+        "name": "未命名地标 [5:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 87,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.647374812, 35.701390347]
+      },
+      "properties": {
+        "id": 87,
+        "base": 0,
+        "name": "未命名地标 [6:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 88,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.664230022, 35.686567852]
+      },
+      "properties": {
+        "id": 88,
+        "base": 0,
+        "name": "未命名地标 [7:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 89,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.668329292, 35.69207862]
+      },
+      "properties": {
+        "id": 89,
+        "base": 0,
+        "name": "未命名地标 [8:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 90,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.670257031, 35.695665531]
+      },
+      "properties": {
+        "id": 90,
+        "base": 0,
+        "name": "未命名地标 [9:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 91,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673358635, 35.701748225]
+      },
+      "properties": {
+        "id": 91,
+        "base": 0,
+        "name": "未命名地标 [10:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 92,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673402196, 35.700121635]
+      },
+      "properties": {
+        "id": 92,
+        "base": 0,
+        "name": "未命名地标 [11:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 93,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.671384273, 35.697961007]
+      },
+      "properties": {
+        "id": 93,
+        "base": 0,
+        "name": "未命名地标 [12:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 94,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.676963979, 35.703407711]
+      },
+      "properties": {
+        "id": 94,
+        "base": 0,
+        "name": "未命名地标 [13:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 95,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.676426498, 35.701377651]
+      },
+      "properties": {
+        "id": 95,
+        "base": 0,
+        "name": "未命名地标 [14:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 96,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.674797299, 35.703430568]
+      },
+      "properties": {
+        "id": 96,
+        "base": 0,
+        "name": "未命名地标 [15:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 97,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.677419326, 35.704475257]
+      },
+      "properties": {
+        "id": 97,
+        "base": 0,
+        "name": "未命名地标 [16:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 98,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.676961048, 35.708436863]
+      },
+      "properties": {
+        "id": 98,
+        "base": 0,
+        "name": "未命名地标 [17:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 99,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.678600915, 35.706932885]
+      },
+      "properties": {
+        "id": 99,
+        "base": 0,
+        "name": "未命名地标 [18:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 100,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.676264997, 35.711812419]
+      },
+      "properties": {
+        "id": 100,
+        "base": 0,
+        "name": "未命名地标 [19:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 101,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.678194173, 35.710506081]
+      },
+      "properties": {
+        "id": 101,
+        "base": 0,
+        "name": "未命名地标 [20:Point]",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/防溺水监测"
+      }
+    },
+    {
+      "id": 102,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.646050401, 35.703396658]
+      },
+      "properties": {
+        "id": 102,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/河湖水质"
+      }
+    },
+    {
+      "id": 103,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.64386241, 35.690155649]
+      },
+      "properties": {
+        "id": 103,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/河湖水质"
+      }
+    },
+    {
+      "id": 104,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.667871735, 35.688872151]
+      },
+      "properties": {
+        "id": 104,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/河湖水质"
+      }
+    },
+    {
+      "id": 105,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.673890243, 35.698287667]
+      },
+      "properties": {
+        "id": 105,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/河湖水质"
+      }
+    },
+    {
+      "id": 106,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.675890121, 35.702857205]
+      },
+      "properties": {
+        "id": 106,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/河湖水质"
+      }
+    },
+    {
+      "id": 107,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.677486714, 35.709548079]
+      },
+      "properties": {
+        "id": 107,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/河湖水质"
+      }
+    },
+    {
+      "id": 108,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.646463778, 35.70411072]
+      },
+      "properties": {
+        "id": 108,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智能巡河"
+      }
+    },
+    {
+      "id": 109,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.643354247, 35.689019805]
+      },
+      "properties": {
+        "id": 109,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智能巡河"
+      }
+    },
+    {
+      "id": 110,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.666818517, 35.6874966]
+      },
+      "properties": {
+        "id": 110,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智能巡河"
+      }
+    },
+    {
+      "id": 111,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.674195134, 35.7016248]
+      },
+      "properties": {
+        "id": 111,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智能巡河"
+      }
+    },
+    {
+      "id": 112,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.677230692, 35.705449758]
+      },
+      "properties": {
+        "id": 112,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智能巡河"
+      }
+    },
+    {
+      "id": 113,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.676920406, 35.711031523]
+      },
+      "properties": {
+        "id": 113,
+        "base": 0,
+        "name": "未命名地标",
+        "oid_": 0,
+        "snippet": "",
+        "alt_mode": -1,
+        "label_id": 0,
+        "has_label": -1,
+        "symbol_id": 0,
+        "popup_info": "",
+        "folder_path": "三河埠自然村.shp/智能巡河"
+      }
+    }
+  ]
+}

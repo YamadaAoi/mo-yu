@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-08 14:44:23
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 17:54:34
+ * @LastEditTime: 2024-03-27 14:06:44
  * @Description: 简单自定义材质墙，支持颜色和图片
 -->
 <template>
@@ -50,7 +50,7 @@ function onLoaded() {
             }
           },
           maximumHeights: 200,
-          distanceDisplayCondition: [0, 10000]
+          distanceDisplayCondition: [0, 35000]
         }
       },
       label: {
@@ -59,7 +59,7 @@ function onLoaded() {
           fillColor: '#fff',
           font: 'normal 20px MicroSoft YaHei',
           disableDepthTestDistance: Number.POSITIVE_INFINITY,
-          distanceDisplayCondition: [0, 10000]
+          distanceDisplayCondition: [0, 35000]
         }
       }
     }

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2022-06-17 14:35:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-16 16:12:11
+ * @LastEditTime: 2024-03-27 13:54:38
  * @Description:
  */
 import path from 'path'
@@ -14,6 +14,7 @@ import typescript from '@rollup/plugin-typescript'
 import esbuild from 'rollup-plugin-esbuild'
 import { visualizer } from 'rollup-plugin-visualizer'
 import strip from '@rollup/plugin-strip'
+import alias from '@rollup/plugin-alias'
 import { createRequire } from 'node:module'
 
 const require = createRequire(import.meta.url)
@@ -34,6 +35,17 @@ export default defineConfig([
       sourcemap: false
     },
     plugins: [
+      alias({
+        entries: [
+          {
+            find: 'heatmap.js',
+            replacement: path.resolve(
+              __dirname,
+              '../src/external/heatmap/heatmap.js'
+            )
+          }
+        ]
+      }),
       commonjs(),
       resolve({
         extensions
@@ -68,6 +80,17 @@ export default defineConfig([
       sourcemap: false
     },
     plugins: [
+      alias({
+        entries: [
+          {
+            find: 'heatmap.js',
+            replacement: path.resolve(
+              __dirname,
+              '../src/external/heatmap/heatmap.js'
+            )
+          }
+        ]
+      }),
       commonjs(),
       resolve({
         extensions
@@ -95,6 +118,17 @@ export default defineConfig([
       }
     },
     plugins: [
+      alias({
+        entries: [
+          {
+            find: 'heatmap.js',
+            replacement: path.resolve(
+              __dirname,
+              '../src/external/heatmap/heatmap.js'
+            )
+          }
+        ]
+      }),
       commonjs(),
       resolve({
         extensions

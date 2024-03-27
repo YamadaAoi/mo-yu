@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 18:17:02
+ * @LastEditTime: 2024-03-27 14:03:18
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -192,6 +192,15 @@ export function getCesiumMenus() {
       meta: {
         label: '模拟飞行',
         cname: 'MapFlyTool'
+      }
+    },
+    {
+      path: '/portal/heat',
+      name: 'Heat',
+      component: () => import('../views/portal/cesium/heatMap/HeatMapDemo.vue'),
+      meta: {
+        label: '热力图',
+        cname: 'HeatMapTool'
       }
     }
   ]

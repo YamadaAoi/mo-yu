@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 15:33:24
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-08 17:21:57
+ * @LastEditTime: 2024-03-27 14:02:17
  * @Description:
  */
 import path from 'path'
@@ -84,6 +84,7 @@ export default defineConfig(({ command, mode }) => {
                 case 'vue-router':
                 case 'naive-ui':
                 case 'lodash-es':
+                case 'heatmap.js':
                 case '@mo-yu':
                 case 'cesium':
                   return 'vendor_' + arr2[0]

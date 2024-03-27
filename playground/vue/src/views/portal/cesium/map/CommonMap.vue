@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-08 14:20:32
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 18:14:06
+ * @LastEditTime: 2024-03-27 13:44:29
  * @Description: 初始化一个简单的地图场景，包括底图，地形，遮罩
 -->
 <template>
@@ -48,6 +48,7 @@ onMounted(() => {
       })
       map.enable()
       map.eventBus.once('ready', e => {
+        map.sceneTool.enable()
         map.sceneTool.prepareScene(config)
         emits('loaded', e.view?.id)
       })
