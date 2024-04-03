@@ -44,8 +44,9 @@ tool.prepareScene(config, 1)
 
 ## Methods
 
-| Method                                                                  | Modifiers | Description |
-| ----------------------------------------------------------------------- | --------- | ----------- |
-| [destroy()](./cesium.mapscenetool.destroy.md)                           |           | 销毁        |
-| [enable()](./cesium.mapscenetool.enable.md)                             |           | 启用        |
-| [prepareScene(config, duration)](./cesium.mapscenetool.preparescene.md) |           |             |
+| Method                                                                  | Modifiers | Description      |
+| ----------------------------------------------------------------------- | --------- | ---------------- |
+| [clear()](./cesium.mapscenetool.clear.md)                               |           | 清空当前场景图层 |
+| [destroy()](./cesium.mapscenetool.destroy.md)                           |           | 销毁             |
+| [enable()](./cesium.mapscenetool.enable.md)                             |           | 启用             |
+| [prepareScene(config, duration)](./cesium.mapscenetool.preparescene.md) |           |                  |

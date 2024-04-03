@@ -84,7 +84,6 @@
 | [ArcgisConfig](./cesium.arcgisconfig.md)                       | arcgis 地图配置                                           |
 | [BaseMapToolEvents](./cesium.basemaptoolevents.md)             | 底图事件                                                  |
 | [BaseMapTryConfig](./cesium.basemaptryconfig.md)               | 地图服务条件配置                                          |
-| [Cesium3DTileColor](./cesium.cesium3dtilecolor.md)             | 简单色例参数                                              |
 | [CircleOption](./cesium.circleoption.md)                       | 圆 Primitive 参数                                         |
 | [CircleParam](./cesium.circleparam.md)                         | 圆心、半径确定圆                                          |
 | [CustomMaterial](./cesium.custommaterial.md)                   |                                                           |
@@ -102,6 +101,7 @@
 | [FlyConfig](./cesium.flyconfig.md)                             | 飞行参数                                                  |
 | [HeatMapOptions](./cesium.heatmapoptions.md)                   | 热力图配置参数                                            |
 | [IONConfig](./cesium.ionconfig.md)                             | ION 底图配置                                              |
+| [LegendColor](./cesium.legendcolor.md)                         | 简单色例参数                                              |
 | [MapboxConfig](./cesium.mapboxconfig.md)                       | Mapbox 地图配置                                           |
 | [MapCameraToolEvents](./cesium.mapcameratoolevents.md)         | 相机事件                                                  |
 | [MapFlyToolEvents](./cesium.mapflytoolevents.md)               | 飞行事件                                                  |
@@ -114,6 +114,7 @@
 | [PolygonOption](./cesium.polygonoption.md)                     | 面 Primitive 参数                                         |
 | [PolylineOption](./cesium.polylineoption.md)                   | 线 Primitive 参数                                         |
 | [Position](./cesium.position.md)                               | 位置信息                                                  |
+| [ResourceConfig](./cesium.resourceconfig.md)                   |                                                           |
 | [Rotation](./cesium.rotation.md)                               | 旋转参数(角度) heading：偏航角 pitch：俯仰角 roll：翻滚角 |
 | [SceneConfig](./cesium.sceneconfig.md)                         | 场景配置                                                  |
 | [StyleBillboard](./cesium.stylebillboard.md)                   |                                                           |
@@ -130,9 +131,11 @@
 
 ## Variables
 
-| Variable                                 | Description      |
-| ---------------------------------------- | ---------------- |
-| [mapStoreTool](./cesium.mapstoretool.md) | 地图实例存储对象 |
+| Variable                                     | Description      |
+| -------------------------------------------- | ---------------- |
+| [mapStoreTool](./cesium.mapstoretool.md)     | 地图实例存储对象 |
+| [ResourcePrefix](./cesium.resourceprefix.md) |                  |
+| [resourceTool](./cesium.resourcetool.md)     | 地图资源存储对象 |
 
 ## Type Aliases
 
@@ -156,5 +159,6 @@
 | [PolygonEntityOption](./cesium.polygonentityoption.md)       | PolygonEntity 参数，改造了 Polygon 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]                                                                                                                                           |
 | [PolylineEntityOption](./cesium.polylineentityoption.md)     | PolylineEntity 参数，改造了 Polyline 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material depthFailMaterial 添加了自定义材质 customMaterial，会覆盖 cesium 原生材质 material customDepthFailMaterial，会覆盖 cesium 原生材质 depthFailMaterial 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\] |
 | [PrimitiveOption](./cesium.primitiveoption.md)               | Primitive 通用构造参数 剔除 appearance，depthFailAppearance，geometryInstances 属性                                                                                                                                                                                                                                                      |
+| [ResourceType](./cesium.resourcetype.md)                     |                                                                                                                                                                                                                                                                                                                                          |
 | [TileOption](./cesium.tileoption.md)                         | 添加 3DTiles 图层所需参数，除了 Cesium3DTileset 需要的原生参数，还添加了 id: 唯一标识 locate: 是否定位 lng: 精度 lat: 纬度 height: 高度 heading: 偏航角 pitch: 俯仰角 roll: 翻滚角 scale: 缩放（默认 1）                                                                                                                                 |
 | [WallEntityOption](./cesium.wallentityoption.md)             | WallEntity 参数，改造了 Wall 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: material outlineColor 更改了高度数组围为数字，由实际的点数确定数组 minimumHeights maximumHeights 添加了自定义材质 customMaterial，会覆盖 cesium 原生材质 material 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]     |

@@ -38,3 +38,4 @@ tool.flyTo({...}, 2)
 | [enable()](./cesium.mapcameratool.enable.md)                 |           | 启用                     |
 | [flyTo(param, duration)](./cesium.mapcameratool.flyto.md)    |           | 移动相机到指定位置和角度 |
 | [getCameraParam()](./cesium.mapcameratool.getcameraparam.md) |           | 获取当前相机位置和角度   |
+| [setView(param)](./cesium.mapcameratool.setview.md)          |           | 设置视角                 |

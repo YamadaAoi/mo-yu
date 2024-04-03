@@ -13,14 +13,15 @@ export type TileOption = TilesetOption &
   TilesTransform & {
     id?: string
     locate?: boolean
+    show?: boolean | [number, number]
     style?: {
       [key: string]: any
       colorAll?: string
       paramName?: string
-      colorList?: Cesium3DTileColor[]
+      colorList?: string | LegendColor[]
     }
     pick?: PickTileFeatureStyle
   }
 ```
 
-**References:** [TilesTransform](./cesium.tilestransform.md)<!-- -->, [Cesium3DTileColor](./cesium.cesium3dtilecolor.md)<!-- -->, [PickTileFeatureStyle](./cesium.picktilefeaturestyle.md)
+**References:** [TilesTransform](./cesium.tilestransform.md)<!-- -->, [LegendColor](./cesium.legendcolor.md)<!-- -->, [PickTileFeatureStyle](./cesium.picktilefeaturestyle.md)

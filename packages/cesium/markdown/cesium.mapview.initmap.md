@@ -7,9 +7,9 @@
 **Signature:**
 
 ```typescript
-protected initMap(): void;
+protected initMap(): Promise<void>;
 ```
 
 **Returns:**
 
-void
+Promise&lt;void&gt;

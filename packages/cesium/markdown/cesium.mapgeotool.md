@@ -35,6 +35,7 @@ tool.addGeo(config, false, config.id)
 | ------------------------------------------------------- | --------- | --------------------------------------------------- |
 | [addGeo(option)](./cesium.mapgeotool.addgeo.md)         |           | 添加 GeoJson                                        |
 | [clear()](./cesium.mapgeotool.clear.md)                 |           | 清除所有矢量                                        |
+| [clearClick(id)](./cesium.mapgeotool.clearclick.md)     |           | 清空指定图层选中效果                                |
 | [destroy()](./cesium.mapgeotool.destroy.md)             |           | 销毁                                                |
 | [enable()](./cesium.mapgeotool.enable.md)               |           | 启用                                                |
 | [getGeoById(id)](./cesium.mapgeotool.getgeobyid.md)     |           | 根据 id 获取 GeoJsonDataSource，请自行维护唯一 name |

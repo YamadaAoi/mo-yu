@@ -4,7 +4,7 @@
 
 ## SceneConfig.camera property
 
-初始相机位置，角度
+视角变化
 
 **Signature:**
 

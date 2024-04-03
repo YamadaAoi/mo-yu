@@ -14,13 +14,15 @@ export interface SceneConfig
 
 ## Properties
 
-| Property                                      | Modifiers | Type                                                     | Description                     |
-| --------------------------------------------- | --------- | -------------------------------------------------------- | ------------------------------- |
-| [camera?](./cesium.sceneconfig.camera.md)     |           | [CameraParam](./cesium.cameraparam.md)                   | _(Optional)_ 初始相机位置，角度 |
-| [fly?](./cesium.sceneconfig.fly.md)           |           | [FlyConfig](./cesium.flyconfig.md)                       | _(Optional)_ 飞行参数           |
-| [geos?](./cesium.sceneconfig.geos.md)         |           | [GeoOptions](./cesium.geooptions.md)<!-- -->\[\]         | _(Optional)_ 场景中默认矢量     |
-| [heatMaps?](./cesium.sceneconfig.heatmaps.md) |           | [HeatMapOptions](./cesium.heatmapoptions.md)<!-- -->\[\] | _(Optional)_ 热力图             |
-| [map?](./cesium.sceneconfig.map.md)           |           | [BaseMapTryConfig](./cesium.basemaptryconfig.md)         | _(Optional)_ 默认底图           |
-| [mask?](./cesium.sceneconfig.mask.md)         |           | MaskEntityOption                                         | _(Optional)_ 遮罩               |
-| [terrain?](./cesium.sceneconfig.terrain.md)   |           | [TerrainConfig](./cesium.terrainconfig.md)               | _(Optional)_ 默认地形           |
-| [tiles?](./cesium.sceneconfig.tiles.md)       |           | [TileOption](./cesium.tileoption.md)<!-- -->\[\]         | _(Optional)_ 场景中默认 3dTiles |
+| Property                                          | Modifiers | Type                                                     | Description                     |
+| ------------------------------------------------- | --------- | -------------------------------------------------------- | ------------------------------- |
+| [camera?](./cesium.sceneconfig.camera.md)         |           | [CameraParam](./cesium.cameraparam.md)                   | _(Optional)_ 视角变化           |
+| [fly?](./cesium.sceneconfig.fly.md)               |           | [FlyConfig](./cesium.flyconfig.md)                       | _(Optional)_ 飞行参数           |
+| [geos?](./cesium.sceneconfig.geos.md)             |           | [GeoOptions](./cesium.geooptions.md)<!-- -->\[\]         | _(Optional)_ 场景中默认矢量     |
+| [heatMaps?](./cesium.sceneconfig.heatmaps.md)     |           | [HeatMapOptions](./cesium.heatmapoptions.md)<!-- -->\[\] | _(Optional)_ 热力图             |
+| [initCamera?](./cesium.sceneconfig.initcamera.md) |           | [CameraParam](./cesium.cameraparam.md)                   | _(Optional)_ 初始视角           |
+| [map?](./cesium.sceneconfig.map.md)               |           | [BaseMapTryConfig](./cesium.basemaptryconfig.md)         | _(Optional)_ 默认底图           |
+| [mask?](./cesium.sceneconfig.mask.md)             |           | MaskEntityOption                                         | _(Optional)_ 遮罩               |
+| [resource?](./cesium.sceneconfig.resource.md)     |           | [ResourceConfig](./cesium.resourceconfig.md)<!-- -->\[\] | _(Optional)_ 静态资源列表       |
+| [terrain?](./cesium.sceneconfig.terrain.md)       |           | [TerrainConfig](./cesium.terrainconfig.md)               | _(Optional)_ 默认地形           |
+| [tiles?](./cesium.sceneconfig.tiles.md)           |           | [TileOption](./cesium.tileoption.md)<!-- -->\[\]         | _(Optional)_ 场景中默认 3dTiles |

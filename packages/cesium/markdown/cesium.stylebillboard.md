@@ -12,6 +12,7 @@ export interface StyleBillboard
 
 ## Properties
 
-| Property                                  | Modifiers | Type                                                       | Description |
-| ----------------------------------------- | --------- | ---------------------------------------------------------- | ----------- |
-| [style](./cesium.stylebillboard.style.md) |           | [BillboardEntityOption](./cesium.billboardentityoption.md) |             |
+| Property                                       | Modifiers | Type                                                                                                                                                                                          | Description                 |
+| ---------------------------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| [cluster?](./cesium.stylebillboard.cluster.md) |           | { options?: ConstructorParameters&lt;typeof EntityCluster&gt;\[0\]; billboard?: [BillboardParam](./cesium.billboardparam.md)<!-- -->; label?: [LabelParam](./cesium.labelparam.md)<!-- -->; } | _(Optional)_ 广告牌聚合参数 |
+| [style](./cesium.stylebillboard.style.md)      |           | [BillboardEntityOption](./cesium.billboardentityoption.md)                                                                                                                                    |                             |

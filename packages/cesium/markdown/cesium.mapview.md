@@ -35,11 +35,12 @@ map.eventBus.once('ready', e => {
 
 ## Properties
 
-| Property                                   | Modifiers             | Type                                     | Description   |
-| ------------------------------------------ | --------------------- | ---------------------------------------- | ------------- |
-| [id](./cesium.mapview.id.md)               | <code>readonly</code> | string                                   | 返回 mapID    |
-| [sceneTool](./cesium.mapview.scenetool.md) |                       | [MapSceneTool](./cesium.mapscenetool.md) | 初始场景工具  |
-| [viewer](./cesium.mapview.viewer.md)       | <code>readonly</code> | Viewer                                   | 返回 map 实例 |
+| Property                                     | Modifiers             | Type                                     | Description    |
+| -------------------------------------------- | --------------------- | ---------------------------------------- | -------------- |
+| [id](./cesium.mapview.id.md)                 | <code>readonly</code> | string                                   | 返回 mapID     |
+| [mapOptions](./cesium.mapview.mapoptions.md) | <code>readonly</code> | [MapOption](./cesium.mapoption.md)       | 地图初始化参数 |
+| [sceneTool](./cesium.mapview.scenetool.md)   |                       | [MapSceneTool](./cesium.mapscenetool.md) | 初始场景工具   |
+| [viewer](./cesium.mapview.viewer.md)         | <code>readonly</code> | Viewer                                   | 返回 map 实例  |
 
 ## Methods
 

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-25 16:44:11
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-27 14:10:47
+ * @LastEditTime: 2024-03-27 15:08:46
  * @Description: 热力图
  */
 import {
@@ -92,8 +92,8 @@ interface HeatMapToolEvents {}
  * ```
  */
 export class HeatMapTool extends ToolBase<ToolBaseOptions, HeatMapToolEvents> {
-  #width = document.documentElement.getBoundingClientRect().width
-  #height = document.documentElement.getBoundingClientRect().height
+  #width = 1920
+  #height = 1080
   #wrap = document.createElement('div')
   #heats = new PrimitiveCollection()
   constructor(options: ToolBaseOptions) {

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-20 13:33:34
+ * @LastEditTime: 2024-04-01 17:47:35
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -35,6 +35,8 @@ import { mapStoreTool } from '../storeTool'
 import { CameraParam } from '../cameraTool'
 import { defaultColor } from '../../core/defaultVal'
 import { getColor } from '../../core'
+import { resourceTool } from '../resourceTool'
+import { LegendColor } from '../../support/legend'
 
 /**
  * cesium原生3DTiles构造参数
@@ -46,15 +48,6 @@ type TilesetOption = ConstructorParameters<typeof Cesium3DTileset>[0]
  */
 export interface TilesTransform extends CameraParam {
   scale?: number
-}
-
-/**
- * 简单色例参数
- */
-export interface Cesium3DTileColor {
-  value: any
-  label: string
-  color: string
 }
 
 /**
@@ -73,6 +66,7 @@ export type TileOption = TilesetOption &
   TilesTransform & {
     id?: string
     locate?: boolean
+    show?: boolean | [number, number]
     /**
      * 组装Cesium3DTileStyle，必须是合法的Cesium3DTileStyle入参
      */
@@ -86,7 +80,7 @@ export type TileOption = TilesetOption &
        * 组装到color.conditions
        */
       paramName?: string
-      colorList?: Cesium3DTileColor[]
+      colorList?: string | LegendColor[]
     }
     /**
      * 选中时Cesium3DTileFeature的样式
@@ -144,6 +138,7 @@ export class MapTileTool<
   E extends MapTileToolEvents = MapTileToolEvents
 > extends ToolBase<ToolBaseOptions, E> {
   protected tiles = new PrimitiveCollection()
+  #tileOptions: TileOption[] = []
   #handler: ScreenSpaceEventHandler | undefined
   #pickStyles: Map<string, PickTileFeatureStyle> = new Map()
   #prevClickColor: Color | undefined
@@ -161,6 +156,7 @@ export class MapTileTool<
     if (this.viewer) {
       const viewer = this.viewer
       viewer.scene.primitives.add(this.tiles)
+      this.viewer.camera.changed.addEventListener(this.#handleShow)
       this.#handler = new ScreenSpaceEventHandler(viewer.canvas)
       this.#handler.setInputAction(
         this.#handleClick,
@@ -179,6 +175,7 @@ export class MapTileTool<
   destroy(): void {
     this.clear()
     this.viewer?.scene.primitives.remove(this.tiles)
+    this.viewer?.camera.changed.removeEventListener(this.#handleShow)
     this.#handler?.destroy()
   }
 
@@ -187,6 +184,11 @@ export class MapTileTool<
    */
   clear() {
     this.#removeAllTiles()
+    this.#tileOptions = []
+    this.#prevClickColor = undefined
+    this.#prevClickFea = undefined
+    this.#prevHoverColor = undefined
+    this.#prevHoverFea = undefined
     this.#pickStyles.clear()
   }
 
@@ -241,9 +243,12 @@ export class MapTileTool<
    * @param id - 3DTiles Id
    */
   removeTile(id: string) {
-    const tile = this.getTileById(id)
-    if (tile) {
-      this.tiles.remove(tile)
+    if (id) {
+      this.#tileOptions = this.#tileOptions.filter(t => t.id !== id)
+      const tile = this.getTileById(id)
+      if (tile) {
+        this.tiles.remove(tile)
+      }
     }
   }
 
@@ -264,8 +269,12 @@ export class MapTileTool<
         pitch,
         roll,
         scale,
+        show,
         ...rest
       } = option
+      if (id && !this.#tileOptions.some(t => t.id === id)) {
+        this.#tileOptions.push(option)
+      }
       const MoYuTileId = id ?? guid()
       const tileset = new Cesium3DTileset(
         getDefault(
@@ -287,7 +296,7 @@ export class MapTileTool<
             loadSiblings: false,
             shadows: ShadowMode.ENABLED
           },
-          rest
+          { ...rest, show: Array.isArray(show) ? false : show }
         )
       )
       const tile = await tileset.readyPromise
@@ -310,6 +319,17 @@ export class MapTileTool<
       }
     }
     return primitive
+  }
+
+  /**
+   * 清除选中图层样式
+   */
+  clearClick() {
+    if (this.#prevClickFea && this.#prevClickColor) {
+      this.#prevClickFea.color = this.#prevClickColor
+      this.#prevClickFea = undefined
+      this.#prevClickColor = undefined
+    }
   }
 
   protected getTransform(mat: Matrix4, params: TilesTransform) {
@@ -396,28 +416,31 @@ export class MapTileTool<
     return mapStoreTool.getMap()?.viewer
   }
 
-  #handleStyle(option: TileOption, tileset: Cesium3DTileset) {
+  async #handleStyle(option: TileOption, tileset: Cesium3DTileset) {
     if (option.style) {
       const { colorAll, colorList, paramName, ...rest } = option.style
       if (colorAll) {
         rest.color = `color('${colorAll}')`
-      } else if (colorList?.length && paramName && rest.color === undefined) {
-        rest.color = {
-          conditions: colorList.map(c => {
-            let cond = '${' + paramName + '} === '
-            if (typeof c.value === 'string') {
-              cond = `${cond}'${c.value}'`
-            } else {
-              cond = `${cond}${c.value}`
-            }
-            if (c.value === true || c.value === 'true') {
-              cond = 'true'
-            }
-            return [
-              cond,
-              `color('${c.color ?? defaultColor.toCssColorString()}')`
-            ]
-          })
+      } else if (colorList && paramName && rest.color === undefined) {
+        const colors: LegendColor[] = await resourceTool.getResource(colorList)
+        if (colors?.length) {
+          rest.color = {
+            conditions: colors.map(c => {
+              let cond = '${' + paramName + '} === '
+              if (typeof c.value === 'string') {
+                cond = `${cond}'${c.value}'`
+              } else {
+                cond = `${cond}${c.value}`
+              }
+              if (c.value === true || c.value === 'true') {
+                cond = 'true'
+              }
+              return [
+                cond,
+                `color('${c.color ?? defaultColor.toCssColorString()}')`
+              ]
+            })
+          }
         }
       }
       tileset.style = new Cesium3DTileStyle(rest)
@@ -427,6 +450,23 @@ export class MapTileTool<
   #handlePickStyle(option: TileOption, tileId: string) {
     if (option.pick) {
       this.#pickStyles.set(tileId, option.pick)
+    }
+  }
+
+  #handleShow = () => {
+    if (this.viewer && this.#tileOptions?.length) {
+      const height = this.viewer.camera.positionCartographic.height
+      this.#tileOptions.forEach(t => {
+        if (t.id && Array.isArray(t.show) && t.show.length === 2) {
+          const tile = this.getTileById(t.id)
+          if (tile) {
+            tile.show =
+              height >= t.show[0] && height <= t.show[1] ? true : false
+            this.#handleStyle(t, tile)
+            // console.log(t.id, height, tile.show)
+          }
+        }
+      })
     }
   }
 
@@ -441,8 +481,8 @@ export class MapTileTool<
         const pickColor = getColor(this.#pickStyles.get(tileId)?.hover?.color)
         if (pickColor) {
           if (
-            feature !== this.#prevHoverFea &&
-            feature !== this.#prevClickFea
+            feature.featureId !== this.#prevHoverFea?.featureId &&
+            feature.featureId !== this.#prevClickFea?.featureId
           ) {
             if (this.#prevHoverFea && this.#prevHoverColor) {
               this.#prevHoverFea.color = this.#prevHoverColor
@@ -483,12 +523,16 @@ export class MapTileTool<
         const tileId = tileset.MoYuTileId
         const pickColor = getColor(this.#pickStyles.get(tileId)?.click?.color)
         if (pickColor) {
-          if (feature !== this.#prevClickFea) {
+          if (feature.featureId !== this.#prevClickFea?.featureId) {
             if (this.#prevClickFea && this.#prevClickColor) {
               this.#prevClickFea.color = this.#prevClickColor
             }
-            if (feature === this.#prevHoverFea && this.#prevHoverColor) {
+            if (
+              feature.featureId === this.#prevHoverFea?.featureId &&
+              this.#prevHoverColor
+            ) {
               this.#prevClickColor = this.#prevHoverColor
+              this.#prevHoverFea = undefined
             } else {
               this.#prevClickColor = feature.color.clone()
             }
@@ -508,11 +552,7 @@ export class MapTileTool<
         this.eventBus.fire('pick-tile', { properties: properties[0] })
         this.eventBus.fire('pick-tile-all', { properties })
       } else {
-        if (this.#prevClickFea && this.#prevClickColor) {
-          this.#prevClickFea.color = this.#prevClickColor
-          this.#prevClickFea = undefined
-          this.#prevClickColor = undefined
-        }
+        this.clearClick()
       }
     }
   })

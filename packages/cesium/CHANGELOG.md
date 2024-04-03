@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.0.20
+
+### Patch Changes
+
+- cesium 初始化优化，点聚合配置修改，geo 面样式优化，mpop 优化
+
 ## 1.0.19
 
 ### Patch Changes

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 14:55:43
+ * @LastEditTime: 2024-04-03 13:45:47
  * @Description: geojson工具
  */
 import {
@@ -48,6 +48,8 @@ import {
 import { cartesian3ToLngLat } from '../../utils/coordTranform'
 import { getPosiOnMap } from '../../utils/getPosi'
 import { getpixelOffset } from '../../utils/objectCreate'
+import { LegendColor } from '../../support/legend'
+import { resourceTool } from '../resourceTool'
 
 /**
  * geojson参数，在原始参数基础上合并了参数:
@@ -74,6 +76,10 @@ export type GeoOptions = Omit<
   locate?: boolean
   custom?: {
     /**
+     * 相机高度在[near, far]之间展示
+     */
+    show?: [number, number] | boolean
+    /**
      * 多边形边界线样式
      */
     border?: StyleBoder
@@ -93,14 +99,6 @@ export type GeoOptions = Omit<
      * 覆盖多边形样式，只会覆盖PolygonGraphics.ConstructorOptions除了hierarchy的所有参数
      */
     polygon?: StylePolygon
-  }
-  /**
-   * 广告牌聚合参数
-   */
-  cluster?: {
-    options?: ConstructorParameters<typeof EntityCluster>[0]
-    billboard?: BillboardParam
-    label?: LabelParam
   }
 }
 
@@ -123,6 +121,14 @@ export interface StyleWall {
 
 export interface StyleBillboard {
   style: BillboardEntityOption
+  /**
+   * 广告牌聚合参数
+   */
+  cluster?: {
+    options?: ConstructorParameters<typeof EntityCluster>[0]
+    billboard?: BillboardParam
+    label?: LabelParam
+  }
 }
 
 export interface StyleLabel {
@@ -131,6 +137,10 @@ export interface StyleLabel {
 
 export interface StylePolygon {
   style: PolygonEntityOption
+  legend?: {
+    paramName?: string
+    colorList?: string | LegendColor[]
+  }
 }
 
 export interface MapGeoToolEvents {
@@ -170,6 +180,7 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
    */
   enable(): void {
     if (this.#viewer?.canvas) {
+      this.#viewer.camera.changed.addEventListener(this.#handleShow)
       this.#handler = new ScreenSpaceEventHandler(this.#viewer.canvas)
       this.#handler.setInputAction(
         this.#handlePick,
@@ -183,6 +194,7 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
    */
   destroy(): void {
     this.clear()
+    this.#viewer?.camera.changed.removeEventListener(this.#handleShow)
     this.#handler?.destroy()
   }
 
@@ -191,6 +203,7 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
    */
   clear() {
     this.#viewer?.dataSources.removeAll()
+    this.#geoOptions = []
   }
 
   /**
@@ -237,9 +250,12 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
    * @param id - GeoJson Id
    */
   removeGeo(id: string) {
-    const geo = this.getGeoById(id)
-    if (geo) {
-      this.#viewer?.dataSources.remove(geo)
+    if (id) {
+      this.#geoOptions = this.#geoOptions.filter(g => g.id !== id)
+      const geo = this.getGeoById(id)
+      if (geo) {
+        this.#viewer?.dataSources.remove(geo)
+      }
     }
   }
 
@@ -289,7 +305,9 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
                   this.#handleBillboard(e, option.custom.billboard)
                 }
                 if (option.custom.polygon) {
-                  this.#handlePolygon(e, option.custom.polygon)
+                  this.#handlePolygon(e, option.custom.polygon).catch(err => {
+                    console.error(err)
+                  })
                 }
               }
             })
@@ -305,6 +323,56 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
         .catch(err => {
           console.error(`load geojson [${url}] failed![${err}]`)
         })
+    }
+  }
+
+  /**
+   * 清空指定图层选中效果
+   * @param id - 图层id
+   */
+  clearClick(id: string) {
+    const geo = this.getGeoById(id)
+    const option = this.#geoOptions.find(g => g.id === id)
+    if (geo && option?.custom?.border?.pick) {
+      const entities = geo.entities.values
+      if (entities?.length) {
+        entities.forEach(e => {
+          if (e.polyline && option?.custom?.border?.pick) {
+            const optNew: any = createEntityPolylineGraphicsOptions(
+              option.custom.border.pick
+            )
+            const opt: any = createEntityPolylineGraphicsOptions(
+              option.custom.border.style
+            )
+            const polyline: any = e.polyline
+            Object.keys(optNew).forEach(key => {
+              polyline[key] = opt[key]
+            })
+          }
+        })
+      }
+    }
+  }
+
+  #handleShow = () => {
+    if (this.#viewer && this.#geoOptions?.length) {
+      const height = this.#viewer.camera.positionCartographic.height
+      this.#geoOptions.forEach(g => {
+        if (
+          g?.id &&
+          Array.isArray(g.custom?.show) &&
+          g.custom?.show?.length === 2
+        ) {
+          const geo = this.getGeoById(g.id)
+          if (geo) {
+            geo.show =
+              height >= g.custom.show[0] && height <= g.custom.show[1]
+                ? true
+                : false
+            // console.log(height, geo.show)
+          }
+        }
+      })
     }
   }
 
@@ -447,7 +515,7 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
     }
   }
 
-  #handlePolygon(e: Entity, option: StylePolygon) {
+  async #handlePolygon(e: Entity, option: StylePolygon) {
     if (e.polygon && option.style) {
       const {
         id,
@@ -463,6 +531,22 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
         hierarchy,
         ...rest
       } = option.style
+      if (option.legend?.paramName && option.legend.colorList) {
+        const value = e.properties?.getValue(JulianDate.now())?.[
+          option.legend.paramName
+        ]
+        if (undefined !== value && null !== value) {
+          const colors: LegendColor[] = await resourceTool.getResource(
+            option.legend.colorList
+          )
+          if (colors?.length) {
+            const c = colors.find(color => color.value === value)
+            if (c?.color) {
+              rest.material = c.color
+            }
+          }
+        }
+      }
       e.polygon = createEntityPolygonGraphics({
         hierarchy: e.polygon.hierarchy,
         ...rest
@@ -471,15 +555,15 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
   }
 
   #handleCluster(option: GeoOptions, s: GeoJsonDataSource) {
-    if (option.cluster?.options) {
-      const options: any = option.cluster.options
+    const config: any = option.custom?.billboard?.cluster
+    if (config?.options) {
       const cluster: any = s.clustering
-      Object.keys(options).forEach((key: string) => {
-        cluster[key] = options[key]
+      Object.keys(config.options).forEach((key: string) => {
+        cluster[key] = config.options[key]
       })
       s.clustering.clusterEvent.addEventListener((entities, cluster) => {
-        if (option.cluster?.label) {
-          const style: any = option.cluster.label
+        if (config.label) {
+          const style: any = config.label
           const label: any = cluster.label
           Object.keys(style).forEach(key => {
             if (key === 'pixelOffset') {
@@ -490,8 +574,8 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
           })
           cluster.label.text = entities.length.toLocaleString()
         }
-        if (option.cluster?.billboard) {
-          const style: any = option.cluster.billboard
+        if (config.billboard) {
+          const style: any = config.billboard
           const billboard: any = cluster.billboard
           Object.keys(style).forEach(key => {
             if (key === 'pixelOffset') {

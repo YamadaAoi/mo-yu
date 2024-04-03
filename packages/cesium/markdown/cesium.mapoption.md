@@ -16,8 +16,10 @@ export interface MapOption extends ToolBaseOptions
 
 ## Properties
 
-| Property                                        | Modifiers | Type                      | Description               |
-| ----------------------------------------------- | --------- | ------------------------- | ------------------------- |
-| [baseColor?](./cesium.mapoption.basecolor.md)   |           | string                    | _(Optional)_ 默认球体颜色 |
-| [baseOption?](./cesium.mapoption.baseoption.md) |           | Viewer.ConstructorOptions | _(Optional)_              |
-| [id](./cesium.mapoption.id.md)                  |           | string                    | 当前地图实例唯一 id       |
+| Property                                                  | Modifiers | Type                                   | Description                             |
+| --------------------------------------------------------- | --------- | -------------------------------------- | --------------------------------------- |
+| [baseColor?](./cesium.mapoption.basecolor.md)             |           | string                                 | _(Optional)_ 默认球体颜色               |
+| [baseOption?](./cesium.mapoption.baseoption.md)           |           | Viewer.ConstructorOptions              | _(Optional)_                            |
+| [id](./cesium.mapoption.id.md)                            |           | string                                 | 当前地图实例唯一 id                     |
+| [sceneConfig?](./cesium.mapoption.sceneconfig.md)         |           | [SceneConfig](./cesium.sceneconfig.md) | _(Optional)_ 场景配置对象               |
+| [sceneConfigPath?](./cesium.mapoption.sceneconfigpath.md) |           | string                                 | _(Optional)_ 场景配置 json GET 请求地址 |

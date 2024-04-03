@@ -20,18 +20,14 @@ export type GeoOptions = Omit<
   id?: string
   locate?: boolean
   custom?: {
+    show?: [number, number] | boolean
     border?: StyleBoder
     wall?: StyleWall
     label?: StyleLabel
     billboard?: StyleBillboard
     polygon?: StylePolygon
   }
-  cluster?: {
-    options?: ConstructorParameters<typeof EntityCluster>[0]
-    billboard?: BillboardParam
-    label?: LabelParam
-  }
 }
 ```
 
-**References:** [StyleBoder](./cesium.styleboder.md)<!-- -->, [StyleWall](./cesium.stylewall.md)<!-- -->, [StyleLabel](./cesium.stylelabel.md)<!-- -->, [StyleBillboard](./cesium.stylebillboard.md)<!-- -->, [StylePolygon](./cesium.stylepolygon.md)<!-- -->, [BillboardParam](./cesium.billboardparam.md)<!-- -->, [LabelParam](./cesium.labelparam.md)
+**References:** [StyleBoder](./cesium.styleboder.md)<!-- -->, [StyleWall](./cesium.stylewall.md)<!-- -->, [StyleLabel](./cesium.stylelabel.md)<!-- -->, [StyleBillboard](./cesium.stylebillboard.md)<!-- -->, [StylePolygon](./cesium.stylepolygon.md)

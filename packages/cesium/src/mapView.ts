@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:07:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-26 20:53:41
+ * @LastEditTime: 2024-03-30 13:56:09
  * @Description:
  */
 import {
@@ -19,7 +19,7 @@ import {
 import { guid, getDefault, ToolBase } from '@mo-yu/core'
 import { getDefaultOptions, MapOption } from './mapViewAble'
 import { mapStoreTool } from './tools/storeTool'
-import { MapSceneTool } from './tools/sceneTool'
+import { MapSceneTool, SceneConfig } from './tools/sceneTool'
 import { getColor } from './core/material'
 import { addFlowMaterial } from './core/material/addMaterial/flow'
 import { addFlashMaterial } from './core/material/addMaterial/flash'
@@ -81,7 +81,9 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
    */
   enable(): void {
     if (this.#options.baseOption) {
-      this.initMap()
+      this.initMap().catch(err => {
+        console.error(err)
+      })
     }
   }
 
@@ -98,12 +100,22 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
     }
   }
 
-  protected initMap(): void {
+  protected async initMap() {
     addFlowMaterial()
     addFlashMaterial()
+    if (!this.#options.sceneConfig && this.#options.sceneConfigPath) {
+      const res = await fetch(this.#options.sceneConfigPath)
+      const json: SceneConfig = await res.json()
+      if (json) {
+        this.#options.sceneConfig = json
+      }
+    }
     this.#map = new Viewer(this.#container, {
       ...this.#options.baseOption
     })
+    if (this.#options.sceneConfig?.initCamera) {
+      this.sceneTool.camera.setView(this.#options.sceneConfig.initCamera)
+    }
     this.#map.scene.globe.baseColor =
       getColor(this.#options.baseColor) ??
       Color.fromCssColorString('rgba(13,25,44,0.6)')
@@ -206,6 +218,13 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
    */
   get id(): string {
     return this.#options?.id
+  }
+
+  /**
+   * 地图初始化参数
+   */
+  get mapOptions() {
+    return this.#options
   }
 
   /**

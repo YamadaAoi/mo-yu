@@ -2,11 +2,12 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 14:58:29
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-12 11:06:49
+ * @LastEditTime: 2024-03-30 13:44:48
  * @Description:
  */
 import { SceneMode, Viewer } from 'cesium'
 import { ToolBaseOptions } from '@mo-yu/core'
+import { SceneConfig } from './tools/sceneTool'
 
 /**
  * 扩展cesium默认初始化参数
@@ -20,6 +21,14 @@ export interface MapOption extends ToolBaseOptions {
    * 默认球体颜色
    */
   baseColor?: string
+  /**
+   * 场景配置对象
+   */
+  sceneConfig?: SceneConfig
+  /**
+   * 场景配置json GET 请求地址
+   */
+  sceneConfigPath?: string
   baseOption?: Viewer.ConstructorOptions
 }
 

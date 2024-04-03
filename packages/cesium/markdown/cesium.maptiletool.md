@@ -42,6 +42,7 @@ tool.add3DTileset({...})
 | ----------------------------------------------------------------------------- | ---------------------- | ----------------- |
 | [add3DTileset(option)](./cesium.maptiletool.add3dtileset.md)                  |                        | 添加 3DTiles 模型 |
 | [clear()](./cesium.maptiletool.clear.md)                                      |                        | 清除所有 3dTiles  |
+| [clearClick()](./cesium.maptiletool.clearclick.md)                            |                        | 清除选中图层样式  |
 | [createMatrix(translation, hpr, scale)](./cesium.maptiletool.creatematrix.md) | <code>protected</code> |                   |
 | [createScale(scaleXYZ)](./cesium.maptiletool.createscale.md)                  | <code>protected</code> |                   |
 | [destroy()](./cesium.maptiletool.destroy.md)                                  |                        | 销毁              |

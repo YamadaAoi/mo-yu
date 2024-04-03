@@ -12,6 +12,7 @@ export interface StylePolygon
 
 ## Properties
 
-| Property                                | Modifiers | Type                                                   | Description |
-| --------------------------------------- | --------- | ------------------------------------------------------ | ----------- |
-| [style](./cesium.stylepolygon.style.md) |           | [PolygonEntityOption](./cesium.polygonentityoption.md) |             |
+| Property                                   | Modifiers | Type                                                                                              | Description  |
+| ------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------- | ------------ |
+| [legend?](./cesium.stylepolygon.legend.md) |           | { paramName?: string; colorList?: string \| [LegendColor](./cesium.legendcolor.md)<!-- -->\[\]; } | _(Optional)_ |
+| [style](./cesium.stylepolygon.style.md)    |           | [PolygonEntityOption](./cesium.polygonentityoption.md)                                            |              |

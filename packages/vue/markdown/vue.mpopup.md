@@ -15,10 +15,6 @@ _default: import('vue').DefineComponent<
       type: BooleanConstructor
       required: true
     }
-    title: {
-      type: StringConstructor
-      required: true
-    }
     style: {
       type: PropType<StyleValue>
       required: false
@@ -31,10 +27,6 @@ _default: import('vue').DefineComponent<
       type: PropType<OriginPosition>
       required: false
     }
-    hideClose: {
-      type: BooleanConstructor
-      required: false
-    }
     mask: {
       type: BooleanConstructor
       required: false
@@ -43,16 +35,13 @@ _default: import('vue').DefineComponent<
   {
     popupWinId: string
     popupHeadId: string
-    close: () => void
   },
   unknown,
   {},
   {},
   import('vue').ComponentOptionsMixin,
   import('vue').ComponentOptionsMixin,
-  {
-    close(): boolean
-  },
+  {},
   string,
   import('vue').VNodeProps &
     import('vue').AllowedComponentProps &
@@ -61,10 +50,6 @@ _default: import('vue').DefineComponent<
     import('vue').ExtractPropTypes<{
       visiable: {
         type: BooleanConstructor
-        required: true
-      }
-      title: {
-        type: StringConstructor
         required: true
       }
       style: {
@@ -79,20 +64,13 @@ _default: import('vue').DefineComponent<
         type: PropType<OriginPosition>
         required: false
       }
-      hideClose: {
-        type: BooleanConstructor
-        required: false
-      }
       mask: {
         type: BooleanConstructor
         required: false
       }
     }>
-  > & {
-    onClose?: (() => any) | undefined
-  },
+  >,
   {
-    hideClose: boolean
     mask: boolean
   },
   {}

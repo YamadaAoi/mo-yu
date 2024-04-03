@@ -2,13 +2,12 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 18:10:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-13 15:47:39
+ * @LastEditTime: 2024-04-03 14:18:29
  * @Description: 拖拽弹框
  */
 import './popup.scss'
 import {
   defineComponent,
-  ref,
   h,
   Teleport,
   PropType,
@@ -32,10 +31,6 @@ export default defineComponent({
       type: Boolean,
       required: true
     },
-    title: {
-      type: String,
-      required: true
-    },
     style: {
       type: Object as PropType<StyleValue>,
       required: false
@@ -48,21 +43,12 @@ export default defineComponent({
       type: String as PropType<OriginPosition>,
       required: false
     },
-    hideClose: {
-      type: Boolean,
-      required: false
-    },
     mask: {
       type: Boolean,
       required: false
     }
   },
-  emits: {
-    close() {
-      return true
-    }
-  },
-  setup(props, { emit }) {
+  setup(props) {
     const { zoom } = useRem()
     const popupWinId = `popupWin${guid()}`
     const popupHeadId = `popupHead${guid()}`
@@ -121,11 +107,7 @@ export default defineComponent({
         })
     }
 
-    function close() {
-      emit('close')
-    }
-
-    return { popupWinId, popupHeadId, close }
+    return { popupWinId, popupHeadId }
   },
   render() {
     return this.visiable ? (
@@ -136,14 +118,7 @@ export default defineComponent({
           class={`m-popup ${this.class ?? ''}`}
           style={this.style}>
           <div id={this.popupHeadId} class="m-popup-header">
-            {this.title}
-            {this.hideClose ? (
-              ''
-            ) : (
-              <span class="m-popup-close" onClick={this.close}>
-                &#10006;
-              </span>
-            )}
+            {this.$slots.head?.()}
           </div>
           <div class="m-popup-body">{this.$slots.default?.()}</div>
         </div>

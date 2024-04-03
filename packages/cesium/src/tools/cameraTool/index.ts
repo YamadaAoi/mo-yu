@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:02:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-21 10:27:52
+ * @LastEditTime: 2024-03-30 13:52:21
  * @Description: 摄像机工具
  */
 import { Math, Cartesian3 } from 'cesium'
@@ -121,6 +121,31 @@ export class MapCameraTool extends ToolBase<
             roll: Math.toRadians(param.roll ?? curParam.roll)
           },
           duration
+        })
+      }
+    }
+  }
+
+  /**
+   * 设置视角
+   * @param param - 位置和角度参数
+   */
+  setView(param: CameraParam) {
+    if (param && this.#viewer?.camera) {
+      const camera = this.#viewer.camera
+      const curParam = this.getCameraParam()
+      if (curParam) {
+        camera.setView({
+          destination: Cartesian3.fromDegrees(
+            param.lng ?? curParam.lng,
+            param.lat ?? curParam.lat,
+            param.height ?? curParam.height
+          ),
+          orientation: {
+            heading: Math.toRadians(param.heading ?? curParam.heading),
+            pitch: Math.toRadians(param.pitch ?? curParam.pitch),
+            roll: Math.toRadians(param.roll ?? curParam.roll)
+          }
         })
       }
     }

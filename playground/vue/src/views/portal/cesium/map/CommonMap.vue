@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-08 14:20:32
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-27 13:44:29
+ * @LastEditTime: 2024-04-03 13:49:14
  * @Description: 初始化一个简单的地图场景，包括底图，地形，遮罩
 -->
 <template>
@@ -19,7 +19,7 @@
 import { onMounted, onBeforeUnmount } from 'vue'
 import 'cesiumcss'
 import { ScreenSpaceEventType } from 'cesium'
-import { initCesiumBaseUrl, MapView, SceneConfig } from '@mo-yu/cesium'
+import { initCesiumBaseUrl, MapView, mapStoreTool } from '@mo-yu/cesium'
 import { useRem } from '@mo-yu/vue'
 
 initCesiumBaseUrl('/cesium')
@@ -41,36 +41,27 @@ const { zoom } = useRem()
 let map: MapView
 
 onMounted(() => {
-  loadConfig()
-    .then(config => {
-      map = new MapView(props.mapId, {
-        id: props.mapId
-      })
-      map.enable()
-      map.eventBus.once('ready', e => {
-        map.sceneTool.enable()
-        map.sceneTool.prepareScene(config)
-        emits('loaded', e.view?.id)
-      })
-      map.viewer.screenSpaceEventHandler.setInputAction(() => {
-        console.log(map.sceneTool.camera.getCameraParam())
-      }, ScreenSpaceEventType.LEFT_CLICK)
-    })
-    .catch(err => {
-      console.error(err)
-    })
+  map = new MapView(props.mapId, {
+    id: props.mapId,
+    sceneConfigPath: `/map/${props.mapId}.json`
+  })
+  map.enable()
+  map.eventBus.once('ready', e => {
+    map.sceneTool.enable()
+    if (map.mapOptions.sceneConfig) {
+      map.sceneTool.prepareScene(map.mapOptions.sceneConfig, 1.5)
+    }
+    map.viewer.screenSpaceEventHandler.setInputAction(() => {
+      console.log(map.sceneTool.camera.getCameraParam())
+    }, ScreenSpaceEventType.LEFT_CLICK)
+    emits('loaded', e.view?.id)
+  })
 })
 
 onBeforeUnmount(() => {
-  map?.destroy()
+  mapStoreTool.deleteMap(props.mapId)
   emits('removed')
 })
-
-async function loadConfig() {
-  const res = await fetch(`/map/${props.mapId}.json`)
-  const json: SceneConfig = await res.json()
-  return json
-}
 </script>
 
 <style scoped lang="scss">

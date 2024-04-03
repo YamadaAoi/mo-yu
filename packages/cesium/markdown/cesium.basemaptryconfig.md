@@ -9,8 +9,10 @@
 **Signature:**
 
 ```typescript
-export interface BaseMapTryConfig
+export interface BaseMapTryConfig extends BaseConfig
 ```
+
+**Extends:** BaseConfig
 
 ## Properties
 

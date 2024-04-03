@@ -1,10 +1,9 @@
-$header-height: 48px;
 .m-popup-mask {
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 9998;
+  z-index: 998;
   top: 0;
   left: 0;
 }
@@ -12,38 +11,11 @@ $header-height: 48px;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 9999;
-  width: 350px;
-  height: 300px;
-  background: white;
-  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.08),
-    0 3px 6px 0 rgba(0, 0, 0, 0.06), 0 5px 12px 4px rgba(0, 0, 0, 0.04);
+  z-index: 999;
   .m-popup-header {
-    width: 100%;
-    height: $header-height;
-    line-height: $header-height;
-    padding-left: 22px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    cursor: move;
-    font-size: 20px;
-    font-family: Microsoft YaHei;
-    border-bottom: 1px solid rgb(239, 239, 245);
-    .m-popup-close {
-      display: block;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 18px;
-      cursor: pointer;
-      font-size: 18px;
-    }
+    position: relative;
   }
   .m-popup-body {
-    width: 100%;
-    margin-top: $header-height;
-    height: calc(100% - #{$header-height});
     position: relative;
   }
 }

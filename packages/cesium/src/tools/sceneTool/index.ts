@@ -2,10 +2,11 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:38:10
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-26 20:49:31
+ * @LastEditTime: 2024-04-03 13:31:03
  * @Description: 地图场景初始化工具
  */
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
+import { ResourceConfig, resourceTool } from '../resourceTool'
 import { CameraParam, MapCameraTool, MapCameraToolEvents } from '../cameraTool'
 import { TileOption, MapTileTool, MapTileToolEvents } from '../tileTool'
 import { GeoOptions, MapGeoTool, MapGeoToolEvents } from '../geoTool'
@@ -28,7 +29,15 @@ import { HeatMapOptions, HeatMapTool } from '../heatMapTool'
  */
 export interface SceneConfig {
   /**
-   * 初始相机位置，角度
+   * 静态资源列表
+   */
+  resource?: ResourceConfig[]
+  /**
+   * 初始视角
+   */
+  initCamera?: CameraParam
+  /**
+   * 视角变化
    */
   camera?: CameraParam
   /**
@@ -171,15 +180,25 @@ export class MapSceneTool extends ToolBase<
     this.heat.destroy()
   }
 
-  prepareScene(config?: SceneConfig, duration = 0) {
-    this.#config = config
+  /**
+   * 清空当前场景图层
+   */
+  clear() {
     this.tile.clear()
     this.geo.clear()
     this.baseMap.clear()
     this.mask.clear()
     this.fly.clear()
     this.heat.clear()
+  }
+
+  prepareScene(config?: SceneConfig, duration = 0) {
+    this.#config = config
+    this.clear()
     if (config) {
+      if (config.resource?.length) {
+        resourceTool.initResource(config.resource)
+      }
       if (config.tiles?.length) {
         const promises = config.tiles.map(t => this.tile.add3DTileset(t))
         Promise.allSettled(promises).catch(err => {

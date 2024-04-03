@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-11 14:21:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-20 13:20:45
+ * @LastEditTime: 2024-03-29 18:28:48
  * @Description:
  */
 import {
@@ -90,7 +90,7 @@ export type BaseMapConfig =
 /**
  * 地图服务条件配置
  */
-export interface BaseMapTryConfig {
+export interface BaseMapTryConfig extends BaseConfig {
   map: BaseMapConfig
   /**
    * 判断条件，是一个可访问的get请求地址或是一个promise
@@ -281,6 +281,35 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
       this.eventBus.fire('base-map-change', {
         id: this.baseMap
       })
+    }
+  }
+
+  /**
+   * 按条件影像切片类图层加载，先加载默认影像切片，判断条件condition若为true，替换为map
+   * @param config - 配置
+   */
+  tryImageryLayer(config: BaseMapTryConfig) {
+    if (config.condition) {
+      if (config.default) {
+        this.addImageryLayer(config.default)
+      }
+      let promise: Promise<boolean>
+      if (typeof config.condition === 'string') {
+        promise = this.#createPromise(config.condition)
+      } else {
+        promise = config.condition
+      }
+      promise
+        .then(flag => {
+          if (flag) {
+            this.addImageryLayer(config.map)
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    } else {
+      this.addImageryLayer(config.map)
     }
   }
 

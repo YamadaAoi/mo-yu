@@ -11,7 +11,7 @@
 ```typescript
 export declare function getColorProperty(
   color?: Property | Color | string
-): Color | Property | undefined
+): Property | Color | undefined
 ```
 
 ## Parameters
@@ -22,4 +22,4 @@ export declare function getColorProperty(
 
 **Returns:**
 
-Color \| Property \| undefined
+Property \| Color \| undefined
