@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 10:54:42
+ * @LastEditTime: 2024-04-11 17:56:48
  * @Description: 线Primitive
  */
 import {
@@ -16,7 +16,7 @@ import {
   PolylineMaterialAppearance,
   Primitive
 } from 'cesium'
-import { getMeterial } from '../../../material'
+import { CustomMaterial, createMaterial, getMeterial } from '../../../material'
 import { GeometryInstanceOption, PrimitiveOption } from '..'
 import { defaultColor } from '../../../defaultVal'
 
@@ -59,7 +59,9 @@ type PolylinePrimitiveOption = PrimitiveOption &
 export interface PolylineOption extends PolylinePrimitiveOption {
   clampToGround?: boolean
   material?: Material | Color | string
+  customMaterial?: CustomMaterial
   depthFailMaterial?: Material | Color | string
+  customDepthFailMaterial?: CustomMaterial
 }
 
 /**
@@ -112,13 +114,22 @@ export function createPolyline(options: PolylineOption) {
         })
       }),
       appearance: new PolylineMaterialAppearance({
-        material: getMeterial(options.material ?? defaultColor)
+        material: createMaterial(
+          options.material ?? defaultColor,
+          options.customMaterial
+        )
       }),
-      depthFailAppearance: new PolylineMaterialAppearance({
-        material: getMeterial(options.depthFailMaterial ?? defaultColor)
-      }),
+      depthFailAppearance:
+        options.depthFailMaterial || options.customDepthFailMaterial
+          ? new PolylineMaterialAppearance({
+              material: createMaterial(
+                options.depthFailMaterial,
+                options.customDepthFailMaterial
+              )
+            })
+          : undefined,
       show: options.show === undefined ? true : options.show,
-      modelMatrix: options.modelMatrix,
+      modelMatrix: options.primitiveModelMatrix,
       vertexCacheOptimize: options.vertexCacheOptimize,
       interleave: options.interleave,
       compressVertices: options.compressVertices,

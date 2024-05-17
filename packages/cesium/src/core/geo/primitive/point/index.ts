@@ -35,7 +35,7 @@ export interface PointOption {
 }
 
 /**
- * 创建PointPrimitive参数对象，此方法会在heightReference为CLAMP_TO_GROUND时尝试获取点的高度
+ * 创建PointPrimitive参数对象，此方法会在clampToGround为true时尝试获取点的高度
  * @param options - 原始参数
  * @returns
  */

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-16 16:28:30
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-16 17:10:48
+ * @LastEditTime: 2024-04-11 14:53:07
  * @Description:
  */
 import { Color, Material, JulianDate, defined, Property } from 'cesium'
@@ -28,7 +28,6 @@ export interface FlashMaterialOptions {
 const defaultImage = Material.DefaultImageId
 const defaultColor = new Color(1.0, 1.0, 1.0, 1.0)
 const defaultSpeed = 1
-const defaultOrient = 0
 
 /**
  * 流动材质Property
@@ -41,17 +40,14 @@ export class FlashMaterialProperty extends CustomMaterialProperty {
     | HTMLVideoElement
   private _color?: Color
   private _speed?: number
-  private _orient?: number
   private _imageSubscription: any
   private _colorSubscription: any
   private _speedSubscription: any
-  private _orientSubscription: any
   constructor(options: FlashMaterialOptions) {
     super()
     this.image = options.image ?? defaultImage
     this.color = getColor(options.color) ?? defaultColor
     this.speed = options.speed ?? defaultSpeed
-    this.orient = options.vertical ? 1 : 0
   }
 
   getType() {
@@ -70,7 +66,6 @@ export class FlashMaterialProperty extends CustomMaterialProperty {
       result.color
     )
     result.speed = P.getValueOrDefault(this._speed, time, defaultSpeed)
-    result.orient = P.getValueOrDefault(this._orient, time, defaultOrient)
     return result
   }
 
@@ -80,8 +75,7 @@ export class FlashMaterialProperty extends CustomMaterialProperty {
       (other instanceof FlashMaterialProperty &&
         P.equals(this._color, other._color) &&
         P.equals(this._image, other._image) &&
-        P.equals(this._speed, other._speed) &&
-        P.equals(this._orient, other._orient))
+        P.equals(this._speed, other._speed))
     )
   }
 
@@ -116,20 +110,11 @@ export class FlashMaterialProperty extends CustomMaterialProperty {
     this.createProperty('speed', value)
   }
 
-  get orient() {
-    return this._orient
-  }
-
-  set orient(value: number | undefined) {
-    this.createProperty('orient', value)
-  }
-
   get isConstant() {
     return (
       P.isConstant(this.image) &&
       P.isConstant(this.color) &&
-      P.isConstant(this.speed) &&
-      P.isConstant(this.orient)
+      P.isConstant(this.speed)
     )
   }
 }
@@ -145,13 +130,7 @@ export function addFlashMaterial() {
       uniforms: {
         image: Material.DefaultImageId,
         color: new Color(1.0, 1.0, 1.0, 1.0),
-        speed: 1,
-        /**
-         * 方向
-         * 0: 水平方向
-         * 大于0: 垂直方向
-         */
-        orient: 1
+        speed: 1
       },
       source: /*glsl*/ `czm_material czm_getMaterial(czm_materialInput materialInput)
       {

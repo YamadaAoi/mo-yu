@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-03 13:45:47
+ * @LastEditTime: 2024-04-07 11:27:51
  * @Description: geojson工具
  */
 import {
@@ -64,7 +64,7 @@ import { resourceTool } from '../resourceTool'
  * custom: 自定义样式
  * border: 多边形边界线样式
  */
-export type GeoOptions = Omit<
+export type GeoOption = Omit<
   GeoJsonDataSource.LoadOptions,
   'markerColor' | 'stroke' | 'fill'
 > & {
@@ -156,6 +156,12 @@ export interface MapGeoToolEvents {
   'pick-fea-all': {
     properties: any[]
   }
+  /**
+   * 双击选取所有fea属性
+   */
+  'double-click-fea-all': {
+    properties: any[]
+  }
 }
 
 /**
@@ -169,7 +175,7 @@ export interface MapGeoToolEvents {
  * ```
  */
 export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
-  #geoOptions: GeoOptions[] = []
+  #geoOptions: GeoOption[] = []
   #handler: ScreenSpaceEventHandler | undefined
   constructor(options: ToolBaseOptions) {
     super(options)
@@ -185,6 +191,10 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
       this.#handler.setInputAction(
         this.#handlePick,
         ScreenSpaceEventType.LEFT_CLICK
+      )
+      this.#handler.setInputAction(
+        this.#handleDBClick,
+        ScreenSpaceEventType.LEFT_DOUBLE_CLICK
       )
     }
   }
@@ -263,7 +273,7 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
    * 添加GeoJson
    * @param option - geojson参数
    */
-  addGeo(option: GeoOptions) {
+  addGeo(option: GeoOption) {
     if (option) {
       const { id, locate, url, markerColor, stroke, fill, custom, ...rest } =
         option
@@ -414,6 +424,31 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
     }
   })
 
+  #handleDBClick = debounce(
+    (event: ScreenSpaceEventHandler.PositionedEvent) => {
+      if (event?.position) {
+        const picked = this.#viewer.scene.drillPick(event.position)
+        if (picked?.length) {
+          const properties = picked
+            .filter(p => p?.id instanceof Entity)
+            .map(p => {
+              const entity: Entity = p.id
+              const property: any = {}
+              entity.properties?.propertyNames?.forEach((str: string) => {
+                property[str] = entity.properties?.[str]?._value
+              })
+              return property
+            })
+          if (properties.length) {
+            this.eventBus.fire('double-click-fea-all', {
+              properties
+            })
+          }
+        }
+      }
+    }
+  )
+
   #handleBorder(e: Entity, option: StyleBoder) {
     if (e.polygon) {
       const positions = e.polygon.hierarchy?.getValue(
@@ -554,7 +589,7 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
     }
   }
 
-  #handleCluster(option: GeoOptions, s: GeoJsonDataSource) {
+  #handleCluster(option: GeoOption, s: GeoJsonDataSource) {
     const config: any = option.custom?.billboard?.cluster
     if (config?.options) {
       const cluster: any = s.clustering

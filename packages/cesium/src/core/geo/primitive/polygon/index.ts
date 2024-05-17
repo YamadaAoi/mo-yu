@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:31:44
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 10:55:23
+ * @LastEditTime: 2024-04-11 17:55:55
  * @Description: 面Primitive
  */
 import {
@@ -53,7 +53,7 @@ export interface PolygonOption extends PolygonPrimitiveOption {
 }
 
 /**
- * 创建面Primitive对象，此方法会根据heightReference创建不同的对象
+ * 创建面Primitive对象，此方法会根据clampToGround创建不同的对象
  * @param options - 面参数
  * @returns
  */
@@ -102,11 +102,13 @@ export function createPolygon(options: PolygonOption) {
     return new Primitive({
       geometryInstances,
       appearance,
-      depthFailAppearance: new MaterialAppearance({
-        material: getMeterial(options.depthFailMaterial ?? defaultColor)
-      }),
+      depthFailAppearance: options.depthFailMaterial
+        ? new MaterialAppearance({
+            material: getMeterial(options.depthFailMaterial)
+          })
+        : undefined,
       show: options.show === undefined ? true : options.show,
-      modelMatrix: options.modelMatrix,
+      modelMatrix: options.primitiveModelMatrix,
       vertexCacheOptimize: options.vertexCacheOptimize,
       interleave: options.interleave,
       compressVertices: options.compressVertices,

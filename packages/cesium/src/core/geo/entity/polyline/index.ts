@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 14:50:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-21 17:05:26
+ * @LastEditTime: 2024-04-11 17:58:25
  * @Description: Polyline
  */
 import {
@@ -13,7 +13,7 @@ import {
   PolylineGraphics,
   Property
 } from 'cesium'
-import { CustomMaterial, createMaterial } from '../../../material'
+import { CustomMaterial, createMaterialProperty } from '../../../material'
 import { EntityOption } from '..'
 import { defaultColor } from '../../../defaultVal'
 import { getDistanceDisplayCondition } from '../../../../utils/objectCreate'
@@ -66,14 +66,17 @@ export function createEntityPolylineGraphicsOptions(
   } = options
   const opt: PolylineGraphics.ConstructorOptions = {
     ...rest,
-    material: createMaterial(
+    material: createMaterialProperty(
       rest.material ?? defaultColor,
       options.customMaterial
     ),
-    depthFailMaterial: createMaterial(
-      rest.depthFailMaterial ?? defaultColor,
-      options.customDepthFailMaterial
-    ),
+    depthFailMaterial:
+      rest.depthFailMaterial || options.customDepthFailMaterial
+        ? createMaterialProperty(
+            rest.depthFailMaterial,
+            options.customDepthFailMaterial
+          )
+        : undefined,
     distanceDisplayCondition: getDistanceDisplayCondition(
       rest.distanceDisplayCondition
     )

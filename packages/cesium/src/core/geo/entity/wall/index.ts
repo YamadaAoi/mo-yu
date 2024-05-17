@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-15 10:53:29
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 10:58:27
+ * @LastEditTime: 2024-04-08 17:27:58
  * @Description: Wall
  */
 import {
@@ -14,7 +14,7 @@ import {
   Property,
   WallGraphics
 } from 'cesium'
-import { createMaterial, getColorProperty } from '../../../material'
+import { createMaterialProperty, getColorProperty } from '../../../material'
 import { EntityOption } from '..'
 import { defaultColor } from '../../../defaultVal'
 import { CustomMaterial } from '../../../material'
@@ -81,7 +81,7 @@ export function createEntityWallGraphicsOptions(options: WallEntityOption) {
     maximumHeights: new Array((options.positions ?? []).length).fill(
       options.maximumHeights ?? 500
     ),
-    material: createMaterial(
+    material: createMaterialProperty(
       rest.material ?? defaultColor,
       options.customMaterial
     ),

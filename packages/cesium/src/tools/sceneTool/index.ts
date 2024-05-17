@@ -2,14 +2,14 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:38:10
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-03 13:31:03
+ * @LastEditTime: 2024-04-11 16:33:49
  * @Description: 地图场景初始化工具
  */
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
 import { ResourceConfig, resourceTool } from '../resourceTool'
 import { CameraParam, MapCameraTool, MapCameraToolEvents } from '../cameraTool'
 import { TileOption, MapTileTool, MapTileToolEvents } from '../tileTool'
-import { GeoOptions, MapGeoTool, MapGeoToolEvents } from '../geoTool'
+import { GeoOption, MapGeoTool, MapGeoToolEvents } from '../geoTool'
 import {
   BaseMapTryConfig,
   BaseMapTool,
@@ -22,7 +22,8 @@ import {
   MapMaskToolEvents
 } from '../mapMaskTool'
 import { FlyConfig, MapFlyTool, MapFlyToolEvents } from '../flyTool'
-import { HeatMapOptions, HeatMapTool } from '../heatMapTool'
+import { HeatMapTool } from '../heatMapTool'
+import { PointsTool } from '../pointsTool'
 
 /**
  * 场景配置
@@ -51,7 +52,7 @@ export interface SceneConfig {
   /**
    * 场景中默认矢量
    */
-  geos?: GeoOptions[]
+  geos?: GeoOption[]
   /**
    * 默认底图
    */
@@ -64,10 +65,6 @@ export interface SceneConfig {
    * 遮罩
    */
   mask?: MaskEntityOption
-  /**
-   * 热力图
-   */
-  heatMaps?: HeatMapOptions[]
 }
 
 /**
@@ -109,6 +106,7 @@ export class MapSceneTool extends ToolBase<
   mask: MapMaskTool
   fly: MapFlyTool
   heat: HeatMapTool
+  points: PointsTool
   constructor(options: MapSceneToolOptions) {
     super(options)
     this.#config = options.config
@@ -136,6 +134,9 @@ export class MapSceneTool extends ToolBase<
     this.geo.eventBus.on('pick-fea-all', e => {
       this.eventBus.fire('pick-fea-all', e)
     })
+    this.geo.eventBus.on('double-click-fea-all', e => {
+      this.eventBus.fire('double-click-fea-all', e)
+    })
     this.baseMap = new BaseMapTool({})
     this.baseMap.eventBus.on('base-map-change', e => {
       this.eventBus.fire('base-map-change', e)
@@ -152,6 +153,7 @@ export class MapSceneTool extends ToolBase<
       this.eventBus.fire('time-change', e)
     })
     this.heat = new HeatMapTool({})
+    this.points = new PointsTool({})
   }
 
   /**
@@ -165,6 +167,7 @@ export class MapSceneTool extends ToolBase<
     this.mask.enable()
     this.fly.enable()
     this.heat.enable()
+    this.points.enable()
   }
 
   /**
@@ -178,6 +181,7 @@ export class MapSceneTool extends ToolBase<
     this.mask.destroy()
     this.fly.destroy()
     this.heat.destroy()
+    this.points.destroy()
   }
 
   /**
@@ -190,6 +194,7 @@ export class MapSceneTool extends ToolBase<
     this.mask.clear()
     this.fly.clear()
     this.heat.clear()
+    this.points.clear()
   }
 
   prepareScene(config?: SceneConfig, duration = 0) {
@@ -224,12 +229,6 @@ export class MapSceneTool extends ToolBase<
         this.fly.play()
       } else if (config.camera) {
         this.camera.flyTo(config.camera, duration)
-      }
-      if (config.heatMaps?.length) {
-        const promises = config.heatMaps.map(t => this.heat.addHeatMap(t))
-        Promise.allSettled(promises).catch(err => {
-          console.error(err)
-        })
       }
     }
   }

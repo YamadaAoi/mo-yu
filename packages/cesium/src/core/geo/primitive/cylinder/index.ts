@@ -1,9 +1,9 @@
 /*
  * @Author: zhouyinkui
- * @Date: 2024-01-04 17:19:02
+ * @Date: 2024-04-08 16:54:47
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-11 17:55:29
- * @Description: 圆Primitive
+ * @LastEditTime: 2024-04-11 19:13:04
+ * @Description: 圆柱
  */
 import {
   Cartesian3,
@@ -13,10 +13,12 @@ import {
   GroundPrimitive,
   Material,
   MaterialAppearance,
-  CircleGeometry,
-  Primitive
+  Primitive,
+  CylinderGeometry,
+  Transforms,
+  Appearance
 } from 'cesium'
-import { getMeterial } from '../../../material'
+import { CustomMaterial, createMaterial, getMeterial } from '../../../material'
 import {
   GeometryInstanceOption,
   GroundPrimitiveOption,
@@ -25,56 +27,64 @@ import {
 import { defaultColor } from '../../../defaultVal'
 
 /**
- * CircleGeometry构造参数
+ * CylinderGeometry构造参数
  */
-type CircleGeometryOption = Partial<
-  ConstructorParameters<typeof CircleGeometry>[0]
+type CylinderGeometryOption = Partial<
+  ConstructorParameters<typeof CylinderGeometry>[0]
 >
 
 /**
- * 圆Primitive构造参数
- * 混合 Primitive 和 GroundPrimitive 和 GeometryInstance 和 CircleGeometry 的构造参数
+ * Cylinder构造参数
+ * 混合 Primitive 和 GeometryInstance 和 CylinderGeometry 的构造参数
  */
-type CirclePrimitiveOption = PrimitiveOption &
+type CylinderPrimitiveOption = PrimitiveOption &
   GroundPrimitiveOption &
   GeometryInstanceOption &
-  CircleGeometryOption
+  CylinderGeometryOption
 
 /**
- * 圆Primitive参数
+ * Cylinder Primitive参数
  */
-export interface CircleOption extends CirclePrimitiveOption {
+export interface CylinderOption extends CylinderPrimitiveOption {
   clampToGround?: boolean
+  position?: Cartesian3
 
+  appearance?: Appearance
+  depthFailAppearance?: Appearance
   material?: Material | Color | string
+  customMaterial?: CustomMaterial
   depthFailMaterial?: Material | Color | string
+  customDepthFailMaterial?: CustomMaterial
 }
 
 /**
- * 创建圆Primitive对象，此方法会根据clampToGround创建不同的对象
- * @param options - 圆参数
+ * 创建Cylinder Primitive对象，此方法会根据clampToGround创建不同的对象
+ * @param options - Cylinder参数
  * @returns
  */
-export function createCircle(options: CircleOption) {
+export function createCylinder(options: CylinderOption) {
   const geometryInstances = new GeometryInstance({
     id: options.id,
-    modelMatrix: options.modelMatrix,
+    modelMatrix: options.position
+      ? Transforms.eastNorthUpToFixedFrame(options.position)
+      : options.modelMatrix,
     attributes: options.attributes,
-    geometry: new CircleGeometry({
-      center:
-        options.center ?? Cartesian3.fromDegrees(116.397497, 39.906888, 0),
-      radius: options.radius ?? 1000,
-      ellipsoid: options.ellipsoid,
-      height: options.height,
-      granularity: options.granularity,
-      vertexFormat: options.vertexFormat,
-      extrudedHeight: options.extrudedHeight,
-      stRotation: options.stRotation
+    geometry: new CylinderGeometry({
+      length: options.length ?? 500,
+      topRadius: options.topRadius ?? 50,
+      bottomRadius: options.bottomRadius ?? 50,
+      slices: options.slices,
+      vertexFormat: options.vertexFormat
     })
   })
-  const appearance = new MaterialAppearance({
-    material: getMeterial(options.material ?? defaultColor)
-  })
+  const appearance =
+    options.appearance ??
+    new MaterialAppearance({
+      material: createMaterial(
+        options.material ?? defaultColor,
+        options.customMaterial
+      )
+    })
   if (options.clampToGround) {
     return new GroundPrimitive({
       geometryInstances,
@@ -94,11 +104,16 @@ export function createCircle(options: CircleOption) {
     return new Primitive({
       geometryInstances,
       appearance,
-      depthFailAppearance: options.depthFailMaterial
-        ? new MaterialAppearance({
-            material: getMeterial(options.depthFailMaterial)
-          })
-        : undefined,
+      depthFailAppearance:
+        options.depthFailAppearance ??
+        (options.depthFailMaterial || options.customDepthFailMaterial)
+          ? new MaterialAppearance({
+              material: createMaterial(
+                options.depthFailMaterial,
+                options.customDepthFailMaterial
+              )
+            })
+          : undefined,
       show: options.show === undefined ? true : options.show,
       modelMatrix: options.primitiveModelMatrix,
       vertexCacheOptimize: options.vertexCacheOptimize,

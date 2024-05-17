@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:14:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-24 09:59:00
+ * @LastEditTime: 2024-04-11 18:22:21
  * @Description: 材质
  */
 import { Color, Material, MaterialProperty, Property } from 'cesium'
@@ -121,7 +121,6 @@ export function createCustomMaterialProperty(option: CustomMaterial) {
   } else if (option?.flash) {
     const u = {
       speed: option.flash.speed,
-      vertical: option.flash.vertical,
       color: getColor(option.flash.color),
       image: option.flash.colors?.length
         ? createLinearImage(option.flash.colors, option.flash.vertical)
@@ -132,12 +131,38 @@ export function createCustomMaterialProperty(option: CustomMaterial) {
 }
 
 /**
- * 创建自定义材质或原生材质
+ * 创建自定义材质
+ * @param option - 自定义材质参数
+ * @returns
+ */
+export function createCustomMaterial(option: CustomMaterial) {
+  if (option?.flow) {
+    return Material.fromType('Flow', {
+      speed: option.flow.speed,
+      orient: option.flow.vertical ? 1 : 0,
+      color: getColor(option.flow.color ?? 'white'),
+      image: option.flow.colors?.length
+        ? createLinearImage(option.flow.colors, option.flow.vertical)
+        : option.flow.image
+    })
+  } else if (option?.flash) {
+    return Material.fromType('Flash', {
+      speed: option.flash.speed,
+      color: getColor(option.flash.color),
+      image: option.flash.colors?.length
+        ? createLinearImage(option.flash.colors, option.flash.vertical)
+        : option.flash.image
+    })
+  }
+}
+
+/**
+ * 创建自定义材质或原生材质Property
  * @param material - 原生材质
  * @param customMaterial - 自定义材质
  * @returns
  */
-export function createMaterial(
+export function createMaterialProperty(
   material?: MaterialProperty | Color | string,
   customMaterial?: CustomMaterial
 ) {
@@ -145,5 +170,22 @@ export function createMaterial(
     return createCustomMaterialProperty(customMaterial)
   } else {
     return getMeterialProperty(material)
+  }
+}
+
+/**
+ * 创建自定义材质或原生材质
+ * @param material - 原生材质
+ * @param customMaterial - 自定义材质
+ * @returns
+ */
+export function createMaterial(
+  material?: Material | Color | string,
+  customMaterial?: CustomMaterial
+) {
+  if (customMaterial) {
+    return createCustomMaterial(customMaterial)
+  } else {
+    return getMeterial(material)
   }
 }
