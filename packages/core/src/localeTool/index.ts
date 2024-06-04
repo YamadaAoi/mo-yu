@@ -13,20 +13,17 @@ import { ToolBase, ToolBaseOptions } from '../baseTool'
 type GenKey<Prefix, Keys> = `${Prefix & string}.${Keys & string}`
 
 /**
- * 对象递归最大深度
- */
-type Pred = [never, 0, 1, 2, 3, 4, 5, 6, 7]
-
-/**
  * 获取国际化配置所有类型
  */
-type GetKeys<Config, D extends number = 8> = {
-  [K in keyof Config]: Config[K] extends object
-    ? [D] extends [0]
-      ? K & string
-      : GenKey<K, GetKeys<Config[K], Pred[D]>>
-    : K & string
-}[keyof Config]
+type GetKeys<Config> = Config extends object
+  ? keyof Config extends never
+    ? never
+    : {
+        [K in keyof Config]: Config[K] extends infer M & object
+          ? GenKey<K, GetKeys<M>>
+          : K & string
+      }[keyof Config]
+  : never
 
 /**
  * 国际化配置所有键值
@@ -80,7 +77,7 @@ const LocaleStorage = 'mo-yu-locale'
 /**
  * 国际化工具类
  * T - 语言类型，例如'zh_cn' | 'en_us'
- * C - 语言配置，是一个简单的object类型，字段类型为string或object，递归最深层级为8级
+ * C - 语言配置，是一个简单的object类型，字段类型为string或object
  *
  * @example
  * ```ts
