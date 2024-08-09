@@ -45,8 +45,8 @@
     "id": "dachang",
     "name": "大场边界",
     "material": "rgba(0,0,0,0.5)",
-    "heightReference": 1,
-    "hierarchy": [73, 53, 135, 53, 135, 4, 73, 4],
+    "clampToGround": true,
+    "hierarchy": [119, 36, 119, 35, 120, 35, 120, 36],
     "holes": "/data/dachang.json"
   }
 }

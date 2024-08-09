@@ -30,6 +30,7 @@ module.exports = {
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/promise-function-async': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'no-global-assign': 'off',
     'no-multi-str': 'off',
     'class-methods-use-this': 'off',
