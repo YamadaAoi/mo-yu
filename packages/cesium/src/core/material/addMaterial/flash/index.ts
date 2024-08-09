@@ -136,7 +136,7 @@ export function addFlashMaterial() {
       {
         czm_material material = czm_getDefaultMaterial(materialInput);
         vec2 st = materialInput.st;
-        vec4 colorImage = texture2D(image, st);
+        vec4 colorImage = texture(image, st);
         float curA = abs(color.a * sin(speed * czm_frameNumber / 1000.0));
         material.alpha = colorImage.a * curA;
         material.diffuse = (colorImage.rgb + color.rgb) / 2.0;

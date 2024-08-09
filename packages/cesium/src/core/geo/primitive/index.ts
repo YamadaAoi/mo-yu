@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-05 17:50:37
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-09 10:08:07
+ * @LastEditTime: 2024-08-06 17:57:27
  * @Description: Primitive GEO
  */
 import { GeometryInstance, GroundPrimitive, Matrix4, Primitive } from 'cesium'
@@ -42,3 +42,5 @@ export * from './polyline'
 export * from './polygon'
 export * from './circle'
 export * from './cylinder'
+export * from './billboard'
+export * from './label'

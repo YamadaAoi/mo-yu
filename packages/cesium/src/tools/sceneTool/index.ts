@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:38:10
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-11 16:33:49
+ * @LastEditTime: 2024-08-09 15:47:30
  * @Description: 地图场景初始化工具
  */
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
@@ -17,7 +17,7 @@ import {
   BaseMapToolEvents
 } from '../baseMapTool'
 import {
-  MaskEntityOption,
+  MaskPrimitiveOption,
   MapMaskTool,
   MapMaskToolEvents
 } from '../mapMaskTool'
@@ -64,7 +64,7 @@ export interface SceneConfig {
   /**
    * 遮罩
    */
-  mask?: MaskEntityOption
+  mask?: MaskPrimitiveOption
 }
 
 /**
@@ -154,6 +154,12 @@ export class MapSceneTool extends ToolBase<
     })
     this.heat = new HeatMapTool({})
     this.points = new PointsTool({})
+    this.points.eventBus.on('pick-point', e => {
+      this.eventBus.fire('pick-fea', e)
+    })
+    this.points.eventBus.on('pick-point-all', e => {
+      this.eventBus.fire('pick-fea-all', e)
+    })
   }
 
   /**
@@ -199,7 +205,7 @@ export class MapSceneTool extends ToolBase<
 
   prepareScene(config?: SceneConfig, duration = 0) {
     this.#config = config
-    this.clear()
+    // this.clear()
     if (config) {
       if (config.resource?.length) {
         resourceTool.initResource(config.resource)

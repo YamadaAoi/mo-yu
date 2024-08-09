@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:54:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 16:31:34
+ * @LastEditTime: 2024-08-07 13:48:38
  * @Description: 画点
  */
 import {
@@ -66,7 +66,7 @@ export class DrawPointTool<
 > extends DrawBase<O, E> {
   #handler: ScreenSpaceEventHandler | undefined
   #widgetInputAction: any
-  #timer: NodeJS.Timeout | undefined
+  #timer: any | undefined
   protected points: Cartesian3[] = []
   protected pointCollection: PointPrimitiveCollection
   constructor(options: O) {
@@ -91,7 +91,7 @@ export class DrawPointTool<
           this.#timer = setTimeout(() => {
             const position = getPosiOnAction(event.position)
             if (position) {
-              createPoint(
+              const point = createPoint(
                 getDefault(
                   {
                     position,
@@ -100,14 +100,9 @@ export class DrawPointTool<
                   this.options.point
                 )
               )
-                .then(point => {
-                  this.pointCollection.add(point)
-                  this.points.push(position)
-                  this.onLeftClick(position)
-                })
-                .catch(err => {
-                  console.error(`添加点失败！${err}`)
-                })
+              this.pointCollection.add(point)
+              this.points.push(position)
+              this.onLeftClick(position)
             }
           }, 200)
         },

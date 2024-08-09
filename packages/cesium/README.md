@@ -2,7 +2,7 @@
 
 ## mo-yu/cesium
 
-cesium 定制包，基于cesium@1.95.0
+cesium 定制包，基于cesium@1.120.0
 
 ### 安装
 

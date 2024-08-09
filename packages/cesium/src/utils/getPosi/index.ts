@@ -2,14 +2,15 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 16:19:35
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-04 16:37:53
+ * @LastEditTime: 2024-08-06 11:12:14
  * @Description: 获取位置
  */
 import {
   Cartesian3,
   sampleTerrainMostDetailed,
   Cartographic,
-  Cartesian2
+  Cartesian2,
+  Math
 } from 'cesium'
 import { mapStoreTool } from '../../tools/storeTool'
 
@@ -41,6 +42,38 @@ export function getPosiOnAction(endPosition: Cartesian2) {
     }
   }
   return position
+}
+
+/**
+ * 获取多点点在地形上的位置
+ * @param lnglats
+ * @returns
+ */
+export async function getPointsOnTerrain(lnglats: [number, number][]) {
+  const viewer = mapStoreTool.getMap()?.viewer
+  let points: Cartesian3[] = []
+  if (viewer) {
+    const carts = lnglats.map(
+      ll => new Cartographic(Math.toRadians(ll[0]), Math.toRadians(ll[1]))
+    )
+    const results = await sampleTerrainMostDetailed(
+      viewer.terrainProvider,
+      carts
+    )
+    if (results?.length === lnglats.length) {
+      points = results.map((r, i) => {
+        if (r) {
+          return Cartesian3.fromRadians(r.longitude, r.latitude, r.height)
+        } else {
+          return Cartesian3.fromDegrees(lnglats[i][0], lnglats[i][1])
+        }
+      })
+    }
+  }
+  if (!points.length) {
+    points = Cartesian3.fromDegreesArray(lnglats.flat())
+  }
+  return points
 }
 
 /**

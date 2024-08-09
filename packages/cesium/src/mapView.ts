@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:07:12
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-30 13:56:09
+ * @LastEditTime: 2024-08-09 15:40:34
  * @Description:
  */
 import {
@@ -110,17 +110,24 @@ export class MapView extends ToolBase<MapOption, MapViewEventType> {
         this.#options.sceneConfig = json
       }
     }
+    if (this.#options.sceneConfig?.terrain) {
+      this.#options.baseOption!.terrainProvider =
+        await this.sceneTool.baseMap.getTerrainProvider(
+          this.#options.sceneConfig.terrain,
+          true
+        )
+    }
     this.#map = new Viewer(this.#container, {
       ...this.#options.baseOption
     })
-    if (this.#options.sceneConfig?.initCamera) {
-      this.sceneTool.camera.setView(this.#options.sceneConfig.initCamera)
-    }
+    this.#map.scene.globe.depthTestAgainstTerrain = true
     this.#map.scene.globe.baseColor =
       getColor(this.#options.baseColor) ??
       Color.fromCssColorString('rgba(13,25,44,0.6)')
     mapStoreTool.setMap(this.id, this)
-    this.#map.scene.globe.depthTestAgainstTerrain = true
+    if (this.#options.sceneConfig?.initCamera) {
+      this.sceneTool.camera.setView(this.#options.sceneConfig.initCamera)
+    }
     this.#insertPopupDom()
     this.#setMouseRight()
     this.#hidecredit()

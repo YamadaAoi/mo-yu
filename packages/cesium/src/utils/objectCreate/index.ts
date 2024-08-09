@@ -2,10 +2,15 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-18 17:35:57
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 09:32:22
+ * @LastEditTime: 2024-07-26 15:21:24
  * @Description: cesium内置对象创建
  */
-import { Cartesian2, DistanceDisplayCondition, Property } from 'cesium'
+import {
+  Cartesian2,
+  DistanceDisplayCondition,
+  NearFarScalar,
+  Property
+} from 'cesium'
 
 /**
  * 构造DistanceDisplayCondition
@@ -17,6 +22,49 @@ export function getDistanceDisplayCondition(
 ) {
   return Array.isArray(condition)
     ? new DistanceDisplayCondition(condition[0], condition[1])
+    : condition
+}
+
+/**
+ * 构造 Primitive DistanceDisplayCondition
+ * @param condition - DistanceDisplayCondition参数
+ * @returns
+ */
+export function getPrimitiveDistanceDisplayCondition(
+  condition?: [number, number] | DistanceDisplayCondition
+) {
+  return Array.isArray(condition)
+    ? new DistanceDisplayCondition(condition[0], condition[1])
+    : condition
+}
+
+/**
+ * 构造NearFarScalar
+ * @param condition
+ * @returns
+ */
+export function getNearFarScalar(
+  condition?: [number, number, number, number] | Property | NearFarScalar
+) {
+  return Array.isArray(condition)
+    ? condition.length === 4
+      ? new NearFarScalar(...condition)
+      : undefined
+    : condition
+}
+
+/**
+ * 构造Primitive NearFarScalar
+ * @param condition
+ * @returns
+ */
+export function getPrimitiveNearFarScalar(
+  condition?: [number, number, number, number] | NearFarScalar
+) {
+  return Array.isArray(condition)
+    ? condition.length === 4
+      ? new NearFarScalar(...condition)
+      : undefined
     : condition
 }
 

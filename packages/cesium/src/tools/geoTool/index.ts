@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 17:33:00
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-07 11:27:51
+ * @LastEditTime: 2024-07-27 14:41:14
  * @Description: geojson工具
  */
 import {
@@ -17,13 +17,16 @@ import {
   Cartesian2,
   Cartesian3,
   ScreenSpaceEventHandler,
-  ScreenSpaceEventType
+  ScreenSpaceEventType,
+  Property,
+  DistanceDisplayCondition,
+  NearFarScalar
 } from 'cesium'
 import { polygon } from '@turf/helpers'
 import centroid from '@turf/centroid'
 import { ToolBase, ToolBaseOptions, debounce } from '@mo-yu/core'
 import { mapStoreTool } from '../storeTool'
-import { getColor } from '../../core/material'
+import { getColor, getColorProperty } from '../../core/material'
 import {
   PolylineEntityOption,
   createEntityPolylineGraphics,
@@ -47,9 +50,14 @@ import {
 } from '../../core/geo/entity/polygon'
 import { cartesian3ToLngLat } from '../../utils/coordTranform'
 import { getPosiOnMap } from '../../utils/getPosi'
-import { getpixelOffset } from '../../utils/objectCreate'
+import {
+  getDistanceDisplayCondition,
+  getNearFarScalar,
+  getpixelOffset
+} from '../../utils/objectCreate'
 import { LegendColor } from '../../support/legend'
 import { resourceTool } from '../resourceTool'
+import { defaultColor } from '../../core/defaultVal'
 
 /**
  * geojson参数，在原始参数基础上合并了参数:
@@ -102,12 +110,51 @@ export type GeoOption = Omit<
   }
 }
 
-export type BillboardParam = Omit<Partial<Billboard>, 'pixelOffset'> & {
+export type BillboardParam = Omit<
+  Partial<Billboard>,
+  | 'color'
+  | 'distanceDisplayCondition'
+  | 'pixelOffset'
+  | 'scaleByDistance'
+  | 'translucencyByDistance'
+> & {
+  color?: Property | Color | string
   pixelOffset?: Cartesian2 | [number, number]
+  distanceDisplayCondition?:
+    | [number, number]
+    | Property
+    | DistanceDisplayCondition
+  scaleByDistance?: [number, number, number, number] | Property | NearFarScalar
+  translucencyByDistance?:
+    | [number, number, number, number]
+    | Property
+    | NearFarScalar
 }
 
-export type LabelParam = Omit<Partial<Label>, 'pixelOffset'> & {
+export type LabelParam = Omit<
+  Partial<Label>,
+  | 'fillColor'
+  | 'backgroundColor'
+  | 'outlineColor'
+  | 'pixelOffset'
+  | 'distanceDisplayCondition'
+  | 'scaleByDistance'
+  | 'translucencyByDistance'
+> & {
+  fillColor?: Property | Color | string
+  backgroundColor?: Property | Color | string
+  outlineColor?: Property | Color | string
+  field?: string
   pixelOffset?: Cartesian2 | [number, number]
+  distanceDisplayCondition?:
+    | [number, number]
+    | Property
+    | DistanceDisplayCondition
+  scaleByDistance?: [number, number, number, number] | Property | NearFarScalar
+  translucencyByDistance?:
+    | [number, number, number, number]
+    | Property
+    | NearFarScalar
 }
 
 export interface StyleBoder {
@@ -329,6 +376,7 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
           } else {
             this.#viewer?.scene.requestRender()
           }
+          this.#handleShow()
         })
         .catch(err => {
           console.error(`load geojson [${url}] failed![${err}]`)
@@ -532,6 +580,22 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
             console.error(err)
           })
       }
+    } else {
+      const position = e.position?.getValue(JulianDate.now())
+      if (position) {
+        getPosiOnMap(position)
+          .then(p => {
+            const polyCenter: any = p
+            e.position = polyCenter
+            e.label = createEntityLabelGraphics({
+              ...option.style,
+              properties: e.properties
+            })
+          })
+          .catch(err => {
+            console.error(err)
+          })
+      }
     }
   }
 
@@ -603,6 +667,18 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
           Object.keys(style).forEach(key => {
             if (key === 'pixelOffset') {
               label[key] = getpixelOffset(style[key])
+            } else if (key === 'fillColor') {
+              label[key] = getColorProperty(style[key] ?? defaultColor)
+            } else if (key === 'backgroundColor') {
+              label[key] = getColorProperty(style[key] ?? defaultColor)
+            } else if (key === 'outlineColor') {
+              label[key] = getColorProperty(style[key] ?? defaultColor)
+            } else if (key === 'distanceDisplayCondition') {
+              label[key] = getDistanceDisplayCondition(style[key])
+            } else if (key === 'scaleByDistance') {
+              label[key] = getNearFarScalar(style[key])
+            } else if (key === 'translucencyByDistance') {
+              label[key] = getNearFarScalar(style[key])
             } else {
               label[key] = style[key]
             }
@@ -615,6 +691,14 @@ export class MapGeoTool extends ToolBase<ToolBaseOptions, MapGeoToolEvents> {
           Object.keys(style).forEach(key => {
             if (key === 'pixelOffset') {
               billboard[key] = getpixelOffset(style[key])
+            } else if (key === 'color') {
+              billboard[key] = getColorProperty(style[key] ?? defaultColor)
+            } else if (key === 'distanceDisplayCondition') {
+              billboard[key] = getDistanceDisplayCondition(style[key])
+            } else if (key === 'scaleByDistance') {
+              billboard[key] = getNearFarScalar(style[key])
+            } else if (key === 'translucencyByDistance') {
+              billboard[key] = getNearFarScalar(style[key])
             } else {
               billboard[key] = style[key]
             }

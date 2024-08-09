@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-18 17:13:37
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 10:42:05
+ * @LastEditTime: 2024-07-27 14:33:48
  * @Description: label
  */
 import {
@@ -12,6 +12,8 @@ import {
   Entity,
   JulianDate,
   LabelGraphics,
+  LabelStyle,
+  NearFarScalar,
   Property
 } from 'cesium'
 import { isNull } from '@mo-yu/core'
@@ -20,6 +22,7 @@ import { EntityOption } from '..'
 import { defaultColor } from '../../../defaultVal'
 import {
   getDistanceDisplayCondition,
+  getNearFarScalar,
   getpixelOffset
 } from '../../../../utils/objectCreate'
 
@@ -43,6 +46,8 @@ export type LabelEntityOption = EntityOption &
     | 'outlineColor'
     | 'pixelOffset'
     | 'distanceDisplayCondition'
+    | 'scaleByDistance'
+    | 'translucencyByDistance'
   > & {
     fillColor?: Property | Color | string
     backgroundColor?: Property | Color | string
@@ -53,6 +58,14 @@ export type LabelEntityOption = EntityOption &
       | [number, number]
       | Property
       | DistanceDisplayCondition
+    scaleByDistance?:
+      | [number, number, number, number]
+      | Property
+      | NearFarScalar
+    translucencyByDistance?:
+      | [number, number, number, number]
+      | Property
+      | NearFarScalar
   }
 
 /**
@@ -89,9 +102,12 @@ export function createEntityLabelGraphicsOptions(options: LabelEntityOption) {
     backgroundColor: getColorProperty(rest.backgroundColor ?? defaultColor),
     outlineColor: getColorProperty(rest.outlineColor ?? defaultColor),
     pixelOffset: getpixelOffset(rest.pixelOffset),
+    style: LabelStyle.FILL_AND_OUTLINE,
     distanceDisplayCondition: getDistanceDisplayCondition(
       rest.distanceDisplayCondition
-    )
+    ),
+    scaleByDistance: getNearFarScalar(rest.scaleByDistance),
+    translucencyByDistance: getNearFarScalar(rest.translucencyByDistance)
   }
   return opt
 }

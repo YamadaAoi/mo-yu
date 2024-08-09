@@ -63,7 +63,7 @@ export function getDefaultOptions(): Viewer.ConstructorOptions {
     // 3d/2d 模式切换按钮
     sceneModePicker: false,
     // 默认无底图
-    imageryProvider: false as any,
+    baseLayer: false,
     // 图层选择按钮
     baseLayerPicker: false,
     // 右上角的帮助按钮

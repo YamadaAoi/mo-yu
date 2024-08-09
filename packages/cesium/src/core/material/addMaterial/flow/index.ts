@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-15 14:22:26
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-16 17:12:34
+ * @LastEditTime: 2024-08-05 13:49:34
  * @Description:
  */
 import { Color, Material, JulianDate, defined, Property } from 'cesium'
@@ -159,9 +159,9 @@ export function addFlowMaterial() {
         vec2 st = materialInput.st;
         vec4 colorImage;
         if(orient > 0.0) {
-          colorImage = texture2D(image, vec2(fract(st.s), fract(st.t - speed * czm_frameNumber / 1000.0)));
+          colorImage = texture(image, vec2(fract(st.s), fract(st.t - speed * czm_frameNumber / 1000.0)));
         } else {
-          colorImage = texture2D(image, vec2(fract(st.s - speed * czm_frameNumber / 100.0), fract(st.t)));
+          colorImage = texture(image, vec2(fract(st.s - speed * czm_frameNumber / 100.0), fract(st.t)));
         }
         material.alpha = colorImage.a * color.a;
         material.diffuse = (colorImage.rgb + color.rgb) / 2.0;

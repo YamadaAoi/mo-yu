@@ -17,7 +17,7 @@
     "@mo-yu/core": "workspace:*",
     "@mo-yu/vue": "workspace:*",
     "@mo-yu/cesium": "workspace:*",
-    "cesium": "1.95.0",
+    "cesium": "1.120.0",
     "highlight.js": "^11.7.0",
     "naive-ui": "^2.34.3",
     "vue": "^3.2.45",

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-15 15:48:04
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-01 17:47:35
+ * @LastEditTime: 2024-08-05 11:02:04
  * @Description: 3DTiles展示，配合TileConfigTool配置结果使用更佳
  */
 import {
@@ -64,6 +64,7 @@ export interface TilesTransform extends CameraParam {
  */
 export type TileOption = TilesetOption &
   TilesTransform & {
+    url: string
     id?: string
     locate?: boolean
     show?: boolean | [number, number]
@@ -260,6 +261,7 @@ export class MapTileTool<
     let primitive: any
     if (option) {
       const {
+        url,
         id,
         locate,
         lng,
@@ -276,10 +278,10 @@ export class MapTileTool<
         this.#tileOptions.push(option)
       }
       const MoYuTileId = id ?? guid()
-      const tileset = new Cesium3DTileset(
+      const tile = await Cesium3DTileset.fromUrl(
+        url,
         getDefault(
           {
-            url: '',
             backFaceCulling: true,
             maximumScreenSpaceError: 16,
             maximumMemoryUsage: 512,
@@ -299,7 +301,6 @@ export class MapTileTool<
           { ...rest, show: Array.isArray(show) ? false : show }
         )
       )
-      const tile = await tileset.readyPromise
       this.#handleStyle(option, tile)
       this.#handlePickStyle(option, MoYuTileId)
       const modelMatrix = this.getTransform(tile.root.transform, {
@@ -477,7 +478,7 @@ export class MapTileTool<
       if (features.length) {
         const feature = features[0]
         const tileset = feature.tileset
-        const tileId = tileset.MoYuTileId
+        const tileId = (tileset as any).MoYuTileId
         const pickColor = getColor(this.#pickStyles.get(tileId)?.hover?.color)
         if (pickColor) {
           if (
@@ -493,7 +494,7 @@ export class MapTileTool<
           }
         }
         const properties = features.map(f => {
-          const MoYuTileId = f.tileset.MoYuTileId
+          const MoYuTileId = (f.tileset as any).MoYuTileId
           const properties: any = { MoYuTileId }
           const propertyIds: string[] = f.getPropertyIds()
           propertyIds.forEach(propertyId => {
@@ -520,7 +521,7 @@ export class MapTileTool<
       if (features.length) {
         const feature = features[0]
         const tileset = feature.tileset
-        const tileId = tileset.MoYuTileId
+        const tileId = (tileset as any).MoYuTileId
         const pickColor = getColor(this.#pickStyles.get(tileId)?.click?.color)
         if (pickColor) {
           if (feature.featureId !== this.#prevClickFea?.featureId) {
@@ -541,7 +542,7 @@ export class MapTileTool<
           }
         }
         const properties = features.map(f => {
-          const MoYuTileId = f.tileset.MoYuTileId
+          const MoYuTileId = (f.tileset as any).MoYuTileId
           const properties: any = { MoYuTileId }
           const propertyIds: string[] = f.getPropertyIds()
           propertyIds.forEach(propertyId => {

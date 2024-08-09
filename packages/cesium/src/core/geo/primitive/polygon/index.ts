@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 15:31:44
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-11 17:55:55
+ * @LastEditTime: 2024-08-07 10:16:07
  * @Description: 面Primitive
  */
 import {
@@ -46,7 +46,7 @@ type PolygonPrimitiveOption = PrimitiveOption &
  */
 export interface PolygonOption extends PolygonPrimitiveOption {
   clampToGround?: boolean
-  positions?: Cartesian3[]
+  positions?: PolygonHierarchy | Cartesian3[]
 
   material?: Material | Color | string
   depthFailMaterial?: Material | Color | string
@@ -63,7 +63,10 @@ export function createPolygon(options: PolygonOption) {
     modelMatrix: options.modelMatrix,
     attributes: options.attributes,
     geometry: new PolygonGeometry({
-      polygonHierarchy: new PolygonHierarchy(options.positions),
+      polygonHierarchy:
+        options.positions instanceof PolygonHierarchy
+          ? options.positions
+          : new PolygonHierarchy(options.positions),
       height: options.height,
       extrudedHeight: options.extrudedHeight,
       vertexFormat: options.vertexFormat,

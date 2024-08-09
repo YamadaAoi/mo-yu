@@ -2,19 +2,20 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-11 14:21:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-29 18:28:48
+ * @LastEditTime: 2024-08-05 10:54:03
  * @Description:
  */
 import {
   ArcGisMapServerImageryProvider,
   CesiumTerrainProvider,
+  EllipsoidTerrainProvider,
   ImageryLayer,
   ImageryProvider,
   IonImageryProvider,
   IonResource,
   MapboxImageryProvider,
-  TerrainProvider,
   TileMapServiceImageryProvider,
+  UrlTemplateImageryProvider,
   WebMapServiceImageryProvider,
   WebMapTileServiceImageryProvider
 } from 'cesium'
@@ -26,6 +27,14 @@ interface BaseConfig {
   name?: string
   icon?: string
   tooltip?: string
+}
+
+/**
+ * xyz 格式底图配置
+ */
+export interface XYZConfig extends BaseConfig {
+  type: 'XYZ'
+  provider: UrlTemplateImageryProvider.ConstructorOptions[]
 }
 
 /**
@@ -86,6 +95,7 @@ export type BaseMapConfig =
   | IONConfig
   | ArcgisConfig
   | MapboxConfig
+  | XYZConfig
 
 /**
  * 地图服务条件配置
@@ -99,9 +109,11 @@ export interface BaseMapTryConfig extends BaseConfig {
   default?: BaseMapConfig
 }
 
-type TerrOption = ConstructorParameters<typeof CesiumTerrainProvider>[0]
-
-export interface TerrProvider extends TerrOption {
+export interface TerrProvider extends CesiumTerrainProvider.ConstructorOptions {
+  /**
+   * 自定义地形
+   */
+  url: string
   /**
    * Ion
    */
@@ -125,24 +137,21 @@ export interface TerrainConfig extends BaseConfig {
 }
 
 function createTerrainProvider(p: TerrProvider) {
-  const { assetId, accessToken, server, ...rest } = p
-  let url: any
+  const { assetId, accessToken, server, url, ...rest } = p
+  let path: any
   try {
     if (assetId !== undefined) {
-      url = IonResource.fromAssetId(assetId, {
+      path = IonResource.fromAssetId(assetId, {
         accessToken: accessToken,
         server: server
       })
     } else {
-      url = p.url
+      path = url
     }
   } catch (error) {
     console.error(`解析底图配置失败！${error}`)
   }
-  return new CesiumTerrainProvider({
-    ...rest,
-    url
-  })
+  return CesiumTerrainProvider.fromUrl(path, rest)
 }
 
 /**
@@ -165,6 +174,8 @@ export function createImageryProvider(config: BaseMapConfig) {
     providers = config.provider.map(p => new ArcGisMapServerImageryProvider(p))
   } else if (config.type === 'Mapbox') {
     providers = config.provider.map(p => new MapboxImageryProvider(p))
+  } else if (config.type === 'XYZ') {
+    providers = config.provider.map(p => new UrlTemplateImageryProvider(p))
   }
   return providers
 }
@@ -197,7 +208,6 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
   baseMap = ''
   terrain = ''
   #curLayers: ImageryLayer[] = []
-  #prevTerrain: TerrainProvider | undefined
   #layerMap: Map<string, ImageryLayer[]> = new Map()
   constructor(options: ToolBaseOptions) {
     super(options)
@@ -207,9 +217,7 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
    * 启用
    */
   enable(): void {
-    if (this.#viewer) {
-      this.#prevTerrain = this.#viewer.terrainProvider
-    }
+    //
   }
 
   /**
@@ -226,8 +234,8 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
     this.#clearImagery()
     this.baseMap = ''
     this.terrain = ''
-    if (this.#viewer && this.#prevTerrain) {
-      this.#viewer.terrainProvider = this.#prevTerrain
+    if (this.#viewer) {
+      this.#viewer.terrainProvider = new EllipsoidTerrainProvider()
     }
   }
 
@@ -383,21 +391,35 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
   }
 
   /**
+   * 获取地形对象
+   * @param config
+   * @param update
+   * @returns
+   */
+  getTerrainProvider(config: TerrainConfig, update = false) {
+    if (update && config.id !== this.terrain) {
+      this.terrain = config.id
+      this.eventBus.fire('terrain-change', {
+        id: this.terrain
+      })
+    }
+    return createTerrainProvider(config.provider)
+  }
+
+  /**
    * 添加地形
    * @param config - 地形配置
    */
   addTerrain(config: TerrainConfig) {
-    if (this.#viewer) {
-      if (config.id === this.terrain) {
-        this.terrain = ''
-        if (this.#prevTerrain) {
-          this.#viewer.terrainProvider = this.#prevTerrain
-        }
-      } else {
-        this.terrain = config.id
-        const terr = createTerrainProvider(config.provider)
-        this.#viewer.terrainProvider = terr
-      }
+    if (this.#viewer && config.id !== this.terrain) {
+      this.terrain = config.id
+      createTerrainProvider(config.provider)
+        .then(terr => {
+          this.#viewer.terrainProvider = terr
+        })
+        .catch(err => {
+          console.error(err)
+        })
       this.eventBus.fire('terrain-change', {
         id: this.terrain
       })

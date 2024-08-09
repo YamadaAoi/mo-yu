@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-02 10:48:22
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-08 10:54:11
+ * @LastEditTime: 2024-08-07 13:49:32
  * @Description: PointPrimitive
  */
 import {
@@ -11,7 +11,6 @@ import {
   DistanceDisplayCondition,
   NearFarScalar
 } from 'cesium'
-import { getPosiOnMap } from '../../../../utils/getPosi'
 import { getColor } from '../../../material'
 import { defaultColor } from '../../../defaultVal'
 
@@ -39,17 +38,9 @@ export interface PointOption {
  * @param options - 原始参数
  * @returns
  */
-export async function createPoint(options: PointOption): Promise<PointOption> {
-  let position = options.position
-  if (options.position && options?.clampToGround) {
-    const newPosi = await getPosiOnMap(options.position)
-    if (newPosi) {
-      position = newPosi
-    }
-  }
+export function createPoint(options: PointOption): PointOption {
   return {
     ...options,
-    position,
     show: options.show === undefined ? true : options.show,
     pixelSize: options.pixelSize ?? 10,
     color: getColor(options.color ?? defaultColor),

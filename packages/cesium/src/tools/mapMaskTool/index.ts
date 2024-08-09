@@ -2,26 +2,33 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-31 13:49:17
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-21 13:45:51
+ * @LastEditTime: 2024-08-07 10:55:22
  * @Description: 地图简单遮罩
  */
-import { Cartesian3, Entity, PolygonHierarchy } from 'cesium'
-import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
 import {
-  PolygonEntityOption,
-  createEntityPolygon
-} from '../../core/geo/entity/polygon'
+  Cartesian3,
+  GroundPrimitive,
+  PolygonHierarchy,
+  Primitive
+} from 'cesium'
+import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
 import { mapStoreTool } from '../storeTool'
+import { PolygonOption, createPolygon } from '../../core/geo/primitive/polygon'
 
 /**
  * 遮罩多边形参数
  */
-export type MaskEntityOption = Omit<PolygonEntityOption, 'hierarchy'> & {
+export type MaskPrimitiveOption = Omit<PolygonOption, 'positions'> & {
   /**
    * 外边框，不支持跨经纬度0度的面，如-180~180，-90~90
+   * 逆时针
    * 若是一个geojson链接，最好是只包含一个polygon的FeatureCollection，多个或MultiPolygon会进行扁平化处理
    */
   hierarchy?: string | number[]
+  /**
+   * 内边框
+   * 顺时针
+   */
   holes?: string | number[][]
 }
 
@@ -41,7 +48,7 @@ export interface MapMaskToolEvents {}
  * ```
  */
 export class MapMaskTool extends ToolBase<ToolBaseOptions, MapMaskToolEvents> {
-  #mask: Entity | undefined
+  #mask: Primitive | GroundPrimitive | undefined
   constructor(options: ToolBaseOptions) {
     super(options)
   }
@@ -65,7 +72,7 @@ export class MapMaskTool extends ToolBase<ToolBaseOptions, MapMaskToolEvents> {
    */
   clear() {
     if (this.#mask) {
-      this.#viewer?.entities.remove(this.#mask)
+      this.#viewer?.scene.primitives.remove(this.#mask)
     }
   }
 
@@ -83,7 +90,7 @@ export class MapMaskTool extends ToolBase<ToolBaseOptions, MapMaskToolEvents> {
    * 添加遮罩
    * @param option - 参数
    */
-  async addMask(option: MaskEntityOption) {
+  async addMask(option: MaskPrimitiveOption) {
     if (option.hierarchy) {
       let points: Cartesian3[] = []
       let hs: Cartesian3[][] = []
@@ -141,11 +148,11 @@ export class MapMaskTool extends ToolBase<ToolBaseOptions, MapMaskToolEvents> {
           hs.map(hole => new PolygonHierarchy(hole))
         )
         const { hierarchy, holes, ...rest } = option
-        this.#mask = createEntityPolygon({
+        this.#mask = createPolygon({
           ...rest,
-          hierarchy: ph
+          positions: ph
         })
-        this.#viewer?.entities.add(this.#mask)
+        this.#viewer?.scene.primitives.add(this.#mask)
       }
     }
   }
