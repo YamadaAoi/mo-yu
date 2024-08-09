@@ -10,23 +10,18 @@
 
 ```typescript
 export declare function createMaterial(
-  material?: MaterialProperty | Color | string,
+  material?: Material | Color | string,
   customMaterial?: CustomMaterial
-):
-  | Color
-  | FlowMaterialProperty
-  | FlashMaterialProperty
-  | MaterialProperty
-  | undefined
+): Material | undefined
 ```
 
 ## Parameters
 
 | Parameter      | Type                                         | Description             |
 | -------------- | -------------------------------------------- | ----------------------- |
-| material       | MaterialProperty \| Color \| string          | _(Optional)_ 原生材质   |
+| material       | Material \| Color \| string                  | _(Optional)_ 原生材质   |
 | customMaterial | [CustomMaterial](./cesium.custommaterial.md) | _(Optional)_ 自定义材质 |
 
 **Returns:**
 
-Color \| FlowMaterialProperty \| FlashMaterialProperty \| MaterialProperty \| undefined
+Material \| undefined

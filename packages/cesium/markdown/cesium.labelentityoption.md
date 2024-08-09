@@ -17,6 +17,8 @@ export type LabelEntityOption = EntityOption &
     | 'outlineColor'
     | 'pixelOffset'
     | 'distanceDisplayCondition'
+    | 'scaleByDistance'
+    | 'translucencyByDistance'
   > & {
     fillColor?: Property | Color | string
     backgroundColor?: Property | Color | string
@@ -27,6 +29,14 @@ export type LabelEntityOption = EntityOption &
       | [number, number]
       | Property
       | DistanceDisplayCondition
+    scaleByDistance?:
+      | [number, number, number, number]
+      | Property
+      | NearFarScalar
+    translucencyByDistance?:
+      | [number, number, number, number]
+      | Property
+      | NearFarScalar
   }
 ```
 

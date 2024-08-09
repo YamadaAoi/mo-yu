@@ -16,9 +16,9 @@ export interface PolygonOption extends PolygonPrimitiveOption
 
 ## Properties
 
-| Property                                                          | Modifiers | Type                        | Description  |
-| ----------------------------------------------------------------- | --------- | --------------------------- | ------------ |
-| [clampToGround?](./cesium.polygonoption.clamptoground.md)         |           | boolean                     | _(Optional)_ |
-| [depthFailMaterial?](./cesium.polygonoption.depthfailmaterial.md) |           | Material \| Color \| string | _(Optional)_ |
-| [material?](./cesium.polygonoption.material.md)                   |           | Material \| Color \| string | _(Optional)_ |
-| [positions?](./cesium.polygonoption.positions.md)                 |           | Cartesian3\[\]              | _(Optional)_ |
+| Property                                                          | Modifiers | Type                               | Description  |
+| ----------------------------------------------------------------- | --------- | ---------------------------------- | ------------ |
+| [clampToGround?](./cesium.polygonoption.clamptoground.md)         |           | boolean                            | _(Optional)_ |
+| [depthFailMaterial?](./cesium.polygonoption.depthfailmaterial.md) |           | Material \| Color \| string        | _(Optional)_ |
+| [material?](./cesium.polygonoption.material.md)                   |           | Material \| Color \| string        | _(Optional)_ |
+| [positions?](./cesium.polygonoption.positions.md)                 |           | PolygonHierarchy \| Cartesian3\[\] | _(Optional)_ |

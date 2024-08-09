@@ -16,6 +16,7 @@ export type BaseMapConfig =
   | IONConfig
   | ArcgisConfig
   | MapboxConfig
+  | XYZConfig
 ```
 
-**References:** [WMSConfig](./cesium.wmsconfig.md)<!-- -->, [WMTSConfig](./cesium.wmtsconfig.md)<!-- -->, [TMSConfig](./cesium.tmsconfig.md)<!-- -->, [IONConfig](./cesium.ionconfig.md)<!-- -->, [ArcgisConfig](./cesium.arcgisconfig.md)<!-- -->, [MapboxConfig](./cesium.mapboxconfig.md)
+**References:** [WMSConfig](./cesium.wmsconfig.md)<!-- -->, [WMTSConfig](./cesium.wmtsconfig.md)<!-- -->, [TMSConfig](./cesium.tmsconfig.md)<!-- -->, [IONConfig](./cesium.ionconfig.md)<!-- -->, [ArcgisConfig](./cesium.arcgisconfig.md)<!-- -->, [MapboxConfig](./cesium.mapboxconfig.md)<!-- -->, [XYZConfig](./cesium.xyzconfig.md)

@@ -16,8 +16,10 @@ export interface PolylineOption extends PolylinePrimitiveOption
 
 ## Properties
 
-| Property                                                           | Modifiers | Type                        | Description  |
-| ------------------------------------------------------------------ | --------- | --------------------------- | ------------ |
-| [clampToGround?](./cesium.polylineoption.clamptoground.md)         |           | boolean                     | _(Optional)_ |
-| [depthFailMaterial?](./cesium.polylineoption.depthfailmaterial.md) |           | Material \| Color \| string | _(Optional)_ |
-| [material?](./cesium.polylineoption.material.md)                   |           | Material \| Color \| string | _(Optional)_ |
+| Property                                                                       | Modifiers | Type                                         | Description  |
+| ------------------------------------------------------------------------------ | --------- | -------------------------------------------- | ------------ |
+| [clampToGround?](./cesium.polylineoption.clamptoground.md)                     |           | boolean                                      | _(Optional)_ |
+| [customDepthFailMaterial?](./cesium.polylineoption.customdepthfailmaterial.md) |           | [CustomMaterial](./cesium.custommaterial.md) | _(Optional)_ |
+| [customMaterial?](./cesium.polylineoption.custommaterial.md)                   |           | [CustomMaterial](./cesium.custommaterial.md) | _(Optional)_ |
+| [depthFailMaterial?](./cesium.polylineoption.depthfailmaterial.md)             |           | Material \| Color \| string                  | _(Optional)_ |
+| [material?](./cesium.polylineoption.material.md)                               |           | Material \| Color \| string                  | _(Optional)_ |

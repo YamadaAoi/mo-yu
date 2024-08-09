@@ -7,7 +7,29 @@
 **Signature:**
 
 ```typescript
-export type LabelParam = Omit<Partial<Label>, 'pixelOffset'> & {
+export type LabelParam = Omit<
+  Partial<Label>,
+  | 'fillColor'
+  | 'backgroundColor'
+  | 'outlineColor'
+  | 'pixelOffset'
+  | 'distanceDisplayCondition'
+  | 'scaleByDistance'
+  | 'translucencyByDistance'
+> & {
+  fillColor?: Property | Color | string
+  backgroundColor?: Property | Color | string
+  outlineColor?: Property | Color | string
+  field?: string
   pixelOffset?: Cartesian2 | [number, number]
+  distanceDisplayCondition?:
+    | [number, number]
+    | Property
+    | DistanceDisplayCondition
+  scaleByDistance?: [number, number, number, number] | Property | NearFarScalar
+  translucencyByDistance?:
+    | [number, number, number, number]
+    | Property
+    | NearFarScalar
 }
 ```

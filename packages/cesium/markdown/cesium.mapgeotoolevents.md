@@ -12,7 +12,8 @@ export interface MapGeoToolEvents
 
 ## Properties
 
-| Property                                                      | Modifiers | Type                     | Description         |
-| ------------------------------------------------------------- | --------- | ------------------------ | ------------------- |
-| ["pick-fea-all"](./cesium.mapgeotoolevents._pick-fea-all_.md) |           | { properties: any\[\]; } | 选取所有 fea 属性   |
-| ["pick-fea"](./cesium.mapgeotoolevents._pick-fea_.md)         |           | { properties: any; }     | 选取最上层 fea 属性 |
+| Property                                                                      | Modifiers | Type                     | Description           |
+| ----------------------------------------------------------------------------- | --------- | ------------------------ | --------------------- |
+| ["double-click-fea-all"](./cesium.mapgeotoolevents._double-click-fea-all_.md) |           | { properties: any\[\]; } | 双击选取所有 fea 属性 |
+| ["pick-fea-all"](./cesium.mapgeotoolevents._pick-fea-all_.md)                 |           | { properties: any\[\]; } | 选取所有 fea 属性     |
+| ["pick-fea"](./cesium.mapgeotoolevents._pick-fea_.md)                         |           | { properties: any; }     | 选取最上层 fea 属性   |

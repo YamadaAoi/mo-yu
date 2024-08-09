@@ -7,10 +7,10 @@
 **Signature:**
 
 ```typescript
-export interface TerrProvider extends TerrOption
+export interface TerrProvider extends CesiumTerrainProvider.ConstructorOptions
 ```
 
-**Extends:** TerrOption
+**Extends:** CesiumTerrainProvider.ConstructorOptions
 
 ## Properties
 
@@ -19,3 +19,4 @@ export interface TerrProvider extends TerrOption
 | [accessToken?](./cesium.terrprovider.accesstoken.md) |           | string | _(Optional)_ Ion |
 | [assetId?](./cesium.terrprovider.assetid.md)         |           | number | _(Optional)_ Ion |
 | [server?](./cesium.terrprovider.server.md)           |           | string | _(Optional)_ Ion |
+| [url](./cesium.terrprovider.url.md)                  |           | string | 自定义地形       |

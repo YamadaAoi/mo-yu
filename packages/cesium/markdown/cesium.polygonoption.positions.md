@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-positions?: Cartesian3[];
+positions?: PolygonHierarchy | Cartesian3[];
 ```

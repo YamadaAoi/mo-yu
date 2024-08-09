@@ -7,7 +7,24 @@
 **Signature:**
 
 ```typescript
-export type BillboardParam = Omit<Partial<Billboard>, 'pixelOffset'> & {
+export type BillboardParam = Omit<
+  Partial<Billboard>,
+  | 'color'
+  | 'distanceDisplayCondition'
+  | 'pixelOffset'
+  | 'scaleByDistance'
+  | 'translucencyByDistance'
+> & {
+  color?: Property | Color | string
   pixelOffset?: Cartesian2 | [number, number]
+  distanceDisplayCondition?:
+    | [number, number]
+    | Property
+    | DistanceDisplayCondition
+  scaleByDistance?: [number, number, number, number] | Property | NearFarScalar
+  translucencyByDistance?:
+    | [number, number, number, number]
+    | Property
+    | NearFarScalar
 }
 ```

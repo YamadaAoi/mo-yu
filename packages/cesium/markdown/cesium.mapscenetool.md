@@ -40,6 +40,7 @@ tool.prepareScene(config, 1)
 | [geo](./cesium.mapscenetool.geo.md)         |                       | [MapGeoTool](./cesium.mapgeotool.md)                |             |
 | [heat](./cesium.mapscenetool.heat.md)       |                       | [HeatMapTool](./cesium.heatmaptool.md)              |             |
 | [mask](./cesium.mapscenetool.mask.md)       |                       | MapMaskTool                                         |             |
+| [points](./cesium.mapscenetool.points.md)   |                       | [PointsTool](./cesium.pointstool.md)                |             |
 | [tile](./cesium.mapscenetool.tile.md)       |                       | [MapTileTool](./cesium.maptiletool.md)              |             |
 
 ## Methods

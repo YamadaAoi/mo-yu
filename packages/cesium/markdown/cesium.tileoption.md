@@ -11,6 +11,7 @@
 ```typescript
 export type TileOption = TilesetOption &
   TilesTransform & {
+    url: string
     id?: string
     locate?: boolean
     show?: boolean | [number, number]

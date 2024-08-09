@@ -4,7 +4,7 @@
 
 ## createPolygon() function
 
-创建面 Primitive 对象，此方法会根据 heightReference 创建不同的对象
+创建面 Primitive 对象，此方法会根据 clampToGround 创建不同的对象
 
 **Signature:**
 

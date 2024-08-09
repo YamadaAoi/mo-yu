@@ -11,6 +11,8 @@ Primitive 通用构造参数 剔除 appearance，depthFailAppearance，geometryI
 ```typescript
 export type PrimitiveOption = Omit<
   NonNullable<ConstructorParameters<typeof Primitive>[0]>,
-  'appearance' | 'depthFailAppearance' | 'geometryInstances'
->
+  'appearance' | 'depthFailAppearance' | 'geometryInstances' | 'modelMatrix'
+> & {
+  primitiveModelMatrix?: Matrix4 | undefined
+}
 ```

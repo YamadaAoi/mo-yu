@@ -4,7 +4,7 @@
 
 ## BillboardEntityOption type
 
-BillboardEntity 参数，改造了 Billboard 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: color 扩展 distanceDisplayCondition 传递方式 distanceDisplayCondition: \[near, far\]
+BillboardEntity 参数，改造了 Billboard 属性，在原始参数基础上更改了(使用 css 颜色)颜色类参数: color 扩展参数传递方式 distanceDisplayCondition: \[near, far\] scaleByDistance: \[number, number, number, number\] translucencyByDistance: \[number, number, number, number\]
 
 **Signature:**
 
@@ -12,7 +12,11 @@ BillboardEntity 参数，改造了 Billboard 属性，在原始参数基础上�
 export type BillboardEntityOption = EntityOption &
   Omit<
     BillboardGraphics.ConstructorOptions,
-    'color' | 'distanceDisplayCondition' | 'pixelOffset'
+    | 'color'
+    | 'distanceDisplayCondition'
+    | 'pixelOffset'
+    | 'scaleByDistance'
+    | 'translucencyByDistance'
   > & {
     color?: Property | Color | string
     pixelOffset?: Cartesian2 | [number, number]
@@ -20,6 +24,14 @@ export type BillboardEntityOption = EntityOption &
       | [number, number]
       | Property
       | DistanceDisplayCondition
+    scaleByDistance?:
+      | [number, number, number, number]
+      | Property
+      | NearFarScalar
+    translucencyByDistance?:
+      | [number, number, number, number]
+      | Property
+      | NearFarScalar
   }
 ```
 

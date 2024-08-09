@@ -14,7 +14,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['@typescript-eslint','eslint-plugin-tsdoc', 'prettier'],
+  plugins: ['@typescript-eslint', 'eslint-plugin-tsdoc', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
     'tsdoc/syntax': 'warn',
@@ -27,7 +27,8 @@ module.exports = {
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/promise-function-async': 'off',
-    "@typescript-eslint/no-unused-vars": "off",
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-empty-object-type': 'off',
     'no-global-assign': 'off',
     'no-multi-str': 'off',
     'class-methods-use-this': 'off',

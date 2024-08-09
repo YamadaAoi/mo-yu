@@ -9,5 +9,5 @@
 **Signature:**
 
 ```typescript
-mask?: MaskEntityOption;
+mask?: MaskPrimitiveOption;
 ```

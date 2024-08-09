@@ -4,12 +4,12 @@
 
 ## createPoint() function
 
-创建 PointPrimitive 参数对象，此方法会在 heightReference 为 CLAMP_TO_GROUND 时尝试获取点的高度
+创建 PointPrimitive 参数对象，此方法会在 clampToGround 为 true 时尝试获取点的高度
 
 **Signature:**
 
 ```typescript
-export declare function createPoint(options: PointOption): Promise<PointOption>
+export declare function createPoint(options: PointOption): PointOption
 ```
 
 ## Parameters
@@ -20,4 +20,4 @@ export declare function createPoint(options: PointOption): Promise<PointOption>
 
 **Returns:**
 
-Promise&lt;[PointOption](./cesium.pointoption.md)<!-- -->&gt;
+[PointOption](./cesium.pointoption.md)

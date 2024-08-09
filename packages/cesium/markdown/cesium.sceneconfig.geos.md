@@ -9,5 +9,5 @@
 **Signature:**
 
 ```typescript
-geos?: GeoOptions[];
+geos?: GeoOption[];
 ```
