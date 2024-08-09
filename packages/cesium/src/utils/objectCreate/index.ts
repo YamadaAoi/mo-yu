@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-18 17:35:57
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-07-26 15:21:24
+ * @LastEditTime: 2024-08-09 16:26:20
  * @Description: cesium内置对象创建
  */
 import {
@@ -40,7 +40,7 @@ export function getPrimitiveDistanceDisplayCondition(
 
 /**
  * 构造NearFarScalar
- * @param condition
+ * @param condition -
  * @returns
  */
 export function getNearFarScalar(
@@ -55,7 +55,7 @@ export function getNearFarScalar(
 
 /**
  * 构造Primitive NearFarScalar
- * @param condition
+ * @param condition -
  * @returns
  */
 export function getPrimitiveNearFarScalar(

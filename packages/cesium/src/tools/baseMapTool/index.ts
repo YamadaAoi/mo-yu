@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-11 14:21:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-08-05 10:54:03
+ * @LastEditTime: 2024-08-09 16:25:47
  * @Description:
  */
 import {
@@ -392,8 +392,8 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
 
   /**
    * 获取地形对象
-   * @param config
-   * @param update
+   * @param config - TerrainConfig
+   * @param update - 是否发送变化事件
    * @returns
    */
   getTerrainProvider(config: TerrainConfig, update = false) {

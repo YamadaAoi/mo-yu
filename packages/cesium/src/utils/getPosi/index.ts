@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-04 16:19:35
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-08-06 11:12:14
+ * @LastEditTime: 2024-08-09 16:26:07
  * @Description: 获取位置
  */
 import {
@@ -46,7 +46,7 @@ export function getPosiOnAction(endPosition: Cartesian2) {
 
 /**
  * 获取多点点在地形上的位置
- * @param lnglats
+ * @param lnglats - [number, number][]
  * @returns
  */
 export async function getPointsOnTerrain(lnglats: [number, number][]) {

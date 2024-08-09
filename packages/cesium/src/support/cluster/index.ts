@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-08-06 13:21:19
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-08-09 16:08:17
+ * @LastEditTime: 2024-08-09 16:35:45
  * @Description: 聚合
  */
 import { isNumber, ToolBase, ToolBaseOptions } from '@mo-yu/core'
@@ -59,7 +59,7 @@ export interface ClusterToolOptions extends ToolBaseOptions {
 }
 
 /**
- * 参考cesium原生packages\engine\Source\DataSources\EntityCluster.js魔改primitive版本
+ * 参考cesium原生packages/engine/Source/DataSources/EntityCluster.js魔改primitive版本
  * （目前仅供内部PointsTool使用）
  */
 export class ClusterTool extends ToolBase<ClusterToolOptions, any> {
@@ -625,15 +625,27 @@ export class ClusterTool extends ToolBase<ClusterToolOptions, any> {
     this.#_clusterPoints = value
   }
 
+  get labelCollection() {
+    return this.#_labelCollection!
+  }
+
   set labelCollection(c: LabelCollection) {
     this.#_clusterDirty = this.#_clusterDirty || c !== this.#_labelCollection
     this.#_labelCollection = c
+  }
+
+  get billboardCollection() {
+    return this.#_billboardCollection!
   }
 
   set billboardCollection(c: BillboardCollection) {
     this.#_clusterDirty =
       this.#_clusterDirty || c !== this.#_billboardCollection
     this.#_billboardCollection = c
+  }
+
+  get pointCollection() {
+    return this.#_pointCollection!
   }
 
   set pointCollection(c: PointPrimitiveCollection) {
