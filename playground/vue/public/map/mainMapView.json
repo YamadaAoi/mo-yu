@@ -22,11 +22,17 @@
       ]
     },
     "default": {
-      "id": "ArcGIS",
-      "type": "Arcgis",
+      "id": "tianditu",
+      "type": "WMTS",
       "provider": [
         {
-          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
+          "url": "http://t0.tianditu.gov.cn/img_w/wmts?tk=d11a875cf5a264a0f6cb431a666ae811",
+          "layer": "img",
+          "style": "default",
+          "tileMatrixSetID": "w",
+          "format": "tiles",
+          "subdomains": ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
+          "maximumLevel": 18
         }
       ]
     }
@@ -35,7 +41,7 @@
     "id": "qingdao",
     "type": "Terrain",
     "provider": {
-      "url": "https://nync.piesat.cn/oss/qingdao/terrain",
+      "url": "http://121.40.254.67:8001/tiles/terrain",
       "requestMetadata": true,
       "requestWaterMask": false,
       "requestVertexNormals": false

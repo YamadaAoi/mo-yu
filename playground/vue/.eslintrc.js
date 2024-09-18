@@ -86,7 +86,8 @@ module.exports = {
         'vue/one-component-per-file': 0,
         'import/no-cycle': 1,
         'vue/html-self-closing': 0,
-        'vue/no-v-html': 0
+        'vue/no-v-html': 0,
+        '@typescript-eslint/no-explicit-any': 'off'
       }
     }
   ]

@@ -31,7 +31,7 @@ function onLoaded() {
     console.log(e.properties)
   })
   tool.add3DTileset({
-    url: 'https://nync.piesat.cn/oss/qingdao/jianzhu/tileset.json',
+    url: 'http://121.40.254.67:8001/tiles/jianzhu/tileset.json',
     id: 'jianzhu',
     locate: true,
     style: {

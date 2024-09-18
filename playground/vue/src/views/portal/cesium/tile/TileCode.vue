@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-18 13:34:26
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-08 15:11:16
+ * @LastEditTime: 2024-09-18 15:46:27
  * @Description: 普通模型3DTiles位置、缩放、角度配置，鼠标左键拖动水平位置，右键拖动竖直高度
 -->
 <template>
@@ -257,7 +257,7 @@ const addParam: Omit<TileInfo, 'id'> = reactive({
 const tiles = ref<TileInfo[]>([
   {
     id: '5a685fb6-2aa8-477c-a715-efcf3f39a862',
-    url: 'https://nync.piesat.cn/oss/yiling/qxz/tileset.json',
+    url: 'http://121.40.254.67:8001/tiles/qxz/tileset.json',
     name: '气象站',
     lng: 119.64264079934783,
     lat: 35.64920129045164,

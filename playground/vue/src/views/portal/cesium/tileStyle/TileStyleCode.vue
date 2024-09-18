@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-02-04 10:16:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 17:49:20
+ * @LastEditTime: 2024-09-18 15:46:44
  * @Description: shp生成的白膜图层根据属性设置样式
 -->
 <template>
@@ -31,7 +31,7 @@ function onLoaded() {
     console.log(e.properties)
   })
   tool.add3DTileset({
-    url: 'https://nync.piesat.cn/oss/qingdao/gtsd/tileset.json',
+    url: 'http://121.40.254.67:8001/tiles/gtsd/tileset.json',
     id: 'gtsd',
     style: {
       paramName: 'DLBM',
