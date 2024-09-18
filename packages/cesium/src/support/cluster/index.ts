@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-08-06 13:21:19
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-08-09 16:35:45
+ * @LastEditTime: 2024-09-18 17:16:10
  * @Description: 聚合
  */
 import { isNumber, ToolBase, ToolBaseOptions } from '@mo-yu/core'
@@ -51,11 +51,11 @@ export interface ClusterToolOptions extends ToolBaseOptions {
   /**
    * 聚合后billboard样式
    */
-  billboard?: BillboardOption
+  billboard?: Omit<BillboardOption, 'position'>
   /**
    * 聚合后label样式
    */
-  label?: LabelOption
+  label?: Omit<LabelOption, 'position'>
 }
 
 /**

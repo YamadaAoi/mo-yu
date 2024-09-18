@@ -44,12 +44,12 @@ interface CylinderConfig extends CylinderOption {
 }
 
 interface CustomBillboard {
-  style: BillboardOption
+  style: Omit<BillboardOption, 'position'>
   cluster?: ClusterToolOptions
 }
 
 interface CustomLabel {
-  style: LabelOption & { field?: string }
+  style: Omit<LabelOption, 'position'> & { field?: string }
   cluster?: ClusterToolOptions
 }
 

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-08 15:33:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-03 13:50:30
+ * @LastEditTime: 2024-09-18 17:17:20
  * @Description: 多点聚合
 -->
 <template>
@@ -13,11 +13,11 @@
 
 <script setup lang="ts">
 import { ref, onBeforeUnmount } from 'vue'
-import { MapGeoTool } from '@mo-yu/cesium'
+import { PointsTool } from '@mo-yu/cesium'
 import CommonMap from '../map/CommonMap.vue'
 
 const mapReady = ref(false)
-let tool: MapGeoTool
+let tool: PointsTool
 
 onBeforeUnmount(() => {
   tool?.destroy()
@@ -25,27 +25,24 @@ onBeforeUnmount(() => {
 
 function onLoaded() {
   mapReady.value = true
-  tool = new MapGeoTool({})
+  tool = new PointsTool({})
   tool.enable()
-  tool.addGeo({
+  tool.addPoints({
     url: '/data/points.json',
     id: 'video',
-    locate: true,
-    clampToGround: true,
     custom: {
       billboard: {
         style: {
           image: '/images/video.png',
           horizontalOrigin: 0,
           verticalOrigin: 1,
-          disableDepthTestDistance: 999999999,
-          scale: 0.7
+          disableDepthTestDistance: 999999999
         },
         cluster: {
           options: {
             enabled: true,
             minimumClusterSize: 3,
-            pixelRange: 15
+            pixelRange: 50
           },
           label: {
             show: true,
@@ -59,7 +56,7 @@ function onLoaded() {
           billboard: {
             show: true,
             image: '/images/camera.png',
-            heightReference: 2,
+            heightReference: 1,
             disableDepthTestDistance: 999999999
           }
         }

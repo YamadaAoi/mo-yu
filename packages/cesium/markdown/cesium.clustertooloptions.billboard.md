@@ -9,5 +9,5 @@
 **Signature:**
 
 ```typescript
-billboard?: BillboardOption;
+billboard?: Omit<BillboardOption, 'position'>;
 ```

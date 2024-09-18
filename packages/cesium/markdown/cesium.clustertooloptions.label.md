@@ -9,5 +9,5 @@
 **Signature:**
 
 ```typescript
-label?: LabelOption;
+label?: Omit<LabelOption, 'position'>;
 ```
