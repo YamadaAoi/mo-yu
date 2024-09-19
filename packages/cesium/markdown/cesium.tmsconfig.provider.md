@@ -7,5 +7,9 @@
 **Signature:**
 
 ```typescript
-provider: TileMapServiceImageryProvider.ConstructorOptions[];
+provider: Array<
+  TileMapServiceImageryProvider.ConstructorOptions & {
+    url: string
+  }
+>
 ```

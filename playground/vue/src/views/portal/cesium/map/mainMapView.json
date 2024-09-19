@@ -8,31 +8,13 @@
     "height": 10971.21914434521
   },
   "tiles": [],
-  "map": {
-    "condition": "https://15.72.186.248:8081/sl/tiles/image/cle4h4gg0001tp5ruc20/11/1706/805.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjowLCJpZCI6ImNsbmJwcG9nMDAwOXFmZHJtcjUwIiwiaXNzIjoicnMiLCJzY29wZXMiOlsicGVybWFuZW50Il0sInVzYWdlIjoidGlsZSIsInVzZXIiOiJjbGp2OXRtcGw1Z2hrczh1dG92ZyJ9.Yxt2sdBxPDW4K-f0AVgnt-xsQiqi_BBdGH2G-BfWtqk",
+  "baseMap": {
     "map": {
-      "id": "huangdao",
-      "type": "Mapbox",
+      "id": "ArcGIS",
+      "type": "Arcgis",
       "provider": [
         {
-          "url": "https://15.72.186.248:8081/sl/vision/image?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjowLCJpZCI6ImNsbmJwcG9nMDAwOXFmZHJtcjUwIiwiaXNzIjoicnMiLCJzY29wZXMiOlsicGVybWFuZW50Il0sInVzYWdlIjoidGlsZSIsInVzZXIiOiJjbGp2OXRtcGw1Z2hrczh1dG92ZyJ9.Yxt2sdBxPDW4K-f0AVgnt-xsQiqi_BBdGH2G-BfWtqk",
-          "mapId": "clnbppog0009qfdrmr50",
-          "accessToken": ""
-        }
-      ]
-    },
-    "default": {
-      "id": "tianditu",
-      "type": "WMTS",
-      "provider": [
-        {
-          "url": "http://t0.tianditu.gov.cn/img_w/wmts?tk=d11a875cf5a264a0f6cb431a666ae811",
-          "layer": "img",
-          "style": "default",
-          "tileMatrixSetID": "w",
-          "format": "tiles",
-          "subdomains": ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
-          "maximumLevel": 18
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
         }
       ]
     }

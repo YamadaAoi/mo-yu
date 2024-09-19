@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-11 14:21:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-08-09 16:25:47
+ * @LastEditTime: 2024-09-19 09:58:35
  * @Description:
  */
 import {
@@ -58,7 +58,9 @@ export interface WMTSConfig extends BaseConfig {
  */
 export interface TMSConfig extends BaseConfig {
   type: 'TMS'
-  provider: TileMapServiceImageryProvider.ConstructorOptions[]
+  provider: Array<
+    TileMapServiceImageryProvider.ConstructorOptions & { url: string }
+  >
 }
 
 /**
@@ -74,7 +76,9 @@ export interface IONConfig extends BaseConfig {
  */
 export interface ArcgisConfig extends BaseConfig {
   type: 'Arcgis'
-  provider: ArcGisMapServerImageryProvider.ConstructorOptions[]
+  provider: Array<
+    ArcGisMapServerImageryProvider.ConstructorOptions & { url: string }
+  >
 }
 
 /**
@@ -159,11 +163,14 @@ function createTerrainProvider(p: TerrProvider) {
  * @param config - 底图配置BaseMapConfig
  */
 export function createImageryProvider(config: BaseMapConfig) {
-  let providers: ImageryProvider[] = []
+  let providers: ImageryProvider[] | Promise<ImageryProvider>[] = []
   if (config.type === 'ION') {
     providers = config.provider.map(p => new IonImageryProvider(p))
   } else if (config.type === 'TMS') {
-    providers = config.provider.map(p => new TileMapServiceImageryProvider(p))
+    providers = config.provider.map(p => {
+      const { url, ...rest } = p
+      return TileMapServiceImageryProvider.fromUrl(url, rest)
+    })
   } else if (config.type === 'WMS') {
     providers = config.provider.map(p => new WebMapServiceImageryProvider(p))
   } else if (config.type === 'WMTS') {
@@ -171,7 +178,10 @@ export function createImageryProvider(config: BaseMapConfig) {
       p => new WebMapTileServiceImageryProvider(p)
     )
   } else if (config.type === 'Arcgis') {
-    providers = config.provider.map(p => new ArcGisMapServerImageryProvider(p))
+    providers = config.provider.map(p => {
+      const { url, ...rest } = p
+      return ArcGisMapServerImageryProvider.fromUrl(url, rest)
+    })
   } else if (config.type === 'Mapbox') {
     providers = config.provider.map(p => new MapboxImageryProvider(p))
   } else if (config.type === 'XYZ') {
@@ -282,9 +292,21 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
         this.baseMap = config.id
         const providers = createImageryProvider(config)
         // 底图默认依次添加到最下面
-        this.#curLayers = providers.map((p, i) =>
-          this.#viewer.imageryLayers.addImageryProvider(p, i)
-        )
+        providers.forEach((p, i) => {
+          if (p instanceof ImageryProvider) {
+            this.#curLayers.push(
+              this.#viewer.imageryLayers.addImageryProvider(p, i)
+            )
+          } else {
+            p.then(pd => {
+              this.#curLayers.push(
+                this.#viewer.imageryLayers.addImageryProvider(pd, i)
+              )
+            }).catch(err => {
+              console.error(err)
+            })
+          }
+        })
       }
       this.eventBus.fire('base-map-change', {
         id: this.baseMap
@@ -328,9 +350,18 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
   addImageryLayer(config: BaseMapConfig) {
     if (this.#viewer) {
       const providers = createImageryProvider(config)
-      const layers = providers.map(p =>
-        this.#viewer.imageryLayers.addImageryProvider(p)
-      )
+      const layers: ImageryLayer[] = []
+      providers.forEach(p => {
+        if (p instanceof ImageryProvider) {
+          layers.push(this.#viewer.imageryLayers.addImageryProvider(p))
+        } else {
+          p.then(pd => {
+            layers.push(this.#viewer.imageryLayers.addImageryProvider(pd))
+          }).catch(err => {
+            console.error(err)
+          })
+        }
+      })
       if (config.id) {
         this.#layerMap.set(config.id, layers)
       }

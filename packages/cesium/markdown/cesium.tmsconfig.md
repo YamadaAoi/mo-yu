@@ -16,7 +16,7 @@ export interface TMSConfig extends BaseConfig
 
 ## Properties
 
-| Property                                   | Modifiers | Type                                                 | Description |
-| ------------------------------------------ | --------- | ---------------------------------------------------- | ----------- |
-| [provider](./cesium.tmsconfig.provider.md) |           | TileMapServiceImageryProvider.ConstructorOptions\[\] |             |
-| [type](./cesium.tmsconfig.type.md)         |           | 'TMS'                                                |             |
+| Property                                   | Modifiers | Type                                                                                 | Description |
+| ------------------------------------------ | --------- | ------------------------------------------------------------------------------------ | ----------- |
+| [provider](./cesium.tmsconfig.provider.md) |           | Array&lt;TileMapServiceImageryProvider.ConstructorOptions &amp; { url: string; }&gt; |             |
+| [type](./cesium.tmsconfig.type.md)         |           | 'TMS'                                                                                |             |

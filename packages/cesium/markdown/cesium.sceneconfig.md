@@ -16,11 +16,11 @@ export interface SceneConfig
 
 | Property                                          | Modifiers | Type                                                     | Description                     |
 | ------------------------------------------------- | --------- | -------------------------------------------------------- | ------------------------------- |
+| [baseMap?](./cesium.sceneconfig.basemap.md)       |           | [BaseMapTryConfig](./cesium.basemaptryconfig.md)         | _(Optional)_ 默认底图           |
 | [camera?](./cesium.sceneconfig.camera.md)         |           | [CameraParam](./cesium.cameraparam.md)                   | _(Optional)_ 视角变化           |
 | [fly?](./cesium.sceneconfig.fly.md)               |           | [FlyConfig](./cesium.flyconfig.md)                       | _(Optional)_ 飞行参数           |
 | [geos?](./cesium.sceneconfig.geos.md)             |           | [GeoOption](./cesium.geooption.md)<!-- -->\[\]           | _(Optional)_ 场景中默认矢量     |
 | [initCamera?](./cesium.sceneconfig.initcamera.md) |           | [CameraParam](./cesium.cameraparam.md)                   | _(Optional)_ 初始视角           |
-| [map?](./cesium.sceneconfig.map.md)               |           | [BaseMapTryConfig](./cesium.basemaptryconfig.md)         | _(Optional)_ 默认底图           |
 | [mask?](./cesium.sceneconfig.mask.md)             |           | MaskPrimitiveOption                                      | _(Optional)_ 遮罩               |
 | [resource?](./cesium.sceneconfig.resource.md)     |           | [ResourceConfig](./cesium.resourceconfig.md)<!-- -->\[\] | _(Optional)_ 静态资源列表       |
 | [terrain?](./cesium.sceneconfig.terrain.md)       |           | [TerrainConfig](./cesium.terrainconfig.md)               | _(Optional)_ 默认地形           |

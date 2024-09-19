@@ -16,7 +16,7 @@ export interface ArcgisConfig extends BaseConfig
 
 ## Properties
 
-| Property                                      | Modifiers | Type                                                  | Description |
-| --------------------------------------------- | --------- | ----------------------------------------------------- | ----------- |
-| [provider](./cesium.arcgisconfig.provider.md) |           | ArcGisMapServerImageryProvider.ConstructorOptions\[\] |             |
-| [type](./cesium.arcgisconfig.type.md)         |           | 'Arcgis'                                              |             |
+| Property                                      | Modifiers | Type                                                                                  | Description |
+| --------------------------------------------- | --------- | ------------------------------------------------------------------------------------- | ----------- |
+| [provider](./cesium.arcgisconfig.provider.md) |           | Array&lt;ArcGisMapServerImageryProvider.ConstructorOptions &amp; { url: string; }&gt; |             |
+| [type](./cesium.arcgisconfig.type.md)         |           | 'Arcgis'                                                                              |             |

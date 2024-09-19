@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:38:10
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-08-09 15:47:30
+ * @LastEditTime: 2024-09-19 10:09:27
  * @Description: 地图场景初始化工具
  */
 import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
@@ -56,7 +56,7 @@ export interface SceneConfig {
   /**
    * 默认底图
    */
-  map?: BaseMapTryConfig
+  baseMap?: BaseMapTryConfig
   /**
    * 默认地形
    */
@@ -221,8 +221,8 @@ export class MapSceneTool extends ToolBase<
           this.geo.addGeo(g)
         })
       }
-      if (config.map) {
-        this.baseMap.tryImagery(config.map)
+      if (config.baseMap) {
+        this.baseMap.tryImagery(config.baseMap)
       }
       if (config.terrain) {
         this.baseMap.addTerrain(config.terrain)

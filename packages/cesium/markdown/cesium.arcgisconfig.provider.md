@@ -7,5 +7,9 @@
 **Signature:**
 
 ```typescript
-provider: ArcGisMapServerImageryProvider.ConstructorOptions[];
+provider: Array<
+  ArcGisMapServerImageryProvider.ConstructorOptions & {
+    url: string
+  }
+>
 ```

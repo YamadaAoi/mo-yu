@@ -11,7 +11,7 @@
 ```typescript
 export declare function createImageryProvider(
   config: BaseMapConfig
-): ImageryProvider[]
+): ImageryProvider[] | Promise<ImageryProvider>[]
 ```
 
 ## Parameters
@@ -22,4 +22,4 @@ export declare function createImageryProvider(
 
 **Returns:**
 
-ImageryProvider\[\]
+ImageryProvider\[\] \| Promise&lt;ImageryProvider&gt;\[\]
