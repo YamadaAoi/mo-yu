@@ -1,5 +1,11 @@
 # @mo-yu/cesium
 
+## 1.1.0
+
+### Minor Changes
+
+- 更新 cesium 依赖至 1.120.0，添加点图层及聚合
+
 ## 1.0.20
 
 ### Patch Changes

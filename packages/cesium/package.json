@@ -1,6 +1,6 @@
 {
   "name": "@mo-yu/cesium",
-  "version": "1.0.20",
+  "version": "1.1.0",
   "description": "mo-yu cesium helper",
   "main": "lib/index.js",
   "module": "es/index.js",
