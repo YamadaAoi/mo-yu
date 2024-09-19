@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 15:33:24
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-27 14:02:17
+ * @LastEditTime: 2024-09-19 10:49:20
  * @Description:
  */
 import path from 'path'
@@ -13,7 +13,6 @@ import pxtorem from 'postcss-pxtorem'
 import postcssPresetEnv from 'postcss-preset-env'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import checker from 'vite-plugin-checker'
-import strip from '@rollup/plugin-strip'
 import viteCompression from 'vite-plugin-compression'
 
 function getBrowsers(command: 'build' | 'serve') {
@@ -99,13 +98,7 @@ export default defineConfig(({ command, mode }) => {
   }
   if (command === 'serve') {
     config.server = {
-      open: true,
-      proxy: {
-        // '/api': {
-        //   target: '',
-        //   changeOrigin: true
-        // }
-      }
+      open: true
     }
     config.plugins?.push(
       checker({
@@ -140,7 +133,6 @@ export default defineConfig(({ command, mode }) => {
           }
         ]
       }),
-      strip(),
       viteCompression({
         filter: /\.(js|mjs|json|css|html|ttf)$/i
       })
