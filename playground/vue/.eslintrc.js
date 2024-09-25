@@ -87,7 +87,9 @@ module.exports = {
         'import/no-cycle': 1,
         'vue/html-self-closing': 0,
         'vue/no-v-html': 0,
-        '@typescript-eslint/no-explicit-any': 'off'
+        '@typescript-eslint/no-explicit-any': 'off',
+        'vue/valid-define-props': 'off',
+        'vue/valid-define-emits': 'off'
       }
     }
   ]

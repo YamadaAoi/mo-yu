@@ -2,26 +2,24 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-29 14:38:10
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-09-19 10:09:27
+ * @LastEditTime: 2024-09-25 17:40:38
  * @Description: 地图场景初始化工具
  */
-import { ToolBase, ToolBaseOptions } from '@mo-yu/core'
+import { debounce, ToolBase, ToolBaseOptions } from '@mo-yu/core'
+import {
+  Cesium3DTileFeature,
+  Entity,
+  ScreenSpaceEventHandler,
+  ScreenSpaceEventType
+} from 'cesium'
+import { mapStoreTool } from '../storeTool'
 import { ResourceConfig, resourceTool } from '../resourceTool'
-import { CameraParam, MapCameraTool, MapCameraToolEvents } from '../cameraTool'
-import { TileOption, MapTileTool, MapTileToolEvents } from '../tileTool'
-import { GeoOption, MapGeoTool, MapGeoToolEvents } from '../geoTool'
-import {
-  BaseMapTryConfig,
-  BaseMapTool,
-  TerrainConfig,
-  BaseMapToolEvents
-} from '../baseMapTool'
-import {
-  MaskPrimitiveOption,
-  MapMaskTool,
-  MapMaskToolEvents
-} from '../mapMaskTool'
-import { FlyConfig, MapFlyTool, MapFlyToolEvents } from '../flyTool'
+import { CameraParam, MapCameraTool } from '../cameraTool'
+import { TileOption, MapTileTool } from '../tileTool'
+import { GeoOption, MapGeoTool } from '../geoTool'
+import { BaseMapTryConfig, BaseMapTool, TerrainConfig } from '../baseMapTool'
+import { MaskPrimitiveOption, MapMaskTool } from '../mapMaskTool'
+import { FlyConfig, MapFlyTool } from '../flyTool'
 import { HeatMapTool } from '../heatMapTool'
 import { PointsTool } from '../pointsTool'
 
@@ -77,12 +75,26 @@ interface MapSceneToolOptions extends ToolBaseOptions {
 /**
  * 场景事件
  */
-type MapSceneToolEvents = MapCameraToolEvents &
-  MapTileToolEvents &
-  MapGeoToolEvents &
-  BaseMapToolEvents &
-  MapMaskToolEvents &
-  MapFlyToolEvents
+interface MapSceneToolEvents {
+  /**
+   * 选取所有fea属性
+   */
+  'pick-all': {
+    properties: any[]
+  }
+  /**
+   * 选取所有fea属性
+   */
+  'hover-all': {
+    properties: any[]
+  }
+  /**
+   * 双击选取所有fea属性
+   */
+  'double-click-all': {
+    properties: any[]
+  }
+}
 
 /**
  * 初始化场景
@@ -99,6 +111,7 @@ export class MapSceneTool extends ToolBase<
   MapSceneToolEvents
 > {
   #config: SceneConfig | undefined
+  #handler: ScreenSpaceEventHandler | undefined
   camera: MapCameraTool
   tile: MapTileTool
   geo: MapGeoTool
@@ -111,55 +124,13 @@ export class MapSceneTool extends ToolBase<
     super(options)
     this.#config = options.config
     this.camera = new MapCameraTool({})
-    this.camera.eventBus.on('camera-change', e => {
-      this.eventBus.fire('camera-change', e)
-    })
     this.tile = new MapTileTool({})
-    this.tile.eventBus.on('pick-tile', e => {
-      this.eventBus.fire('pick-fea', e)
-    })
-    this.tile.eventBus.on('pick-tile-all', e => {
-      this.eventBus.fire('pick-fea-all', e)
-    })
-    this.tile.eventBus.on('hover-tile', e => {
-      this.eventBus.fire('hover-tile', e)
-    })
-    this.tile.eventBus.on('hover-tile-all', e => {
-      this.eventBus.fire('hover-tile-all', e)
-    })
     this.geo = new MapGeoTool({})
-    this.geo.eventBus.on('pick-fea', e => {
-      this.eventBus.fire('pick-fea', e)
-    })
-    this.geo.eventBus.on('pick-fea-all', e => {
-      this.eventBus.fire('pick-fea-all', e)
-    })
-    this.geo.eventBus.on('double-click-fea-all', e => {
-      this.eventBus.fire('double-click-fea-all', e)
-    })
     this.baseMap = new BaseMapTool({})
-    this.baseMap.eventBus.on('base-map-change', e => {
-      this.eventBus.fire('base-map-change', e)
-    })
-    this.baseMap.eventBus.on('terrain-change', e => {
-      this.eventBus.fire('terrain-change', e)
-    })
     this.mask = new MapMaskTool({})
     this.fly = new MapFlyTool({})
-    this.fly.eventBus.on('flying-change', e => {
-      this.eventBus.fire('flying-change', e)
-    })
-    this.fly.eventBus.on('time-change', e => {
-      this.eventBus.fire('time-change', e)
-    })
     this.heat = new HeatMapTool({})
     this.points = new PointsTool({})
-    this.points.eventBus.on('pick-point', e => {
-      this.eventBus.fire('pick-fea', e)
-    })
-    this.points.eventBus.on('pick-point-all', e => {
-      this.eventBus.fire('pick-fea-all', e)
-    })
   }
 
   /**
@@ -174,6 +145,21 @@ export class MapSceneTool extends ToolBase<
     this.fly.enable()
     this.heat.enable()
     this.points.enable()
+    if (this.#viewer) {
+      this.#handler = new ScreenSpaceEventHandler(this.#viewer.canvas)
+      this.#handler.setInputAction(
+        this.#handleClick,
+        ScreenSpaceEventType.LEFT_CLICK
+      )
+      this.#handler.setInputAction(
+        this.#handleMove,
+        ScreenSpaceEventType.MOUSE_MOVE
+      )
+      this.#handler.setInputAction(
+        this.#handleDBClick,
+        ScreenSpaceEventType.LEFT_DOUBLE_CLICK
+      )
+    }
   }
 
   /**
@@ -188,6 +174,7 @@ export class MapSceneTool extends ToolBase<
     this.fly.destroy()
     this.heat.destroy()
     this.points.destroy()
+    this.#handler?.destroy()
   }
 
   /**
@@ -239,7 +226,70 @@ export class MapSceneTool extends ToolBase<
     }
   }
 
+  #handleProperties(picked: any[]) {
+    const pickedProperties: any[] = []
+    if (picked?.length) {
+      picked.forEach(p => {
+        let properties: any = {}
+        if (p instanceof Cesium3DTileFeature) {
+          const MoYuTileId = (p.tileset as any).MoYuTileId
+          properties.MoYuTileId = MoYuTileId
+          const propertyIds: string[] = p.getPropertyIds()
+          propertyIds.forEach(propertyId => {
+            properties[propertyId] = p.getProperty(propertyId)
+          })
+          pickedProperties.push(properties)
+        } else if (p.id instanceof Entity) {
+          const entity: Entity = p.id
+          entity.properties?.propertyNames?.forEach((str: string) => {
+            properties[str] = entity.properties?.[str]?._value
+          })
+          pickedProperties.push(properties)
+        } else if (p.id?.startsWith?.(`${PointsTool.prefix}#`)) {
+          const arr = p.id.split('#')
+          const temp = this.points.getPointsById(arr[1])
+          const fea = temp?.points?.[arr[2]]
+          if (fea) {
+            properties = fea.properties
+          }
+          pickedProperties.push(properties)
+        }
+      })
+    }
+    return pickedProperties
+  }
+
+  #handleClick = debounce((event: ScreenSpaceEventHandler.PositionedEvent) => {
+    const picked = this.#viewer?.scene.drillPick(event.position)
+    const properties = this.#handleProperties(picked)
+    this.eventBus.fire('pick-all', {
+      properties
+    })
+  })
+
+  #handleMove = (event: ScreenSpaceEventHandler.MotionEvent) => {
+    const picked = this.#viewer?.scene.drillPick(event.endPosition)
+    const properties = this.#handleProperties(picked)
+    this.eventBus.fire('hover-all', {
+      properties
+    })
+  }
+
+  #handleDBClick = debounce(
+    (event: ScreenSpaceEventHandler.PositionedEvent) => {
+      const picked = this.#viewer?.scene.drillPick(event.position)
+      const properties = this.#handleProperties(picked)
+      this.eventBus.fire('double-click-all', {
+        properties
+      })
+    }
+  )
+
   get config() {
     return this.#config
+  }
+
+  get #viewer() {
+    return mapStoreTool.getMap()?.viewer
   }
 }

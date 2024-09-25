@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-08 14:44:23
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 18:09:57
+ * @LastEditTime: 2024-09-25 17:38:16
  * @Description: 简单自定义材质线，支持颜色和图片
 -->
 <template>
@@ -12,25 +12,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeUnmount } from 'vue'
-import { MapGeoTool } from '@mo-yu/cesium'
+import { mapStoreTool } from '@mo-yu/cesium'
 import CommonMap from '../map/CommonMap.vue'
 
-const mapReady = ref(false)
-let tool: MapGeoTool
-
-onBeforeUnmount(() => {
-  tool?.destroy()
-})
-
 function onLoaded() {
-  mapReady.value = true
-  tool = new MapGeoTool({})
-  tool.enable()
-  tool.eventBus.on('pick-fea-all', e => {
+  const map = mapStoreTool.getMap()
+  map.sceneTool.eventBus.on('pick-all', e => {
     console.log(e.properties)
   })
-  tool.addGeo({
+  map.sceneTool.geo.addGeo({
     url: '/data/dachang.json',
     id: 'dcz_czbj',
     fill: 'rgba(0,0,0,0)',

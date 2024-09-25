@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-04-11 13:36:17
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-08-09 16:03:20
+ * @LastEditTime: 2024-09-25 17:41:08
  * @Description: 点数据效果
  */
 import {
@@ -504,7 +504,7 @@ export class PointsTool extends ToolBase<ToolBaseOptions, PointsToolEvents> {
           const properties = fea.properties ?? {}
           points.push({
             ...fea,
-            properties: { ...properties, MoYuGeoId: id }
+            properties: { ...properties, MoYuGeoId: id, MoYuPointsId: id }
           })
           lnglats.push(fea.geometry.coordinates)
         }

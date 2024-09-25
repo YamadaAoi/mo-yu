@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-02-04 10:16:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-27 14:05:32
+ * @LastEditTime: 2024-09-25 17:25:55
  * @Description: shp生成的白膜图层根据属性设置样式
 -->
 <template>
@@ -12,22 +12,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeUnmount } from 'vue'
-import { HeatMapTool } from '@mo-yu/cesium'
+import { mapStoreTool } from '@mo-yu/cesium'
 import CommonMap from '../map/CommonMap.vue'
 
-const mapReady = ref(false)
-let tool: HeatMapTool
-
-onBeforeUnmount(() => {
-  tool?.destroy()
-})
-
 function onLoaded() {
-  mapReady.value = true
-  tool = new HeatMapTool({})
-  tool.enable()
-  tool.addHeatMap({
+  const map = mapStoreTool.getMap()
+  map.sceneTool.heat.addHeatMap({
     url: '/data/shb_rlt.json',
     id: 'shb_rlt',
     bounds: [

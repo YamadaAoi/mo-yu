@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-08 14:44:23
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-22 18:26:29
+ * @LastEditTime: 2024-09-25 17:24:08
  * @Description: 简单自定义材质线，支持颜色和图片
 -->
 <template>
@@ -12,25 +12,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeUnmount } from 'vue'
-import { MapFlyTool } from '@mo-yu/cesium'
+import { mapStoreTool } from '@mo-yu/cesium'
 import CommonMap from '../map/CommonMap.vue'
 
-const mapReady = ref(false)
-let tool: MapFlyTool
-
-onBeforeUnmount(() => {
-  tool?.destroy()
-})
-
 function onLoaded() {
-  mapReady.value = true
-  tool = new MapFlyTool({})
-  tool.enable()
-  tool.eventBus.on('time-change', e => {
+  const map = mapStoreTool.getMap()
+  map.sceneTool.fly.eventBus.on('time-change', e => {
     console.log(e.sceonds)
   })
-  tool.initRoute(
+  map.sceneTool.fly.initRoute(
     [
       {
         heading: 356.593704902111,
@@ -80,7 +70,7 @@ function onLoaded() {
     true
   )
   setTimeout(() => {
-    tool?.play()
+    map.sceneTool.fly.play()
   }, 2000)
 }
 </script>

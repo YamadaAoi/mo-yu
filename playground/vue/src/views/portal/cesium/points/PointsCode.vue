@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-03-08 15:33:03
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-09-18 17:17:20
+ * @LastEditTime: 2024-09-25 17:37:29
  * @Description: 多点聚合
 -->
 <template>
@@ -12,22 +12,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeUnmount } from 'vue'
-import { PointsTool } from '@mo-yu/cesium'
+import { mapStoreTool } from '@mo-yu/cesium'
 import CommonMap from '../map/CommonMap.vue'
 
-const mapReady = ref(false)
-let tool: PointsTool
-
-onBeforeUnmount(() => {
-  tool?.destroy()
-})
-
 function onLoaded() {
-  mapReady.value = true
-  tool = new PointsTool({})
-  tool.enable()
-  tool.addPoints({
+  const map = mapStoreTool.getMap()
+  map.sceneTool.eventBus.on('pick-all', e => {
+    console.log(e.properties)
+  })
+  map.sceneTool.points.addPoints({
     url: '/data/points.json',
     id: 'video',
     custom: {

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 16:29:09
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-27 14:03:18
+ * @LastEditTime: 2024-09-25 17:30:50
  * @Description:
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
@@ -144,7 +144,7 @@ export function getCesiumMenus() {
       component: () => import('../views/portal/cesium/points/PointsDemo.vue'),
       meta: {
         label: '多点聚合',
-        cname: 'MapGeoTool'
+        cname: 'PointsTool'
       }
     },
     {

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-02-04 10:16:16
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-09-18 15:46:44
+ * @LastEditTime: 2024-09-25 17:36:04
  * @Description: shp生成的白膜图层根据属性设置样式
 -->
 <template>
@@ -12,25 +12,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onBeforeUnmount } from 'vue'
-import { MapTileTool } from '@mo-yu/cesium'
+import { mapStoreTool } from '@mo-yu/cesium'
 import CommonMap from '../map/CommonMap.vue'
 
-const mapReady = ref(false)
-let tool: MapTileTool
-
-onBeforeUnmount(() => {
-  tool?.destroy()
-})
-
 function onLoaded() {
-  mapReady.value = true
-  tool = new MapTileTool({})
-  tool.enable()
-  tool.eventBus.on('pick-tile', e => {
+  const map = mapStoreTool.getMap()
+  map.sceneTool.eventBus.on('pick-all', e => {
     console.log(e.properties)
   })
-  tool.add3DTileset({
+  map.sceneTool.tile.add3DTileset({
     url: 'http://121.40.254.67:8001/tiles/gtsd/tileset.json',
     id: 'gtsd',
     style: {
