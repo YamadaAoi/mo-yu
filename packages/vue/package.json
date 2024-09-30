@@ -16,8 +16,8 @@
     "dev": "pnpm build-lib -w",
     "build": "pnpm build-lib && pnpm build-markdown",
     "build-lib": "pnpm lint && pnpm clean && rollup --config build/rollup.config.ts --configPlugin typescript",
-    "build-markdown": "api-extractor run && api-documenter markdown -i ./temp -o ./markdown && rimraf temp",
-    "clean": "rimraf es && rimraf lib && rimraf dist && rimraf markdown"
+    "build-markdown": "rimraf markdown && api-extractor run && api-documenter markdown -i ./temp -o ./markdown && rimraf temp",
+    "clean": "rimraf es && rimraf lib && rimraf dist"
   },
   "keywords": [
     "mo-yu",
