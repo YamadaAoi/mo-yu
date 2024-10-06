@@ -21,7 +21,7 @@ function onLoaded() {
     console.log(e.properties)
   })
   map.sceneTool.tile.add3DTileset({
-    url: 'http://121.40.254.67:8001/tiles/gtsd/tileset.json',
+    url: 'http://117.72.94.210:8001/tiles/gtsd/tileset.json',
     id: 'gtsd',
     style: {
       paramName: 'DLBM',

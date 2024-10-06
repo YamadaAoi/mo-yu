@@ -23,7 +23,7 @@
     "id": "qingdao",
     "type": "Terrain",
     "provider": {
-      "url": "http://121.40.254.67:8001/tiles/terrain",
+      "url": "http://117.72.94.210:8001/tiles/terrain",
       "requestMetadata": true,
       "requestWaterMask": false,
       "requestVertexNormals": false
