@@ -1,6 +1,6 @@
 {
   "name": "@mo-yu/cesium",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "mo-yu cesium helper",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -27,7 +27,7 @@
   "author": "zhouyinkui",
   "license": "MIT",
   "peerDependencies": {
-    "@mo-yu/core": "^1.0.12",
+    "@mo-yu/core": "^1.0.13",
     "cesium": "~1.120.0"
   },
   "devDependencies": {

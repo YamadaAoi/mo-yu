@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 10:43:25
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-01-10 11:28:46
+ * @LastEditTime: 2024-12-04 10:03:15
  * @Description: rem hook
  */
 import { ref } from 'vue'
@@ -14,7 +14,7 @@ import { remTool } from '@mo-yu/core'
  * 对外暴露remToPx方法
  * @example
  * ```ts
- * const { rem, zoom, remToPx } = useRem()
+ * const { rem, remToPx } = useRem()
  * ```
  * @returns
  */
@@ -23,14 +23,9 @@ export function useRem() {
    * 当前1rem等于多少px
    */
   const rem = ref(remTool.rem)
-  /**
-   * 当前body缩放倍数
-   */
-  const zoom = ref(remTool.zoom)
 
   remTool.eventBus.on('rem-refresh', e => {
     rem.value = e.rem
-    zoom.value = e.zoom
   })
 
   /**
@@ -49,7 +44,6 @@ export function useRem() {
 
   return {
     rem,
-    zoom,
     remToPx
   }
 }

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-12-18 13:34:26
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-09-18 15:46:27
+ * @LastEditTime: 2024-12-04 10:13:58
  * @Description: 普通模型3DTiles位置、缩放、角度配置，鼠标左键拖动水平位置，右键拖动竖直高度
 -->
 <template>
@@ -145,7 +145,6 @@
                 </div>
                 <div class="form-input">
                   <NSlider
-                    :style="{ zoom: 1 / zoom }"
                     :value="item.heading"
                     :tooltip="false"
                     :max="360"
@@ -165,7 +164,6 @@
                 </div>
                 <div class="form-input">
                   <NSlider
-                    :style="{ zoom: 1 / zoom }"
                     :value="item.pitch"
                     :tooltip="false"
                     :max="360"
@@ -185,7 +183,6 @@
                 </div>
                 <div class="form-input">
                   <NSlider
-                    :style="{ zoom: 1 / zoom }"
                     :value="item.roll"
                     :tooltip="false"
                     :max="360"
@@ -235,7 +232,7 @@
 import { ref, reactive } from 'vue'
 import { NInput, NInputNumber, NSlider, useMessage } from 'naive-ui'
 import { isNumber, guid, readText, saveAsJson } from '@mo-yu/core'
-import { useRem, MPopup } from '@mo-yu/vue'
+import { MPopup } from '@mo-yu/vue'
 import { Position, TileOption, MapTileConfigTool } from '@mo-yu/cesium'
 import CommonMap from '../map/CommonMap.vue'
 
@@ -245,7 +242,6 @@ interface TileInfo extends TileOption {
   name: string
 }
 
-const { zoom } = useRem()
 const message = useMessage()
 const mapReady = ref(false)
 const visiable = ref(false)

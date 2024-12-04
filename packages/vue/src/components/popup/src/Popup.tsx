@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 18:10:46
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-03 14:18:29
+ * @LastEditTime: 2024-12-04 10:13:15
  * @Description: 拖拽弹框
  */
 import './popup.scss'
@@ -18,7 +18,6 @@ import {
   nextTick
 } from 'vue'
 import { DragTool, OriginPosition, guid } from '@mo-yu/core'
-import { useRem } from '../../../hooks/useRem'
 
 /**
  * 可拖拽弹框组件，相对于整个可视窗口拖动
@@ -49,22 +48,12 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const { zoom } = useRem()
     const popupWinId = `popupWin${guid()}`
     const popupHeadId = `popupHead${guid()}`
     const drag = new DragTool({
       handleId: popupHeadId,
-      targetId: popupWinId,
-      zoom: zoom.value
+      targetId: popupWinId
     })
-
-    watch(
-      zoom,
-      next => {
-        drag?.resetZoom(next)
-      },
-      { immediate: true }
-    )
 
     watch(
       () => props.visiable,

@@ -6,12 +6,13 @@
 
 ## Classes
 
-| Class                                      | Description                                                                                                                                |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| [DragTool](./core.dragtool.md)             | 全屏拖拽                                                                                                                                   |
-| [EventBus](./core.eventbus.md)             |                                                                                                                                            |
-| [FullscreenTool](./core.fullscreentool.md) | 全屏                                                                                                                                       |
-| [LocaleTool](./core.localetool.md)         | 国际化工具类 T - 语言类型，例如'zh_cn' \| 'en_us' C - 语言配置，是一个简单的 object 类型，字段类型为 string 或 object，递归最深层级为 8 级 |
+| Class                                      | Description                                                                                                           |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| [BufferReader](./core.bufferreader.md)     | 二进制数据读取                                                                                                        |
+| [DragTool](./core.dragtool.md)             | 全屏拖拽                                                                                                              |
+| [EventBus](./core.eventbus.md)             |                                                                                                                       |
+| [FullscreenTool](./core.fullscreentool.md) | 全屏                                                                                                                  |
+| [LocaleTool](./core.localetool.md)         | 国际化工具类 T - 语言类型，例如'zh_cn' \| 'en_us' C - 语言配置，是一个简单的 object 类型，字段类型为 string 或 object |
 
 ## Abstract Classes
 
@@ -46,9 +47,9 @@
 
 ## Variables
 
-| Variable                     | Description                                                                                      |
-| ---------------------------- | ------------------------------------------------------------------------------------------------ |
-| [remTool](./core.remtool.md) | PC 端 Rem 适配方案 设计稿默认 1920 设计稿 100px = 1rem 会基于 devicePixelRatio 和设计稿缩放 body |
+| Variable                     | Description                                            |
+| ---------------------------- | ------------------------------------------------------ |
+| [remTool](./core.remtool.md) | PC 端 Rem 适配方案 设计稿默认 1920 设计稿 100px = 1rem |
 
 ## Type Aliases
 

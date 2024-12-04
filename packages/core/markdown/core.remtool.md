@@ -4,7 +4,7 @@
 
 ## remTool variable
 
-PC 端 Rem 适配方案 设计稿默认 1920 设计稿 100px = 1rem 会基于 devicePixelRatio 和设计稿缩放 body
+PC 端 Rem 适配方案 设计稿默认 1920 设计稿 100px = 1rem
 
 **Signature:**
 
@@ -20,6 +20,6 @@ import { remTool } from '@mo-yu/core'
 remTool.resetDesignSize(1440)
 remTool.enable()
 remTool.eventBus.on('rem-refresh', e => {
-  console.log(e.zoom, e.rem)
+  console.log(e.rem)
 })
 ```

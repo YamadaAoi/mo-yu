@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:37:41
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-06 16:52:05
+ * @LastEditTime: 2024-12-04 10:11:57
  * @Description: 拖拽工具实现类
  */
 import { ToolBase, ToolBaseOptions } from '../baseTool'
@@ -25,10 +25,6 @@ export interface DragToolOptions extends ToolBaseOptions {
    * 例如，handleId是一个弹框的头部，targetId是这个弹框本身（包含头部）
    */
   targetId?: string
-  /**
-   * body缩放值，默认1
-   */
-  zoom?: number
 }
 
 /**
@@ -47,8 +43,7 @@ export type OriginPosition =
  * ```ts
  * const drag = new DragTool({
  *  handleId: '',
- *  targetId: '',
- *  zoom: 1
+ *  targetId: ''
  * })
  *
  * drag.enable()
@@ -59,7 +54,6 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
   #handleId: string
   #targetId: string | undefined
   #wrapId: string | undefined
-  #zoom: number | undefined
   #size = {
     distX: 0,
     distY: 0
@@ -73,7 +67,6 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
     this.#handleId = options.handleId
     this.#targetId = options.targetId
     this.#wrapId = options.wrapId
-    this.#zoom = options.zoom
   }
 
   /**
@@ -130,14 +123,6 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
     }
   }
 
-  /**
-   * 重置body缩放值
-   * @param zoom - 缩放
-   */
-  resetZoom(zoom: number) {
-    this.#zoom = zoom
-  }
-
   private mouseDown = (ev: MouseEvent) => {
     const oEvent = ev || window.event
     const el = this.target ?? this.handle
@@ -148,8 +133,8 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
       const matrix3dArrValue =
         matrix3dSourceValue.match(this.#matrix3dReg) ??
         matrix3dSourceValue.match(this.#matrixReg)
-      const clientX = oEvent.clientX / (this.#zoom ?? 1)
-      const clientY = oEvent.clientY / (this.#zoom ?? 1)
+      const clientX = oEvent.clientX
+      const clientY = oEvent.clientY
       const targetX = matrix3dArrValue?.[1] ?? 0
       const targetY = matrix3dArrValue?.[2] ?? 0
       this.#size.distX = clientX - targetX
@@ -183,11 +168,11 @@ export class DragTool extends ToolBase<DragToolOptions, any> {
       const maxX = bodyW - elW
       const maxY = bodyH - elH
       const moveX = Math.min(
-        Math.max(0, oEvent.clientX / (this.#zoom ?? 1) - this.#size.distX),
+        Math.max(0, oEvent.clientX - this.#size.distX),
         maxX
       )
       const moveY = Math.min(
-        Math.max(0, oEvent.clientY / (this.#zoom ?? 1) - this.#size.distY),
+        Math.max(0, oEvent.clientY - this.#size.distY),
         maxY
       )
       el.style.transform =

@@ -11,17 +11,16 @@ rem hook 将 rem zoom 转为响应式变量 对外暴露 remToPx 方法
 ```typescript
 export declare function useRem(): {
   rem: import('vue').Ref<number>
-  zoom: import('vue').Ref<number>
   remToPx: (r: number) => number
 }
 ```
 
 **Returns:**
 
-{ rem: import("vue").Ref&lt;number&gt;; zoom: import("vue").Ref&lt;number&gt;; remToPx: (r: number) =&gt; number; }
+{ rem: import("vue").Ref&lt;number&gt;; remToPx: (r: number) =&gt; number; }
 
 ## Example
 
 ```ts
-const { rem, zoom, remToPx } = useRem()
+const { rem, remToPx } = useRem()
 ```

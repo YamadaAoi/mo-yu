@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:20:47
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-07-06 10:41:07
+ * @LastEditTime: 2024-12-04 09:37:41
  * @Description:
  */
 import { ToolBase } from '../baseTool'
@@ -19,10 +19,6 @@ interface RemToolOptions {
    * 设计稿高度
    */
   designHeight?: number
-  /**
-   * h5不在意devicePixelRatio
-   */
-  ignoreDevicePixelRatio?: boolean
 }
 
 /**
@@ -34,7 +30,6 @@ interface RemToolEvents {
    */
   'rem-refresh': {
     rem: number
-    zoom: number
   }
 }
 
@@ -46,9 +41,7 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
   #timer: NodeJS.Timeout | undefined
   #designWidth!: number
   #designHeight: number | undefined
-  #ignoreDevicePixelRatio = false
   #rem!: number
-  #zoom = 1
   constructor(options: RemToolOptions) {
     super(options)
     this.resetOptions(options)
@@ -96,12 +89,11 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
 
   /**
    * 重置设计图尺寸
-   * @param designWidth - 设计稿宽度
-   * @param designHeight - 设计稿高度
+   * @param options - rem入参
    */
-  resetDesignSize(designWidth: number, designHeight?: number) {
-    this.#designWidth = designWidth
-    this.#designHeight = designHeight
+  resetDesignSize(options: RemToolOptions) {
+    this.#designWidth = options.designWidth
+    this.#designHeight = options.designHeight
   }
 
   /**
@@ -109,9 +101,7 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
    * @param options - rem入参
    */
   resetOptions(options: RemToolOptions) {
-    this.#designWidth = options.designWidth
-    this.#designHeight = options.designHeight
-    this.#ignoreDevicePixelRatio = !!options.ignoreDevicePixelRatio
+    this.resetDesignSize(options)
     this.refreshRem()
   }
 
@@ -122,42 +112,18 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
     return this.#rem
   }
 
-  /**
-   * 当前body被缩放了多少倍
-   * 在遇到echarts、各种地图上点击或拖拽位置不准的情况时，需要获取该值在对应dom上反向缩放
-   */
-  get zoom() {
-    return this.#zoom
-  }
-
   private readonly refreshRem = () => {
     const width = document.documentElement.getBoundingClientRect().width
     const height = document.documentElement.getBoundingClientRect().height
-    const style: any = document.body.style
-    if (this.#ignoreDevicePixelRatio) {
-      this.#rem = (width * 100) / this.#designWidth
-      style.zoom = this.#zoom = 1
+    if (this.#designHeight) {
+      this.#rem =
+        (width * height * 100) / (this.#designWidth * this.#designHeight)
     } else {
-      const ratio = window.devicePixelRatio ?? 1
-      if (this.#designHeight) {
-        this.#rem =
-          (width * height * 100) / (this.#designWidth * this.#designHeight)
-      } else {
-        this.#rem = (width * 100) / this.#designWidth
-      }
-      if (width > this.#designWidth) {
-        this.#rem = this.#rem / ratio
-        this.#zoom = (ratio * this.#designWidth) / width
-      } else {
-        this.#rem = this.#rem * ratio
-        this.#zoom = this.#designWidth / (ratio * width)
-      }
-      style.zoom = this.#zoom
+      this.#rem = (width * 100) / this.#designWidth
     }
     this.#remStyle.innerHTML = `html{font-size:${this.#rem}px;}`
     this.eventBus.fire('rem-refresh', {
-      rem: this.#rem,
-      zoom: this.#zoom
+      rem: this.#rem
     })
   }
 
@@ -186,7 +152,6 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
  * PC端Rem适配方案
  * 设计稿默认1920
  * 设计稿100px = 1rem
- * 会基于devicePixelRatio和设计稿缩放body
  * @example
  * ```ts
  * import { remTool } from '@mo-yu/core'
@@ -194,7 +159,7 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
  * remTool.resetDesignSize(1440)
  * remTool.enable()
  * remTool.eventBus.on('rem-refresh', e => {
- *   console.log(e.zoom, e.rem)
+ *   console.log(e.rem)
  * })
  * ```
  */

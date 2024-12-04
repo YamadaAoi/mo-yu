@@ -2,16 +2,12 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-08 14:20:32
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-04-03 13:49:14
+ * @LastEditTime: 2024-12-04 10:13:34
  * @Description: 初始化一个简单的地图场景，包括底图，地形，遮罩
 -->
 <template>
   <div class="common-map">
-    <div
-      :id="props.mapId"
-      :style="{ zoom: 1 / zoom }"
-      class="cesium-container"
-    ></div>
+    <div :id="props.mapId" class="cesium-container"></div>
   </div>
 </template>
 
@@ -20,7 +16,6 @@ import { onMounted, onBeforeUnmount } from 'vue'
 import 'cesiumcss'
 import { ScreenSpaceEventType } from 'cesium'
 import { initCesiumBaseUrl, MapView, mapStoreTool } from '@mo-yu/cesium'
-import { useRem } from '@mo-yu/vue'
 
 initCesiumBaseUrl('/cesium')
 
@@ -36,7 +31,6 @@ const emits = defineEmits<{
   (e: 'loaded', id: string): void
   (e: 'removed'): void
 }>()
-const { zoom } = useRem()
 
 let map: MapView
 

@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 15:33:55
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-11 18:15:08
+ * @LastEditTime: 2024-12-04 10:03:48
  * @Description:
  */
 import { createApp } from 'vue'
@@ -12,7 +12,10 @@ import router from './router'
 import 'assets/iconfont/iconfont.css'
 import 'assets/app.scss'
 
-remTool.resetDesignSize(1920, 1080)
+remTool.resetDesignSize({
+  designWidth: 1920,
+  designHeight: 1080
+})
 remTool.enable()
 
 const meta = document.createElement('meta')

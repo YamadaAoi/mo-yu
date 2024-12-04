@@ -4,7 +4,7 @@
 
 ## LocaleTool class
 
-国际化工具类 T - 语言类型，例如'zh_cn' \| 'en_us' C - 语言配置，是一个简单的 object 类型，字段类型为 string 或 object，递归最深层级为 8 级
+国际化工具类 T - 语言类型，例如'zh_cn' \| 'en_us' C - 语言配置，是一个简单的 object 类型，字段类型为 string 或 object
 
 **Signature:**
 

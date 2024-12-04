@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-09-11 11:13:53
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2023-09-20 10:37:50
+ * @LastEditTime: 2024-12-04 10:06:28
  * @Description: rem工具代码示例
  */
 import { remTool } from '@mo-yu/core'
@@ -11,26 +11,27 @@ import pxtorem from 'postcss-pxtorem'
 
 /**
  * 基础用法，指定设计稿宽高，或仅指定宽
- * 默认开启试验功能，body节点会缩放合适倍率（zoom）
  */
-remTool.resetDesignSize(1920, 1080)
+remTool.resetDesignSize({
+  designWidth: 1920,
+  designHeight: 1080
+})
 remTool.enable()
-console.log(remTool.rem, remTool.zoom)
+console.log(remTool.rem)
 
 /**
- * 关闭试验功能，H5中使用打开ignoreDevicePixelRatio
+ * 强制刷新rem
  */
 remTool.resetOptions({
   designWidth: 1920,
-  designHeight: 1080,
-  ignoreDevicePixelRatio: true
+  designHeight: 1080
 })
 
 /**
  * 监听rem变化
  */
 remTool.eventBus.on('rem-refresh', e => {
-  console.log(e.rem, e.zoom)
+  console.log(e.rem)
 })
 
 /**

@@ -1,5 +1,13 @@
 # @mo-yu/vue
 
+## 1.0.17
+
+### Patch Changes
+
+- rem 工具 zoom 功能删除
+- Updated dependencies
+  - @mo-yu/core@1.0.13
+
 ## 1.0.16
 
 ### Patch Changes

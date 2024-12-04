@@ -1,5 +1,11 @@
 # @mo-yu/core
 
+## 1.0.13
+
+### Patch Changes
+
+- rem 工具 zoom 功能删除
+
 ## 1.0.12
 
 ### Patch Changes
