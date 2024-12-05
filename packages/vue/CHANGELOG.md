@@ -1,5 +1,11 @@
 # @mo-yu/vue
 
+## 1.0.18
+
+### Patch Changes
+
+- useRem 添加 pxNow 方法
+
 ## 1.0.17
 
 ### Patch Changes

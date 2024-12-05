@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-10 10:43:25
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-04 10:03:15
+ * @LastEditTime: 2024-12-05 16:42:47
  * @Description: rem hook
  */
 import { ref } from 'vue'
@@ -42,8 +42,23 @@ export function useRem() {
     return Math.floor(rem.value * r)
   }
 
+  /**
+   * 获取设计稿元素尺寸(px)在当前屏幕下实际的px值
+   * @example
+   * ```ts
+   * // 若当前rem值为100px，将打印150
+   * console.log(remToPx(150))
+   * ```
+   * @param r - 设计稿元素尺寸(px)
+   * @returns
+   */
+  function pxNow(r: number) {
+    return Math.floor((rem.value * r) / 100)
+  }
+
   return {
     rem,
-    remToPx
+    remToPx,
+    pxNow
   }
 }

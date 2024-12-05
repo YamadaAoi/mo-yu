@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:20:47
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-04 09:37:41
+ * @LastEditTime: 2024-12-05 16:43:32
  * @Description:
  */
 import { ToolBase } from '../baseTool'
@@ -156,7 +156,7 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
  * ```ts
  * import { remTool } from '@mo-yu/core'
  *
- * remTool.resetDesignSize(1440)
+ * remTool.resetDesignSize({ designWidth: 1440 })
  * remTool.enable()
  * remTool.eventBus.on('rem-refresh', e => {
  *   console.log(e.rem)

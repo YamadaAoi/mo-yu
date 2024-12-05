@@ -1,5 +1,12 @@
 # mo-yu-vue-demo
 
+## 1.0.35
+
+### Patch Changes
+
+- Updated dependencies
+  - @mo-yu/vue@1.0.18
+
 ## 1.0.34
 
 ### Patch Changes
