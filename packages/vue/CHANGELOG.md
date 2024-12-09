@@ -1,5 +1,12 @@
 # @mo-yu/vue
 
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies
+  - @mo-yu/core@1.0.14
+
 ## 1.0.18
 
 ### Patch Changes

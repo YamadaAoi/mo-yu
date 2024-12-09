@@ -17,7 +17,7 @@ remTool: RemTool
 ```ts
 import { remTool } from '@mo-yu/core'
 
-remTool.resetDesignSize(1440)
+remTool.resetDesignSize({ designWidth: 1440 })
 remTool.enable()
 remTool.eventBus.on('rem-refresh', e => {
   console.log(e.rem)

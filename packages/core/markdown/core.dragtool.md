@@ -19,8 +19,7 @@ export declare class DragTool extends ToolBase<DragToolOptions, any>
 ```ts
 const drag = new DragTool({
   handleId: '',
-  targetId: '',
-  zoom: 1
+  targetId: ''
 })
 
 drag.enable()
@@ -35,9 +34,8 @@ drag.locate('center')
 
 ## Methods
 
-| Method                                          | Modifiers | Description            |
-| ----------------------------------------------- | --------- | ---------------------- |
-| [destroy()](./core.dragtool.destroy.md)         |           | 功能销毁               |
-| [enable()](./core.dragtool.enable.md)           |           | 功能启用               |
-| [locate(position)](./core.dragtool.locate.md)   |           | 定位拖动元素到设定位置 |
-| [resetZoom(zoom)](./core.dragtool.resetzoom.md) |           | 重置 body 缩放值       |
+| Method                                        | Modifiers | Description            |
+| --------------------------------------------- | --------- | ---------------------- |
+| [destroy()](./core.dragtool.destroy.md)       |           | 功能销毁               |
+| [enable()](./core.dragtool.enable.md)         |           | 功能启用               |
+| [locate(position)](./core.dragtool.locate.md) |           | 定位拖动元素到设定位置 |

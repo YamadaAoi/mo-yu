@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2023-01-05 15:20:47
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-05 16:43:32
+ * @LastEditTime: 2024-12-09 09:37:32
  * @Description:
  */
 import { ToolBase } from '../baseTool'
@@ -116,8 +116,9 @@ class RemTool extends ToolBase<RemToolOptions, RemToolEvents> {
     const width = document.documentElement.getBoundingClientRect().width
     const height = document.documentElement.getBoundingClientRect().height
     if (this.#designHeight) {
-      this.#rem =
-        (width * height * 100) / (this.#designWidth * this.#designHeight)
+      const ratio = this.#designHeight / this.#designWidth
+      const idealHeight = width * ratio
+      this.#rem = (width * height * 100) / (this.#designWidth * idealHeight)
     } else {
       this.#rem = (width * 100) / this.#designWidth
     }

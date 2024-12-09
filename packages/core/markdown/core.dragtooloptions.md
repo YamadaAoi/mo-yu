@@ -21,4 +21,3 @@ export interface DragToolOptions extends ToolBaseOptions
 | [handleId](./core.dragtooloptions.handleid.md)  |           | string | 点击拖拽的元素 id                                                                                                                |
 | [targetId?](./core.dragtooloptions.targetid.md) |           | string | _(Optional)_ 需要拖拽移动的根元素 id，此元素应包含 handleId 例如，handleId 是一个弹框的头部，targetId 是这个弹框本身（包含头部） |
 | [wrapId?](./core.dragtooloptions.wrapid.md)     |           | string | _(Optional)_ 可拖拽的范围，在某个父元素节点内 默认为 document.body                                                               |
-| [zoom?](./core.dragtooloptions.zoom.md)         |           | number | _(Optional)_ body 缩放值，默认 1                                                                                                 |
