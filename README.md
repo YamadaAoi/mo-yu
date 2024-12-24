@@ -19,3 +19,4 @@ $ npm i @mo-yu/core @mo-yu/vue
 | [@mo-yu/core](./packages/core/markdown/index.md)     | 核心库        |
 | [@mo-yu/vue](./packages/vue/markdown/index.md)       | vue 组件库    |
 | [@mo-yu/cesium](./packages/cesium/markdown/index.md) | cesium helper |
+| [@mo-yu/ui](./packages/ui/README.md)                 | 源码组件库    |
