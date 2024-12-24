@@ -1,9 +1,11 @@
 {
   "name": "@mo-yu/ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "vue3+ts+scss源码组件库",
   "exports": "./es/index.mjs",
-  "bin": "./es/index.mjs",
+  "bin": {
+    "@mo-yu/ui": "./es/index.mjs"
+  },
   "types": "./es/types/src/index.d.ts",
   "files": [
     "es"

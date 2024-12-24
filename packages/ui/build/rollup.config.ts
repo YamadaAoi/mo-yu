@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-12-24 09:42:43
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-12-24 18:32:12
+ * @LastEditTime: 2024-12-24 21:10:35
  * @Description:
  */
 import path from 'path'
@@ -25,6 +25,9 @@ export default defineConfig([
       dir: 'es',
       format: 'es',
       entryFileNames: '[name].mjs',
+      exports: 'named',
+      preserveModules: true,
+      preserveModulesRoot: 'src',
       sourcemap: false
     },
     plugins: [
