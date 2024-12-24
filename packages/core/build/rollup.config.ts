@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2022-06-17 14:35:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-01-16 16:13:07
+ * @LastEditTime: 2024-12-24 18:34:13
  * @Description:
  */
 import path from 'path'
@@ -28,9 +28,6 @@ export default defineConfig([
     output: {
       dir: path.dirname(pkg.module),
       format: 'es',
-      exports: 'named',
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       sourcemap: false
     },
     plugins: [
@@ -61,9 +58,6 @@ export default defineConfig([
     output: {
       dir: path.dirname(pkg.main),
       format: 'cjs',
-      exports: 'named',
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       sourcemap: false
     },
     plugins: [
@@ -85,7 +79,6 @@ export default defineConfig([
       file: path.resolve(__dirname, '../dist/index.js'),
       format: 'umd',
       name: 'MoYuCore',
-      exports: 'named',
       sourcemap: false
     },
     plugins: [

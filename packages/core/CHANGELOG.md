@@ -1,5 +1,11 @@
 # @mo-yu/core
 
+## 1.0.15
+
+### Patch Changes
+
+- pnpm 打包问题修复
+
 ## 1.0.14
 
 ### Patch Changes

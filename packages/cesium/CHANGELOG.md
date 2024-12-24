@@ -1,5 +1,13 @@
 # @mo-yu/cesium
 
+## 1.1.3
+
+### Patch Changes
+
+- pnpm 打包问题修复
+- Updated dependencies
+  - @mo-yu/core@1.0.15
+
 ## 1.1.2
 
 ### Patch Changes

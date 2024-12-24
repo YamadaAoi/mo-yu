@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2022-06-17 14:35:34
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-03-27 13:54:38
+ * @LastEditTime: 2024-12-24 18:33:50
  * @Description:
  */
 import path from 'path'
@@ -29,9 +29,6 @@ export default defineConfig([
     output: {
       dir: path.dirname(pkg.module),
       format: 'es',
-      exports: 'named',
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       sourcemap: false
     },
     plugins: [
@@ -74,9 +71,6 @@ export default defineConfig([
     output: {
       dir: path.dirname(pkg.main),
       format: 'cjs',
-      exports: 'named',
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       sourcemap: false
     },
     plugins: [
@@ -110,7 +104,6 @@ export default defineConfig([
       file: path.resolve(__dirname, '../dist/index.js'),
       format: 'umd',
       name: 'MoYuCesium',
-      exports: 'named',
       sourcemap: false,
       globals: {
         cesium: 'Cesium',

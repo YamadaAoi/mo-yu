@@ -1,6 +1,6 @@
 {
   "name": "@mo-yu/ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "vue3+ts+scss源码组件库",
   "exports": "./es/index.mjs",
   "bin": "./es/index.mjs",
@@ -28,8 +28,8 @@
   "author": "zhouyinkui",
   "license": "MIT",
   "peerDependencies": {
-    "@mo-yu/core": "^1.0.14",
-    "@mo-yu/vue": "^1.0.19",
+    "@mo-yu/core": "^1.0.15",
+    "@mo-yu/vue": "^1.0.20",
     "echarts": "^5.5.1",
     "vue": "^3.0.0"
   },
