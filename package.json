@@ -15,7 +15,6 @@
     "build-core": "pnpm --filter \"@mo-yu/core\" build",
     "build-vue": "pnpm --filter \"@mo-yu/vue\" build",
     "build-cesium": "pnpm --filter \"@mo-yu/cesium\" build",
-    "build-ui": "pnpm --filter \"@mo-yu/ui\" build",
     "build-vue-demo": "pnpm --filter \"mo-yu-vue-demo\" build",
     "build": "pnpm -r --filter \"@mo-yu/*\" build",
     "lint": "eslint --cache packages/**/*.{ts,tsx,vue}",

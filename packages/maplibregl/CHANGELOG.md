@@ -1,5 +1,12 @@
 # @mo-yu/maplibregl
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @mo-yu/core@1.0.16
+
 ## 1.0.3
 
 ### Patch Changes

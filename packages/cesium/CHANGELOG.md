@@ -1,5 +1,13 @@
 # @mo-yu/cesium
 
+## 1.1.4
+
+### Patch Changes
+
+- 迁出 ui 库
+- Updated dependencies
+  - @mo-yu/core@1.0.16
+
 ## 1.1.3
 
 ### Patch Changes

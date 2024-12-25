@@ -1,6 +1,6 @@
 {
   "name": "@mo-yu/core",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "mo-yu core",
   "main": "lib/index.js",
   "module": "es/index.js",
