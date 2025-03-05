@@ -2,7 +2,7 @@
  * @Author: zhouyinkui
  * @Date: 2024-01-11 14:21:20
  * @LastEditors: zhouyinkui
- * @LastEditTime: 2024-09-19 09:58:35
+ * @LastEditTime: 2025-03-05 14:43:11
  * @Description:
  */
 import {
@@ -292,19 +292,23 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
         this.baseMap = config.id
         const providers = createImageryProvider(config)
         // 底图默认依次添加到最下面
-        providers.forEach((p, i) => {
-          if (p instanceof ImageryProvider) {
-            this.#curLayers.push(
-              this.#viewer.imageryLayers.addImageryProvider(p, i)
-            )
-          } else {
-            p.then(pd => {
+        providers.forEach((p: any, i) => {
+          if (
+            p &&
+            typeof p.then === 'function' &&
+            typeof p.catch === 'function'
+          ) {
+            p.then((pd: ImageryProvider) => {
               this.#curLayers.push(
                 this.#viewer.imageryLayers.addImageryProvider(pd, i)
               )
-            }).catch(err => {
+            }).catch((err: any) => {
               console.error(err)
             })
+          } else {
+            this.#curLayers.push(
+              this.#viewer.imageryLayers.addImageryProvider(p, i)
+            )
           }
         })
       }
@@ -351,15 +355,19 @@ export class BaseMapTool extends ToolBase<ToolBaseOptions, BaseMapToolEvents> {
     if (this.#viewer) {
       const providers = createImageryProvider(config)
       const layers: ImageryLayer[] = []
-      providers.forEach(p => {
-        if (p instanceof ImageryProvider) {
-          layers.push(this.#viewer.imageryLayers.addImageryProvider(p))
-        } else {
-          p.then(pd => {
+      providers.forEach((p: any) => {
+        if (
+          p &&
+          typeof p.then === 'function' &&
+          typeof p.catch === 'function'
+        ) {
+          p.then((pd: ImageryProvider) => {
             layers.push(this.#viewer.imageryLayers.addImageryProvider(pd))
-          }).catch(err => {
+          }).catch((err: any) => {
             console.error(err)
           })
+        } else {
+          layers.push(this.#viewer.imageryLayers.addImageryProvider(p))
         }
       })
       if (config.id) {
